@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 高德地图API KEY -->
+    <string name="gaode_map_api_key">24f38e22fda8d164a27d2af18b468890</string>
+
+</resources>
