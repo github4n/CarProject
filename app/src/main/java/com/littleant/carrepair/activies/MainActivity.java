@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.amap.api.maps2d.MapView;
 import com.littleant.carrepair.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     /**
      * 高德地图
      */
@@ -17,11 +17,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        setContentView(R.layout.activity_main);
-
         mMapView = findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected int getTitleId() {
+        return R.string.text_main_title;
     }
 
     @Override

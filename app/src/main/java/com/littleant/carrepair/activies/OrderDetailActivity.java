@@ -5,12 +5,20 @@ import android.os.Bundle;
 
 import com.littleant.carrepair.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class OrderDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_order_detail;
+    }
+
+    @Override
+    protected int getTitleId() {
+        return R.string.text_order_detail;
     }
 }

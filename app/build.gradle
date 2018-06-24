@@ -11,7 +11,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
-            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","arm64-v8a","x86_64"
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
 //            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","arm64-v8a","x86_64"
         }
     }
@@ -26,7 +26,7 @@ android {
 
                 outputFileName = "${variant.applicationId}_${variant.versionCode}_${variant.versionName}_${getReleaseTime()}_release.apk"
 
-            }else  if (outputFile != null && outputFile.name.contains("debug") && outputFile.name.endsWith('.apk')) {
+            } else if (outputFile != null && outputFile.name.contains("debug") && outputFile.name.endsWith('.apk')) {
 
                 outputFileName = "${variant.applicationId}_${variant.versionCode}_${variant.versionName}_${getReleaseTime()}_debug.apk"
             }
@@ -71,6 +71,7 @@ dependencies {
 
 
     implementation 'com.amap.api:map2d:latest.integration'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
 
 def getReleaseTime() {
