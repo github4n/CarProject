@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activies.SendCarAddressActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_brand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include" />
+
+    <TextView
+        android:id="@+id/tv_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="法拉利"
+        app:layout_constraintBottom_toBottomOf="@id/brand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/brand" />
+
+    <TextView
+        android:id="@+id/add_line1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/tv_brand" />
+
+    <TextView
+        android:id="@+id/buytime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_buy_car_time"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/add_line1" />
+
+    <TextView
+        android:id="@+id/tv_buy_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018.06.25"
+        app:layout_constraintBottom_toBottomOf="@id/buytime"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintTop_toTopOf="@id/buytime" />
+
+    <TextView
+        android:id="@+id/add_line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/buytime" />
+
+    <TextView
+        android:id="@+id/mile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_car_mile"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/add_line2" />
+
+    <TextView
+        android:id="@+id/tv_mile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="55KM"
+        app:layout_constraintBottom_toBottomOf="@id/mile"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintTop_toTopOf="@id/mile" />
+
+    <TextView
+        android:id="@+id/add_line3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/mile" />
+
+    <TextView
+        android:id="@+id/plate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_car_plate"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/add_line3" />
+
+    <TextView
+        android:id="@+id/tv_plate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="粤A13456"
+        app:layout_constraintBottom_toBottomOf="@id/plate"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintTop_toTopOf="@id/plate" />
+
+    <TextView
+        android:id="@+id/add_line4"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/plate" />
+
+    <TextView
+        android:id="@+id/engine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_car_plate"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/add_line4" />
+
+    <TextView
+        android:id="@+id/tv_engine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="XG643541"
+        app:layout_constraintBottom_toBottomOf="@id/engine"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintTop_toTopOf="@id/engine" />
+
+    <TextView
+        android:id="@+id/add_line5"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintTop_toBottomOf="@id/engine" />
+
+</android.support.constraint.ConstraintLayout>

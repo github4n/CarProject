@@ -26,8 +26,6 @@
 
     <string name="text_my_car">我的汽车</string>
     <string name="text_send_car_service">送车服务</string>
-    <string name="text_send_car_address">送车地址</string>
-    <string name="text_add_car">添加车辆</string>
 
     <string name="text_order_detail">订单详情</string>
     <string name="text_destination_address">收货地址</string>
@@ -45,5 +43,17 @@
     <string name="btn_delete_order">删除订单</string>
     <string name="btn_order_detail">详情</string>
     <string name="btn_order_pay">付款</string>
+
+    <string name="text_add_car">添加车辆</string>
+    <string name="text_brand">品牌</string>
+    <string name="text_buy_car_time">购车时间</string>
+    <string name="text_car_mile">里程数</string>
+    <string name="text_car_plate">车牌号码</string>
+    <string name="text_car_engine">发动机</string>
+
+    <string name="text_send_car_address">送车地址</string>
+    <string name="text_client_name">姓名</string>
+    <string name="text_client_phone">电话</string>
+    <string name="text_client_address">地址</string>
 
 </resources>

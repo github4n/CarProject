@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.AddCarActivity;
 import com.littleant.carrepair.activies.AllOrderActivity;
 import com.littleant.carrepair.activies.LoginActivity;
 import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.OrderDetailActivity;
+import com.littleant.carrepair.activies.SendCarAddressActivity;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +24,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.main).setOnClickListener(this);
         findViewById(R.id.order_detail).setOnClickListener(this);
         findViewById(R.id.all_order).setOnClickListener(this);
+        findViewById(R.id.addcar).setOnClickListener(this);
+        findViewById(R.id.sendcaraddress).setOnClickListener(this);
 
     }
 
@@ -43,6 +47,14 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.all_order:
                 c = AllOrderActivity.class;
+                break;
+
+            case R.id.addcar:
+                c = AddCarActivity.class;
+                break;
+
+            case R.id.sendcaraddress:
+                c = SendCarAddressActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);

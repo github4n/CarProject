@@ -15,25 +15,37 @@
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="登入页" />
+            android:text="1.登入页" />
 
         <Button
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="主页" />
+            android:text="8.首页" />
 
         <Button
             android:id="@+id/order_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="订单详情" />
+            android:text="2.订单详情" />
 
         <Button
             android:id="@+id/all_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_all_order" />
+            android:text="18.我的订单" />
+
+        <Button
+            android:id="@+id/addcar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9.添加车辆" />
+
+        <Button
+            android:id="@+id/sendcaraddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10.送车地址" />
 
     </LinearLayout>
 

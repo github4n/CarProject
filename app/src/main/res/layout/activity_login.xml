@@ -16,8 +16,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/holo_blue_bright" />
 
@@ -28,8 +28,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/logoImg"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/logoImg"
         app:srcCompat="@android:color/holo_green_dark" />
 
     <EditText
@@ -44,10 +44,10 @@
         android:layout_marginTop="8dp"
         android:hint="@string/login_account"
         android:background="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/phoneImg"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/phoneImg"
-        app:layout_constraintTop_toTopOf="@+id/phoneImg" />
+        app:layout_constraintBottom_toBottomOf="@id/phoneImg"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toEndOf="@id/phoneImg"
+        app:layout_constraintTop_toTopOf="@id/phoneImg" />
 
     <ImageView
         android:id="@+id/pswImg"
@@ -56,8 +56,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/phoneImg"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/phoneImg"
         app:srcCompat="@android:color/holo_green_dark" />
 
     <EditText
@@ -69,18 +69,18 @@
         android:background="@null"
         android:hint="@string/login_password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="@+id/pswImg"
-        app:layout_constraintStart_toEndOf="@+id/pswImg"
-        app:layout_constraintTop_toTopOf="@+id/pswImg" />
+        app:layout_constraintBottom_toBottomOf="@id/pswImg"
+        app:layout_constraintStart_toEndOf="@id/pswImg"
+        app:layout_constraintTop_toTopOf="@id/pswImg" />
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/pswEdt"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/pswEdt"
         tools:text="登入" />
 
     <android.support.constraint.Guideline
@@ -111,10 +111,10 @@
         android:gravity="center"
         android:text="@string/login_request_auth_number"
         android:textColor="@android:color/holo_blue_light"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/pswEdt"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintBottom_toBottomOf="@id/textView3"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toEndOf="@id/pswEdt"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
 
     <TextView
         android:id="@+id/textView2"
@@ -126,9 +126,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/phoneEdt" />
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/phoneEdt" />
 
     <TextView
         android:id="@+id/textView3"
@@ -140,8 +140,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/pswEdt" />
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/pswEdt" />
 
 </android.support.constraint.ConstraintLayout>
