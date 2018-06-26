@@ -5,21 +5,21 @@ import android.os.Bundle;
 
 import com.littleant.carrepair.R;
 
-public class AddCarActivity extends BaseActivity {
+public class AddAddressActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_car);
+        setContentView(R.layout.activity_add_address);
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_add_car;
+        return R.layout.activity_add_address;
     }
 
     @Override
     protected int getTitleId() {
-        return R.string.text_add_car;
+        return R.string.text_add_address;
     }
 }

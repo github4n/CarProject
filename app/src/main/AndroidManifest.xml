@@ -42,14 +42,20 @@
             android:name="com.amap.api.v2.apikey"
             android:value="@string/gaode_map_api_key" />
 
-        <activity android:name=".activies.OrderDetailActivity"
+        <activity
+            android:name=".activies.OrderDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.AllOrderActivity"
+        <activity
+            android:name=".activies.AllOrderActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.AddCarActivity"
+        <activity
+            android:name=".activies.AddCarActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.SendCarAddressActivity"
+        <activity
+            android:name=".activies.SendCarAddressActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activies.AddAddressActivity" />
+        <activity android:name=".activies.SendCarServiceActivity"></activity>
     </application>
 
 </manifest>

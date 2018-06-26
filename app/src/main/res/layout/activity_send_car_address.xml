@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activies.SendCarAddressActivity">
+    tools:context=".activies.AddCarActivity">
 
     <include
         android:id="@+id/include"
@@ -16,26 +16,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/brand"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/text_brand"
+        android:text="@string/text_client_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include" />
 
-    <TextView
-        android:id="@+id/tv_brand"
+    <EditText
+        android:id="@+id/et_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="法拉利"
-        app:layout_constraintBottom_toBottomOf="@id/brand"
+        android:hint="张三"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@id/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/brand" />
+        app:layout_constraintTop_toTopOf="@id/name" />
 
     <TextView
         android:id="@+id/add_line1"
@@ -43,27 +44,28 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/tv_brand" />
+        app:layout_constraintEnd_toEndOf="@id/et_name"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/et_name" />
 
     <TextView
-        android:id="@+id/buytime"
+        android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/text_buy_car_time"
-        app:layout_constraintStart_toStartOf="@id/brand"
+        android:text="@string/text_client_phone"
+        app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/add_line1" />
 
-    <TextView
-        android:id="@+id/tv_buy_time"
+    <EditText
+        android:id="@+id/et_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2018.06.25"
-        app:layout_constraintBottom_toBottomOf="@id/buytime"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
-        app:layout_constraintTop_toTopOf="@id/buytime" />
+        android:background="@null"
+        android:hint="1371000000"
+        app:layout_constraintBottom_toBottomOf="@id/phone"
+        app:layout_constraintEnd_toEndOf="@id/et_name"
+        app:layout_constraintTop_toTopOf="@id/phone" />
 
     <TextView
         android:id="@+id/add_line2"
@@ -71,27 +73,28 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/buytime" />
+        app:layout_constraintEnd_toEndOf="@id/et_name"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/phone" />
 
     <TextView
-        android:id="@+id/mile"
+        android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/text_car_mile"
-        app:layout_constraintStart_toStartOf="@id/brand"
+        android:text="@string/text_client_address"
+        app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/add_line2" />
 
-    <TextView
-        android:id="@+id/tv_mile"
+    <EditText
+        android:id="@+id/et_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="55KM"
-        app:layout_constraintBottom_toBottomOf="@id/mile"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
-        app:layout_constraintTop_toTopOf="@id/mile" />
+        android:background="@null"
+        android:hint="地址"
+        app:layout_constraintBottom_toBottomOf="@id/address"
+        app:layout_constraintEnd_toEndOf="@id/et_name"
+        app:layout_constraintTop_toTopOf="@id/address" />
 
     <TextView
         android:id="@+id/add_line3"
@@ -99,9 +102,9 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/mile" />
+        app:layout_constraintEnd_toEndOf="@id/et_name"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/address" />
 
     <TextView
         android:id="@+id/plate"
@@ -109,16 +112,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_car_plate"
-        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/add_line3" />
 
-    <TextView
-        android:id="@+id/tv_plate"
+    <EditText
+        android:id="@+id/et_plate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="粤A13456"
+        android:background="@null"
+        android:hint="粤A13456"
         app:layout_constraintBottom_toBottomOf="@id/plate"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintEnd_toEndOf="@id/et_name"
         app:layout_constraintTop_toTopOf="@id/plate" />
 
     <TextView
@@ -127,8 +131,8 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintEnd_toEndOf="@id/et_name"
+        app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/plate" />
 
     <TextView
@@ -136,17 +140,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/text_car_plate"
-        app:layout_constraintStart_toStartOf="@id/brand"
+        android:text="@string/text_car_engine"
+        app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/add_line4" />
 
-    <TextView
-        android:id="@+id/tv_engine"
+    <EditText
+        android:id="@+id/et_engine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="XG643541"
+        android:background="@null"
+        android:hint="XG643541"
         app:layout_constraintBottom_toBottomOf="@id/engine"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
+        app:layout_constraintEnd_toEndOf="@id/et_name"
         app:layout_constraintTop_toTopOf="@id/engine" />
 
     <TextView
@@ -155,8 +160,8 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="@id/tv_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
+        app:layout_constraintEnd_toEndOf="@id/et_name"
+        app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/engine" />
 
 </android.support.constraint.ConstraintLayout>

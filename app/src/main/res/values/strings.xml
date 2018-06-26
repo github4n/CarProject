@@ -25,7 +25,6 @@
     <string name="text_user_center">个人中心</string>
 
     <string name="text_my_car">我的汽车</string>
-    <string name="text_send_car_service">送车服务</string>
 
     <string name="text_order_detail">订单详情</string>
     <string name="text_destination_address">收货地址</string>
@@ -55,5 +54,15 @@
     <string name="text_client_name">姓名</string>
     <string name="text_client_phone">电话</string>
     <string name="text_client_address">地址</string>
+
+    <string name="text_add_address">添加地址</string>
+    <string name="hint_receiver_name">请输入收货人姓名</string>
+    <string name="hint_receiver_phone">请输入收货人联系电话</string>
+    <string name="hint_receiver_city">请选择市区</string>
+    <string name="hint_receiver_address">请输入你的详细地址</string>
+
+    <string name="text_send_car_service">送车服务</string>
+    <string name="text_car_receiver">收车人</string>
+    <string name="text_car_receive_time">收车时间</string>
 
 </resources>

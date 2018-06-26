@@ -18,22 +18,16 @@
             android:text="1.登入页" />
 
         <Button
-            android:id="@+id/main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="8.首页" />
-
-        <Button
             android:id="@+id/order_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="2.订单详情" />
 
         <Button
-            android:id="@+id/all_order"
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="18.我的订单" />
+            android:text="8.首页" />
 
         <Button
             android:id="@+id/addcar"
@@ -46,6 +40,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="10.送车地址" />
+
+        <Button
+            android:id="@+id/sendcarservice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10.送车服务" />
+
+        <Button
+            android:id="@+id/addaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12.添加地址" />
+
+        <Button
+            android:id="@+id/all_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="18.我的订单" />
+
 
     </LinearLayout>
 

@@ -15,7 +15,7 @@ public class SendCarAddressActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.activity_send_car_address;
     }
 
     @Override
