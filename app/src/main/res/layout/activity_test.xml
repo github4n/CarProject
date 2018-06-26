@@ -45,7 +45,7 @@
             android:id="@+id/sendcarservice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="10.送车服务" />
+            android:text="11.送车服务" />
 
         <Button
             android:id="@+id/addaddress"
@@ -59,6 +59,17 @@
             android:layout_height="wrap_content"
             android:text="18.我的订单" />
 
+        <Button
+            android:id="@+id/remainingsum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="22.余额" />
+
+        <Button
+            android:id="@+id/moneylist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="23.余额列表" />
 
     </LinearLayout>
 

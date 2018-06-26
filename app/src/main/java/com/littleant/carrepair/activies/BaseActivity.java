@@ -8,16 +8,25 @@ import android.widget.TextView;
 import com.littleant.carrepair.R;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    private TextView title;
+    private TextView mTitle, mOptionContent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        title = findViewById(R.id.header_title);
-        title.setText(getTitleId());
+        mTitle = findViewById(R.id.header_title);
+        mTitle.setText(getTitleId());
+
+        mOptionContent = findViewById(R.id.header_option_content);
+        if(getOptionStringId() != 0) {
+            mOptionContent.setText(getOptionStringId());
+        }
     }
 
     protected abstract int getLayoutId();
     protected abstract int getTitleId();
+
+    protected int getOptionStringId() {
+        return 0;
+    }
 }

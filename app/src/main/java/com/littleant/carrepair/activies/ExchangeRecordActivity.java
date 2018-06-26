@@ -1,11 +1,11 @@
 package com.littleant.carrepair.activies;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.littleant.carrepair.R;
 
-public class AddAddressActivity extends BaseActivity {
+public class ExchangeRecordActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,11 +14,11 @@ public class AddAddressActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_add_address;
+        return R.layout.activity_exchange_record;
     }
 
     @Override
     protected int getTitleId() {
-        return R.string.text_add_address;
+        return R.string.text_remaining_sum_list;
     }
 }

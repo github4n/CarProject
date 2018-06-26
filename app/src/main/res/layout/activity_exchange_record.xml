@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activies.SendCarServiceActivity">
+    tools:context=".activies.ExchangeRecordActivity">
 
     <include
         android:id="@+id/include"
@@ -15,13 +15,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/include_item"
-        layout="@layout/layout_send_car_service_item"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/exchange_record_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include" />
+        app:layout_constraintTop_toBottomOf="@id/include"/>
 
 </android.support.constraint.ConstraintLayout>

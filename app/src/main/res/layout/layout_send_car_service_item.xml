@@ -36,7 +36,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline6"
@@ -61,74 +62,51 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/item_name"
+            android:id="@+id/item_car_receiver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:layout_weight="3"
-            android:maxLines="2"
-            android:text="商品名称可以很长最多两行"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:text="@string/text_car_receiver"
             android:textColor="@android:color/black" />
 
         <TextView
-            android:id="@+id/item_price"
+            android:id="@+id/item_car_receiver_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_weight="1"
-            android:gravity="end"
+            android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="$119"
-            android:textColor="@android:color/holo_red_dark" />
+            android:text="@string/text_car_receive_time" />
 
         <TextView
-            android:id="@+id/item_amount"
+            android:id="@+id/item_car_receiver_plate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:layout_weight="1"
-            android:gravity="end"
+            android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="x1" />
+            android:text="@string/text_car_receive_plate" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.39999998" />
-
-    <TextView
-        android:id="@+id/textView14"
+    <Button
+        android:id="@+id/btn_services_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="共X件商品 合计： ￥999"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_car_receive_confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <Button
-        android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/btn_delete_order"
-        app:layout_constraintEnd_toStartOf="@+id/btn_detail"
-        app:layout_constraintTop_toTopOf="@+id/btn_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.4" />
 
     <Button
         android:id="@+id/btn_detail"
@@ -137,18 +115,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/btn_order_detail"
-        app:layout_constraintEnd_toStartOf="@+id/btn_pay"
-        app:layout_constraintTop_toTopOf="@+id/btn_pay" />
+        app:layout_constraintEnd_toStartOf="@id/btn_services_confirm"
+        app:layout_constraintTop_toTopOf="@id/btn_services_confirm" />
 
-    <Button
-        android:id="@+id/btn_pay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/btn_order_pay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 </android.support.constraint.ConstraintLayout>

@@ -9,10 +9,13 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.AddAddressActivity;
 import com.littleant.carrepair.activies.AddCarActivity;
 import com.littleant.carrepair.activies.AllOrderActivity;
+import com.littleant.carrepair.activies.ExchangeRecordActivity;
 import com.littleant.carrepair.activies.LoginActivity;
 import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.OrderDetailActivity;
+import com.littleant.carrepair.activies.RemainingSumActivity;
 import com.littleant.carrepair.activies.SendCarAddressActivity;
+import com.littleant.carrepair.activies.SendCarServiceActivity;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +31,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.addcar).setOnClickListener(this);
         findViewById(R.id.sendcaraddress).setOnClickListener(this);
         findViewById(R.id.addaddress).setOnClickListener(this);
+        findViewById(R.id.sendcarservice).setOnClickListener(this);
+        findViewById(R.id.remainingsum).setOnClickListener(this);
+        findViewById(R.id.moneylist).setOnClickListener(this);
 
     }
 
@@ -61,6 +67,18 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.addaddress:
                 c = AddAddressActivity.class;
+                break;
+
+            case R.id.sendcarservice:
+                c = SendCarServiceActivity.class;
+                break;
+
+            case R.id.remainingsum:
+                c = RemainingSumActivity.class;
+                break;
+
+            case R.id.moneylist:
+                c = ExchangeRecordActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);

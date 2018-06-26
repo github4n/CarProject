@@ -62,7 +62,17 @@
     <string name="hint_receiver_address">请输入你的详细地址</string>
 
     <string name="text_send_car_service">送车服务</string>
-    <string name="text_car_receiver">收车人</string>
-    <string name="text_car_receive_time">收车时间</string>
+    <string name="text_car_receiver">收车人: %s</string>
+    <string name="text_car_receive_time">收车时间: %s</string>
+    <string name="text_car_receive_plate">品牌: %s</string>
+    <string name="btn_car_receive_confirm">完成</string>
+
+    <string name="text_remaining_sum">余额</string>
+    <string name="text_my_small_change">我的零钱</string>
+    <string name="text_recharge">充值</string>
+    <string name="text_recharge_record">充值记录</string>
+
+    <string name="text_remaining_sum_list">余额列表</string>
+    <string name="text_exchange_wechat">微信支付</string>
 
 </resources>
