@@ -89,5 +89,13 @@
 
     <!---->
     <string name="text_user_center">个人中心</string>
+    <string name="text_user_center_score">积分: %s</string>
+    <string name="text_user_center_wait_serivce">待服务</string>
+    <string name="text_user_center_wait_rate">待评价</string>
+    <string name="text_user_center_my_garage">我的车库</string>
+    <string name="text_user_center_door_serivce">上门维修服务</string>
+    <string name="text_user_center_address_manager">地址管理</string>
+    <string name="text_user_center_repaire_record">维修记录</string>
+    <string name="text_user_center_service_phone">客服电话  13800138000</string>
 
 </resources>
