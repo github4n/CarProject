@@ -19,13 +19,14 @@
 
     <string name="text_client">客户</string>
 
+    <string name="text_my_car">我的汽车</string>
+
+    <!---->
     <string name="text_mine">我的</string>
     <string name="text_my_address">我的地址</string>
     <string name="text_my_order">我的订单</string>
-    <string name="text_user_center">个人中心</string>
 
-    <string name="text_my_car">我的汽车</string>
-
+    <!---->
     <string name="text_order_detail">订单详情</string>
     <string name="text_destination_address">收货地址</string>
     <string name="text_order_info">订单信息</string>
@@ -33,6 +34,7 @@
     <string name="text_order_price">订单总价</string>
     <string name="text_final_price">实付款</string>
 
+    <!---->
     <string name="text_all_order">全部订单</string>
     <string name="text_allorder_all">全部</string>
     <string name="text_allorder_wait_pay">待付款</string>
@@ -43,6 +45,7 @@
     <string name="btn_order_detail">详情</string>
     <string name="btn_order_pay">付款</string>
 
+    <!---->
     <string name="text_add_car">添加车辆</string>
     <string name="text_brand">品牌</string>
     <string name="text_buy_car_time">购车时间</string>
@@ -50,29 +53,41 @@
     <string name="text_car_plate">车牌号码</string>
     <string name="text_car_engine">发动机</string>
 
+    <!---->
     <string name="text_send_car_address">送车地址</string>
     <string name="text_client_name">姓名</string>
     <string name="text_client_phone">电话</string>
     <string name="text_client_address">地址</string>
 
+    <!---->
     <string name="text_add_address">添加地址</string>
     <string name="hint_receiver_name">请输入收货人姓名</string>
     <string name="hint_receiver_phone">请输入收货人联系电话</string>
     <string name="hint_receiver_city">请选择市区</string>
     <string name="hint_receiver_address">请输入你的详细地址</string>
 
+    <!---->
     <string name="text_send_car_service">送车服务</string>
     <string name="text_car_receiver">收车人: %s</string>
     <string name="text_car_receive_time">收车时间: %s</string>
     <string name="text_car_receive_plate">品牌: %s</string>
     <string name="btn_car_receive_confirm">完成</string>
 
+    <!---->
     <string name="text_remaining_sum">余额</string>
     <string name="text_my_small_change">我的零钱</string>
     <string name="text_recharge">充值</string>
     <string name="text_recharge_record">充值记录</string>
 
+    <!---->
     <string name="text_remaining_sum_list">余额列表</string>
     <string name="text_exchange_wechat">微信支付</string>
+
+    <!---->
+    <string name="text_order_page">订单页面</string>
+    <string name="btn_add_receive_address">+ 添加收货地址</string>
+
+    <!---->
+    <string name="text_user_center">个人中心</string>
 
 </resources>

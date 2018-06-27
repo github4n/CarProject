@@ -24,6 +24,18 @@
             android:text="2.订单详情" />
 
         <Button
+            android:id="@+id/order_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3.订单页面" />
+
+        <Button
+            android:id="@+id/user_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4.个人中心" />
+
+        <Button
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

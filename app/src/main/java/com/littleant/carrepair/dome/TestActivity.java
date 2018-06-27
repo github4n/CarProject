@@ -13,9 +13,11 @@ import com.littleant.carrepair.activies.ExchangeRecordActivity;
 import com.littleant.carrepair.activies.LoginActivity;
 import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.OrderDetailActivity;
+import com.littleant.carrepair.activies.OrderPageActivity;
 import com.littleant.carrepair.activies.RemainingSumActivity;
 import com.littleant.carrepair.activies.SendCarAddressActivity;
 import com.littleant.carrepair.activies.SendCarServiceActivity;
+import com.littleant.carrepair.activies.UserCenterActivity;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,6 +36,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.sendcarservice).setOnClickListener(this);
         findViewById(R.id.remainingsum).setOnClickListener(this);
         findViewById(R.id.moneylist).setOnClickListener(this);
+        findViewById(R.id.order_page).setOnClickListener(this);
+        findViewById(R.id.user_center).setOnClickListener(this);
 
     }
 
@@ -79,6 +83,14 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.moneylist:
                 c = ExchangeRecordActivity.class;
+                break;
+
+            case R.id.order_page:
+                c = OrderPageActivity.class;
+                break;
+
+            case R.id.user_center:
+                c = UserCenterActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);
