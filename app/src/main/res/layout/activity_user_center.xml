@@ -30,7 +30,6 @@
         app:layout_constraintGuide_percent="0.4" />
 
     <android.support.constraint.ConstraintLayout
-        android:background="@android:color/holo_blue_dark"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -39,6 +38,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/uc_user_bg"
         app:layout_constraintBottom_toTopOf="@id/guideline16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,10 +48,10 @@
             android:id="@+id/iv_userImg"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,19 +79,19 @@
                 android:id="@+id/tv_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="用户名字"
-                android:textSize="20sp"
-                android:textColor="@android:color/white"
+                android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:layout_weight="1"/>
+                android:text="用户名字"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tv_user_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/text_user_center_score"
-                android:textColor="@android:color/white"
-                android:layout_weight="1"/>
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
@@ -100,7 +100,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/holo_blue_light"
+        android:background="@android:color/holo_blue_bright"
         app:layout_constraintBottom_toTopOf="@id/guideline17"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +118,6 @@
             android:id="@+id/iv_wait_pay"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@id/guideline18"
             app:layout_constraintDimensionRatio="w,1:1"
@@ -132,45 +131,92 @@
             android:id="@+id/iv_wait_service"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline18"
+            app:layout_constraintBottom_toTopOf="@id/guideline18"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@id/iv_wait_pay"
             app:layout_constraintRight_toLeftOf="@+id/iv_wait_rate"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/uc_wait_service" />
 
         <ImageView
             android:id="@+id/iv_wait_rate"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline18"
+            app:layout_constraintBottom_toTopOf="@id/guideline18"
             app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintRight_toLeftOf="@+id/iv_all_order"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@id/iv_wait_service"
+            app:layout_constraintRight_toLeftOf="@+id/iv_all_order"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/uc_wait_rate" />
 
         <ImageView
             android:id="@+id/iv_all_order"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@id/guideline18"
             app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/iv_wait_rate"
             app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/iv_wait_rate"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/uc_all_order" />
+
+        <TextView
+            android:id="@+id/tv_uc_pay"
+            android:layout_width="42dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/text_allorder_wait_pay"
+            android:textColor="@android:color/white"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_wait_pay"
+            app:layout_constraintStart_toStartOf="@+id/iv_wait_pay"
+            app:layout_constraintTop_toBottomOf="@+id/guideline18" />
+
+        <TextView
+            android:id="@+id/tc_uc_service"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/text_user_center_wait_serivce"
+            android:textColor="@android:color/white"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_wait_service"
+            app:layout_constraintStart_toStartOf="@+id/iv_wait_service"
+            app:layout_constraintTop_toBottomOf="@+id/guideline18" />
+
+        <TextView
+            android:id="@+id/tc_uc_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/text_user_center_wait_rate"
+            android:textColor="@android:color/white"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_wait_rate"
+            app:layout_constraintStart_toStartOf="@+id/iv_wait_rate"
+            app:layout_constraintTop_toBottomOf="@+id/guideline18" />
+
+        <TextView
+            android:id="@+id/tv_uc_all_order"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/text_all_order"
+            android:textColor="@android:color/white"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_all_order"
+            app:layout_constraintStart_toStartOf="@+id/iv_all_order"
+            app:layout_constraintTop_toBottomOf="@+id/guideline18" />
 
     </android.support.constraint.ConstraintLayout>
 

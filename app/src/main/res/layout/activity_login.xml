@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@drawable/login_bg"
     tools:context=".activies.LoginActivity">
 
     <ImageView
@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toStartOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/holo_blue_bright" />
+        app:srcCompat="@drawable/logo" />
 
     <ImageView
         android:id="@+id/phoneImg"
@@ -30,7 +30,7 @@
         android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/logoImg"
-        app:srcCompat="@android:color/holo_green_dark" />
+        app:srcCompat="@drawable/login_phone" />
 
     <EditText
         android:id="@+id/phoneEdt"
@@ -43,6 +43,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:hint="@string/login_account"
+        android:textColorHint="@android:color/darker_gray"
         android:background="@null"
         app:layout_constraintBottom_toBottomOf="@id/phoneImg"
         app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -58,7 +59,7 @@
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/phoneImg"
-        app:srcCompat="@android:color/holo_green_dark" />
+        app:srcCompat="@drawable/login_password" />
 
     <EditText
         android:id="@+id/pswEdt"
@@ -68,6 +69,7 @@
         android:layout_marginStart="8dp"
         android:background="@null"
         android:hint="@string/login_password"
+        android:textColorHint="@android:color/darker_gray"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="@id/pswImg"
         app:layout_constraintStart_toEndOf="@id/pswImg"
@@ -78,10 +80,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:text="@string/login_login"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_blue_dark"
         app:layout_constraintEnd_toStartOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/pswEdt"
-        tools:text="登入" />
+        app:layout_constraintTop_toBottomOf="@id/pswEdt" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -103,9 +107,9 @@
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape_blue"
         android:gravity="center"

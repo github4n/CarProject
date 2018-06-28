@@ -16,11 +16,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_title_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_destination_address"
         android:textColor="@android:color/black"
@@ -30,33 +28,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <tv_title_address
+        android:id="@+id/order_line1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@+id/tv_order_price"
+        app:layout_constraintStart_toStartOf="@id/tv_title_address"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_address" />
+
+    <ImageView
+        android:id="@+id/ig_od_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="16dp"
-        android:text="收货人姓名"
-        android:maxLines="1"
+        android:src="@drawable/od_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title_address" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/od_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:maxLines="1"
+        android:text="收货人姓名"
+        app:layout_constraintBottom_toBottomOf="@id/ig_od_name"
+        app:layout_constraintLeft_toRightOf="@id/ig_od_name"
+        app:layout_constraintTop_toTopOf="@id/ig_od_name" />
+
+    <ImageView
+        android:id="@+id/ig_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="收货人地址"
-        android:maxLines="1"
+        android:src="@drawable/od_address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView4" />
+        app:layout_constraintTop_toBottomOf="@id/ig_od_name" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:maxLines="1"
+        android:text="收货人地址"
+        app:layout_constraintBottom_toBottomOf="@+id/ig_address"
+        app:layout_constraintStart_toEndOf="@+id/ig_address"
+        app:layout_constraintTop_toTopOf="@+id/ig_address" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
@@ -107,8 +136,6 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_product_price"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,8 +147,6 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_order_price"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,18 +158,16 @@
         android:id="@+id/textView10"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@+id/tv_order_price"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@id/textView8" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_final_price"
         app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +186,7 @@
         android:layout_marginTop="8dp"
         android:text="￥1020"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline4" />
 
@@ -178,7 +201,7 @@
         android:layout_marginTop="8dp"
         android:text="￥10000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_product_price" />
 
@@ -193,7 +216,7 @@
         android:layout_marginTop="8dp"
         android:text="￥10000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView10" />
 
