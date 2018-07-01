@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/mc_icon" />
 
     <TextView
         android:id="@+id/textView11"
@@ -80,6 +80,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:maxLines="1"
+            android:textColor="@android:color/black"
             android:text="@string/text_car_receive_time" />
 
         <TextView
@@ -90,11 +91,12 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:maxLines="1"
+            android:textColor="@android:color/black"
             android:text="@string/text_car_receive_plate" />
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/btn_services_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,20 +104,36 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:text="@string/btn_car_receive_confirm"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/btn_cycrect_selector"
+        android:textColor="@drawable/btn_text_color_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
         app:layout_constraintVertical_bias="0.4" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/btn_order_detail"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:clickable="true"
+        android:background="@drawable/btn_cycrect_selector"
+        android:textColor="@drawable/btn_text_color_selector"
         app:layout_constraintEnd_toStartOf="@id/btn_services_confirm"
-        app:layout_constraintTop_toTopOf="@id/btn_services_confirm" />
+        app:layout_constraintTop_toTopOf="@id/btn_services_confirm"
+        android:focusable="true" />
 
 </android.support.constraint.ConstraintLayout>

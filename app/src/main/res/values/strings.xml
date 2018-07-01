@@ -58,6 +58,7 @@
     <string name="text_client_name">姓名</string>
     <string name="text_client_phone">电话</string>
     <string name="text_client_address">地址</string>
+    <string name="text_client_save">保存</string>
 
     <!---->
     <string name="text_add_address">添加地址</string>

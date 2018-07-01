@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activies.AddCarActivity">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/sc_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+
     <include
         android:id="@+id/include"
         layout="@layout/layout_header"
@@ -163,5 +170,19 @@
         app:layout_constraintEnd_toEndOf="@id/et_name"
         app:layout_constraintStart_toStartOf="@id/name"
         app:layout_constraintTop_toBottomOf="@id/engine" />
+
+    <Button
+        android:id="@+id/sc_btn_confrm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_blue_fill"
+        android:text="@string/text_client_save"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/et_name"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@+id/sc_guideline" />
 
 </android.support.constraint.ConstraintLayout>
