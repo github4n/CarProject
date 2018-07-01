@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rri_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rri_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rri_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <TextView
+        android:id="@+id/rri_line1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <TextView
+        android:id="@+id/rri_line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <TextView
+        android:id="@+id/rri_tv_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="2018-06-12 21:15:45"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/rri_line1"
+        app:layout_constraintStart_toEndOf="@+id/rri_iv_calendar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rri_tv_phont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="18648965234"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/rri_line1"
+        app:layout_constraintEnd_toStartOf="@+id/rri_guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/rri_iv_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/rri_tv_calendar"
+        app:layout_constraintStart_toStartOf="@+id/rri_guideline"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_calendar"
+        app:srcCompat="@drawable/rr_calendar" />
+
+    <ImageView
+        android:id="@+id/rri_iv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/rri_tv_phont"
+        app:layout_constraintEnd_toStartOf="@id/rri_tv_phont"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_phont"
+        app:srcCompat="@drawable/rr_phone" />
+
+    <TextView
+        android:id="@+id/rri_tv_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_cycrect_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:text="@string/text_repaire_record_item_pay"
+        android:textColor="@drawable/btn_text_color_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rri_guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/rri_line2" />
+
+    <TextView
+        android:id="@+id/rri_tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/btn_cycrect_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:text="@string/text_repaire_record_item_cancel"
+        android:textColor="@drawable/btn_text_color_selector"
+        app:layout_constraintBottom_toBottomOf="@id/rri_tv_pay"
+        app:layout_constraintEnd_toStartOf="@id/rri_tv_pay"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_pay" />
+
+    <TextView
+        android:id="@+id/rri_tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_repaire_record_plate"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_2"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline"
+        app:layout_constraintTop_toBottomOf="@id/rri_line1" />
+
+    <TextView
+        android:id="@+id/rri_tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_repaire_record_time"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_3"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline"
+        app:layout_constraintTop_toBottomOf="@id/rri_tv_1" />
+
+    <TextView
+        android:id="@+id/rri_tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_repaire_record_brand"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_4"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline"
+        app:layout_constraintTop_toBottomOf="@id/rri_tv_2" />
+
+    <TextView
+        android:id="@+id/rri_tv_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_repaire_record_money"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_5"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline"
+        app:layout_constraintTop_toBottomOf="@id/rri_tv_3" />
+
+    <TextView
+        android:id="@+id/rri_tv_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_repaire_record_get_time"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_6"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline"
+        app:layout_constraintTop_toBottomOf="@id/rri_tv_4" />
+
+    <TextView
+        android:id="@+id/rri_tv_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_repaire_record_send_car"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/rri_line2"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline"
+        app:layout_constraintTop_toBottomOf="@id/rri_tv_5" />
+
+    <TextView
+        android:id="@+id/rii_tv_plate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="粤A13642"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_2"
+        app:layout_constraintEnd_toStartOf="@id/rri_guideline2"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline3"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_1" />
+
+    <TextView
+        android:id="@+id/rii_tv_time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="TAL 1万米顶起保养"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_3"
+        app:layout_constraintEnd_toStartOf="@id/rri_guideline2"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline3"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_2" />
+
+    <TextView
+        android:id="@+id/rii_tv_brand"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="发动机保养保护剂，发动机润滑清新剂"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_4"
+        app:layout_constraintEnd_toStartOf="@id/rri_guideline2"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline3"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_3" />
+
+    <TextView
+        android:id="@+id/rii_tv_money"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="￥300元"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_5"
+        app:layout_constraintEnd_toStartOf="@id/rri_guideline2"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline3"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_4" />
+
+    <TextView
+        android:id="@+id/rii_tv_get_time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="2018-06-12  15:24"
+        app:layout_constraintBottom_toTopOf="@id/rri_tv_6"
+        app:layout_constraintEnd_toStartOf="@id/rri_guideline2"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline3"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_5" />
+
+    <TextView
+        android:id="@+id/rii_tv_send_car"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="发动机保养保护剂，发动机润滑清新剂"
+        app:layout_constraintBottom_toTopOf="@id/rri_line2"
+        app:layout_constraintEnd_toStartOf="@id/rri_guideline2"
+        app:layout_constraintStart_toStartOf="@id/rri_guideline3"
+        app:layout_constraintTop_toTopOf="@id/rri_tv_6" />
+
+
+</android.support.constraint.ConstraintLayout>

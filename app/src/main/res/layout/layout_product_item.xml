@@ -132,29 +132,43 @@
         app:layout_constraintEnd_toStartOf="@+id/lpr_tv_sum"
         app:layout_constraintTop_toTopOf="@+id/lpr_tv_sum" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/btn_delete_order"
-        style="@style/CustomButtonCycRect"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/btn_cycrect_selector"
+        android:textColor="@drawable/btn_text_color_selector"
         app:layout_constraintEnd_toStartOf="@id/btn_detail"
         app:layout_constraintTop_toTopOf="@id/btn_detail" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/btn_order_detail"
-        style="@style/CustomButtonCycRect"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/btn_cycrect_selector"
+        android:textColor="@drawable/btn_text_color_selector"
         app:layout_constraintEnd_toStartOf="@id/btn_pay"
         app:layout_constraintTop_toTopOf="@id/btn_pay" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -162,7 +176,14 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/btn_order_pay"
-        style="@style/CustomButtonCycRect"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/btn_cycrect_selector"
+        android:textColor="@drawable/btn_text_color_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lpr_line2" />

@@ -72,7 +72,8 @@
         <activity android:name=".activies.ShoppingActivity" />
         <activity android:name=".activies.RepairActivity" />
         <activity android:name=".activies.MyCarActivity" />
-        <activity android:name=".activies.MyAddressActivity"></activity>
+        <activity android:name=".activies.MyAddressActivity" />
+        <activity android:name=".activies.RepairRecordActivity"></activity>
     </application>
 
 </manifest>

@@ -136,4 +136,18 @@
     <string name="text_address_edit">编辑</string>
     <string name="text_address_default">默认地址</string>
 
+    <!---->
+    <string name="text_repaire_record">维修记录</string>
+    <string name="text_repaire_record_doing">进行中</string>
+    <string name="text_repaire_record_finish">已完成</string>
+    <string name="text_repaire_record_cancel">已取消</string>
+    <string name="text_repaire_record_plate">车牌号码:</string>
+    <string name="text_repaire_record_time">收车时间:</string>
+    <string name="text_repaire_record_brand">品牌:</string>
+    <string name="text_repaire_record_money">费用:</string>
+    <string name="text_repaire_record_get_time">取车时间:</string>
+    <string name="text_repaire_record_send_car">送车上门:</string>
+    <string name="text_repaire_record_item_pay">付款</string>
+    <string name="text_repaire_record_item_cancel">取消</string>
+
 </resources>
