@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <android.support.constraint.Guideline
-        android:id="@+id/sci_guideline"
+        android:id="@+id/mc_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -39,14 +39,14 @@
         android:layout_marginTop="8dp"
         android:scaleType="centerInside"
         android:src="@drawable/sc_check"
-        app:layout_constraintBottom_toBottomOf="@+id/sci_iv_itemImg"
+        app:layout_constraintBottom_toBottomOf="@+id/mc_iv_itemImg"
         app:layout_constraintEnd_toStartOf="@+id/sci_guideline2"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sci_iv_itemImg" />
+        app:layout_constraintTop_toTopOf="@+id/mc_iv_itemImg" />
 
     <ImageView
-        android:id="@+id/sci_iv_itemImg"
+        android:id="@+id/mc_iv_itemImg"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -59,14 +59,14 @@
         android:src="@drawable/item_demo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toStartOf="@+id/sci_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/mc_guideline"
         app:layout_constraintHorizontal_weight="8"
         app:layout_constraintStart_toStartOf="@+id/sci_guideline2"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        android:id="@+id/sci_item_name"
+        android:id="@+id/mc_item_name"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
@@ -76,8 +76,8 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/sci_item_price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/sci_guideline"
-        app:layout_constraintTop_toTopOf="@+id/sci_iv_itemImg"
+        app:layout_constraintStart_toStartOf="@id/mc_guideline"
+        app:layout_constraintTop_toTopOf="@+id/mc_iv_itemImg"
         app:layout_constraintVertical_weight="4" />
 
     <TextView
@@ -90,9 +90,9 @@
         android:maxLines="1"
         android:text="￥485"
         android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toBottomOf="@+id/sci_iv_itemImg"
-        app:layout_constraintStart_toStartOf="@id/sci_guideline"
-        app:layout_constraintTop_toBottomOf="@id/sci_item_name"
+        app:layout_constraintBottom_toBottomOf="@+id/mc_iv_itemImg"
+        app:layout_constraintStart_toStartOf="@id/mc_guideline"
+        app:layout_constraintTop_toBottomOf="@id/mc_item_name"
         app:layout_constraintVertical_weight="1" />
 
     <TextView
@@ -107,11 +107,11 @@
         android:text="  +  "
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/sci_iv_itemImg"
+        app:layout_constraintBottom_toBottomOf="@+id/mc_iv_itemImg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toEndOf="@+id/sci_item_price"
-        app:layout_constraintTop_toBottomOf="@+id/sci_item_name" />
+        app:layout_constraintTop_toBottomOf="@+id/mc_item_name" />
 
     <TextView
         android:id="@+id/sci_amount"

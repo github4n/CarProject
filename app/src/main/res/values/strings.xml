@@ -21,7 +21,7 @@
 
     <string name="text_client">客户</string>
 
-    <string name="text_my_car">我的汽车</string>
+
 
     <!---->
     <string name="text_mine">我的</string>
@@ -124,5 +124,9 @@
     <string name="text_repair_time">时间:</string>
     <string name="text_repair_phone">手机:</string>
     <string name="text_repair_publish">立即发布</string>
+
+    <!---->
+    <string name="text_my_car">我的汽车</string>
+    <string name="text_my_car_add">添加</string>
 
 </resources>

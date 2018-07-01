@@ -84,6 +84,12 @@
             android:text="13.维修保养" />
 
         <Button
+            android:id="@+id/mycar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="16.我的车" />
+
+        <Button
             android:id="@+id/all_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
