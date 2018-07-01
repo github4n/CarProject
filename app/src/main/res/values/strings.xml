@@ -150,4 +150,10 @@
     <string name="text_repaire_record_item_pay">付款</string>
     <string name="text_repaire_record_item_cancel">取消</string>
 
+    <!---->
+    <string name="text_station_name">新领域汽车维修公司</string>
+    <string name="text_station_contact">联系人:范生 | 13569865478</string>
+    <string name="text_station_address">广东省广州市XXXXXXX</string>
+    <string name="text_station_phone">固定电话: 020-84563258</string>
+
 </resources>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activies.RepairStationActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rs_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rs_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rs_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rs_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginStart="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/rs_logo"
+        app:layout_constraintBottom_toTopOf="@id/rs_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rs_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_station_name"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@id/rs_guideline3"
+        app:layout_constraintTop_toTopOf="@id/rs_guideline" />
+
+    <ImageView
+        android:id="@+id/rs_iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/rs_guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rs_back" />
+
+    <ImageView
+        android:id="@+id/rs_iv_like"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/rs_guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rs_like1" />
+
+    <TextView
+        android:id="@+id/rs_tv_like_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="1200"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintStart_toEndOf="@id/rs_iv_like2"
+        app:layout_constraintTop_toBottomOf="@id/rs_tv_title" />
+
+    <ImageView
+        android:id="@+id/rs_iv_like2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/rs_tv_like_amount"
+        app:layout_constraintStart_toStartOf="@id/rs_guideline3"
+        app:layout_constraintTop_toTopOf="@id/rs_tv_like_amount"
+        app:srcCompat="@drawable/rs_like" />
+
+    <TextView
+        android:id="@+id/rs_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@id/rs_guideline4"
+        app:layout_constraintStart_toStartOf="@id/rs_guideline3"
+        app:layout_constraintTop_toBottomOf="@id/rs_tv_like_amount" />
+
+    <TextView
+        android:id="@+id/rs_tv_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_station_contact"
+        app:layout_constraintStart_toStartOf="@id/rs_guideline3"
+        app:layout_constraintTop_toBottomOf="@id/rs_line" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@id/rs_tv_contact"
+        app:layout_constraintTop_toBottomOf="@id/rs_line" />
+
+    <ImageView
+        android:id="@+id/rs_iv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@id/rs_guideline4"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:srcCompat="@drawable/rs_phone" />
+
+    <TextView
+        android:id="@+id/rs_line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@id/rs_guideline4"
+        app:layout_constraintStart_toStartOf="@id/rs_guideline3"
+        app:layout_constraintTop_toBottomOf="@id/rs_tv_contact" />
+
+    <TextView
+        android:id="@+id/rs_tc_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_station_address"
+        app:layout_constraintStart_toStartOf="@+id/rs_guideline3"
+        app:layout_constraintTop_toBottomOf="@id/rs_line2" />
+
+    <ImageView
+        android:id="@+id/rs_iv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/rs_tc_address"
+        app:layout_constraintEnd_toStartOf="@id/rs_guideline4"
+        app:layout_constraintTop_toTopOf="@id/rs_tc_address"
+        app:srcCompat="@drawable/rs_address" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@id/rs_guideline4"
+        app:layout_constraintStart_toStartOf="@id/rs_guideline3"
+        app:layout_constraintTop_toBottomOf="@id/rs_tc_address" />
+
+    <TextView
+        android:id="@+id/rs_tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_station_phone"
+        app:layout_constraintStart_toStartOf="@+id/rs_guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/rs_line3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@id/rs_guideline4"
+        app:layout_constraintStart_toStartOf="@id/rs_guideline3"
+        app:layout_constraintTop_toBottomOf="@id/rs_tv_phone" />
+
+
+</android.support.constraint.ConstraintLayout>
