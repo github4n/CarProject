@@ -22,10 +22,8 @@
     <string name="text_client">客户</string>
 
 
-
     <!---->
     <string name="text_mine">我的</string>
-    <string name="text_my_address">我的地址</string>
     <string name="text_my_order">我的订单</string>
 
     <!---->
@@ -128,5 +126,13 @@
     <!---->
     <string name="text_my_car">我的汽车</string>
     <string name="text_my_car_add">添加</string>
+
+    <!---->
+    <string name="text_my_address">我的地址</string>
+    <string name="text_add_info">添加收货信息</string>
+    <string name="text_address_list">收货地址列表</string>
+    <string name="text_address_delete">删除</string>
+    <string name="text_address_edit">编辑</string>
+    <string name="text_address_default">默认地址</string>
 
 </resources>

@@ -90,6 +90,12 @@
             android:text="16.我的车" />
 
         <Button
+            android:id="@+id/myaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="17.我的地址" />
+
+        <Button
             android:id="@+id/all_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

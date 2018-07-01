@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activies.MyCarActivity">
+    tools:context=".activies.MyAddressActivity">
 
     <include
         android:id="@+id/include"
@@ -16,34 +16,64 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/mc_guideline"
+        android:id="@+id/ma_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.93" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/mc_guideline2"
+        android:id="@+id/ma_guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/mc_guideline3"
+        android:id="@+id/ma_guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/ma_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <TextView
+        android:id="@+id/ma_title_bg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/ma_guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include" />
+
+    <TextView
+        android:id="@+id/ma_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_address_list"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@id/ma_title_bg"
+        app:layout_constraintStart_toStartOf="@id/ma_guideline2"
+        app:layout_constraintTop_toTopOf="@id/ma_title_bg" />
+
     <include
-        android:id="@+id/include_2"
-        layout="@layout/layout_my_car_item"
+        android:id="@+id/include_3"
+        layout="@layout/layout_my_address_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include" />
+        app:layout_constraintTop_toBottomOf="@id/ma_guideline4" />
 
     <TextView
         android:layout_width="0dp"
@@ -51,21 +81,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/mc_guideline" />
+        app:layout_constraintTop_toTopOf="@id/ma_guideline" />
 
     <Button
-        android:id="@+id/mc_btn_confrm"
+        android:id="@+id/ma_btn_confrm"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape_blue_fill"
-        android:text="@string/text_my_car_add"
+        android:text="@string/text_add_info"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/mc_guideline3"
-        app:layout_constraintStart_toStartOf="@id/mc_guideline2"
-        app:layout_constraintTop_toTopOf="@id/mc_guideline" />
-
+        app:layout_constraintEnd_toStartOf="@id/ma_guideline3"
+        app:layout_constraintStart_toStartOf="@id/ma_guideline2"
+        app:layout_constraintTop_toTopOf="@id/ma_guideline" />
 
 </android.support.constraint.ConstraintLayout>
