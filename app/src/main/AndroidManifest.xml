@@ -67,7 +67,10 @@
             android:name=".activies.ExchangeRecordActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activies.OrderPageActivity" />
-        <activity android:name=".activies.UserCenterActivity"></activity>
+        <activity android:name=".activies.UserCenterActivity" />
+        <activity android:name=".activies.ShoppingCarActivity" />
+        <activity android:name=".activies.ShoppingActivity" />
+        <activity android:name=".activies.RepairActivity"></activity>
     </application>
 
 </manifest>

@@ -15,8 +15,11 @@ import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.OrderDetailActivity;
 import com.littleant.carrepair.activies.OrderPageActivity;
 import com.littleant.carrepair.activies.RemainingSumActivity;
+import com.littleant.carrepair.activies.RepairActivity;
 import com.littleant.carrepair.activies.SendCarAddressActivity;
 import com.littleant.carrepair.activies.SendCarServiceActivity;
+import com.littleant.carrepair.activies.ShoppingActivity;
+import com.littleant.carrepair.activies.ShoppingCarActivity;
 import com.littleant.carrepair.activies.UserCenterActivity;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
@@ -38,6 +41,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.moneylist).setOnClickListener(this);
         findViewById(R.id.order_page).setOnClickListener(this);
         findViewById(R.id.user_center).setOnClickListener(this);
+        findViewById(R.id.shopping_car).setOnClickListener(this);
+        findViewById(R.id.shopping).setOnClickListener(this);
+        findViewById(R.id.repair).setOnClickListener(this);
 
     }
 
@@ -91,6 +97,18 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.user_center:
                 c = UserCenterActivity.class;
+                break;
+
+            case R.id.shopping_car:
+                c = ShoppingCarActivity.class;
+                break;
+
+            case R.id.shopping:
+                c = ShoppingActivity.class;
+                break;
+
+            case R.id.repair:
+                c = RepairActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);

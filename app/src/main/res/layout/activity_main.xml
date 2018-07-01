@@ -5,14 +5,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/include"
+    <android.support.constraint.Guideline
+        android:id="@+id/main_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/main_title_layout"
         layout="@layout/layout_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:background="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toTopOf="@+id/main_guideline"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/main_title_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/main_title_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <TextView
+            android:id="@+id/m_location"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|end"
+            android:text="广州"
+            android:textColor="@android:color/white"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/m_down_arrow" />
+
+        <ImageView
+            android:id="@+id/m_down_arrow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@drawable/main_down_arrow"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/m_location"
+            app:layout_constraintRight_toRightOf="@id/main_title_guideline" />
+
+        <TextView
+            android:id="@+id/m_input_location"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_trans_white"
+            android:gravity="center_vertical"
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:text="广州市天河区XXX"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/main_title_guideline"
+            app:layout_constraintRight_toLeftOf="@id/main_title_guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/m_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/main_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/main_title_guideline2"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <com.amap.api.maps2d.MapView
         android:id="@+id/map"
@@ -21,7 +103,33 @@
         app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include" />
+        app:layout_constraintTop_toBottomOf="@id/main_guideline" />
+
+    <ImageView
+        android:id="@+id/m_eye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/main_eye"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_guideline"
+        app:layout_constraintVertical_bias="0.1"
+        android:background="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/m_situation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/main_situation"
+        app:layout_constraintEnd_toEndOf="@+id/m_eye"
+        app:layout_constraintStart_toStartOf="@+id/m_eye"
+        app:layout_constraintTop_toBottomOf="@+id/m_eye"
+        android:background="@android:color/white" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -36,29 +144,45 @@
             android:id="@+id/mainBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:textColor="@drawable/rb_text_color_selector"
             android:layout_weight="1"
+            android:drawableTop="@drawable/main_main_selector"
+            android:background="@null"
             android:text="@string/text_main" />
 
         <Button
             android:id="@+id/shopBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:textColor="@drawable/rb_text_color_selector"
             android:layout_weight="1"
+            android:drawableTop="@drawable/main_shop_selector"
+            android:background="@null"
             android:text="@string/text_shop" />
 
         <Button
             android:id="@+id/clientBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:textColor="@drawable/rb_text_color_selector"
             android:layout_weight="1"
-            android:text="@string/text_client" />
+            android:drawableTop="@drawable/main_info_selector"
+            android:background="@null"
+            android:text="@string/text_info_title" />
 
         <Button
             android:id="@+id/mineBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:textColor="@drawable/rb_text_color_selector"
             android:layout_weight="1"
-            android:text="@string/text_mine" />
+            android:drawableTop="@drawable/main_uc_selector"
+            android:background="@null"
+            android:text="@string/text_user_center" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

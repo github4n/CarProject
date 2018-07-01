@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/sci_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/guideline3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.4" />-->
+
+    <android.support.constraint.Guideline
+        android:id="@+id/sci_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.09" />
+
+    <ImageView
+        android:id="@+id/sci_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/sc_check"
+        app:layout_constraintBottom_toBottomOf="@+id/sci_iv_itemImg"
+        app:layout_constraintEnd_toStartOf="@+id/sci_guideline2"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sci_iv_itemImg" />
+
+    <ImageView
+        android:id="@+id/sci_iv_itemImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/item_demo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/sci_guideline"
+        app:layout_constraintHorizontal_weight="8"
+        app:layout_constraintStart_toStartOf="@+id/sci_guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/sci_item_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:maxLines="2"
+        android:text="商品名称可以很长最多两行"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/sci_item_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/sci_guideline"
+        app:layout_constraintTop_toTopOf="@+id/sci_iv_itemImg"
+        app:layout_constraintVertical_weight="4" />
+
+    <TextView
+        android:id="@+id/sci_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="￥485"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/sci_iv_itemImg"
+        app:layout_constraintStart_toStartOf="@id/sci_guideline"
+        app:layout_constraintTop_toBottomOf="@id/sci_item_name"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/sci_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/shape_sci_plus"
+        android:text="  +  "
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/sci_iv_itemImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toEndOf="@+id/sci_item_price"
+        app:layout_constraintTop_toBottomOf="@+id/sci_item_name" />
+
+    <TextView
+        android:id="@+id/sci_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_sc_amount"
+        android:textSize="20sp"
+        android:background="@drawable/shape_gray"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@id/sci_plus"
+        app:layout_constraintEnd_toStartOf="@id/sci_plus"
+        app:layout_constraintTop_toTopOf="@id/sci_plus" />
+
+    <TextView
+        android:id="@+id/sci_reduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  -  "
+        android:textSize="20sp"
+        android:textColor="@android:color/darker_gray"
+        android:background="@drawable/shape_sci_reduce"
+        app:layout_constraintBottom_toBottomOf="@id/sci_plus"
+        app:layout_constraintEnd_toStartOf="@id/sci_amount"
+        app:layout_constraintTop_toTopOf="@id/sci_plus" />
+
+</android.support.constraint.ConstraintLayout>

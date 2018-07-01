@@ -36,6 +36,18 @@
             android:text="4.个人中心" />
 
         <Button
+            android:id="@+id/shopping_car"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5.购物车" />
+
+        <Button
+            android:id="@+id/shopping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7.商城" />
+
+        <Button
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,6 +76,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="12.添加地址" />
+
+        <Button
+            android:id="@+id/repair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="13.维修保养" />
 
         <Button
             android:id="@+id/all_order"

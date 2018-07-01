@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline5"
+        android:id="@+id/ao_guideling1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 
-    <LinearLayout
+    <RadioGroup
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -32,47 +32,53 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/guideline5"
+        app:layout_constraintBottom_toTopOf="@id/ao_guideling1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include">
 
-        <Button
+        <RadioButton
             android:id="@+id/btn_all"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/text_allorder_all"
+            android:checked="true"
+            style="@style/CustomRadioButton"
             android:layout_weight="1"/>
 
-        <Button
+        <RadioButton
             android:id="@+id/btn_wait_pay"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/text_allorder_wait_pay"
+            style="@style/CustomRadioButton"
             android:layout_weight="1"/>
 
-        <Button
+        <RadioButton
             android:id="@+id/btn_wait_send"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/text_allorder_wait_send"
+            style="@style/CustomRadioButton"
             android:layout_weight="1"/>
 
-        <Button
+        <RadioButton
             android:id="@+id/btn_wait_reach"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/text_allorder_wait_reach"
+            style="@style/CustomRadioButton"
             android:layout_weight="1"/>
 
-        <Button
+        <RadioButton
             android:id="@+id/btn_finish"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/text_allorder_finish"
+            style="@style/CustomRadioButton"
             android:layout_weight="1"/>
 
-    </LinearLayout>
+    </RadioGroup>
 
     <include
         layout="@layout/layout_product_item"
@@ -85,7 +91,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline5" />
+        app:layout_constraintTop_toTopOf="@id/ao_guideling1" />
 
 
 </android.support.constraint.ConstraintLayout>
