@@ -9,6 +9,9 @@ import android.widget.ListView;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 维修记录
+ */
 public class RepairRecordActivity extends BaseActivity {
     private ListView mListView;
 

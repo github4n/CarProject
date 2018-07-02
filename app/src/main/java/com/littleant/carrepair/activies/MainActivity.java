@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import com.amap.api.maps2d.MapView;
 import com.littleant.carrepair.R;
 
+/**
+ * 主页
+ */
 public class MainActivity extends AppCompatActivity {
     /**
      * 高德地图

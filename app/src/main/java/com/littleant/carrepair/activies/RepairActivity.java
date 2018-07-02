@@ -1,11 +1,12 @@
 package com.littleant.carrepair.activies;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.BaseAdapter;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 维修保养
+ */
 public class RepairActivity extends BaseActivity
 {
 

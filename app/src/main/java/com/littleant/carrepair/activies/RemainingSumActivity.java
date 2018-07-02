@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import com.littleant.carrepair.R;
 
-
+/**
+ * 充值记录
+ */
 public class RemainingSumActivity extends BaseActivity
 {
 

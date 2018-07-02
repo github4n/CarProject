@@ -11,6 +11,9 @@ import android.widget.ListView;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 余额列表
+ */
 public class ExchangeRecordActivity extends BaseActivity {
 
     private ListView exchange_record_list;

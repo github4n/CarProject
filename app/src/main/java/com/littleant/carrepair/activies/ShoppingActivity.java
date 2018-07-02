@@ -1,6 +1,5 @@
 package com.littleant.carrepair.activies;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,9 @@ import android.widget.GridView;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 商城
+ */
 public class ShoppingActivity extends BaseActivity {
 
     private GridView mGridView;

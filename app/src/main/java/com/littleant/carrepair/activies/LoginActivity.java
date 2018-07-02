@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 登入页面
+ */
 public class LoginActivity extends AppCompatActivity {
 
     @Override

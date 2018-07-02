@@ -1,10 +1,12 @@
 package com.littleant.carrepair.activies;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 添加地址
+ */
 public class AddAddressActivity extends BaseActivity {
 
     @Override

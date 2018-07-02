@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 维修点
+ */
 public class RepairStationActivity extends AppCompatActivity {
 
     @Override

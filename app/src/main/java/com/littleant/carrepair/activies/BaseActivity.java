@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 基类Activity
+ */
 public abstract class BaseActivity extends AppCompatActivity {
     private TextView mTitle, mOptionContent;
 

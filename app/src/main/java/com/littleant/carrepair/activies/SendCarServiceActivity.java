@@ -1,10 +1,12 @@
 package com.littleant.carrepair.activies;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 送车服务
+ */
 public class SendCarServiceActivity extends BaseActivity {
 
     @Override

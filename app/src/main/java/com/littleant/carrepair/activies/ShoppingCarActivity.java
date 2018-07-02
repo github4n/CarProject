@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import com.littleant.carrepair.R;
 
+/**
+ * 购物车
+ */
 public class ShoppingCarActivity extends BaseActivity {
 
     @Override
