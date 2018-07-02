@@ -74,7 +74,8 @@
         <activity android:name=".activies.MyCarActivity" />
         <activity android:name=".activies.MyAddressActivity" />
         <activity android:name=".activies.RepairRecordActivity" />
-        <activity android:name=".activies.RepairStationActivity"></activity>
+        <activity android:name=".activies.RepairStationActivity" />
+        <activity android:name=".activies.InformationActivity"></activity>
     </application>
 
 </manifest>

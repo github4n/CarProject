@@ -17,8 +17,6 @@
     <string name="text_shop_classify">商品分类</string>
 
 
-    <string name="text_info_title">资讯</string>
-
     <string name="text_client">客户</string>
 
 
@@ -155,5 +153,11 @@
     <string name="text_station_contact">联系人:范生 | 13569865478</string>
     <string name="text_station_address">广东省广州市XXXXXXX</string>
     <string name="text_station_phone">固定电话: 020-84563258</string>
+
+    <!---->
+    <string name="text_info_title">资讯</string>
+    <string name="text_info_activity">活动信息</string>
+    <string name="text_info_news">新闻资讯</string>
+    <string name="text_info_knowledge">维修知识</string>
 
 </resources>
