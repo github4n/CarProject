@@ -10,6 +10,7 @@ import com.littleant.carrepair.activies.AddAddressActivity;
 import com.littleant.carrepair.activies.AddCarActivity;
 import com.littleant.carrepair.activies.AllOrderActivity;
 import com.littleant.carrepair.activies.ExchangeRecordActivity;
+import com.littleant.carrepair.activies.InformationActivity;
 import com.littleant.carrepair.activies.LoginActivity;
 import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.MyAddressActivity;
@@ -52,6 +53,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.myaddress).setOnClickListener(this);
         findViewById(R.id.repairrecord).setOnClickListener(this);
         findViewById(R.id.station).setOnClickListener(this);
+        findViewById(R.id.info).setOnClickListener(this);
 
     }
 
@@ -133,6 +135,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.station:
                 c = RepairStationActivity.class;
+                break;
+
+            case R.id.info:
+                c = InformationActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);
