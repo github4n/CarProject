@@ -45,6 +45,8 @@
         android:hint="@string/login_account"
         android:textColorHint="@android:color/darker_gray"
         android:background="@null"
+        android:maxLines="1"
+        android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="@id/phoneImg"
         app:layout_constraintEnd_toStartOf="@id/guideline2"
         app:layout_constraintStart_toEndOf="@id/phoneImg"
@@ -71,6 +73,7 @@
         android:hint="@string/login_password"
         android:textColorHint="@android:color/darker_gray"
         android:inputType="textPassword"
+        android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="@id/pswImg"
         app:layout_constraintStart_toEndOf="@id/pswImg"
         app:layout_constraintTop_toTopOf="@id/pswImg" />
