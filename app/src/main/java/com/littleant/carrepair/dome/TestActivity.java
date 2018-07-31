@@ -9,6 +9,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.AddAddressActivity;
 import com.littleant.carrepair.activies.AddCarActivity;
 import com.littleant.carrepair.activies.AllOrderActivity;
+import com.littleant.carrepair.activies.AnnualCheckActivity;
 import com.littleant.carrepair.activies.ExchangeRecordActivity;
 import com.littleant.carrepair.activies.InformationActivity;
 import com.littleant.carrepair.activies.LoginActivity;
@@ -23,6 +24,7 @@ import com.littleant.carrepair.activies.RepairRecordActivity;
 import com.littleant.carrepair.activies.RepairStationActivity;
 import com.littleant.carrepair.activies.SendCarAddressActivity;
 import com.littleant.carrepair.activies.SendCarServiceActivity;
+import com.littleant.carrepair.activies.ServiceMainActivity;
 import com.littleant.carrepair.activies.ShoppingActivity;
 import com.littleant.carrepair.activies.ShoppingCarActivity;
 import com.littleant.carrepair.activies.UserCenterActivity;
@@ -54,6 +56,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.repairrecord).setOnClickListener(this);
         findViewById(R.id.station).setOnClickListener(this);
         findViewById(R.id.info).setOnClickListener(this);
+        findViewById(R.id.service).setOnClickListener(this);
+        findViewById(R.id.annualChack).setOnClickListener(this);
 
     }
 
@@ -139,6 +143,14 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.info:
                 c = InformationActivity.class;
+                break;
+
+            case R.id.service:
+                c = ServiceMainActivity.class;
+                break;
+
+            case R.id.annualChack:
+                c = AnnualCheckActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);

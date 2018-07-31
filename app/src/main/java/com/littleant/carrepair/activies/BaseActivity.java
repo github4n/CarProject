@@ -3,6 +3,8 @@ package com.littleant.carrepair.activies;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
@@ -12,6 +14,7 @@ import com.littleant.carrepair.R;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     private TextView mTitle, mOptionContent;
+    private ImageView backButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,6 +27,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         if(getOptionStringId() != 0) {
             mOptionContent.setText(getOptionStringId());
         }
+
+        backButton = findViewById(R.id.title_back);
+        if(!showBackButton()) {
+            backButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     protected abstract int getLayoutId();
@@ -31,5 +39,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected int getOptionStringId() {
         return 0;
+    }
+    protected boolean showBackButton() {
+        return true;
     }
 }

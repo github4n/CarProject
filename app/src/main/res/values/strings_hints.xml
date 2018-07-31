@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_deny_location" translatable="false">定位权限已拒绝</string>
+</resources>

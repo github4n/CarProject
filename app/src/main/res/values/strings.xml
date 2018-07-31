@@ -160,4 +160,22 @@
     <string name="text_info_news">新闻资讯</string>
     <string name="text_info_knowledge">维修知识</string>
 
+    <!---->
+    <string name="text_service">服务</string>
+    <string name="text_insurance">代办保险</string>
+    <string name="text_insurance_des">汽车保险服务</string>
+    <string name="text_more_service">更多服务</string>
+    <string name="text_more_service_des">更多服务期待</string>
+    <string name="text_mall">购物商城</string>
+    <string name="text_mall_des">小积分大用途</string>
+    <string name="text_info">行业资讯</string>
+    <string name="text_info_des">快速了解行情</string>
+
+    <!---->
+    <string name="text_annual_check">年检</string>
+    <string name="text_annual_check_reservation">年检预约</string>
+    <string name="text_annual_check_reservation_des">快捷年检服务</string>
+    <string name="text_my_reservation">我的预约</string>
+    <string name="text_my_reservation_des">一步查看年检</string>
+
 </resources>

@@ -96,7 +96,7 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <com.amap.api.maps2d.MapView
+    <com.amap.api.maps.MapView
         android:id="@+id/map"
         android:layout_width="0dp"
         android:layout_height="0dp"
