@@ -178,4 +178,30 @@
     <string name="text_my_reservation">我的预约</string>
     <string name="text_my_reservation_des">一步查看年检</string>
 
+    <!---->
+    <string name="text_fill_info">填写信息</string>
+    <string name="text_check_flow">代驾年检流程</string>
+    <string name="text_check_know">年检须知</string>
+    <string name="text_check_contact">联系方式</string>
+    <string name="text_check_contact_name">联系人</string>
+    <string name="text_check_contact_phone">联系电话</string>
+    <string name="text_upload_credit_info">上传证件信息</string>
+    <string name="text_credit_front">车主身份证正面照</string>
+    <string name="text_credit_back">车主身份证反面照</string>
+    <string name="text_drive_credit">上传行驶证副页照</string>
+    <string name="text_driver_name">车主姓名</string>
+    <string name="text_driver_credit">身份证号码</string>
+    <string name="text_driver_brand">品牌型号</string>
+    <string name="text_driver_plate">车牌号码</string>
+    <string name="text_car_type">车辆类型</string>
+    <string name="text_use_type">使用性质</string>
+    <string name="text_pick_reservation">预约取车</string>
+    <string name="text_pick_station">选择年检站</string>
+    <string name="text_pick_location">交接车地点</string>
+    <string name="text_reservation_date">预约日期</string>
+    <string name="text_fee_sum">统计费用</string>
+    <string name="text_fee_check">年检费用</string>
+    <string name="text_fee_total">总计费用</string>
+    <string name="text_confirm_pay">确认并支付</string>
+
 </resources>
