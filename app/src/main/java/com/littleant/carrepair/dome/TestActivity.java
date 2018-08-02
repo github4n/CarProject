@@ -10,6 +10,7 @@ import com.littleant.carrepair.activies.AddAddressActivity;
 import com.littleant.carrepair.activies.AddCarActivity;
 import com.littleant.carrepair.activies.AllOrderActivity;
 import com.littleant.carrepair.activies.AnnualCheckActivity;
+import com.littleant.carrepair.activies.AnnualCheckFillInfoActivity;
 import com.littleant.carrepair.activies.ExchangeRecordActivity;
 import com.littleant.carrepair.activies.InformationActivity;
 import com.littleant.carrepair.activies.LoginActivity;
@@ -58,6 +59,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.info).setOnClickListener(this);
         findViewById(R.id.service).setOnClickListener(this);
         findViewById(R.id.annualChack).setOnClickListener(this);
+        findViewById(R.id.fillinfo).setOnClickListener(this);
 
     }
 
@@ -151,6 +153,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.annualChack:
                 c = AnnualCheckActivity.class;
+                break;
+
+            case R.id.fillinfo:
+                c = AnnualCheckFillInfoActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);

@@ -143,6 +143,12 @@
             android:layout_height="wrap_content"
             android:text="25.年检功能页" />
 
+        <Button
+            android:id="@+id/fillinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="26.填写信息" />
+
     </LinearLayout>
 
 </ScrollView>

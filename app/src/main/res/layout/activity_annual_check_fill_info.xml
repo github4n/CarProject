@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activies.AnnualCheckFillInfoActivity">
 
     <android.support.constraint.ConstraintLayout
@@ -20,13 +21,134 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/include"
+            android:id="@+id/include2"
             layout="@layout/layout_annual_check_flow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include" />
+
+        <TextView
+            android:id="@+id/acf_tv_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_check_contact"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include2" />
+
+        <TextView
+            android:id="@+id/acf_tv_contact_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_check_contact_name"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_contact" />
+
+        <EditText
+            android:id="@+id/acf_et_contact_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_contact_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_contact_name"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_contact_name" />
+
+        <ImageView
+            android:id="@+id/acf_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_contact_name" />
+
+        <TextView
+            android:id="@+id/acf_tv_contact_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_check_contact_phone"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_line" />
+
+        <EditText
+            android:id="@+id/acf_et_contact_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_contact_phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_contact_phone"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_contact_phone" />
+
+        <TextView
+            android:id="@+id/acf_tv_upload_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_upload_credit_info"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_et_contact_phone" />
+
+        <ImageView
+            android:id="@+id/acf_iv_credit_front"
+            android:layout_width="65dp"
+            android:layout_height="59dp"
+            android:src="@drawable/info_demo"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="289dp" />
+
+        <ImageView
+            android:id="@+id/acf_iv_credit_back"
+            android:layout_width="91dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/info_demo"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_upload_info"
+            tools:layout_editor_absoluteX="164dp" />
+
+        <ImageView
+            android:id="@+id/acf_iv_credit_drive"
+            android:layout_width="70dp"
+            android:layout_height="48dp"
+            android:src="@drawable/info_demo"
+            tools:layout_editor_absoluteX="307dp"
+            tools:layout_editor_absoluteY="289dp" />
 
     </android.support.constraint.ConstraintLayout>
 
