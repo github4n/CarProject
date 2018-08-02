@@ -41,7 +41,7 @@
         <activity
             android:name=".activies.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MyThemeDark"></activity>
+            android:theme="@style/MyThemeDark" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -82,7 +82,8 @@
         <activity android:name=".activies.RepairStationActivity" />
         <activity android:name=".activies.InformationActivity" />
         <activity android:name=".activies.ServiceMainActivity" />
-        <activity android:name=".activies.AnnualCheckActivity"></activity>
+        <activity android:name=".activies.AnnualCheckActivity" />
+        <activity android:name=".activies.AnnualCheckFillInfoActivity"></activity>
     </application>
 
 </manifest>

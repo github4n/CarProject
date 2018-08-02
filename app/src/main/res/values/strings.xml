@@ -178,11 +178,15 @@
     <string name="text_my_reservation">我的预约</string>
     <string name="text_my_reservation_des">一步查看年检</string>
 
-    <!---->
-    <string name="text_fill_info">填写信息</string>
+    <!-- 年检流程功能公共项 -->
     <string name="text_check_flow">代驾年检流程</string>
     <string name="text_check_know">年检须知</string>
     <string name="text_check_contact">联系方式</string>
+    <string name="text_fee_sum">费用统计</string>
+    <string name="text_fee_total">总计费用</string>
+    <string name="text_confirm_pay">确认并支付</string>
+    <!--填写信息页-->
+    <string name="text_fill_info">填写信息</string>
     <string name="text_check_contact_name">联系人</string>
     <string name="text_check_contact_phone">联系电话</string>
     <string name="text_upload_credit_info">上传证件信息</string>
@@ -199,9 +203,46 @@
     <string name="text_pick_station">选择年检站</string>
     <string name="text_pick_location">交接车地点</string>
     <string name="text_reservation_date">预约日期</string>
-    <string name="text_fee_sum">统计费用</string>
     <string name="text_fee_check">年检费用</string>
-    <string name="text_fee_total">总计费用</string>
-    <string name="text_confirm_pay">确认并支付</string>
+    <!-- 代驾取车页 -->
+    <string name="text_driving_pick_car">代驾取车</string>
+    <string name="text_driving_pick_car_driver">司机信息</string>
+    <string name="text_driving_pick_car_time">取车时间</string>
+    <!-- 开始年检页 -->
+    <string name="text_start_annual_check">开始年检</string>
+    <string name="text_annual_check_time">到站年检时间</string>
+    <string name="text_annual_check_state">年检状态</string>
+    <!-- 年检反馈 -->
+    <string name="text_check_feedback">年检反馈</string>
+    <string name="text_check_feedback_light">车灯</string>
+    <string name="text_check_feedback_gas">尾气</string>
+    <string name="text_check_feedback_look">外观</string>
+    <string name="text_check_feedback_supplement">补充项：</string>
+    <string name="text_check_feedback_confirm">注：请确认以上信息是否正确</string>
+    <!-- 检完还车 -->
+    <string name="text_check_return_car">检完还车</string>
+    <string name="text_return_car_time">还车时间</string>
+    <string name="text_return_car_des">注：当客户检查车辆和资料确认还车之后，车辆和平台关系结束，汽车之后任何问题与平台无关！</string>
+    <string name="text_return_car_confirm">确认还车</string>
+    <!-- 年检记录页 -->
+    <string name="text_check_record">年检记录</string>
+    <string name="text_check_processing">未完成的年检</string>
+    <string name="text_check_finish">已完成的年检</string>
+    <string name="text_reservation_time">预约时间</string>
+    <string name="text_finish_time">完成时间</string>
+    <string name="text_finish_place">地点</string>
+    <string name="text_service_driver">服务司机</string>
+
+    <!---->
+    <string name="text_evaluate">评价</string>
+    <string name="text_evaluate_confirm">确认</string>
+    <string name="text_evaluate_des">您的评价会让维修厂服务更好哟!</string>
+
+    <!---->
+    <string name="text_violation_info">违章信息</string>
+    <string name="text_violation_handle">处理违章</string>
+    <string name="text_violation_sum">违章%s次</string>
+    <string name="text_violation_score">扣分%s分</string>
+    <string name="text_violation_fine">罚款%s元</string>
 
 </resources>
