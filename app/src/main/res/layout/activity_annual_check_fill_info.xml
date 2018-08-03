@@ -29,16 +29,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include" />
 
-        <TextView
-            android:id="@+id/acf_tv_contact"
+        <android.support.constraint.Guideline
+            android:id="@+id/acf_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/acf_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66" />
+
+        <TextView
+            android:id="@+id/acf_tv_contact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
             android:text="@string/text_check_contact"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include2" />
 
@@ -50,8 +68,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/text_check_contact_name"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:textColor="@color/color_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/acf_tv_contact" />
 
@@ -91,8 +108,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/text_check_contact_phone"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:textColor="@color/color_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/acf_line" />
 
@@ -112,43 +128,314 @@
 
         <TextView
             android:id="@+id/acf_tv_upload_info"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
             android:text="@string/text_upload_credit_info"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/acf_et_contact_phone" />
 
         <ImageView
             android:id="@+id/acf_iv_credit_front"
-            android:layout_width="65dp"
-            android:layout_height="59dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/info_demo"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="289dp" />
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toStartOf="@+id/acf_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/acf_tv_upload_info" />
+
+        <TextView
+            android:id="@+id/acf_tv_credit_front"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/text_credit_front"
+            android:textSize="12sp"
+            android:textColor="@color/color_text"
+            app:layout_constraintLeft_toLeftOf="@id/acf_iv_credit_front"
+            app:layout_constraintRight_toRightOf="@id/acf_iv_credit_front"
+            app:layout_constraintTop_toBottomOf="@id/acf_iv_credit_front"/>
 
         <ImageView
             android:id="@+id/acf_iv_credit_back"
-            android:layout_width="91dp"
-            android:layout_height="53dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/info_demo"
-            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toStartOf="@+id/acf_guideline2"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintTop_toBottomOf="@id/acf_tv_upload_info"
-            tools:layout_editor_absoluteX="164dp" />
+            app:layout_constraintStart_toStartOf="@+id/acf_guideline"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_upload_info" />
+
+        <TextView
+            android:id="@+id/acf_tv_credit_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/text_credit_back"
+            android:textSize="12sp"
+            android:textColor="@color/color_text"
+            app:layout_constraintLeft_toLeftOf="@id/acf_iv_credit_back"
+            app:layout_constraintRight_toRightOf="@id/acf_iv_credit_back"
+            app:layout_constraintTop_toBottomOf="@id/acf_iv_credit_back"/>
 
         <ImageView
             android:id="@+id/acf_iv_credit_drive"
-            android:layout_width="70dp"
-            android:layout_height="48dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/info_demo"
-            tools:layout_editor_absoluteX="307dp"
-            tools:layout_editor_absoluteY="289dp" />
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/acf_guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/acf_tv_upload_info" />
+
+        <TextView
+            android:id="@+id/acf_tv_credit_drive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/text_drive_credit"
+            android:textSize="12sp"
+            android:textColor="@color/color_text"
+            app:layout_constraintLeft_toLeftOf="@id/acf_iv_credit_drive"
+            app:layout_constraintRight_toRightOf="@id/acf_iv_credit_drive"
+            app:layout_constraintTop_toBottomOf="@id/acf_iv_credit_drive"/>
+
+        <ImageView
+            android:id="@+id/acf_line2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_credit_front" />
+
+        <TextView
+            android:id="@+id/acf_tv_driver_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_driver_name"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_line2" />
+
+        <EditText
+            android:id="@+id/acf_et_driver_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_driver_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_driver_name"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_driver_name" />
+
+        <ImageView
+            android:id="@+id/acf_line3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_et_driver_name" />
+
+        <TextView
+            android:id="@+id/acf_tv_driver_credit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_driver_credit"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_line3" />
+
+        <EditText
+            android:id="@+id/acf_et_driver_credit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_driver_credit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_driver_credit"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_driver_credit" />
+
+        <ImageView
+            android:id="@+id/acf_line4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_et_driver_credit" />
+
+        <TextView
+            android:id="@+id/acf_tv_driver_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_driver_brand"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_line4" />
+
+        <EditText
+            android:id="@+id/acf_et_driver_brand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_driver_brand"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_driver_brand"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_driver_brand" />
+
+        <ImageView
+            android:id="@+id/acf_line5"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_et_driver_brand" />
+
+        <TextView
+            android:id="@+id/acf_tv_driver_plate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_driver_plate"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_line5" />
+
+        <EditText
+            android:id="@+id/acf_et_driver_plate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_driver_plate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_driver_plate"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_driver_plate" />
+
+        <ImageView
+            android:id="@+id/acf_line6"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_et_driver_plate" />
+
+        <TextView
+            android:id="@+id/acf_tv_car_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_car_type"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_line6" />
+
+        <ImageView
+            android:id="@+id/acf_iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_car_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_car_type"
+            app:srcCompat="@drawable/acf_more" />
+
+        <TextView
+            android:id="@+id/acf_et_car_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center_horizontal"
+            android:text="1343"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_car_type"
+            app:layout_constraintEnd_toStartOf="@id/acf_iv_more"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_car_type"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_car_type" />
 
     </android.support.constraint.ConstraintLayout>
 

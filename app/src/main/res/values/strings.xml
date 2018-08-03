@@ -196,7 +196,7 @@
     <string name="text_driver_name">车主姓名</string>
     <string name="text_driver_credit">身份证号码</string>
     <string name="text_driver_brand">品牌型号</string>
-    <string name="text_driver_plate">车牌号码</string>
+    <string name="text_driver_plate">号码号牌</string>
     <string name="text_car_type">车辆类型</string>
     <string name="text_use_type">使用性质</string>
     <string name="text_pick_reservation">预约取车</string>
