@@ -199,6 +199,8 @@
     <string name="text_driver_plate">号码号牌</string>
     <string name="text_car_type">车辆类型</string>
     <string name="text_use_type">使用性质</string>
+    <string name="text_use_type_run">&#160;&#160;营运&#160;&#160;</string>
+    <string name="text_use_type_not_run">&#160;非营运&#160;</string>
     <string name="text_pick_reservation">预约取车</string>
     <string name="text_pick_station">选择年检站</string>
     <string name="text_pick_location">交接车地点</string>

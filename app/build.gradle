@@ -16,6 +16,12 @@ android {
         }
     }
 
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
     android.applicationVariants.all { variant ->
         variant.outputs.all { output ->
             //定义一个文件
@@ -73,6 +79,7 @@ dependencies {
 //    implementation 'com.amap.api:map2d:latest.integration'
 //    implementation 'com.amap.api:location:latest.integration'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation(name: 'CircleImageView-release', ext: 'aar')
 }
 
 def getReleaseTime() {

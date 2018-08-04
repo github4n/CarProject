@@ -83,7 +83,10 @@
         <activity android:name=".activies.InformationActivity" />
         <activity android:name=".activies.ServiceMainActivity" />
         <activity android:name=".activies.AnnualCheckActivity" />
-        <activity android:name=".activies.AnnualCheckFillInfoActivity"></activity>
+        <activity android:name=".activies.AnnualCheckFillInfoActivity" />
+        <activity android:name=".activies.PickCarActivity" />
+        <activity android:name=".activies.StartCheckActivity" />
+        <activity android:name=".activies.CheckReturnCarActivity"></activity>
     </application>
 
 </manifest>

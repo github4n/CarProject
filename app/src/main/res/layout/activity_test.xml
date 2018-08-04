@@ -149,6 +149,24 @@
             android:layout_height="wrap_content"
             android:text="26.填写信息" />
 
+        <Button
+            android:id="@+id/pickcar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="27.代驾取车" />
+
+        <Button
+            android:id="@+id/startcheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="28.开始年检" />
+
+        <Button
+            android:id="@+id/returncar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="29.检完还车" />
+
     </LinearLayout>
 
 </ScrollView>

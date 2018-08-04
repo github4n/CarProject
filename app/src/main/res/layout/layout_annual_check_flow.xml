@@ -42,7 +42,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@color/color_sub_background"
         android:text="@string/text_check_flow"
         android:textColor="@android:color/black"
         android:textSize="15sp"
@@ -59,45 +61,15 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@color/color_sub_background"
         android:text="@string/text_check_know"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/lacf_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--<ImageView-->
-        <!--android:id="@+id/lacf_iv_fill"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:srcCompat="@drawable/acf_fill_check"-->
-        <!--tools:layout_editor_absoluteX="33dp"-->
-        <!--tools:layout_editor_absoluteY="173dp" />-->
-
-    <!--<ImageView-->
-        <!--android:id="@+id/lacf_iv_pick"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:srcCompat="@drawable/acf_pick_uncheck"-->
-        <!--tools:layout_editor_absoluteX="164dp"-->
-        <!--tools:layout_editor_absoluteY="173dp" />-->
-
-    <!--<ImageView-->
-        <!--android:id="@+id/lacf_iv_start"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:srcCompat="@drawable/acf_start_uncheck"-->
-        <!--tools:layout_editor_absoluteX="307dp"-->
-        <!--tools:layout_editor_absoluteY="175dp" />-->
-
-    <!--<ImageView-->
-        <!--android:id="@+id/lacf_iv_return"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:srcCompat="@drawable/acf_return_uncheck"-->
-        <!--tools:layout_editor_absoluteX="465dp"-->
-        <!--tools:layout_editor_absoluteY="175dp" />-->
 
     <TextView
         android:id="@+id/lacf_tv_fill"

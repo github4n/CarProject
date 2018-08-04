@@ -6,5 +6,8 @@
 
     <!--字体颜色-->
     <color name="color_text">#5B5B5B</color>
-
+    <!--某些子標題的背景嚴肅-->
+    <color name="color_sub_background">#F5F5F5</color>
+    <!--主題藍色-->
+    <color name="color_main">#3CADFF</color>
 </resources>

@@ -25,12 +25,22 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-    
+
+    <!-- activity_information.xml使用 -->
     <style name="CustomRadioButton">
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/rb_nobtn_selector</item>
         <item name="android:button">@null</item>
         <item name="android:textColor">@drawable/rb_text_color_selector</item>
+    </style>
+
+    <!-- activity_annual_check_fill_info.xml使用 -->
+    <style name="AnnualCheckRadioButton">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_cycrect_blue_gray_selector</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@drawable/rb_text_white_gray_selector</item>
+        <item name="android:padding">2dp</item>
     </style>
 
     <style name="CustomButton">

@@ -11,6 +11,7 @@ import com.littleant.carrepair.activies.AddCarActivity;
 import com.littleant.carrepair.activies.AllOrderActivity;
 import com.littleant.carrepair.activies.AnnualCheckActivity;
 import com.littleant.carrepair.activies.AnnualCheckFillInfoActivity;
+import com.littleant.carrepair.activies.CheckReturnCarActivity;
 import com.littleant.carrepair.activies.ExchangeRecordActivity;
 import com.littleant.carrepair.activies.InformationActivity;
 import com.littleant.carrepair.activies.LoginActivity;
@@ -19,6 +20,7 @@ import com.littleant.carrepair.activies.MyAddressActivity;
 import com.littleant.carrepair.activies.MyCarActivity;
 import com.littleant.carrepair.activies.OrderDetailActivity;
 import com.littleant.carrepair.activies.OrderPageActivity;
+import com.littleant.carrepair.activies.PickCarActivity;
 import com.littleant.carrepair.activies.RemainingSumActivity;
 import com.littleant.carrepair.activies.RepairActivity;
 import com.littleant.carrepair.activies.RepairRecordActivity;
@@ -28,6 +30,7 @@ import com.littleant.carrepair.activies.SendCarServiceActivity;
 import com.littleant.carrepair.activies.ServiceMainActivity;
 import com.littleant.carrepair.activies.ShoppingActivity;
 import com.littleant.carrepair.activies.ShoppingCarActivity;
+import com.littleant.carrepair.activies.StartCheckActivity;
 import com.littleant.carrepair.activies.UserCenterActivity;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
@@ -60,6 +63,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.service).setOnClickListener(this);
         findViewById(R.id.annualChack).setOnClickListener(this);
         findViewById(R.id.fillinfo).setOnClickListener(this);
+        findViewById(R.id.pickcar).setOnClickListener(this);
+        findViewById(R.id.startcheck).setOnClickListener(this);
+        findViewById(R.id.returncar).setOnClickListener(this);
 
     }
 
@@ -157,6 +163,18 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.fillinfo:
                 c = AnnualCheckFillInfoActivity.class;
+                break;
+
+            case R.id.pickcar:
+                c = PickCarActivity.class;
+                break;
+
+            case R.id.startcheck:
+                c = StartCheckActivity.class;
+                break;
+
+            case R.id.returncar:
+                c = CheckReturnCarActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);
