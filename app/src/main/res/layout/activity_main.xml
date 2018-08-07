@@ -105,30 +105,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_guideline" />
 
-    <ImageView
-        android:id="@+id/m_eye"
+    <TextView
+        android:id="@+id/m_repair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/main_eye"
+        android:focusable="true"
+        android:background="@drawable/main_repair_selector"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/main_guideline"
-        app:layout_constraintVertical_bias="0.1"
-        android:background="@android:color/white" />
+        app:layout_constraintVertical_bias="0.1" />
 
-    <ImageView
-        android:id="@+id/m_situation"
+    <TextView
+        android:id="@+id/m_maintain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:src="@drawable/main_situation"
-        app:layout_constraintEnd_toEndOf="@+id/m_eye"
-        app:layout_constraintStart_toStartOf="@+id/m_eye"
-        app:layout_constraintTop_toBottomOf="@+id/m_eye"
-        android:background="@android:color/white" />
+        android:background="@drawable/main_maintain_selector"
+        app:layout_constraintEnd_toEndOf="@+id/m_repair"
+        app:layout_constraintStart_toStartOf="@+id/m_repair"
+        app:layout_constraintTop_toBottomOf="@+id/m_repair"  />
 
 
     <LinearLayout
@@ -158,9 +157,9 @@
             android:paddingTop="4dp"
             android:textColor="@drawable/rb_text_color_selector"
             android:layout_weight="1"
-            android:drawableTop="@drawable/main_shop_selector"
+            android:drawableTop="@drawable/main_check_selector"
             android:background="@null"
-            android:text="@string/text_shop" />
+            android:text="@string/text_annual_check" />
 
         <Button
             android:id="@+id/clientBtn"
@@ -169,9 +168,9 @@
             android:paddingTop="4dp"
             android:textColor="@drawable/rb_text_color_selector"
             android:layout_weight="1"
-            android:drawableTop="@drawable/main_info_selector"
+            android:drawableTop="@drawable/main_service_selector"
             android:background="@null"
-            android:text="@string/text_info_title" />
+            android:text="@string/text_service" />
 
         <Button
             android:id="@+id/mineBtn"

@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
      * 高德地图
      */
     private MapView mMapView = null;
+    private TextView mRepair, mMaintain;
     private static final int permission_request_code = 10;
     //初始化地图控制器对象
     AMap aMap;
@@ -38,6 +41,22 @@ public class MainActivity extends AppCompatActivity {
         if (aMap == null) {
             aMap = mMapView.getMap();
         }
+
+        mRepair = findViewById(R.id.m_repair);
+        mRepair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "点击维修按钮", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mMaintain = findViewById(R.id.m_maintain);
+        mMaintain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "点击保养按钮", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

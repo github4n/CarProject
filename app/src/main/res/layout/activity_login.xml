@@ -7,18 +7,45 @@
     android:background="@drawable/login_bg"
     tools:context=".activies.LoginActivity">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/al_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.375" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/al_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.625" />
+
     <ImageView
         android:id="@+id/logoImg"
-        android:layout_width="108dp"
-        android:layout_height="68dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="206:177"
+        app:layout_constraintEnd_toStartOf="@+id/al_guideline4"
+        app:layout_constraintStart_toStartOf="@+id/al_guideline3"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.17"
         app:srcCompat="@drawable/logo" />
 
     <ImageView
@@ -36,21 +63,35 @@
         android:id="@+id/phoneEdt"
         style="@null"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:hint="@string/login_account"
-        android:textColorHint="@android:color/darker_gray"
         android:background="@null"
-        android:maxLines="1"
+        android:hint="@string/login_account"
         android:inputType="phone"
+        android:maxLines="1"
+        android:textColorHint="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="@id/phoneImg"
         app:layout_constraintEnd_toStartOf="@id/guideline2"
         app:layout_constraintStart_toEndOf="@id/phoneImg"
         app:layout_constraintTop_toTopOf="@id/phoneImg" />
+
+    <TextView
+        android:id="@+id/al_line1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/phoneEdt" />
 
     <ImageView
         android:id="@+id/pswImg"
@@ -60,7 +101,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/phoneImg"
+        app:layout_constraintTop_toBottomOf="@id/al_line1"
         app:srcCompat="@drawable/login_password" />
 
     <EditText
@@ -78,6 +119,38 @@
         app:layout_constraintStart_toEndOf="@id/pswImg"
         app:layout_constraintTop_toTopOf="@id/pswImg" />
 
+    <TextView
+        android:id="@+id/auth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/shape_blue"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="@string/login_request_auth_number"
+        android:textColor="@color/color_main"
+        app:layout_constraintBottom_toBottomOf="@+id/pswImg"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toEndOf="@id/pswEdt" />
+
+    <TextView
+        android:id="@+id/al_line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/pswEdt" />
+
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="0dp"
@@ -88,67 +161,6 @@
         android:background="@android:color/holo_blue_dark"
         app:layout_constraintEnd_toStartOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/pswEdt" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.10" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.90" />
-
-    <TextView
-        android:id="@+id/auth"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/shape_blue"
-        android:gravity="center"
-        android:text="@string/login_request_auth_number"
-        android:textColor="@android:color/holo_blue_light"
-        app:layout_constraintBottom_toBottomOf="@id/textView3"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toEndOf="@id/pswEdt"
-        app:layout_constraintTop_toBottomOf="@id/textView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/phoneEdt" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/pswEdt" />
+        app:layout_constraintTop_toBottomOf="@id/al_line2" />
 
 </android.support.constraint.ConstraintLayout>
