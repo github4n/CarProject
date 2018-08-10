@@ -18,19 +18,33 @@
     <TextView
         android:id="@+id/ac_line1"
         android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:background="@android:color/darker_gray"
+        android:layout_height="6dp"
+        android:background="@color/color_sub_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintTop_toBottomOf="@id/include"
         app:layout_constraintVertical_bias="0.4" />
+
+    <TextView
+        android:id="@+id/ac_line2"
+        android:layout_width="6dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/color_sub_background"
+        app:layout_constraintBottom_toTopOf="@+id/ac_line3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ac_banner" />
 
     <TextView
         android:id="@+id/ac_line3"
         android:layout_width="0dp"
-        android:layout_height="3dp"
-        android:background="@android:color/darker_gray"
+        android:layout_height="6dp"
+        android:background="@color/color_sub_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,36 +62,47 @@
         app:srcCompat="@android:color/holo_green_light" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/ac_items"
+        android:id="@+id/ac_cl_reservation"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/ac_line3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ac_line2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ac_line1">
 
-        <TextView
-            android:id="@+id/ac_line4"
-            android:layout_width="3dp"
-            android:layout_height="0dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <android.support.constraint.Guideline
+            android:id="@+id/ac_cl_guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/ac_cl_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/ac_cl_guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
         <ImageView
             android:id="@+id/ac_img_reservation"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="h,1:1"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ac_cl_guideline2"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ac_cl_guideline1"
             app:srcCompat="@drawable/ac_reservation" />
 
         <TextView
@@ -85,36 +110,75 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/text_mall"
-            android:textColor="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/ac_img_reservation"
-            app:layout_constraintEnd_toStartOf="@+id/ac_line4"
-            app:layout_constraintStart_toEndOf="@+id/ac_img_reservation"
-            app:layout_constraintTop_toTopOf="@+id/ac_img_reservation"
-            app:layout_constraintVertical_bias="0.19999999" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/text_annual_check_reservation"
+            android:textColor="@color/color_uc_text"
+            app:layout_constraintBottom_toTopOf="@+id/ac_cl_guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ac_img_reservation" />
 
         <TextView
             android:id="@+id/ac_tv_reservation_des"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_mall_des"
-            app:layout_constraintEnd_toStartOf="@+id/ac_line4"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/text_annual_check_reservation_des"
+            android:textColor="@color/color_sub_line"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ac_img_reservation"
-            app:layout_constraintTop_toBottomOf="@+id/ac_tv_reservation" />
+            app:layout_constraintTop_toTopOf="@+id/ac_cl_guideline3" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ac_cl_my_reservation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ac_line2"
+        app:layout_constraintTop_toBottomOf="@id/ac_line1"
+        app:layout_constraintBottom_toTopOf="@id/ac_line3" >
+
+        <android.support.constraint.Guideline
+            android:id="@+id/ac_cl_guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/ac_cl_guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/ac_cl_guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
         <ImageView
             android:id="@+id/ac_img_my_reservation"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="h,1:1"
-            app:layout_constraintLeft_toRightOf="@id/ac_line4"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ac_cl_guideline5"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ac_cl_guideline4"
             app:srcCompat="@drawable/ac_my_reservation" />
 
         <TextView
@@ -122,26 +186,128 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/text_insurance"
-            android:textColor="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/ac_img_my_reservation"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/text_my_reservation"
+            android:textColor="@color/color_uc_text"
+            app:layout_constraintBottom_toTopOf="@+id/ac_cl_guideline6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/ac_line4"
-            app:layout_constraintStart_toEndOf="@+id/ac_img_my_reservation"
-            app:layout_constraintTop_toTopOf="@+id/ac_img_my_reservation"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintStart_toEndOf="@+id/ac_img_my_reservation" />
 
         <TextView
             android:id="@+id/ac_tv_my_reservation_des"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_insurance_des"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/text_my_reservation_des"
+            android:textColor="@color/color_sub_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ac_img_my_reservation"
-            app:layout_constraintTop_toBottomOf="@+id/ac_tv_my_reservation" />
+            app:layout_constraintTop_toTopOf="@+id/ac_cl_guideline6" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <!--<android.support.constraint.ConstraintLayout-->
+        <!--android:id="@+id/ac_items"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/ac_line3"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/ac_line1">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/ac_line4"-->
+            <!--android:layout_width="3dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:background="@android:color/darker_gray"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/ac_img_reservation"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintDimensionRatio="h,1:1"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:srcCompat="@drawable/ac_reservation" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/ac_tv_reservation"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:text="@string/text_mall"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--app:layout_constraintBottom_toBottomOf="@+id/ac_img_reservation"-->
+            <!--app:layout_constraintEnd_toStartOf="@+id/ac_line4"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/ac_img_reservation"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/ac_img_reservation"-->
+            <!--app:layout_constraintVertical_bias="0.19999999" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/ac_tv_reservation_des"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/text_mall_des"-->
+            <!--app:layout_constraintEnd_toStartOf="@+id/ac_line4"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/ac_img_reservation"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/ac_tv_reservation" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/ac_img_my_reservation"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintDimensionRatio="h,1:1"-->
+            <!--app:layout_constraintLeft_toRightOf="@id/ac_line4"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:srcCompat="@drawable/ac_my_reservation" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/ac_tv_my_reservation"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="4dp"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:text="@string/text_insurance"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--app:layout_constraintBottom_toBottomOf="@+id/ac_img_my_reservation"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintLeft_toRightOf="@+id/ac_line4"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/ac_img_my_reservation"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/ac_img_my_reservation"-->
+            <!--app:layout_constraintVertical_bias="0.2" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/ac_tv_my_reservation_des"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/text_insurance_des"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/ac_img_my_reservation"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/ac_tv_my_reservation" />-->
+
+    <!--</android.support.constraint.ConstraintLayout>-->
 
     <ImageView
         android:id="@+id/ac_picture"

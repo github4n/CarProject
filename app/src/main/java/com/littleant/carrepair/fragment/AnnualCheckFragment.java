@@ -2,6 +2,10 @@ package com.littleant.carrepair.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.littleant.carrepair.R;
 
@@ -10,6 +14,8 @@ public class AnnualCheckFragment extends BaseFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private View reservationView, myReservationView;
 
     public AnnualCheckFragment() {
         // Required empty public constructor
@@ -43,4 +49,23 @@ public class AnnualCheckFragment extends BaseFragment {
         return fragment;
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        reservationView = subView.findViewById(R.id.ac_cl_reservation);
+        reservationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "年检预约", Toast.LENGTH_SHORT).show();
+            }
+        });
+        myReservationView = subView.findViewById(R.id.ac_cl_my_reservation);
+        myReservationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "我的预约", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return subView;
+    }
 }

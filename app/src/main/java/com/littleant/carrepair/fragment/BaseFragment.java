@@ -27,6 +27,8 @@ public abstract class BaseFragment extends Fragment {
     private TextView mTitle, mOptionContent;
     private ImageView backButton;
 
+    protected View subView;
+
     public BaseFragment() {
         // Required empty public constructor
     }
@@ -43,19 +45,19 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(getLayoutId(), container, false);
-        mTitle = view.findViewById(R.id.header_title);
+        subView =  inflater.inflate(getLayoutId(), container, false);
+        mTitle = subView.findViewById(R.id.header_title);
         mTitle.setText(getTitleId());
 
-        backButton = view.findViewById(R.id.title_back);
+        backButton = subView.findViewById(R.id.title_back);
         if(!showBackButton()) {
             backButton.setVisibility(View.INVISIBLE);
         }
-        mOptionContent = view.findViewById(R.id.header_option_content);
+        mOptionContent = subView.findViewById(R.id.header_option_content);
         if(getOptionBackgroundId() != 0) {
             mOptionContent.setBackgroundResource(getOptionBackgroundId());
         }
-        return view;
+        return subView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
