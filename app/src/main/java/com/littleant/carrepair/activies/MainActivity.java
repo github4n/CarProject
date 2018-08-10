@@ -6,23 +6,33 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.fragment.AnnualCheckFragment;
+import com.littleant.carrepair.fragment.BaseFragment;
 import com.littleant.carrepair.fragment.MainFragment;
+import com.littleant.carrepair.fragment.ServiceFragment;
+import com.littleant.carrepair.fragment.UserCenterFragment;
 
 /**
  * 主页
  */
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, BaseFragment.OnFragmentInteractionListener{
     /**
      * 高德地图
      */
     private static final int permission_request_code = 10;
+    private RadioGroup radioGroup;
+    private RadioButton mainBtn, annaulCheckBtn, serviceBtn, userCenterBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +45,41 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_fragment, new MainFragment(), MainFragment.class.getSimpleName());
         transaction.commitAllowingStateLoss();
+
+        radioGroup = findViewById(R.id.linearLayout);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                Fragment fragment = null;
+                String tag = "";
+                switch (i) {
+                    case R.id.mainBtn:
+                        fragment = new MainFragment();
+                        tag = MainFragment.class.getSimpleName();
+                        break;
+
+                    case R.id.annualBtn:
+                        fragment = new AnnualCheckFragment();
+                        tag = AnnualCheckFragment.class.getSimpleName();
+                        break;
+
+                    case R.id.serviceBtn:
+                        fragment = new ServiceFragment();
+                        tag = ServiceFragment.class.getSimpleName();
+                        break;
+
+                    case R.id.mineBtn:
+                        fragment = new UserCenterFragment();
+                        tag = UserCenterFragment.class.getSimpleName();
+                        break;
+                }
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_fragment, fragment, tag);
+                transaction.commitAllowingStateLoss();
+            }
+        });
+
     }
 
     @Override
