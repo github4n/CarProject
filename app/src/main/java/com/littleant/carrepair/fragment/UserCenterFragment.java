@@ -25,6 +25,11 @@ public class UserCenterFragment extends BaseFragment {
         return R.string.text_user_center;
     }
 
+    @Override
+    protected int getOptionBackgroundId() {
+        return R.drawable.uc_setting;
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.

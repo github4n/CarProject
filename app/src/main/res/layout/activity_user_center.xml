@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".activies.UserCenterActivity">
 
     <include
@@ -16,64 +17,88 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline16"
+        android:id="@+id/uc_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline17"
+        android:id="@+id/uc_guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.45" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/uc_guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/uc_guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/uc_guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/uc_user_bg"
-        app:layout_constraintBottom_toTopOf="@id/guideline16"
+        android:background="@color/color_main"
+        app:layout_constraintBottom_toTopOf="@id/uc_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toBottomOf="@id/include">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/uc_guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/uc_guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
 
         <ImageView
             android:id="@+id/iv_userImg"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/uc_guideline4"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/uc_guideline3"
             app:srcCompat="@drawable/uc_user_icon" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/uc_guideline4"
             app:layout_constraintStart_toEndOf="@+id/iv_userImg"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/uc_guideline3">
 
             <TextView
                 android:id="@+id/tv_user_name"
@@ -100,31 +125,43 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/holo_blue_bright"
-        app:layout_constraintBottom_toTopOf="@id/guideline17"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/uc_guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline16"
+        app:layout_constraintTop_toTopOf="@id/uc_guideline"
         app:layout_constraintVertical_bias="0.7">
 
         <android.support.constraint.Guideline
-            android:id="@+id/guideline18"
+            android:id="@+id/uc_guideline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.6" />
 
         <ImageView
+            android:id="@+id/iv_all_order"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@id/uc_guideline5"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/iv_wait_pay"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/uc_all_order" />
+
+        <ImageView
             android:id="@+id/iv_wait_pay"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@id/guideline18"
+            app:layout_constraintBottom_toTopOf="@id/uc_guideline5"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/iv_all_order"
             app:layout_constraintRight_toLeftOf="@+id/iv_wait_service"
-            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/uc_wait_pay" />
 
         <ImageView
@@ -132,7 +169,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@id/guideline18"
+            app:layout_constraintBottom_toTopOf="@id/uc_guideline5"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@id/iv_wait_pay"
@@ -145,26 +182,26 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@id/guideline18"
+            app:layout_constraintBottom_toTopOf="@id/uc_guideline5"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@id/iv_wait_service"
-            app:layout_constraintRight_toLeftOf="@+id/iv_all_order"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/uc_wait_rate" />
 
-        <ImageView
-            android:id="@+id/iv_all_order"
+        <TextView
+            android:id="@+id/tv_uc_all_order"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@id/guideline18"
-            app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintLeft_toRightOf="@id/iv_wait_rate"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/uc_all_order" />
+            android:layout_marginBottom="8dp"
+            android:text="@string/text_allorder_all"
+            android:textColor="@color/color_uc_text"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_all_order"
+            app:layout_constraintStart_toStartOf="@+id/iv_all_order"
+            app:layout_constraintTop_toBottomOf="@+id/uc_guideline5" />
 
         <TextView
             android:id="@+id/tv_uc_pay"
@@ -172,12 +209,12 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:text="@string/text_allorder_wait_pay"
-            android:textColor="@android:color/white"
+            android:textColor="@color/color_uc_text"
             android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_wait_pay"
             app:layout_constraintStart_toStartOf="@+id/iv_wait_pay"
-            app:layout_constraintTop_toBottomOf="@+id/guideline18" />
+            app:layout_constraintTop_toBottomOf="@+id/uc_guideline5" />
 
         <TextView
             android:id="@+id/tc_uc_service"
@@ -185,12 +222,12 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:text="@string/text_user_center_wait_serivce"
-            android:textColor="@android:color/white"
+            android:textColor="@color/color_uc_text"
             android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_wait_service"
             app:layout_constraintStart_toStartOf="@+id/iv_wait_service"
-            app:layout_constraintTop_toBottomOf="@+id/guideline18" />
+            app:layout_constraintTop_toBottomOf="@+id/uc_guideline5" />
 
         <TextView
             android:id="@+id/tc_uc_rate"
@@ -198,59 +235,51 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:text="@string/text_user_center_wait_rate"
-            android:textColor="@android:color/white"
+            android:textColor="@color/color_uc_text"
             android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_wait_rate"
             app:layout_constraintStart_toStartOf="@+id/iv_wait_rate"
-            app:layout_constraintTop_toBottomOf="@+id/guideline18" />
-
-        <TextView
-            android:id="@+id/tv_uc_all_order"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/text_all_order"
-            android:textColor="@android:color/white"
-            android:gravity="center_vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/iv_all_order"
-            app:layout_constraintStart_toStartOf="@+id/iv_all_order"
-            app:layout_constraintTop_toBottomOf="@+id/guideline18" />
+            app:layout_constraintTop_toBottomOf="@+id/uc_guideline5" />
 
     </android.support.constraint.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/uc_line"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline17"
-        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintTop_toTopOf="@+id/uc_guideline2"
+        app:srcCompat="@color/color_sub_background" />
+
+    <ImageView
+        android:id="@+id/uc_iv_garage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toTopOf="@+id/uc_guideline2"
         app:srcCompat="@drawable/uc_garage" />
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/imageView9">
+        app:layout_constraintBottom_toBottomOf="@id/uc_iv_garage"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintTop_toTopOf="@id/uc_iv_garage">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/text_user_center_my_garage"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/color_uc_text" />
 
         <ImageView
             android:id="@+id/iv_arrow1"
@@ -258,8 +287,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -271,39 +300,47 @@
             android:layout_toStartOf="@id/iv_arrow1"
             android:gravity="center_vertical"
             android:text="1"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView9"
-        app:srcCompat="@drawable/uc_repair" />
+        android:id="@+id/uc_line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_sub_line"
+        app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_iv_garage" />
+
+    <ImageView
+        android:id="@+id/uc_iv_check_record"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintDimensionRatio="44:48"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_line2"
+        app:srcCompat="@drawable/uc_check_record" />
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toTopOf="@+id/imageView10">
+        app:layout_constraintBottom_toBottomOf="@id/uc_iv_check_record"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintTop_toTopOf="@id/uc_iv_check_record">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/text_user_center_door_serivce"
-            android:textColor="@android:color/black" />
+            android:text="@string/text_check_record"
+            android:textColor="@color/color_uc_text" />
 
         <ImageView
             android:id="@+id/iv_arrow2"
@@ -311,8 +348,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -324,39 +361,47 @@
             android:layout_toStartOf="@id/iv_arrow2"
             android:gravity="center_vertical"
             android:text="1"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView10"
-        app:srcCompat="@drawable/uc_address" />
+        android:id="@+id/uc_line3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_sub_line"
+        app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_iv_check_record" />
+
+    <ImageView
+        android:id="@+id/uc_iv_shop_credit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintDimensionRatio="46:52"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_line3"
+        app:srcCompat="@drawable/uc_shop_credit" />
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toTopOf="@+id/imageView11">
+        app:layout_constraintBottom_toBottomOf="@id/uc_iv_shop_credit"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintTop_toTopOf="@id/uc_iv_shop_credit">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/text_user_center_address_manager"
-            android:textColor="@android:color/black" />
+            android:text="@string/text_user_center_shop_credit"
+            android:textColor="@color/color_uc_text" />
 
         <ImageView
             android:id="@+id/iv_arrow3"
@@ -364,8 +409,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -377,39 +422,47 @@
             android:layout_toStartOf="@id/iv_arrow3"
             android:gravity="center_vertical"
             android:text="1"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView11"
-        app:srcCompat="@drawable/uc_record" />
+        android:id="@+id/uc_line4"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_sub_line"
+        app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_iv_shop_credit" />
+
+    <ImageView
+        android:id="@+id/uc_iv_address"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_line4"
+        app:srcCompat="@drawable/uc_address" />
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toTopOf="@+id/imageView12">
+        app:layout_constraintBottom_toBottomOf="@id/uc_iv_address"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintTop_toTopOf="@id/uc_iv_address">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/text_user_center_repaire_record"
-            android:textColor="@android:color/black" />
+            android:text="@string/text_user_center_address"
+            android:textColor="@color/color_uc_text" />
 
         <ImageView
             android:id="@+id/iv_arrow4"
@@ -417,8 +470,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -430,39 +483,47 @@
             android:layout_toStartOf="@id/iv_arrow4"
             android:gravity="center_vertical"
             android:text="1"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView12"
-        app:srcCompat="@drawable/uc_remaining_sum" />
+        android:id="@+id/uc_line5"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_sub_line"
+        app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_iv_address" />
+
+    <ImageView
+        android:id="@+id/uc_iv_repair_record"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintDimensionRatio="46:52"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_line5"
+        app:srcCompat="@drawable/uc_record" />
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toTopOf="@+id/imageView13">
+        app:layout_constraintBottom_toBottomOf="@id/uc_iv_repair_record"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintTop_toTopOf="@id/uc_iv_repair_record">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/text_remaining_sum"
-            android:textColor="@android:color/black" />
+            android:text="@string/text_user_center_repaire_record"
+            android:textColor="@color/color_uc_text" />
 
         <ImageView
             android:id="@+id/iv_arrow5"
@@ -470,8 +531,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -482,40 +543,48 @@
             android:layout_toLeftOf="@id/iv_arrow5"
             android:layout_toStartOf="@id/iv_arrow5"
             android:gravity="center_vertical"
-            android:text="100.00"
-            android:textColor="@android:color/black" />
+            android:text="1"
+            android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView13"
+        android:id="@+id/uc_line6"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_sub_line"
+        app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_iv_repair_record" />
+
+    <ImageView
+        android:id="@+id/uc_iv_service"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/uc_line6"
         app:srcCompat="@drawable/uc_service" />
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="@+id/imageView14">
+        app:layout_constraintBottom_toBottomOf="@id/uc_iv_service"
+        app:layout_constraintEnd_toStartOf="@+id/uc_guideline7"
+        app:layout_constraintStart_toStartOf="@+id/uc_guideline8"
+        app:layout_constraintTop_toTopOf="@id/uc_iv_service">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/text_user_center_service_phone"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/color_uc_text" />
 
         <ImageView
             android:id="@+id/iv_arrow6"
@@ -523,10 +592,32 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/uc_arrow" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/iv_arrow6"
+            android:layout_toStartOf="@id/iv_arrow6"
+            android:gravity="center_vertical"
+            android:text="1"
+            android:textColor="@color/color_uc_text" />
+
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/uc_line_bottom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uc_iv_service"
+        app:srcCompat="@color/color_sub_background" />
 
 </android.support.constraint.ConstraintLayout>

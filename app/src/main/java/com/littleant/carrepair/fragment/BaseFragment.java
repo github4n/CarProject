@@ -51,6 +51,10 @@ public abstract class BaseFragment extends Fragment {
         if(!showBackButton()) {
             backButton.setVisibility(View.INVISIBLE);
         }
+        mOptionContent = view.findViewById(R.id.header_option_content);
+        if(getOptionBackgroundId() != 0) {
+            mOptionContent.setBackgroundResource(getOptionBackgroundId());
+        }
         return view;
     }
 
@@ -97,6 +101,9 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getTitleId();
 
     protected int getOptionStringId() {
+        return 0;
+    }
+    protected int getOptionBackgroundId() {
         return 0;
     }
     protected boolean showBackButton() {

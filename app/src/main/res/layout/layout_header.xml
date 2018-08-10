@@ -20,6 +20,20 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.95" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/lg_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lh_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
     <ImageView
         android:id="@+id/title_back"
         android:layout_width="0dp"
@@ -60,19 +74,18 @@
 
     <TextView
         android:id="@+id/header_option_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/lh_guideline2"
+        app:layout_constraintBottom_toBottomOf="@id/lh_guideline4"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/lg_guideline" />
+        app:layout_constraintTop_toTopOf="@id/lg_guideline3" />
 
 </android.support.constraint.ConstraintLayout>
