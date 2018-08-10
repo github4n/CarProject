@@ -1,7 +1,10 @@
 package com.littleant.carrepair.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.littleant.carrepair.R;
 
@@ -10,6 +13,8 @@ public class ServiceFragment extends BaseFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private View mallView, insuranceView, infoView, moreView;
 
     public ServiceFragment() {
         // Required empty public constructor
@@ -41,6 +46,40 @@ public class ServiceFragment extends BaseFragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        mallView = subView.findViewById(R.id.sm_cl_mall);
+        mallView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "购物商城", Toast.LENGTH_SHORT).show();
+            }
+        });
+        insuranceView = subView.findViewById(R.id.sm_cl_insurance);
+        insuranceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "代办保险", Toast.LENGTH_SHORT).show();
+            }
+        });
+        infoView = subView.findViewById(R.id.sm_cl_info);
+        infoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "行业资讯", Toast.LENGTH_SHORT).show();
+            }
+        });
+        moreView = subView.findViewById(R.id.sm_cl_more);
+        moreView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "更多服务", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return subView;
     }
 
 }
