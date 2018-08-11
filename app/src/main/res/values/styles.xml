@@ -34,6 +34,14 @@
         <item name="android:textColor">@drawable/rb_text_color_selector</item>
     </style>
 
+    <!-- activity_shopping.xml使用 -->
+    <style name="ShoppingRadioButton">
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@drawable/rb_text_color_selector</item>
+        <item name="android:drawableRight">@drawable/rb_shopping_arrow_selector</item>
+    </style>
+
     <!-- activity_annual_check_fill_info.xml使用 -->
     <style name="AnnualCheckRadioButton">
         <item name="android:gravity">center</item>

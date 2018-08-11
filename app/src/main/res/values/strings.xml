@@ -108,9 +108,13 @@
     <!---->
     <string name="text_shop">商城</string>
     <string name="text_shop_sort">分类筛选</string>
-    <string name="text_shop_unlimit">不限▼</string>
-    <string name="text_shop_price">价格▼</string>
-    <string name="text_shop_sale">销量▼</string>
+    <string name="text_shop_unlimit">不限</string>
+    <string name="text_shop_price">价格</string>
+    <string name="text_shop_sale">销量</string>
+    <string name="text_shop_type">分类</string>
+    <!--<string name="text_shop_unlimit">不限▼</string>-->
+    <!--<string name="text_shop_price">价格▼</string>-->
+    <!--<string name="text_shop_sale">销量▼</string>-->
     <string name="text_shop_item_price">价格:</string>
 
     <!---->
@@ -248,7 +252,10 @@
     <string name="text_violation_score">扣分%s分</string>
     <string name="text_violation_fine">罚款%s元</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--代办保险-->
+    <string name="text_insurance_proxy">代办保险</string>
+    <string name="text_insurance_all">全部</string>
+    <string name="text_insurance_accident">意外险</string>
+    <string name="text_insurance_price">价格：</string>
 
 </resources>

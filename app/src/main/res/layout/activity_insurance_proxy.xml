@@ -16,18 +16,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/info_guideline"
+        android:id="@+id/ip_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/info_guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
 
     <RadioGroup
         android:id="@+id/radioGroup3"
@@ -39,30 +32,38 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/info_guideline"
+        app:layout_constraintBottom_toTopOf="@id/ip_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include">
 
         <RadioButton
-            android:id="@+id/info_tv_activity"
+            android:id="@+id/ip_tv_all"
             style="@style/CustomRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:checked="true"
-            android:text="@string/text_info_activity" />
+            android:text="@string/text_insurance_all" />
 
         <RadioButton
-            android:id="@+id/info_tv_news"
+            android:id="@+id/ip_tv_insuracne1"
             style="@style/CustomRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/text_info_news" />
+            android:text="@string/text_insurance_accident" />
 
         <RadioButton
-            android:id="@+id/info_tv_konwledge"
+            android:id="@+id/ip_tv_insuracne2"
+            style="@style/CustomRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/text_insurance_accident" />
+
+        <RadioButton
+            android:id="@+id/ip_tv_insuracne3"
             style="@style/CustomRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -72,17 +73,16 @@
     </RadioGroup>
 
     <ImageView
-        android:id="@+id/info_iv_logo"
+        android:id="@+id/ip_line"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/info_guideline2"
+        android:layout_height="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_guideline"
-        app:srcCompat="@drawable/info_logo" />
+        app:layout_constraintTop_toTopOf="@+id/ip_guideline"
+        app:srcCompat="@color/color_sub_background" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/info_list"
+        android:id="@+id/ip_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -93,7 +93,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/info_guideline2" />
-
+        app:layout_constraintTop_toTopOf="@id/ip_line" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_sub_background"
     tools:context=".activies.ShoppingActivity">
 
     <include
@@ -27,14 +28,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.23" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <android.support.constraint.Guideline
         android:id="@+id/s_guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <android.support.constraint.Guideline
         android:id="@+id/s_guideline4"
@@ -43,145 +44,93 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
-    <TextView
+    <RadioGroup
+        android:id="@+id/shopping_radioGroup"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:background="@android:color/white"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/s_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include" />
+        app:layout_constraintTop_toBottomOf="@id/include">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@id/s_guideline"
-        app:layout_constraintEnd_toEndOf="@id/s_guideline4"
-        app:layout_constraintStart_toStartOf="@id/s_guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/include">
-
-        <ImageView
-            android:id="@+id/s_ig_search"
+        <RadioButton
+            android:id="@+id/shopping_tv_none"
+            style="@style/ShoppingRadioButton"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/s_search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:checked="true"
+            android:drawablePadding="-15dp"
+            android:paddingRight="20dp"
+            android:text="@string/text_shop_unlimit" />
 
-        <EditText
-            android:id="@+id/s_et_search"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@null"
-            android:hint="@string/text_shop_sort"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/s_ig_search"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/s_guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/s_guideline4"
-        app:layout_constraintStart_toStartOf="@+id/s_guideline3"
-        app:layout_constraintTop_toTopOf="@+id/s_guideline">
-
-        <TextView
-            android:id="@+id/s_tv_unlimit"
+        <RadioButton
+            android:id="@+id/shopping_tv_price"
+            style="@style/ShoppingRadioButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/text_shop_unlimit"
-            android:textColor="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/s_line"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="-15dp"
+            android:paddingRight="20dp"
+            android:text="@string/text_shop_price" />
 
-        <TextView
-            android:id="@+id/s_line"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@id/s_tv_unlimit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.33"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/s_tv_unlimit" />
-
-        <TextView
-            android:id="@+id/s_tv_price"
+        <RadioButton
+            android:id="@+id/shopping_tv_sale"
+            style="@style/ShoppingRadioButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_shop_price"
-            android:textColor="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/s_tv_unlimit"
-            app:layout_constraintEnd_toStartOf="@+id/s_line2"
-            app:layout_constraintStart_toEndOf="@id/s_line"
-            app:layout_constraintTop_toTopOf="@+id/s_tv_unlimit" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="-15dp"
+            android:paddingRight="20dp"
+            android:text="@string/text_shop_sale" />
 
-        <TextView
-            android:id="@+id/s_line2"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="@id/s_tv_unlimit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.66"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/s_tv_unlimit" />
-
-        <TextView
-            android:id="@+id/s_tv_sale"
+        <RadioButton
+            android:id="@+id/shopping_tv_type"
+            style="@style/ShoppingRadioButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_shop_sale"
-            android:textColor="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/s_tv_unlimit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/s_line2"
-            app:layout_constraintTop_toTopOf="@+id/s_tv_unlimit" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawablePadding="-15dp"
+            android:paddingRight="20dp"
+            android:text="@string/text_shop_type" />
 
-
-    </android.support.constraint.ConstraintLayout>
+    </RadioGroup>
 
     <GridView
         android:id="@+id/s_gv_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:horizontalSpacing="8dp"
         android:numColumns="2"
-
+        android:verticalSpacing="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/s_guideline" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/s_guideline4"
         app:layout_constraintStart_toStartOf="@+id/s_guideline3"
-        app:layout_constraintTop_toTopOf="@+id/s_guideline2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        app:srcCompat="@drawable/shopping_car" />
 
 
 </android.support.constraint.ConstraintLayout>

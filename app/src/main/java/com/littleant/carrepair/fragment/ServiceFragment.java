@@ -1,5 +1,6 @@
 package com.littleant.carrepair.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.InformationActivity;
+import com.littleant.carrepair.activies.InsuranceProxyActivity;
+import com.littleant.carrepair.activies.ShoppingActivity;
 
 public class ServiceFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -55,21 +59,25 @@ public class ServiceFragment extends BaseFragment {
         mallView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "购物商城", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), ShoppingActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         insuranceView = subView.findViewById(R.id.sm_cl_insurance);
         insuranceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "代办保险", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), InsuranceProxyActivity.class);
+                getActivity().startActivity(intent);
+
             }
         });
         infoView = subView.findViewById(R.id.sm_cl_info);
         infoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "行业资讯", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), InformationActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         moreView = subView.findViewById(R.id.sm_cl_more);

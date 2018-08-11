@@ -11,32 +11,34 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 
-public class InformationActivity extends BaseActivity {
+public class InsuranceProxyActivity extends BaseActivity {
+
     private RecyclerView mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mList = findViewById(R.id.info_list);
+
+        mList = findViewById(R.id.ip_list);
         mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mList.setAdapter(new MyAdapter());
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_information;
+        return R.layout.activity_insurance_proxy;
     }
 
     @Override
     protected int getTitleId() {
-        return R.string.text_info_title;
+        return R.string.text_insurance_proxy;
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         @Override
         public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_info_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_insurance_item, parent, false);
             MyAdapter.ViewHolder viewHolder = new MyAdapter.ViewHolder(view);
             return viewHolder;
         }
@@ -52,15 +54,15 @@ public class InformationActivity extends BaseActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            TextView ii_tv_title, ii_tv_description, ii_tv_count;
-            ImageView ii_iv_itemImg;
+            TextView lii_tv_title, lii_tv_description, lii_tv_count;
+            ImageView lii_iv_itemImg;
 
             ViewHolder(View itemView) {
                 super(itemView);
-                ii_tv_title = itemView.findViewById(R.id.ii_tv_title);
-                ii_tv_description = itemView.findViewById(R.id.ii_tv_description);
-//                ii_tv_count = itemView.findViewById(R.id.ii_tv_count);
-                ii_iv_itemImg = itemView.findViewById(R.id.ii_iv_itemImg);
+                lii_tv_title = itemView.findViewById(R.id.lii_tv_title);
+                lii_tv_description = itemView.findViewById(R.id.lii_tv_description);
+                lii_tv_count = itemView.findViewById(R.id.lii_tv_count);
+                lii_iv_itemImg = itemView.findViewById(R.id.lii_iv_itemImg);
             }
 
         }

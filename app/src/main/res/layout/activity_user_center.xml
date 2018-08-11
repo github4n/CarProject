@@ -287,8 +287,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -319,7 +319,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintDimensionRatio="44:48"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_line2"
@@ -348,8 +348,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -380,7 +380,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintDimensionRatio="46:52"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_line3"
@@ -409,8 +409,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -470,8 +470,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -502,7 +502,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintDimensionRatio="46:52"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/uc_guideline8"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_line5"
@@ -531,8 +531,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView
@@ -592,8 +592,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/uc_arrow" />
 
         <TextView

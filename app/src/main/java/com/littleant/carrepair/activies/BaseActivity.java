@@ -27,6 +27,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         if(getOptionStringId() != 0) {
             mOptionContent.setText(getOptionStringId());
         }
+        if(getOptionBackgroundId() != 0) {
+            mOptionContent.setBackgroundResource(getOptionBackgroundId());
+        }
 
         backButton = findViewById(R.id.title_back);
         if(!showBackButton()) {
@@ -38,6 +41,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract int getTitleId();
 
     protected int getOptionStringId() {
+        return 0;
+    }
+    protected int getOptionBackgroundId() {
         return 0;
     }
     protected boolean showBackButton() {

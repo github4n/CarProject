@@ -34,11 +34,16 @@ public class ShoppingActivity extends BaseActivity {
         return R.string.text_shop;
     }
 
+    @Override
+    protected int getOptionBackgroundId() {
+        return R.drawable.shopping_search;
+    }
+
     private class MyAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return 4;
+            return 10;
         }
 
         @Override
@@ -53,7 +58,7 @@ public class ShoppingActivity extends BaseActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            view = LayoutInflater.from(ShoppingActivity.this).inflate(R.layout.layout_shop_item, null);
+            view = LayoutInflater.from(ShoppingActivity.this).inflate(R.layout.layout_shop_item, viewGroup, false);
             return view;
         }
     }
