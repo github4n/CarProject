@@ -13,8 +13,8 @@ import com.littleant.carrepair.R;
  * 基类Activity
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    private TextView mTitle, mOptionContent;
-    private ImageView backButton;
+    protected TextView mTitle, mOptionContent, mOptionText;
+    protected ImageView backButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,10 +23,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         mTitle = findViewById(R.id.header_title);
         mTitle.setText(getTitleId());
 
-        mOptionContent = findViewById(R.id.header_option_content);
+        mOptionText = findViewById(R.id.header_option_text);
         if(getOptionStringId() != 0) {
-            mOptionContent.setText(getOptionStringId());
+            mOptionText.setText(getOptionStringId());
         }
+        mOptionContent = findViewById(R.id.header_option_content);
         if(getOptionBackgroundId() != 0) {
             mOptionContent.setBackgroundResource(getOptionBackgroundId());
         }
@@ -35,6 +36,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         if(!showBackButton()) {
             backButton.setVisibility(View.INVISIBLE);
         }
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BaseActivity.this.finish();
+            }
+        });
     }
 
     protected abstract int getLayoutId();

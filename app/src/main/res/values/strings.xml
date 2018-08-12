@@ -84,7 +84,16 @@
 
     <!---->
     <string name="text_order_page">订单页面</string>
-    <string name="btn_add_receive_address">+ 添加收货地址</string>
+    <string name="btn_add_receive_address">添加收货信息</string>
+    <string name="text_submit_order">提交订单</string>
+    <string name="text_order_count">共%s件商品  小计：</string>
+    <string name="text_point_discount">积分减免：</string>
+    <string name="text_point_des">积分: 当前积分%s分  满1000可用</string>
+    <string name="text_point_rule">积分使用规则</string>
+    <string name="text_point_condition">使用条件</string>
+    <string name="text_point_condition1">1.订单金额大于20元（含）\n2.积分大于1000分（含）\n3.积分兑换不得超过每笔订单应付金额的50%</string>
+    <string name="text_point_use">使用规则</string>
+    <string name="text_point_use1">1.使用的积分分值为1000的整倍数\n2.1000积分抵10元</string>
 
     <!---->
     <string name="text_user_center">个人中心</string>
@@ -101,9 +110,12 @@
     <!---->
     <string name="text_shopping_car">购物车</string>
     <string name="text_select_all">全选</string>
-    <string name="text_go_pay">去结算</string>
-    <string name="text_total_money">合计：</string>
-    <string name="text_sc_amount">  %s  </string>
+    <string name="text_go_pay">结算</string>
+    <string name="text_total_money">总计：</string>
+    <string name="text_sc_amount">&#160;&#160;%s&#160;&#160;</string>
+    <string name="text_sc_delete">删除</string>
+    <string name="text_sc_increace">&#160;&#160;&#160;+&#160;&#160;&#160;</string>
+    <string name="text_sc_reduce">&#160;&#160;&#160;-&#160;&#160;&#160;</string>
 
     <!---->
     <string name="text_shop">商城</string>

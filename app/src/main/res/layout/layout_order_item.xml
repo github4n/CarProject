@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:paddingBottom="8dp"
+    android:orientation="horizontal" >
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/loi_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/loi_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <TextView
+            android:id="@+id/loi_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loi_img" />
+
+        <ImageView
+            android:id="@+id/loi_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/item_demo"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/loi_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/loi_tv_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="￥999"
+            android:textColor="@color/color_text_shop_price"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/loi_guideline2"
+            app:layout_constraintTop_toBottomOf="@id/loi_line1" />
+
+        <TextView
+            android:id="@+id/loi_totle_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/text_order_count"
+            android:textColor="@color/color_insurance_text"
+            app:layout_constraintBottom_toBottomOf="@+id/loi_tv_sum"
+            app:layout_constraintEnd_toStartOf="@id/loi_guideline2"
+            app:layout_constraintTop_toTopOf="@id/loi_tv_sum" />
+
+        <TextView
+            android:id="@+id/loi_product_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="商品标题"
+            android:textColor="@color/color_text"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/loi_img"
+            app:layout_constraintEnd_toStartOf="@id/loi_guideline2"
+            app:layout_constraintStart_toStartOf="@id/loi_guideline"
+            app:layout_constraintTop_toTopOf="@+id/loi_img" />
+
+        <TextView
+            android:id="@+id/loi_per_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/color_text_shop_price"
+            android:text="￥26.00"
+            app:layout_constraintBottom_toTopOf="@id/loi_product_count"
+            app:layout_constraintStart_toStartOf="@id/loi_guideline2" />
+
+        <TextView
+            android:id="@+id/loi_product_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x1"
+            android:textColor="@color/color_sub_line"
+            app:layout_constraintBottom_toBottomOf="@id/loi_product_title"
+            app:layout_constraintEnd_toEndOf="@id/loi_per_price" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

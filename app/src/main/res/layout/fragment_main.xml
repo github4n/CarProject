@@ -42,7 +42,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/lfm_guideline"
+        app:layout_constraintBottom_toTopOf="@id/lfm_guideline"
         app:layout_constraintEnd_toEndOf="@id/lfm_guideline3"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/lfm_guideline2"
@@ -57,12 +57,12 @@
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:src="@drawable/main_title_location"
-            app:layout_constraintBottom_toBottomOf="@+id/m_location"
+            app:layout_constraintBottom_toBottomOf="@id/m_location"
             app:layout_constraintDimensionRatio="26:32"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@id/m_location"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/m_location" />
+            app:layout_constraintTop_toTopOf="@id/m_location" />
 
         <TextView
             android:id="@+id/m_location"
@@ -101,11 +101,11 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="2dp"
             android:src="@drawable/main_search"
-            app:layout_constraintBottom_toBottomOf="@+id/m_location"
+            app:layout_constraintBottom_toBottomOf="@id/m_location"
             app:layout_constraintDimensionRatio="36:32"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mtl_line"
-            app:layout_constraintTop_toTopOf="@+id/m_location" />
+            app:layout_constraintStart_toEndOf="@id/mtl_line"
+            app:layout_constraintTop_toTopOf="@id/m_location" />
 
         <TextView
             android:id="@+id/m_input_search"
@@ -122,7 +122,7 @@
             android:text="@string/text_search_des"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/m_search"
+            app:layout_constraintStart_toEndOf="@id/m_search"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
@@ -135,8 +135,8 @@
         android:background="@drawable/main_repair_selector"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/lfm_guideline3"
-        app:layout_constraintTop_toTopOf="@+id/lfm_guideline"
+        app:layout_constraintEnd_toStartOf="@id/lfm_guideline3"
+        app:layout_constraintTop_toTopOf="@id/lfm_guideline"
         app:layout_constraintVertical_bias="0.05" />
 
     <TextView
@@ -145,8 +145,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/main_maintain_selector"
-        app:layout_constraintEnd_toEndOf="@+id/m_repair"
-        app:layout_constraintStart_toStartOf="@+id/m_repair"
-        app:layout_constraintTop_toBottomOf="@+id/m_repair" />
+        app:layout_constraintEnd_toEndOf="@id/m_repair"
+        app:layout_constraintStart_toStartOf="@id/m_repair"
+        app:layout_constraintTop_toBottomOf="@id/m_repair" />
 
 </android.support.constraint.ConstraintLayout>

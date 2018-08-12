@@ -20,4 +20,8 @@
     <color name="color_insurance_text">#5B5B5B</color>
     <!--商城物品价格-->
     <color name="color_text_shop_price">#FF3C3C</color>
+    <!--购物车结算背景色-->
+    <color name="color_text_shopping_car_confirm">#FF894D</color>
+    <!--购物车结算背景色-->
+    <color name="color_text_shopping_car_bg">#5B5B5B</color>
 </resources>

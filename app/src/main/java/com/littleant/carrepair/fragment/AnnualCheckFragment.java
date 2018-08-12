@@ -1,5 +1,6 @@
 package com.littleant.carrepair.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.AnnualCheckFillInfoActivity;
+import com.littleant.carrepair.activies.PickCarActivity;
 
 public class AnnualCheckFragment extends BaseFragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -56,14 +59,16 @@ public class AnnualCheckFragment extends BaseFragment {
         reservationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "年检预约", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), AnnualCheckFillInfoActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         myReservationView = subView.findViewById(R.id.ac_cl_my_reservation);
         myReservationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "我的预约", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), PickCarActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         return subView;
