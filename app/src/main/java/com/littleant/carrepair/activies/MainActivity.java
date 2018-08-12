@@ -26,7 +26,7 @@ import com.littleant.carrepair.fragment.UserCenterFragment;
 /**
  * 主页
  */
-public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener, BaseFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements BaseFragment.OnFragmentInteractionListener{
     /**
      * 高德地图
      */
