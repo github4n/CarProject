@@ -2,8 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="300dp"
+    android:layout_height="230dp"
     android:background="@drawable/shape_cycrect_white_fill"
     android:orientation="horizontal">
 
@@ -18,8 +18,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_point_rule"
         android:textColor="@color/color_uc_text"
-        android:textStyle="bold"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,13 +77,11 @@
         android:id="@+id/lp_tv_point_use2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_point_use1"
         android:textColor="@color/color_sub_line"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/lp_tv_point_condition"
         app:layout_constraintTop_toBottomOf="@+id/lp_tv_point_use" />

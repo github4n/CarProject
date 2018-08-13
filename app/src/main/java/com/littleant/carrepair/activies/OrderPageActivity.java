@@ -2,8 +2,10 @@ package com.littleant.carrepair.activies;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.constraint.Constraints;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,8 +73,19 @@ public class OrderPageActivity extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(OrderPageActivity.this, "积分说明", Toast.LENGTH_SHORT).show();
-                        Dialog d = new Dialog(OrderPageActivity.this);
-                        d.setContentView(R.layout.layout_point);
+                        final Dialog d = new Dialog(OrderPageActivity.this);
+                        View contentView = View.inflate(OrderPageActivity.this, R.layout.layout_point, null);
+//                        d.setContentView(R.layout.layout_point);
+                        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
+                        int dialogWidth = (int) (dm.widthPixels * 0.7);
+                        int dialogHeight = (int) (dm.heightPixels * 0.35);
+                        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+                        contentView.findViewById(R.id.lp_iv_close).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                d.dismiss();
+                            }
+                        });
                         d.show();
                     }
                 });
