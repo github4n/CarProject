@@ -32,16 +32,17 @@
     <string name="text_order_price">订单总价</string>
     <string name="text_final_price">实付款</string>
 
-    <!---->
-    <string name="text_all_order">全部订单</string>
+    <!--商城订单-->
+    <string name="text_all_order">商城订单</string>
     <string name="text_allorder_all">全部</string>
     <string name="text_allorder_wait_pay">待付款</string>
     <string name="text_allorder_wait_send">待发货</string>
     <string name="text_allorder_wait_reach">待收货</string>
-    <string name="text_allorder_finish">已完成</string>
+    <string name="text_allorder_wait_rate">待评价</string>
     <string name="btn_delete_order">删除订单</string>
+    <string name="btn_order_rate">&#160;&#160;评价&#160;&#160;</string>
+    <string name="btn_order_pay">&#160;去付款&#160;</string>
     <string name="btn_order_detail">详情</string>
-    <string name="btn_order_pay">付款</string>
 
     <!---->
     <string name="text_add_car">添加车辆</string>
@@ -273,5 +274,18 @@
     <string name="text_insurance_all">全部</string>
     <string name="text_insurance_accident">意外险</string>
     <string name="text_insurance_price">价格：</string>
+
+    <!--评价-->
+    <string name="text_rating">评价</string>
+    <string name="text_rating_des">您的评价会让维修厂服务更好哟！</string>
+    <string name="text_rating_ok">确认</string>
+
+    <!--设置-->
+    <string name="text_setting">设置</string>
+    <string name="text_setting_save">保存</string>
+    <string name="text_setting_logout">退出登录</string>
+    <string name="text_setting_icon">头像</string>
+    <string name="text_setting_name">昵称</string>
+    <string name="text_setting_phone">手机号</string>
 
 </resources>

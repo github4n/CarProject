@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.Constraints;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import com.littleant.carrepair.R;
 public class OrderPageActivity extends BaseActivity {
 
     private RecyclerView mList;
+    private Button mSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,15 @@ public class OrderPageActivity extends BaseActivity {
         mList = findViewById(R.id.op_list);
         mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mList.setAdapter(new MyAdapter());
+
+        mSubmit = findViewById(R.id.op_submit);
+        mSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OrderPageActivity.this, AllOrderActivity.class);
+                OrderPageActivity.this.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -72,7 +84,6 @@ public class OrderPageActivity extends BaseActivity {
                 holder.oei_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(OrderPageActivity.this, "积分说明", Toast.LENGTH_SHORT).show();
                         final Dialog d = new Dialog(OrderPageActivity.this);
                         View contentView = View.inflate(OrderPageActivity.this, R.layout.layout_point, null);
 //                        d.setContentView(R.layout.layout_point);

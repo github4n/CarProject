@@ -265,6 +265,7 @@
         app:srcCompat="@drawable/uc_garage" />
 
     <RelativeLayout
+        android:id="@+id/uc_rl_my_car"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -299,7 +300,6 @@
             android:layout_toLeftOf="@id/iv_arrow1"
             android:layout_toStartOf="@id/iv_arrow1"
             android:gravity="center_vertical"
-            android:text="1"
             android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
@@ -326,6 +326,7 @@
         app:srcCompat="@drawable/uc_check_record" />
 
     <RelativeLayout
+        android:id="@+id/uc_rl_check_record"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -360,7 +361,6 @@
             android:layout_toLeftOf="@id/iv_arrow2"
             android:layout_toStartOf="@id/iv_arrow2"
             android:gravity="center_vertical"
-            android:text="1"
             android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
@@ -387,6 +387,7 @@
         app:srcCompat="@drawable/uc_shop_credit" />
 
     <RelativeLayout
+        android:id="@+id/uc_rl_shop_order"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -421,7 +422,6 @@
             android:layout_toLeftOf="@id/iv_arrow3"
             android:layout_toStartOf="@id/iv_arrow3"
             android:gravity="center_vertical"
-            android:text="1"
             android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
@@ -448,6 +448,7 @@
         app:srcCompat="@drawable/uc_address" />
 
     <RelativeLayout
+        android:id="@+id/uc_rl_address"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -482,7 +483,6 @@
             android:layout_toLeftOf="@id/iv_arrow4"
             android:layout_toStartOf="@id/iv_arrow4"
             android:gravity="center_vertical"
-            android:text="1"
             android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
@@ -509,6 +509,7 @@
         app:srcCompat="@drawable/uc_record" />
 
     <RelativeLayout
+        android:id="@+id/uc_rl_repair_record"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -543,7 +544,6 @@
             android:layout_toLeftOf="@id/iv_arrow5"
             android:layout_toStartOf="@id/iv_arrow5"
             android:gravity="center_vertical"
-            android:text="1"
             android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>
@@ -570,6 +570,7 @@
         app:srcCompat="@drawable/uc_service" />
 
     <RelativeLayout
+        android:id="@+id/uc_rl_cs"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -604,7 +605,6 @@
             android:layout_toLeftOf="@id/iv_arrow6"
             android:layout_toStartOf="@id/iv_arrow6"
             android:gravity="center_vertical"
-            android:text="1"
             android:textColor="@color/color_uc_text" />
 
     </RelativeLayout>

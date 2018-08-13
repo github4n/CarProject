@@ -29,11 +29,6 @@
         <activity
             android:name=".dome.TestActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activies.MainActivity"
@@ -42,6 +37,11 @@
             android:name=".activies.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyThemeDark">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data
@@ -88,7 +88,8 @@
         <activity android:name=".activies.PickCarActivity" />
         <activity android:name=".activies.StartCheckActivity" />
         <activity android:name=".activies.CheckReturnCarActivity" />
-        <activity android:name=".activies.InsuranceProxyActivity"></activity>
+        <activity android:name=".activies.InsuranceProxyActivity" />
+        <activity android:name=".activies.SettingActivity"></activity>
     </application>
 
 </manifest>

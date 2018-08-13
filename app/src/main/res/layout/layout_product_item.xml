@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <android.support.constraint.Guideline
@@ -13,6 +13,28 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.3" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/lpr_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <ImageView
+        android:id="@+id/lpr_iv_pic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/item_demo"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toStartOf="@id/lpr_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/lpr_line1"
         android:layout_width="match_parent"
@@ -21,76 +43,57 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_itemImg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@id/lpr_line1"
-        app:layout_constraintDimensionRatio="h,1:1"
-        app:layout_constraintEnd_toStartOf="@id/lpr_guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/item_demo" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/lpr_line1"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lpr_iv_pic" />
+
+    <TextView
+        android:id="@+id/lpr_product_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="商品标题"
+        android:textColor="@color/color_text"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/lpr_iv_pic"
+        app:layout_constraintEnd_toStartOf="@id/lpr_guideline2"
         app:layout_constraintStart_toStartOf="@id/lpr_guideline"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/lpr_iv_pic" />
 
-        <TextView
-            android:id="@+id/item_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_weight="3"
-            android:maxLines="2"
-            android:text="商品名称可以很长最多两行"
-            android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/lpr_per_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text_shop_price"
+        android:text="￥26.00"
+        app:layout_constraintBottom_toTopOf="@id/lpr_product_count"
+        app:layout_constraintStart_toStartOf="@id/lpr_guideline2" />
 
-        <TextView
-            android:id="@+id/item_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:maxLines="1"
-            android:text="$119"
-            android:textColor="@android:color/holo_red_dark" />
+    <TextView
+        android:id="@+id/lpi_tv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="未支付"
+        android:textColor="@color/color_text_wait_pay"
+        app:layout_constraintEnd_toEndOf="@id/lpr_per_price"
+        app:layout_constraintTop_toTopOf="@id/lpr_product_title" />
 
-        <TextView
-            android:id="@+id/item_amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:maxLines="1"
-            android:text="x1" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/lpr_product_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x1"
+        android:textColor="@color/color_sub_line"
+        app:layout_constraintBottom_toBottomOf="@id/lpr_product_title"
+        app:layout_constraintEnd_toEndOf="@id/lpr_per_price" />
 
     <TextView
         android:id="@+id/lpr_line2"
@@ -100,63 +103,61 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lpr_line1"
-        app:layout_constraintVertical_bias="0.39999998" />
+        app:layout_constraintTop_toBottomOf="@id/lpr_tv_count" />
 
     <TextView
         android:id="@+id/lpr_tv_sum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
         android:text="￥999"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toTopOf="@id/lpr_line2"
+        android:textColor="@color/color_text_shop_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lpr_line1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/lpr_tv_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="共X件商品 合计："
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/lpr_tv_sum"
-        app:layout_constraintEnd_toStartOf="@+id/lpr_tv_sum"
-        app:layout_constraintTop_toTopOf="@+id/lpr_tv_sum" />
+        android:textColor="@color/color_sub_line"
+        app:layout_constraintBottom_toBottomOf="@id/lpr_tv_sum"
+        app:layout_constraintEnd_toStartOf="@id/lpr_tv_sum"
+        app:layout_constraintTop_toTopOf="@id/lpr_tv_sum" />
 
     <TextView
-        android:id="@+id/btn_delete"
+        android:id="@+id/lpr_btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:background="@drawable/btn_cycrect_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
         android:text="@string/btn_delete_order"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/btn_cycrect_selector"
         android:textColor="@drawable/btn_text_color_selector"
-        app:layout_constraintEnd_toStartOf="@id/btn_detail"
-        app:layout_constraintTop_toTopOf="@id/btn_detail" />
+        app:layout_constraintEnd_toStartOf="@id/lpr_btn_rate"
+        app:layout_constraintTop_toTopOf="@id/lpr_btn_rate" />
 
     <TextView
-        android:id="@+id/btn_detail"
+        android:id="@+id/lpr_btn_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="@string/btn_order_detail"
+        android:text="@string/btn_order_rate"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="5dp"
@@ -165,24 +166,25 @@
         android:focusable="true"
         android:background="@drawable/btn_cycrect_selector"
         android:textColor="@drawable/btn_text_color_selector"
-        app:layout_constraintEnd_toStartOf="@id/btn_pay"
-        app:layout_constraintTop_toTopOf="@id/btn_pay" />
+        app:layout_constraintEnd_toStartOf="@id/lpr_lpi_btn_pay"
+        app:layout_constraintTop_toTopOf="@id/lpr_lpi_btn_pay" />
 
     <TextView
-        android:id="@+id/btn_pay"
+        android:id="@+id/lpr_lpi_btn_pay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="@string/btn_order_pay"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_cycrect_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="5dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/btn_cycrect_selector"
+        android:text="@string/btn_order_pay"
         android:textColor="@drawable/btn_text_color_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

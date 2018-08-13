@@ -24,8 +24,8 @@ public abstract class BaseFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private TextView mTitle, mOptionContent;
-    private ImageView backButton;
+    protected TextView mTitle, mOptionContent;
+    protected ImageView backButton;
 
     protected View subView;
 

@@ -24,4 +24,14 @@
     <color name="color_text_shopping_car_confirm">#FF894D</color>
     <!--购物车结算背景色-->
     <color name="color_text_shopping_car_bg">#5B5B5B</color>
+    <!--已收货-->
+    <color name="color_text_done">#5FFF54</color>
+    <!--未支付-->
+    <color name="color_text_wait_pay">#FF3C3C</color>
+    <!--待发货-->
+    <color name="color_text_wait_send">#3CADFF</color>
+    <!--待收货-->
+    <color name="color_text_wait_get">#FF8A4E</color>
+    <!--评价-->
+    <color name="color_rating">#FFBD4E</color>
 </resources>

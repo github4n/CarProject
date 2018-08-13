@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_sub_background"
     tools:context=".activies.MyAddressActivity">
 
     <include
@@ -43,58 +44,14 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
 
-    <TextView
-        android:id="@+id/ma_title_bg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/ma_guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include" />
-
-    <TextView
-        android:id="@+id/ma_tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/text_address_list"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@id/ma_title_bg"
-        app:layout_constraintStart_toStartOf="@id/ma_guideline2"
-        app:layout_constraintTop_toTopOf="@id/ma_title_bg" />
-
-    <include
-        android:id="@+id/include_3"
-        layout="@layout/layout_my_address_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ma_guideline4" />
-
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ma_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ma_guideline" />
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
-    <Button
-        android:id="@+id/ma_btn_confrm"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/shape_blue_fill"
-        android:text="@string/text_add_info"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ma_guideline3"
-        app:layout_constraintStart_toStartOf="@id/ma_guideline2"
-        app:layout_constraintTop_toTopOf="@id/ma_guideline" />
 
 </android.support.constraint.ConstraintLayout>
