@@ -6,12 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.AllOrderActivity;
+import com.littleant.carrepair.activies.AnnualCheckRecordActivity;
 import com.littleant.carrepair.activies.MyAddressActivity;
 import com.littleant.carrepair.activies.MyCarActivity;
+import com.littleant.carrepair.activies.MyOrderActivity;
 import com.littleant.carrepair.activies.RepairRecordActivity;
 import com.littleant.carrepair.activies.SettingActivity;
 
@@ -22,7 +26,7 @@ public class UserCenterFragment extends BaseFragment {
     private static final String ARG_PARAM2 = "param2";
 
     private RelativeLayout uc_rl_my_car, uc_rl_check_record, uc_rl_shop_order, uc_rl_address, uc_rl_repair_record, uc_rl_cs;
-
+    private ImageView iv_all_order, iv_wait_pay, iv_wait_service, iv_wait_rate;
 
 
     public UserCenterFragment() {
@@ -73,13 +77,21 @@ public class UserCenterFragment extends BaseFragment {
                 getActivity().startActivity(intent);
             }
         });
-
         //我的车库
         uc_rl_my_car = subView.findViewById(R.id.uc_rl_my_car);
         uc_rl_my_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MyCarActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        //年检记录
+        uc_rl_check_record = subView.findViewById(R.id.uc_rl_check_record);
+        uc_rl_check_record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), AnnualCheckRecordActivity.class);
                 getActivity().startActivity(intent);
             }
         });
@@ -107,6 +119,39 @@ public class UserCenterFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MyAddressActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        iv_all_order = subView.findViewById(R.id.iv_all_order);
+        iv_all_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MyOrderActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        iv_wait_pay = subView.findViewById(R.id.iv_wait_pay);
+        iv_wait_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MyOrderActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        iv_wait_service = subView.findViewById(R.id.iv_wait_service);
+        iv_wait_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MyOrderActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        iv_wait_rate = subView.findViewById(R.id.iv_wait_rate);
+        iv_wait_rate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), MyOrderActivity.class);
                 getActivity().startActivity(intent);
             }
         });

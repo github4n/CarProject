@@ -1,17 +1,21 @@
 package com.littleant.carrepair.activies;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.Constraints;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -79,6 +83,21 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                 transaction.commitAllowingStateLoss();
             }
         });
+
+        final Dialog d = new Dialog(MainActivity.this);
+        View contentView = View.inflate(MainActivity.this, R.layout.layout_violation, null);
+//                        d.setContentView(R.layout.layout_point);
+        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
+        int dialogWidth = (int) (dm.widthPixels * 0.8);
+        int dialogHeight = (int) (dm.heightPixels * 0.3);
+        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+        contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+            }
+        });
+        d.show();
 
     }
 

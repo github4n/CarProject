@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lsi_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lsi_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.32" />
+
+    <ImageView
+        android:id="@+id/lsi_iv_itemImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/item_demo"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/lsi_guideline"
+        app:layout_constraintHorizontal_weight="8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/lsi_tv_line"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_iv_itemImg"
+        app:layout_constraintTop_toTopOf="@id/lsi_iv_itemImg"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
+        android:id="@+id/lsi_tv_line2"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_iv_itemImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/lsi_iv_itemImg" />
+
+    <!--标题-->
+    <TextView
+        android:id="@+id/lsi_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:maxLines="1"
+        android:text="伟航汽车修理厂"
+        android:textColor="@color/color_uc_text"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/lsi_guideline"
+        app:layout_constraintTop_toTopOf="@id/lsi_iv_itemImg" />
+
+    <TextView
+        android:id="@+id/lsi_tv_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/text_search_distance"
+        android:textColor="@color/color_sub_line"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/lsi_tv_title" />
+
+    <!--赞数-->
+    <TextView
+        android:id="@+id/lsi_tv_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="1200"
+        android:textColor="@color/color_text_shop_price"
+        app:layout_constraintStart_toStartOf="@id/lsi_guideline2"
+        app:layout_constraintTop_toBottomOf="@id/lsi_tv_line" />
+
+    <ImageView
+        android:id="@+id/lsi_iv_like"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_like"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/lsi_guideline2"
+        app:layout_constraintStart_toStartOf="@id/lsi_guideline"
+        app:layout_constraintTop_toTopOf="@id/lsi_tv_like"
+        app:srcCompat="@drawable/search_like" />
+
+    <!--联系人-->
+    <TextView
+        android:id="@+id/lsi_tv_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/text_search_contant"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintStart_toStartOf="@id/lsi_guideline2"
+        app:layout_constraintTop_toBottomOf="@id/lsi_tv_line2" />
+
+    <TextView
+        android:id="@+id/lsi_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_contact"
+        app:layout_constraintStart_toEndOf="@id/lsi_tv_contact"
+        app:layout_constraintTop_toTopOf="@id/lsi_tv_contact" />
+
+    <ImageView
+        android:id="@+id/lsi_iv_contact"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_contact"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/lsi_guideline2"
+        app:layout_constraintStart_toStartOf="@id/lsi_guideline"
+        app:layout_constraintTop_toTopOf="@id/lsi_tv_contact"
+        app:srcCompat="@drawable/search_phone" />
+
+    <!--地址-->
+    <TextView
+        android:id="@+id/lsi_tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:text="大石街道xxxxxxxxxxx"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_iv_itemImg"
+        app:layout_constraintStart_toStartOf="@id/lsi_guideline2" />
+
+    <ImageView
+        android:id="@+id/lsi_iv_location"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_location"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/lsi_guideline2"
+        app:layout_constraintStart_toStartOf="@id/lsi_guideline"
+        app:layout_constraintTop_toTopOf="@id/lsi_tv_location"
+        app:srcCompat="@drawable/search_location" />
+
+    <ImageView
+        android:id="@+id/lsi_line3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/lsi_tv_distance"
+        app:layout_constraintStart_toStartOf="@id/lsi_iv_itemImg"
+        app:layout_constraintTop_toBottomOf="@id/lsi_iv_itemImg"
+        app:srcCompat="@color/color_sub_line" />
+
+</android.support.constraint.ConstraintLayout>

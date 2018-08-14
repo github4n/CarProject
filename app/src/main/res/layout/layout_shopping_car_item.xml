@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <android.support.constraint.Guideline
-        android:id="@+id/ma_guideline"
+        android:id="@+id/sci_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -53,7 +53,7 @@
         android:textColor="@color/color_uc_text"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/sci_select"
-        app:layout_constraintStart_toStartOf="@id/ma_guideline"
+        app:layout_constraintStart_toStartOf="@id/sci_guideline"
         app:layout_constraintTop_toTopOf="@+id/sci_iv_itemImg" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:text="@string/text_shop_item_price"
         android:textColor="@color/color_insurance_text"
         app:layout_constraintBottom_toTopOf="@+id/sci_reduce"
-        app:layout_constraintStart_toStartOf="@id/ma_guideline"
+        app:layout_constraintStart_toStartOf="@id/sci_guideline"
         app:layout_constraintTop_toBottomOf="@id/sci_item_name" />
 
     <TextView
@@ -130,7 +130,7 @@
         android:src="@drawable/item_demo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@id/ma_guideline"
+        app:layout_constraintEnd_toStartOf="@id/sci_guideline"
         app:layout_constraintHorizontal_weight="8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

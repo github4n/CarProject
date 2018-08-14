@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_sub_background"
-    tools:context=".activies.RepairRecordActivity">
+    tools:context=".activies.AllOrderActivity">
 
     <include
         android:id="@+id/include"
@@ -17,54 +17,67 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/rr_guideling1"
+        android:id="@+id/mo_guideling1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 
     <RadioGroup
-        android:id="@+id/rr_radiogroup"
+        android:id="@+id/mo_radio_group"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/rr_guideling1"
+        app:layout_constraintBottom_toTopOf="@id/mo_guideling1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include">
 
         <RadioButton
-            android:id="@+id/rr_doing"
+            android:id="@+id/mo_rb_all"
             style="@style/CustomRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:checked="true"
-            android:text="@string/text_repaire_record_doing" />
+            android:text="@string/text_my_order_all" />
 
         <RadioButton
-            android:id="@+id/rr_finish"
+            android:id="@+id/mo_rb_wait_pay"
             style="@style/CustomRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/text_repaire_record_finish" />
+            android:text="@string/text_my_order_wait_pay" />
+
+        <RadioButton
+            android:id="@+id/mo_rb_wait_service"
+            style="@style/CustomRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/text_my_order_wait_service" />
+
+        <RadioButton
+            android:id="@+id/mo_rb_wait_rate"
+            style="@style/CustomRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/text_my_order_wait_rate" />
 
     </RadioGroup>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/repair_record_list"
+        android:id="@+id/mo_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rr_guideling1" />
+        app:layout_constraintTop_toTopOf="@id/mo_guideling1" />
+
 
 </android.support.constraint.ConstraintLayout>

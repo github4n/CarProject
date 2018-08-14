@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <ImageView
         android:id="@+id/lpr_iv_pic"
@@ -70,12 +70,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/color_text_shop_price"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="￥26.00"
+        android:textColor="@color/color_text_shop_price"
         app:layout_constraintBottom_toTopOf="@id/lpr_product_count"
-        app:layout_constraintStart_toStartOf="@id/lpr_guideline2" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/lpi_tv_state"

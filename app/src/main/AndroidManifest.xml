@@ -28,8 +28,7 @@
         android:theme="@style/MyThemeLight">
         <activity
             android:name=".dome.TestActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activies.MainActivity"
             android:screenOrientation="portrait" />
@@ -72,24 +71,75 @@
         <activity
             android:name=".activies.ExchangeRecordActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.OrderPageActivity" />
-        <activity android:name=".activies.UserCenterActivity" />
-        <activity android:name=".activies.ShoppingCarActivity" />
-        <activity android:name=".activies.ShoppingActivity" />
-        <activity android:name=".activies.RepairActivity" />
-        <activity android:name=".activies.MyCarActivity" />
-        <activity android:name=".activies.MyAddressActivity" />
-        <activity android:name=".activies.RepairRecordActivity" />
-        <activity android:name=".activies.RepairStationActivity" />
-        <activity android:name=".activies.InformationActivity" />
-        <activity android:name=".activies.ServiceMainActivity" />
-        <activity android:name=".activies.AnnualCheckActivity" />
-        <activity android:name=".activies.AnnualCheckFillInfoActivity" />
-        <activity android:name=".activies.PickCarActivity" />
-        <activity android:name=".activies.StartCheckActivity" />
-        <activity android:name=".activies.CheckReturnCarActivity" />
-        <activity android:name=".activies.InsuranceProxyActivity" />
-        <activity android:name=".activies.SettingActivity"></activity>
+        <activity
+            android:name=".activies.OrderPageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.UserCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.ShoppingCarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.ShoppingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.RepairActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.MyCarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.MyAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.RepairRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.RepairStationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.InformationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.ServiceMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.AnnualCheckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.AnnualCheckFillInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.PickCarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.StartCheckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.CheckReturnCarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.InsuranceProxyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.AnnualCheckRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.BookMaintainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.MyOrderActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

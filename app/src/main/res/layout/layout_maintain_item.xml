@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="horizontal"
+    android:paddingBottom="4dp">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/lmi_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/lmi_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <CheckBox
+            android:id="@+id/lmi_select"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lmi_iv_itemImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lmi_iv_itemImg" />
+
+
+        <TextView
+            android:id="@+id/lmi_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:maxLines="2"
+            android:text="磁护 SN合成 5W-40"
+            android:textColor="@color/color_uc_text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/lmi_select"
+            app:layout_constraintStart_toStartOf="@id/lmi_guideline"
+            app:layout_constraintTop_toTopOf="@+id/lmi_iv_itemImg" />
+
+        <TextView
+            android:id="@+id/lmi_tv_gas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/text_gas_amount"
+            android:textColor="@color/color_insurance_text"
+            app:layout_constraintBottom_toTopOf="@+id/lmi_tv_market"
+            app:layout_constraintStart_toStartOf="@id/lmi_guideline"
+            app:layout_constraintTop_toBottomOf="@id/lmi_item_name" />
+
+        <TextView
+            android:id="@+id/lmi_gas_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="5L"
+            android:textColor="@color/color_text_shop_price"
+            app:layout_constraintBottom_toBottomOf="@id/lmi_tv_gas"
+            app:layout_constraintStart_toEndOf="@id/lmi_tv_gas"
+            app:layout_constraintTop_toTopOf="@id/lmi_tv_gas" />
+
+        <TextView
+            android:id="@+id/lmi_tv_market"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_market_price"
+            android:textColor="@color/color_insurance_text"
+            app:layout_constraintBottom_toBottomOf="@+id/lmi_iv_itemImg"
+            app:layout_constraintStart_toStartOf="@id/lmi_tv_gas" />
+
+        <TextView
+            android:id="@+id/lmi_tv_old_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="￥452.0"
+            android:textColor="@color/color_sub_line"
+            app:layout_constraintBottom_toBottomOf="@id/lmi_tv_market"
+            app:layout_constraintStart_toEndOf="@id/lmi_tv_new_price"
+            app:layout_constraintTop_toTopOf="@id/lmi_tv_market" />
+
+        <TextView
+            android:id="@+id/lmi_tv_new_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="￥387.00"
+            android:textColor="@color/color_text_shop_price"
+            app:layout_constraintBottom_toBottomOf="@id/lmi_tv_market"
+            app:layout_constraintStart_toEndOf="@id/lmi_tv_market"
+            app:layout_constraintTop_toTopOf="@id/lmi_tv_market" />
+
+        <ImageView
+            android:id="@+id/lmi_iv_itemImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/item_demo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/lmi_guideline"
+            app:layout_constraintHorizontal_weight="8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

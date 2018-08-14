@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:paddingBottom="8dp"
+    android:orientation="horizontal" >
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/lmoi_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/lmoi_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <TextView
+            android:id="@+id/lmoi_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lmoi_img" />
+
+        <ImageView
+            android:id="@+id/lmoi_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/item_demo"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/lmoi_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lmoi_product_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="伟航汽车维修厂维修服务"
+            android:textColor="@color/color_uc_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/lmoi_guideline"
+            app:layout_constraintTop_toTopOf="@+id/lmoi_img" />
+
+        <TextView
+            android:id="@+id/lmoi_tv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="未支付"
+            android:textColor="@color/color_text_shop_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lmoi_product_title" />
+
+        <TextView
+            android:id="@+id/lmoi_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/text_my_order_time"
+            android:textColor="@color/color_insurance_text"
+            app:layout_constraintBottom_toBottomOf="@+id/lmoi_img"
+            app:layout_constraintStart_toStartOf="@+id/lmoi_guideline"
+            app:layout_constraintTop_toTopOf="@+id/lmoi_img" />
+
+        <TextView
+            android:id="@+id/lmoi_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="2018-08-05"
+            app:layout_constraintBottom_toBottomOf="@+id/lmoi_tv_time"
+            app:layout_constraintStart_toEndOf="@+id/lmoi_tv_time"
+            app:layout_constraintTop_toTopOf="@+id/lmoi_tv_time" />
+
+        <TextView
+            android:id="@+id/lmoi_tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/text_my_order_money"
+            android:textColor="@color/color_insurance_text"
+            app:layout_constraintBottom_toBottomOf="@+id/lmoi_img"
+            app:layout_constraintStart_toStartOf="@+id/lmoi_guideline" />
+
+        <TextView
+            android:id="@+id/lmoi_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="等待维修厂发布清算"
+            android:textColor="@color/color_text_shop_price"
+            app:layout_constraintBottom_toBottomOf="@+id/lmoi_tv_money"
+            app:layout_constraintStart_toEndOf="@+id/lmoi_tv_money"
+            app:layout_constraintTop_toTopOf="@+id/lmoi_tv_money" />
+
+        <TextView
+            android:id="@+id/lmoi_btn_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_cycrect_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:text="@string/btn_order_pay"
+            android:textColor="@drawable/btn_text_color_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lmoi_line1" />
+
+        <TextView
+            android:id="@+id/lmoi_btn_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/btn_order_rate"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/btn_cycrect_selector"
+            android:textColor="@drawable/btn_text_color_selector"
+            app:layout_constraintEnd_toStartOf="@id/lmoi_btn_pay"
+            app:layout_constraintTop_toTopOf="@id/lmoi_btn_pay" />
+
+        <TextView
+            android:id="@+id/lmoi_btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/btn_cycrect_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:text="@string/btn_delete_order"
+            android:textColor="@drawable/btn_text_color_selector"
+            app:layout_constraintEnd_toStartOf="@id/lmoi_btn_rate"
+            app:layout_constraintTop_toTopOf="@id/lmoi_btn_rate" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

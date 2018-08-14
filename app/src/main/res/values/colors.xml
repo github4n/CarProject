@@ -34,4 +34,6 @@
     <color name="color_text_wait_get">#FF8A4E</color>
     <!--评价-->
     <color name="color_rating">#FFBD4E</color>
+    <!--搜索背景-->
+    <color name="color_search_bg">#DEDEDE</color>
 </resources>

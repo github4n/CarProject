@@ -16,6 +16,13 @@
     <string name="text_search_des">搜索维修地点、商品等等</string>
     <string name="text_shop_classify">商品分类</string>
 
+    <!--搜索-->
+    <string name="text_search_contant">联系人：</string>
+    <string name="text_search_distance">距您%s公里</string>
+    <string name="text_search_cancel">取消</string>
+    <string name="text_search_band">服务品牌</string>
+    <string name="text_search_near">距离最近</string>
+    <string name="text_search_high">人气最高</string>
 
     <string name="text_client">客户</string>
 
@@ -23,6 +30,16 @@
     <!---->
     <string name="text_mine">我的</string>
     <string name="text_my_order">我的订单</string>
+    <string name="text_my_order_all">全部</string>
+    <string name="text_my_order_wait_pay">待付款</string>
+    <string name="text_my_order_wait_service">待服务</string>
+    <string name="text_my_order_wait_rate">待评价</string>
+    <string name="text_my_order_time">预约时间：</string>
+    <string name="text_my_order_money">订单金额：</string>
+    <string name="text_my_order_state1">未支付</string>
+    <string name="text_my_order_state2">等待服务</string>
+    <string name="text_my_order_state3">完成服务</string>
+    <string name="text_my_order_state4">服务中</string>
 
     <!---->
     <string name="text_order_detail">订单详情</string>
@@ -39,6 +56,7 @@
     <string name="text_allorder_wait_send">待发货</string>
     <string name="text_allorder_wait_reach">待收货</string>
     <string name="text_allorder_wait_rate">待评价</string>
+    <string name="text_allorder_wait_service">待服务</string>
     <string name="btn_delete_order">删除订单</string>
     <string name="btn_order_rate">&#160;&#160;评价&#160;&#160;</string>
     <string name="btn_order_pay">&#160;去付款&#160;</string>
@@ -130,7 +148,7 @@
     <!--<string name="text_shop_sale">销量▼</string>-->
     <string name="text_shop_item_price">价格:</string>
 
-    <!---->
+    <!--预约维修-->
     <string name="text_repair">预约维修</string>
     <string name="text_repair_hint">请输入你需要维修的项目</string>
     <string name="text_repair_delete">长按可删除图片</string>
@@ -143,6 +161,13 @@
     <string name="text_repair_location">位置:</string>
     <string name="text_repair_time">时间:</string>
     <string name="text_repair_publish">立即发布</string>
+
+    <!--预约保养-->
+    <string name="text_maintain">预约保养</string>
+    <string name="text_chose_gas">选择机油</string>
+    <string name="text_gas_amount">机油用量：</string>
+    <string name="text_market_price">市场价格：</string>
+    <string name="text_time_price">工时费：</string>
 
     <!---->
     <string name="text_my_car">我的汽车</string>
@@ -158,14 +183,15 @@
 
     <!---->
     <string name="text_repaire_record">维修记录</string>
-    <string name="text_repaire_record_doing">进行中</string>
-    <string name="text_repaire_record_finish">已完成</string>
+    <string name="text_repaire_record_doing">未完成的维修</string>
+    <string name="text_repaire_record_finish">已完成的维修</string>
     <string name="text_repaire_record_cancel">已取消</string>
-    <string name="text_repaire_record_plate">车牌号码:</string>
-    <string name="text_repaire_record_time">收车时间:</string>
+    <string name="text_repaire_record_plate">车辆号码:</string>
+    <string name="text_repaire_record_model">车辆型号:</string>
+    <string name="text_repaire_record_time">预约时间:</string>
+    <string name="text_repaire_record_get_time">取车时间:</string>
     <string name="text_repaire_record_brand">品牌:</string>
     <string name="text_repaire_record_money">费用:</string>
-    <string name="text_repaire_record_get_time">取车时间:</string>
     <string name="text_repaire_record_send_car">送车上门:</string>
     <string name="text_repaire_record_item_pay">付款</string>
     <string name="text_repaire_record_item_cancel">取消</string>
@@ -262,7 +288,7 @@
     <string name="text_evaluate_confirm">确认</string>
     <string name="text_evaluate_des">您的评价会让维修厂服务更好哟!</string>
 
-    <!---->
+    <!--违章信息-->
     <string name="text_violation_info">违章信息</string>
     <string name="text_violation_handle">处理违章</string>
     <string name="text_violation_sum">违章%s次</string>
@@ -287,5 +313,14 @@
     <string name="text_setting_icon">头像</string>
     <string name="text_setting_name">昵称</string>
     <string name="text_setting_phone">手机号</string>
+
+    <!--年检记录-->
+    <string name="text_annual_check_record">年检记录</string>
+    <string name="text_annual_check_record_doing">未完成的年检</string>
+    <string name="text_annual_check_record_finish">已完成的年检</string>
+    <string name="text_annual_check_record_book">预约时间:</string>
+    <string name="text_annual_check_record_finish_time">完成时间:</string>
+    <string name="text_annual_check_record_location">地点:</string>
+    <string name="text_annual_check_record_driver">服务司机:</string>
 
 </resources>

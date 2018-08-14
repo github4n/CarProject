@@ -17,14 +17,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/rr_guideling1"
+        android:id="@+id/acr_guideling1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 
     <RadioGroup
-        android:id="@+id/rr_radiogroup"
+        android:id="@+id/acr_radiogroup"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -34,37 +34,37 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/rr_guideling1"
+        app:layout_constraintBottom_toTopOf="@id/acr_guideling1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include">
 
         <RadioButton
-            android:id="@+id/rr_doing"
+            android:id="@+id/acr_doing"
             style="@style/CustomRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:checked="true"
-            android:text="@string/text_repaire_record_doing" />
+            android:text="@string/text_annual_check_record_doing" />
 
         <RadioButton
-            android:id="@+id/rr_finish"
+            android:id="@+id/acr_finish"
             style="@style/CustomRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/text_repaire_record_finish" />
+            android:text="@string/text_annual_check_record_finish" />
 
     </RadioGroup>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/repair_record_list"
+        android:id="@+id/acr_record_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rr_guideling1" />
+        app:layout_constraintTop_toBottomOf="@id/acr_guideling1" />
 
 </android.support.constraint.ConstraintLayout>

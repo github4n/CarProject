@@ -167,6 +167,12 @@
             android:layout_height="wrap_content"
             android:text="29.检完还车" />
 
+        <Button
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30.地图" />
+
     </LinearLayout>
 
 </ScrollView>

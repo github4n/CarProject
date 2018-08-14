@@ -27,7 +27,7 @@
         app:layout_constraintGuide_percent="0.95"/>
 
     <com.amap.api.maps.MapView
-        android:id="@+id/map"
+        android:id="@+id/m_map"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/linearLayout"

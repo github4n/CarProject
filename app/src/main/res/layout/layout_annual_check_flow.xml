@@ -65,7 +65,7 @@
         android:paddingBottom="4dp"
         android:background="@color/color_sub_background"
         android:text="@string/text_check_know"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/color_main"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/lacf_guideline"
         app:layout_constraintEnd_toEndOf="parent"

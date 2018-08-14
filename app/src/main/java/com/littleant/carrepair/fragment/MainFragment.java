@@ -12,8 +12,12 @@ import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.BookMaintainActivity;
+import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.RepairActivity;
+import com.littleant.carrepair.activies.SearchActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +36,7 @@ public class MainFragment extends Fragment {
     //初始化地图控制器对象
     private AMap aMap;
     private MapView mMapView = null;
-    private TextView mRepair, mMaintain;
+    private TextView mRepair, mMaintain, m_input_search;
 
 
     // TODO: Rename and change types of parameters
@@ -70,6 +74,7 @@ public class MainFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -89,9 +94,27 @@ public class MainFragment extends Fragment {
         mMaintain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), BookMaintainActivity.class);
+                getActivity().startActivity(intent);
             }
         });
+        m_input_search = view.findViewById(R.id.m_input_search);
+        m_input_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        mMapView = view.findViewById(R.id.m_map);
+        mMapView.onCreate(savedInstanceState);// 此方法必须重写
+        aMap = mMapView.getMap();
+        MyLocationStyle myLocationStyle;
+        myLocationStyle = new MyLocationStyle();
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);
+        aMap.setMyLocationStyle(myLocationStyle);
+        aMap.setMyLocationEnabled(true);
         return view;
     }
 
@@ -132,5 +155,37 @@ public class MainFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mMapView != null) {
+            mMapView.onResume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mMapView != null) {
+            mMapView.onPause();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mMapView != null) {
+            mMapView.onDestroy();
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mMapView != null) {
+            mMapView.onSaveInstanceState(outState);
+        }
     }
 }

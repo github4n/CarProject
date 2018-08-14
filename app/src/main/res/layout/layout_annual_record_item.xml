@@ -7,99 +7,87 @@
     android:background="@android:color/white"
     android:orientation="horizontal">
 
-
     <TextView
-        android:id="@+id/rri_tv_title"
+        android:id="@+id/ari_tv_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="16sp"
-        android:textColor="@color/color_uc_text"
-        android:text="TSL  1万米定期保养"
+        android:text="@string/text_annual_check_record_book"
+        android:textColor="@color/color_insurance_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/rri_tv_plate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_repaire_record_plate"
-        android:textColor="@color/color_insurance_text"
-        app:layout_constraintStart_toStartOf="@id/rri_tv_title"
-        app:layout_constraintTop_toBottomOf="@id/rri_tv_title" />
-
-    <TextView
-        android:id="@+id/rri_plate"
+        android:id="@+id/ari_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_insurance_text"
-        app:layout_constraintStart_toEndOf="@id/rri_tv_plate"
-        app:layout_constraintTop_toTopOf="@id/rri_tv_plate" />
+        app:layout_constraintStart_toEndOf="@id/ari_tv_book"
+        app:layout_constraintTop_toTopOf="@id/ari_tv_book" />
 
     <TextView
-        android:id="@+id/rri_tv_model"
+        android:id="@+id/ari_tv_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="@string/text_annual_check_record_finish_time"
         android:textColor="@color/color_insurance_text"
-        android:text="@string/text_repaire_record_model"
-        app:layout_constraintStart_toStartOf="@id/rri_tv_title"
-        app:layout_constraintTop_toBottomOf="@id/rri_tv_plate" />
+        app:layout_constraintStart_toStartOf="@id/ari_tv_book"
+        app:layout_constraintTop_toBottomOf="@id/ari_tv_book" />
 
     <TextView
-        android:id="@+id/rri_model"
+        android:id="@+id/ari_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_insurance_text"
-        app:layout_constraintStart_toEndOf="@id/rri_tv_model"
-        app:layout_constraintTop_toTopOf="@id/rri_tv_model" />
+        app:layout_constraintStart_toEndOf="@id/ari_tv_finish"
+        app:layout_constraintTop_toTopOf="@id/ari_tv_finish" />
 
     <TextView
-        android:id="@+id/rri_tv_time"
+        android:id="@+id/ari_tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="@string/text_annual_check_record_location"
         android:textColor="@color/color_insurance_text"
-        android:text="@string/text_repaire_record_time"
-        app:layout_constraintStart_toStartOf="@id/rri_tv_title"
-        app:layout_constraintTop_toBottomOf="@id/rri_tv_model" />
+        app:layout_constraintStart_toStartOf="@id/ari_tv_book"
+        app:layout_constraintTop_toBottomOf="@id/ari_tv_finish" />
 
     <TextView
-        android:id="@+id/rri_time"
+        android:id="@+id/ari_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_insurance_text"
-        app:layout_constraintStart_toEndOf="@id/rri_tv_time"
-        app:layout_constraintTop_toTopOf="@id/rri_tv_time" />
+        app:layout_constraintStart_toEndOf="@id/ari_tv_location"
+        app:layout_constraintTop_toTopOf="@id/ari_tv_location" />
 
     <TextView
-        android:id="@+id/rri_tv_get_time"
+        android:id="@+id/ari_tv_driver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/text_repaire_record_get_time"
+        android:text="@string/text_annual_check_record_driver"
         android:textColor="@color/color_insurance_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/rri_tv_title"
-        app:layout_constraintTop_toBottomOf="@id/rri_tv_time" />
+        app:layout_constraintStart_toStartOf="@id/ari_tv_book"
+        app:layout_constraintTop_toBottomOf="@id/ari_tv_location" />
 
     <TextView
-        android:id="@+id/rri_get_time"
+        android:id="@+id/ari_driver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_insurance_text"
-        app:layout_constraintStart_toEndOf="@id/rri_tv_get_time"
-        app:layout_constraintTop_toTopOf="@id/rri_tv_get_time" />
+        app:layout_constraintStart_toEndOf="@id/ari_tv_driver"
+        app:layout_constraintTop_toTopOf="@id/ari_tv_driver" />
 </android.support.constraint.ConstraintLayout>
