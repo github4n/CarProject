@@ -71,6 +71,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:text="伟航汽修厂"
+        android:textStyle="bold"
         android:textColor="@color/color_uc_text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/lmfd_iv_navi"
@@ -99,7 +100,7 @@
         xlhRatingBar:differentSize="false"
         xlhRatingBar:dividerWidth="5dp"
         xlhRatingBar:starCount="5"
-        xlhRatingBar:stateResId="@drawable/rating_main_selector"
+        xlhRatingBar:stateResId="@drawable/rating_dialog_selector"
         xlhRatingBar:widthAndHeight="12dp" />
 
     <TextView

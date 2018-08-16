@@ -20,6 +20,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BookMaintainActivity;
 import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.RepairActivity;
+import com.littleant.carrepair.activies.RepairStationActivity;
 import com.littleant.carrepair.activies.SearchActivity;
 
 /**
@@ -41,6 +42,8 @@ public class MainFragment extends Fragment {
     private TextureMapView mMapView;
 //    private MapView mMapView = null;
     private TextView mRepair, mMaintain, m_input_search;
+    //主页汽修厂地图指引部分
+    private TextView lmfd_tv_more;
 
 
     // TODO: Rename and change types of parameters
@@ -110,7 +113,14 @@ public class MainFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-
+        lmfd_tv_more = view.findViewById(R.id.lmfd_tv_more);
+        lmfd_tv_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), RepairStationActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
         return view;
     }
 

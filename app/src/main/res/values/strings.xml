@@ -104,8 +104,8 @@
     <string name="text_remaining_sum_list">余额列表</string>
     <string name="text_exchange_wechat">微信支付</string>
 
-    <!---->
-    <string name="text_order_page">订单页面</string>
+    <!--确认订单-->
+    <string name="text_order_page">确认订单</string>
     <string name="btn_add_receive_address">添加收货信息</string>
     <string name="text_submit_order">提交订单</string>
     <string name="text_order_count">共%s件商品  小计：</string>
@@ -201,9 +201,11 @@
 
     <!---->
     <string name="text_station_name">新领域汽车维修公司</string>
-    <string name="text_station_contact">联系人:范生 | 13569865478</string>
-    <string name="text_station_address">广东省广州市XXXXXXX</string>
-    <string name="text_station_phone">固定电话: 020-84563258</string>
+    <string name="text_station_contact">联系人:</string>
+    <string name="text_station_address">地址：</string>
+    <string name="text_station_phone">固定电话:</string>
+    <string name="text_station_contact_shop">联系店家</string>
+    <string name="text_station_navi">路线导航</string>
 
     <!---->
     <string name="text_info_title">资讯</string>
@@ -325,5 +327,13 @@
     <string name="text_annual_check_record_finish_time">完成时间:</string>
     <string name="text_annual_check_record_location">地点:</string>
     <string name="text_annual_check_record_driver">服务司机:</string>
+
+    <!--支付订单-->
+    <string name="text_payment">支付订单</string>
+    <string name="text_payment_rest_time">支付剩余时间</string>
+    <string name="text_pryment_order_id">订单编号：</string>
+    <string name="text_payment_wechat">微信支付</string>
+    <string name="text_payment_ali">支付宝支付</string>
+    <string name="text_payment_pay">确认支付</string>
 
 </resources>

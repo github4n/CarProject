@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.92" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <EditText
         android:id="@+id/r_et_description"
@@ -127,27 +127,6 @@
 
     </android.support.constraint.ConstraintLayout>
 
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/r_guideline8" />
-
-    <Button
-        android:id="@+id/r_btn_confrm"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/shape_blue_fill"
-        android:text="@string/text_repair_publish"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/r_guideline4"
-        app:layout_constraintStart_toStartOf="@id/r_guideline3"
-        app:layout_constraintTop_toTopOf="@id/r_guideline8" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
@@ -457,5 +436,18 @@
             app:srcCompat="@color/color_sub_line" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/r_btn_confrm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_blue_fill"
+        android:text="@string/text_repair_publish"
+        android:textColor="@android:color/white"
+        app:layout_constraintDimensionRatio="4:1"
+        app:layout_constraintEnd_toStartOf="@id/r_guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/r_guideline3"
+        app:layout_constraintTop_toTopOf="@+id/r_guideline8" />
 
 </android.support.constraint.ConstraintLayout>

@@ -37,7 +37,7 @@ public class OrderPageActivity extends BaseActivity {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OrderPageActivity.this, AllOrderActivity.class);
+                Intent intent = new Intent(OrderPageActivity.this, PaymentActivity.class);
                 OrderPageActivity.this.startActivity(intent);
             }
         });

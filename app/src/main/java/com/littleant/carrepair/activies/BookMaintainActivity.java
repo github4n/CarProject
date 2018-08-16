@@ -1,16 +1,14 @@
 package com.littleant.carrepair.activies;
 
-import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Paint;
-import android.support.constraint.Constraints;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +16,7 @@ import com.littleant.carrepair.R;
 
 public class BookMaintainActivity extends BaseActivity {
     private RecyclerView mList;
+    private Button bm_submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +25,15 @@ public class BookMaintainActivity extends BaseActivity {
         mList = findViewById(R.id.bm_list);
         mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mList.setAdapter(new MyAdapter());
+
+        bm_submit = findViewById(R.id.bm_submit);
+        bm_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BookMaintainActivity.this, PaymentActivity.class);
+                BookMaintainActivity.this.startActivity(intent);
+            }
+        });
     }
 
     @Override
