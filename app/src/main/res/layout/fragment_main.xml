@@ -26,6 +26,13 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95"/>
 
+    <android.support.constraint.Guideline
+        android:id="@+id/lfm_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.73"/>
+
     <com.amap.api.maps.TextureMapView
         android:id="@+id/m_map"
         android:layout_width="match_parent"
@@ -148,5 +155,15 @@
         app:layout_constraintEnd_toEndOf="@id/m_repair"
         app:layout_constraintStart_toStartOf="@id/m_repair"
         app:layout_constraintTop_toBottomOf="@id/m_repair" />
+
+    <include
+        android:id="@+id/main_include"
+        layout="@layout/layout_main_factory_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lfm_guideline4" />
 
 </android.support.constraint.ConstraintLayout>
