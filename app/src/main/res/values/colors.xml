@@ -36,4 +36,6 @@
     <color name="color_rating">#FFBD4E</color>
     <!--搜索背景-->
     <color name="color_search_bg">#DEDEDE</color>
+    <!--搜索背景-->
+    <color name="color_login_line">#B7B7B8</color>
 </resources>

@@ -5,12 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
+    <android.support.constraint.Guideline
+        android:id="@+id/main_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.68"/>
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/main_guideline2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.92" />-->
+
+    <FrameLayout
         android:id="@+id/main_fragment"
+        android:name="com.littleant.carrepair.fragment.MainFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:name="com.littleant.carrepair.fragment.MainFragment"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@id/main_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,5 +91,25 @@
             android:background="@null"
             android:text="@string/text_user_center" />
     </RadioGroup>
+
+    <ImageView
+        android:id="@+id/main_line"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@color/color_sub_line" />
+
+    <include
+        android:id="@+id/main_include"
+        layout="@layout/layout_main_factory_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_guideline" />
+
 
 </android.support.constraint.ConstraintLayout>

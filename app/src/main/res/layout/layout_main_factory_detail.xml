@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="horizontal">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lmfd_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lmfd_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lmfd_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lmfd_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lmfd_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_white_top_con_fill_rect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lmfd_guideline">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/lmfd_iv_navi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/lmfd_guideline2"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/lmfd_guideline3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mf_navi" />
+
+    <TextView
+        android:id="@+id/lmfd_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:text="伟航汽修厂"
+        android:textColor="@color/color_uc_text"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lmfd_iv_navi"
+        app:layout_constraintStart_toStartOf="@+id/lmfd_guideline4" />
+
+    <TextView
+        android:id="@+id/lmfd_tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="距你1111公里  大石xxxxxxxx"
+        android:textSize="12sp"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@+id/lmfd_tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/lmfd_tv_title" />
+
+    <com.example.xlhratingbar_lib.XLHRatingBar xmlns:xlhRatingBar="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/lmfd_ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/lmfd_tv_address"
+        app:layout_constraintTop_toBottomOf="@+id/lmfd_tv_address"
+        xlhRatingBar:canEdit="false"
+        xlhRatingBar:countSelected="2"
+        xlhRatingBar:differentSize="false"
+        xlhRatingBar:dividerWidth="5dp"
+        xlhRatingBar:starCount="5"
+        xlhRatingBar:stateResId="@drawable/rating_main_selector"
+        xlhRatingBar:widthAndHeight="12dp" />
+
+    <TextView
+        android:id="@+id/lmfd_tv_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="汽车维修"
+        android:textColor="@color/color_text"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/lmfd_ratingBar"
+        app:layout_constraintTop_toBottomOf="@+id/lmfd_ratingBar" />
+
+    <ImageView
+        android:id="@+id/lmfd_iv_line"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/lmfd_guideline5"
+        app:layout_constraintStart_toStartOf="@+id/lmfd_guideline4"
+        app:layout_constraintTop_toBottomOf="@id/lmfd_tv_des"
+        app:srcCompat="@color/color_sub_line" />
+
+    <TextView
+        android:id="@+id/lmfd_tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="4dp"
+        android:drawableLeft="@drawable/mf_more"
+        android:text="@string/text_main_more"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="@+id/lmfd_guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/lmfd_iv_line" />
+
+    <TextView
+        android:id="@+id/lmfd_tv_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/mf_book"
+        android:drawablePadding="4dp"
+        android:text="@string/text_main_book"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/lmfd_tv_phone"
+        app:layout_constraintStart_toEndOf="@+id/lmfd_tv_more"
+        app:layout_constraintTop_toTopOf="@+id/lmfd_tv_more" />
+
+    <TextView
+        android:id="@+id/lmfd_tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:drawableLeft="@drawable/mf_phone"
+        android:drawablePadding="4dp"
+        android:text="@string/text_main_phone"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/lmfd_guideline5"
+        app:layout_constraintLeft_toRightOf="@id/lmfd_tv_book"
+        app:layout_constraintTop_toTopOf="@+id/lmfd_tv_more" />
+
+
+</android.support.constraint.ConstraintLayout>

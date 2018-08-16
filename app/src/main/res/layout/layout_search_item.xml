@@ -111,7 +111,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/text_search_contant"
-        android:textColor="@color/color_insurance_text"
+        android:textColor="@color/color_sub_line"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline2"
         app:layout_constraintTop_toBottomOf="@id/lsi_tv_line2" />
 
@@ -145,7 +145,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:text="大石街道xxxxxxxxxxx"
-        android:textColor="@color/color_insurance_text"
+        android:textColor="@color/color_sub_line"
         app:layout_constraintBottom_toBottomOf="@id/lsi_iv_itemImg"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline2" />
 
@@ -163,7 +163,7 @@
     <ImageView
         android:id="@+id/lsi_line3"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="1px"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

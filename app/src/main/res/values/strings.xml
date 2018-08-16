@@ -5,7 +5,7 @@
     <string name="text_save">保存</string>
 
     <!--登入页-->
-    <string name="login_login">登入</string>
+    <string name="login_login">登录</string>
     <string name="login_account">请输入手机号</string>
     <string name="login_password">请输入登陆密码</string>
     <string name="login_request_auth_number">获取验证码</string>
@@ -15,6 +15,9 @@
     <string name="text_main_title">汽车维修</string>
     <string name="text_search_des">搜索维修地点、商品等等</string>
     <string name="text_shop_classify">商品分类</string>
+    <string name="text_main_more">详情</string>
+    <string name="text_main_book">预约</string>
+    <string name="text_main_phone">电话</string>
 
     <!--搜索-->
     <string name="text_search_contant">联系人：</string>
@@ -115,7 +118,7 @@
     <string name="text_point_use1">1.使用的积分分值为1000的整倍数\n2.1000积分抵10元</string>
 
     <!---->
-    <string name="text_user_center">个人中心</string>
+    <string name="text_user_center">个人</string>
     <string name="text_user_center_score">积分: %s</string>
     <string name="text_user_center_wait_serivce">待服务</string>
     <string name="text_user_center_wait_rate">待评价</string>

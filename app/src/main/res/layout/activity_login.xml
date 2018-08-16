@@ -8,14 +8,14 @@
     tools:context=".activies.LoginActivity">
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/al_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.10" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/al_guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -35,6 +35,34 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.625" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/al_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/al_guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.66" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/al_guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/al_guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
     <ImageView
         android:id="@+id/logoImg"
         android:layout_width="0dp"
@@ -50,14 +78,25 @@
 
     <ImageView
         android:id="@+id/phoneImg"
-        android:layout_width="28dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="64dp"
-        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/al_guideline8"
+        app:layout_constraintStart_toStartOf="@id/al_guideline7"
         app:layout_constraintTop_toBottomOf="@id/logoImg"
         app:srcCompat="@drawable/login_phone" />
+
+    <ImageView
+        android:id="@+id/al_line3"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/phoneImg"
+        app:layout_constraintStart_toStartOf="@id/al_guideline8"
+        app:layout_constraintTop_toTopOf="@id/phoneImg"
+        app:srcCompat="@color/color_login_line" />
 
     <EditText
         android:id="@+id/phoneEdt"
@@ -68,65 +107,74 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:background="@null"
         android:hint="@string/login_account"
         android:inputType="phone"
+        android:textSize="14sp"
         android:maxLines="1"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="@id/phoneImg"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toEndOf="@id/phoneImg"
+        app:layout_constraintEnd_toStartOf="@id/al_guideline2"
+        app:layout_constraintStart_toEndOf="@+id/al_line3"
         app:layout_constraintTop_toTopOf="@id/phoneImg" />
 
     <TextView
         android:id="@+id/al_line1"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
+        android:background="@color/color_login_line"
+        app:layout_constraintEnd_toStartOf="@id/al_guideline2"
+        app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toBottomOf="@id/phoneEdt" />
 
     <ImageView
         android:id="@+id/pswImg"
-        android:layout_width="28dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/al_guideline8"
+        app:layout_constraintStart_toStartOf="@+id/al_guideline7"
         app:layout_constraintTop_toBottomOf="@id/al_line1"
         app:srcCompat="@drawable/login_password" />
 
+    <ImageView
+        android:id="@+id/al_line4"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/pswImg"
+        app:layout_constraintStart_toStartOf="@id/al_guideline8"
+        app:layout_constraintTop_toTopOf="@id/pswImg"
+        app:srcCompat="@color/color_login_line" />
+
     <EditText
         android:id="@+id/pswEdt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:background="@null"
         android:hint="@string/login_password"
-        android:textColorHint="@android:color/darker_gray"
         android:inputType="textPassword"
         android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="@id/pswImg"
-        app:layout_constraintStart_toEndOf="@id/pswImg"
-        app:layout_constraintTop_toTopOf="@id/pswImg" />
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pswImg"
+        app:layout_constraintEnd_toStartOf="@+id/al_guideline4"
+        app:layout_constraintStart_toEndOf="@+id/al_line4"
+        app:layout_constraintTop_toTopOf="@+id/pswImg" />
 
     <TextView
         android:id="@+id/auth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/shape_blue"
         android:gravity="center"
         android:paddingBottom="8dp"
@@ -134,33 +182,29 @@
         android:text="@string/login_request_auth_number"
         android:textColor="@color/color_main"
         app:layout_constraintBottom_toBottomOf="@+id/pswImg"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toEndOf="@id/pswEdt" />
+        app:layout_constraintEnd_toStartOf="@id/al_guideline2"
+        app:layout_constraintStart_toStartOf="@+id/al_guideline4" />
 
     <TextView
         android:id="@+id/al_line2"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
+        android:background="@color/color_login_line"
+        app:layout_constraintEnd_toStartOf="@id/al_guideline2"
+        app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toBottomOf="@id/pswEdt" />
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_height="0dp"
+        android:background="@color/color_main"
         android:text="@string/login_login"
         android:textColor="@android:color/white"
-        android:background="@color/color_main"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/al_line2" />
+        app:layout_constraintBottom_toTopOf="@id/al_guideline6"
+        app:layout_constraintEnd_toStartOf="@id/al_guideline2"
+        app:layout_constraintStart_toStartOf="@id/al_guideline"
+        app:layout_constraintTop_toTopOf="@id/al_guideline5" />
 
 </android.support.constraint.ConstraintLayout>

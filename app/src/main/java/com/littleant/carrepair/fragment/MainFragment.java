@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.TextureMapView;
+import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BookMaintainActivity;
@@ -35,7 +38,8 @@ public class MainFragment extends Fragment {
 
     //初始化地图控制器对象
     private AMap aMap;
-    private MapView mMapView = null;
+    private TextureMapView mMapView;
+//    private MapView mMapView = null;
     private TextView mRepair, mMaintain, m_input_search;
 
 
@@ -107,7 +111,13 @@ public class MainFragment extends Fragment {
             }
         });
 
-        mMapView = view.findViewById(R.id.m_map);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mMapView = getView().findViewById(R.id.m_map);
         mMapView.onCreate(savedInstanceState);// 此方法必须重写
         aMap = mMapView.getMap();
         MyLocationStyle myLocationStyle;
@@ -115,7 +125,9 @@ public class MainFragment extends Fragment {
         myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);
         aMap.setMyLocationStyle(myLocationStyle);
         aMap.setMyLocationEnabled(true);
-        return view;
+
+        UiSettings uiSettings = aMap.getUiSettings();
+        uiSettings.setZoomControlsEnabled(false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_fragment, new MainFragment(), MainFragment.class.getSimpleName());
-        transaction.commitAllowingStateLoss();
+        transaction.add(R.id.main_fragment, new MainFragment(), MainFragment.class.getSimpleName());
+        transaction.commit();
 
         radioGroup = findViewById(R.id.linearLayout);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

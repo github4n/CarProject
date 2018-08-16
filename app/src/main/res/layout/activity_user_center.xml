@@ -310,7 +310,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_line"
+        android:background="@color/color_sub_background"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_garage" />
@@ -371,7 +371,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_line"
+        android:background="@color/color_sub_background"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_check_record" />
@@ -432,7 +432,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_line"
+        android:background="@color/color_sub_background"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_shop_credit" />
@@ -493,7 +493,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_line"
+        android:background="@color/color_sub_background"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_address" />
@@ -554,7 +554,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_line"
+        android:background="@color/color_sub_background"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_repair_record" />
