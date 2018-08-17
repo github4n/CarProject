@@ -41,7 +41,7 @@
         <activity
             android:name=".activies.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MyThemeDark"></activity>
+            android:theme="@style/MyThemeDark" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -143,6 +143,8 @@
         <activity
             android:name=".activies.PaymentActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activies.ForgetPasswordActivity" />
+        <activity android:name=".activies.RegisterActivity"></activity>
     </application>
 
 </manifest>

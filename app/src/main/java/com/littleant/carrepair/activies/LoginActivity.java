@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //手机号、密码
     private EditText phoneEdt, pswEdt;
     //获取验证码
-    private TextView auth;
+    private TextView al_forget_pw, al_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         pswEdt = findViewById(R.id.pswEdt);
 
-        auth = findViewById(R.id.auth);
-        auth.setOnClickListener(this);
+        al_forget_pw = findViewById(R.id.al_forget_pw);
+        al_forget_pw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
+                LoginActivity.this.startActivity(intent);
+            }
+        });
+
+        al_register = findViewById(R.id.al_register);
+        al_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                LoginActivity.this.startActivity(intent);
+            }
+        });
+
+
+//        auth = findViewById(R.id.auth);
+//        auth.setOnClickListener(this);
     }
 
     @Override
@@ -53,9 +72,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 LoginActivity.this.finish();
                 break;
 
-            case R.id.auth:
-                Toast.makeText(this, "点击获取验证码按钮", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.auth:
+//                Toast.makeText(this, "点击获取验证码按钮", Toast.LENGTH_SHORT).show();
+//                break;
         }
     }
 }

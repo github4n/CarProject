@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    tools:context=".activies.RegisterActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_header2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/ar_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/ar_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/ar_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/ar_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/ar_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.79" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/ar_guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <ImageView
+        android:id="@+id/ar_logoImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="206:177"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline4"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.17"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/ar_et_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/login_account"
+        android:inputType="phone"
+        android:maxLines="1"
+        android:textColor="@color/color_login_line"
+        android:textColorHint="@color/color_login_line"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/ar_guideline5"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_logoImg"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <ImageView
+        android:id="@+id/ar_line"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_et_phone"
+        app:srcCompat="@color/color_login_line" />
+
+    <TextView
+        android:id="@+id/ar_auth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_blue"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="@string/login_request_auth_number"
+        android:textColor="@color/color_main"
+        app:layout_constraintBottom_toBottomOf="@id/ar_et_auth"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2" />
+
+    <EditText
+        android:id="@+id/ar_et_auth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:hint="@string/login_input_auth"
+        android:inputType="phone"
+        android:maxLines="1"
+        android:textColor="@color/color_login_line"
+        android:textColorHint="@color/color_login_line"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/ar_auth"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_line" />
+
+    <ImageView
+        android:id="@+id/ar_line2"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_et_auth"
+        app:srcCompat="@color/color_login_line" />
+
+    <EditText
+        android:id="@+id/ar_et_new_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:hint="@string/login_input_new_password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textColor="@color/color_login_line"
+        android:textColorHint="@color/color_login_line"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_line2" />
+
+    <ImageView
+        android:id="@+id/ar_line3"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_et_new_password"
+        app:srcCompat="@color/color_login_line" />
+
+    <EditText
+        android:id="@+id/ar_et_confirm_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:hint="@string/login_confirm_password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textColor="@color/color_login_line"
+        android:textColorHint="@color/color_login_line"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_line3" />
+
+    <ImageView
+        android:id="@+id/ar_line4"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_et_confirm_password"
+        app:srcCompat="@color/color_login_line" />
+
+    <Button
+        android:id="@+id/ar_btn_save"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/color_main"
+        android:text="@string/login_btn_register"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/ar_guideline6"
+        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toTopOf="@id/ar_guideline5" />
+
+</android.support.constraint.ConstraintLayout>

@@ -21,7 +21,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         mTitle = findViewById(R.id.header_title);
-        mTitle.setText(getTitleId());
+        if(getTitleId() != 0) {
+            mTitle.setText(getTitleId());
+        }
 
         mOptionText = findViewById(R.id.header_option_text);
         if(getOptionStringId() != 0) {

@@ -260,62 +260,59 @@
             app:srcCompat="@color/color_sub_line" />
 
         <!--车型-->
-        <ImageView
-            android:id="@+id/r_iv_model"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@id/r_cl_guideline3"
-            app:layout_constraintStart_toStartOf="@id/r_cl_guideline2"
-            app:layout_constraintTop_toBottomOf="@id/r_line2"
-            app:srcCompat="@drawable/repair_model" />
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_model"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintDimensionRatio="1:1"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline2"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_line2"-->
+            <!--app:srcCompat="@drawable/repair_model" />-->
 
-        <TextView
-            android:id="@+id/r_tv_model"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/text_repair_model"
-            android:textColor="@color/color_insurance_text"
-            app:layout_constraintBottom_toBottomOf="@id/r_iv_model"
-            app:layout_constraintStart_toStartOf="@id/r_cl_guideline3"
-            app:layout_constraintTop_toTopOf="@id/r_iv_model" />
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_model"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:text="@string/text_repair_model"-->
+            <!--android:textColor="@color/color_insurance_text"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_model"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_model" />-->
 
-        <ImageView
-            android:id="@+id/r_iv_arrow1"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/r_iv_model"
-            app:layout_constraintEnd_toEndOf="@id/r_line2"
-            app:layout_constraintTop_toTopOf="@id/r_iv_model"
-            app:srcCompat="@drawable/uc_arrow" />
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_arrow1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_model"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/r_line2"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_model"-->
+            <!--app:srcCompat="@drawable/uc_arrow" />-->
 
-        <TextView
-            android:id="@+id/r_tv_model_display"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:textColor="@color/color_sub_line"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@id/r_tv_model"
-            app:layout_constraintEnd_toStartOf="@id/r_iv_arrow1"
-            app:layout_constraintStart_toEndOf="@id/r_tv_model"
-            app:layout_constraintTop_toTopOf="@id/r_tv_model" />
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_model_display"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:textColor="@color/color_sub_line"-->
+            <!--android:textSize="13sp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_tv_model"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_iv_arrow1"-->
+            <!--app:layout_constraintStart_toEndOf="@id/r_tv_model"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_tv_model" />-->
 
-        <ImageView
-            android:id="@+id/r_line3"
-            android:layout_width="0dp"
-            android:layout_height="1px"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="@id/r_iv_arrow1"
-            app:layout_constraintStart_toStartOf="@id/r_iv_model"
-            app:layout_constraintTop_toBottomOf="@id/r_iv_model"
-            app:srcCompat="@color/color_sub_line" />
+        <!--<ImageView-->
+            <!--android:id="@+id/r_line3"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1px"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:srcCompat="@color/color_sub_line" />-->
 
         <!--位置-->
         <ImageView
@@ -326,7 +323,7 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/r_cl_guideline3"
             app:layout_constraintStart_toStartOf="@id/r_cl_guideline2"
-            app:layout_constraintTop_toBottomOf="@id/r_line3"
+            app:layout_constraintTop_toBottomOf="@id/r_line2"
             app:srcCompat="@drawable/repair_location" />
 
         <TextView
