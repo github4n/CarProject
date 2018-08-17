@@ -308,9 +308,9 @@
     <ImageView
         android:id="@+id/uc_line2"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_background"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_garage" />
@@ -369,9 +369,9 @@
     <ImageView
         android:id="@+id/uc_line3"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_background"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_check_record" />
@@ -430,9 +430,9 @@
     <ImageView
         android:id="@+id/uc_line4"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_background"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_shop_credit" />
@@ -491,9 +491,9 @@
     <ImageView
         android:id="@+id/uc_line5"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_background"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_address" />
@@ -552,9 +552,9 @@
     <ImageView
         android:id="@+id/uc_line6"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@color/color_sub_background"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_repair_record" />

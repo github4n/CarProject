@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.amap.api.maps.AMap;
@@ -41,9 +43,12 @@ public class MainFragment extends Fragment {
     private AMap aMap;
     private TextureMapView mMapView;
 //    private MapView mMapView = null;
-    private TextView mRepair, mMaintain, m_input_search;
+    private TextView m_input_search;
+    private RadioGroup mRadiogroup;
+    //单选项
+    private RadioButton mRepair, mMaintain;
     //主页汽修厂地图指引部分
-    private TextView lmfd_tv_more;
+    private TextView lmfd_tv_more, lmfd_tv_book, lmfd_tv_phone;
 
 
     // TODO: Rename and change types of parameters
@@ -89,22 +94,10 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+
         mRepair = view.findViewById(R.id.m_repair);
-        mRepair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), RepairActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
         mMaintain = view.findViewById(R.id.m_maintain);
-        mMaintain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), BookMaintainActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
+
         m_input_search = view.findViewById(R.id.m_input_search);
         m_input_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +111,22 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), RepairStationActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        lmfd_tv_book = view.findViewById(R.id.lmfd_tv_book);
+        lmfd_tv_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                if(mRepair.isChecked()) {
+                    intent = new Intent(getContext(), RepairActivity.class);
+                } else if(mMaintain.isChecked()) {
+                    intent = new Intent(getContext(), BookMaintainActivity.class);
+                } else {
+                    return;
+                }
                 getActivity().startActivity(intent);
             }
         });

@@ -243,6 +243,10 @@
     <string name="text_check_contact_name">联系人</string>
     <string name="text_check_contact_phone">联系电话</string>
     <string name="text_upload_credit_info">上传证件信息</string>
+    <string name="text_with_certificate">携带证件</string>
+    <string name="text_id_card">身份证</string>
+    <string name="text_plus_insurance">加强险</string>
+    <string name="text_insurance_order">保险单</string>
     <string name="text_credit_front">车主身份证正面照</string>
     <string name="text_credit_back">车主身份证反面照</string>
     <string name="text_drive_credit">上传行驶证副页照</string>

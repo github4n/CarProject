@@ -197,7 +197,7 @@
         <ImageView
             android:id="@+id/r_line"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="@id/r_et_contact"
             app:layout_constraintStart_toStartOf="@id/r_iv_contact"
@@ -252,7 +252,7 @@
         <ImageView
             android:id="@+id/r_line2"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="@id/r_et_phone"
             app:layout_constraintStart_toStartOf="@id/r_iv_phone"
@@ -310,7 +310,7 @@
         <ImageView
             android:id="@+id/r_line3"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="@id/r_iv_arrow1"
             app:layout_constraintStart_toStartOf="@id/r_iv_model"
@@ -368,7 +368,7 @@
         <ImageView
             android:id="@+id/r_line4"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="@id/r_iv_arrow2"
             app:layout_constraintStart_toStartOf="@id/r_iv_location"
@@ -426,7 +426,7 @@
         <ImageView
             android:id="@+id/r_line5"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="1px"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             app:layout_constraintEnd_toEndOf="@id/r_iv_arrow3"

@@ -88,13 +88,13 @@
 
         <TextView
             android:id="@+id/mtl_line"
-            android:layout_width="1dp"
+            android:layout_width="1px"
             android:layout_height="0dp"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/color_sub_line"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/m_location"
             app:layout_constraintTop_toTopOf="parent" />
@@ -134,27 +134,36 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/m_repair"
+
+    <RadioGroup
+        android:id="@+id/m_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/main_repair_selector"
-        android:focusable="true"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/lfm_guideline3"
         app:layout_constraintTop_toTopOf="@id/lfm_guideline"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.05">
 
-    <TextView
-        android:id="@+id/m_maintain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/main_maintain_selector"
-        app:layout_constraintEnd_toEndOf="@id/m_repair"
-        app:layout_constraintStart_toStartOf="@id/m_repair"
-        app:layout_constraintTop_toBottomOf="@id/m_repair" />
+        <RadioButton
+            android:id="@+id/m_repair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/main_repair_selector"
+            android:focusable="true"
+            android:checked="true"
+            android:button="@null" />
+
+        <RadioButton
+            android:id="@+id/m_maintain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:button="@null"
+            android:background="@drawable/main_maintain_selector" />
+
+    </RadioGroup>
 
     <include
         android:id="@+id/main_include"

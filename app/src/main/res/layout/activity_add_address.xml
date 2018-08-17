@@ -45,7 +45,7 @@
     <TextView
         android:id="@+id/aa_line1"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
@@ -68,7 +68,7 @@
     <TextView
         android:id="@+id/aa_line2"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
@@ -91,7 +91,7 @@
     <TextView
         android:id="@+id/aa_line3"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
@@ -114,7 +114,7 @@
     <TextView
         android:id="@+id/aa_line4"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
