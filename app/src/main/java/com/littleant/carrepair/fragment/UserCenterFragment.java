@@ -40,7 +40,7 @@ public class UserCenterFragment extends BaseFragment {
 
     @Override
     protected int getTitleId() {
-        return R.string.text_user_center;
+        return 0;
     }
 
     @Override

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_cycrect_white_fill"
+    android:orientation="horizontal">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lct_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.22" />
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/lct_guideline2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintGuide_percent="0.33" />-->
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/lct_guideline3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintGuide_percent="0.66" />-->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/color_main"
+        app:layout_constraintBottom_toTopOf="@id/lct_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lct_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_check_type"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/lct_close"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/violation_close" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/lct_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_type_select"
+        android:textColor="@color/color_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/lct_guideline" />
+
+    <ImageView
+        android:id="@+id/lct_line"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lct_tv_name"
+        app:srcCompat="@color/color_sub_line" />
+
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/lct_tv_sum"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:text="@string/text_violation_sum"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/lct_guideline2"-->
+        <!--app:layout_constraintHorizontal_weight="1"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/lct_line" />-->
+
+    <TextView
+        android:id="@+id/lct_tv_own"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_cycrect_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:text="@string/text_type_own"
+        android:textColor="@drawable/btn_text_color_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/lct_tv_other"
+        app:layout_constraintStart_toStartOf="@+id/lct_tv_name"
+        app:layout_constraintTop_toBottomOf="@id/lct_line" />
+
+    <TextView
+        android:id="@+id/lct_tv_other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/btn_cycrect_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:text="@string/text_type_other"
+        android:textColor="@drawable/btn_text_color_selector"
+        app:layout_constraintEnd_toEndOf="@id/lct_tv_name"
+        app:layout_constraintStart_toEndOf="@id/lct_tv_own"
+        app:layout_constraintTop_toTopOf="@id/lct_tv_own" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/lct_tv_score"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/text_violation_score"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/lct_tv_sum"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/lct_guideline3"-->
+        <!--app:layout_constraintStart_toStartOf="@id/lct_guideline2"-->
+        <!--app:layout_constraintTop_toTopOf="@id/lct_tv_sum" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/lct_tv_fine"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/text_violation_fine"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/lct_tv_sum"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="@id/lct_guideline3"-->
+        <!--app:layout_constraintTop_toTopOf="@id/lct_tv_sum" />-->
+
+    <!--<ImageView-->
+        <!--android:id="@+id/lct_line2"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="1px"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/lct_tv_sum"-->
+        <!--app:srcCompat="@color/color_sub_line" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/lct_rating_ok"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:background="@drawable/shape_cycrect_blue_fill2"-->
+        <!--android:text="@string/text_violation_handle"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/lct_line2" />-->
+
+</android.support.constraint.ConstraintLayout>

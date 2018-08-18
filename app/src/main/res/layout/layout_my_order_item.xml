@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="2018-08-05"
+            android:textColor="@color/color_insurance_text"
             app:layout_constraintBottom_toBottomOf="@+id/lmoi_tv_time"
             app:layout_constraintStart_toEndOf="@+id/lmoi_tv_time"
             app:layout_constraintTop_toTopOf="@+id/lmoi_tv_time" />
@@ -124,14 +124,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="等待维修厂发布清算"
             android:textColor="@color/color_text_shop_price"
             app:layout_constraintBottom_toBottomOf="@+id/lmoi_tv_money"
             app:layout_constraintStart_toEndOf="@+id/lmoi_tv_money"
             app:layout_constraintTop_toTopOf="@+id/lmoi_tv_money" />
 
+        <!--此按钮包含 去付款、导航、评价、取消订单 几种状态-->
         <TextView
-            android:id="@+id/lmoi_btn_pay"
+            android:id="@+id/lmoi_btn_hold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -151,23 +151,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lmoi_line1" />
 
-        <TextView
-            android:id="@+id/lmoi_btn_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/btn_order_rate"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/btn_cycrect_selector"
-            android:textColor="@drawable/btn_text_color_selector"
-            app:layout_constraintEnd_toStartOf="@id/lmoi_btn_pay"
-            app:layout_constraintTop_toTopOf="@id/lmoi_btn_pay" />
+        <!--<TextView-->
+            <!--android:id="@+id/lmoi_btn_rate"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:text="@string/btn_order_rate"-->
+            <!--android:paddingLeft="15dp"-->
+            <!--android:paddingRight="15dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:clickable="true"-->
+            <!--android:focusable="true"-->
+            <!--android:background="@drawable/btn_cycrect_selector"-->
+            <!--android:textColor="@drawable/btn_text_color_selector"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/lmoi_btn_hold"-->
+            <!--app:layout_constraintTop_toTopOf="@id/lmoi_btn_hold" />-->
 
         <TextView
             android:id="@+id/lmoi_btn_delete"
@@ -184,8 +184,8 @@
             android:paddingTop="5dp"
             android:text="@string/btn_delete_order"
             android:textColor="@drawable/btn_text_color_selector"
-            app:layout_constraintEnd_toStartOf="@id/lmoi_btn_rate"
-            app:layout_constraintTop_toTopOf="@id/lmoi_btn_rate" />
+            app:layout_constraintEnd_toStartOf="@id/lmoi_btn_hold"
+            app:layout_constraintTop_toTopOf="@id/lmoi_btn_hold" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -181,6 +181,7 @@
     <string name="text_gas_amount">机油用量：</string>
     <string name="text_market_price">市场价格：</string>
     <string name="text_time_price">工时费：</string>
+    <string name="text_filter">过滤格：</string>
 
     <!---->
     <string name="text_my_car">我的汽车</string>
@@ -243,6 +244,7 @@
 
     <!-- 年检流程功能公共项 -->
     <string name="text_check_flow">代驾年检流程</string>
+    <string name="text_check_flow_oen">自驾年检流程</string>
     <string name="text_check_know">年检须知</string>
     <string name="text_check_contact">联系方式</string>
     <string name="text_fee_sum">费用统计</string>
@@ -272,7 +274,20 @@
     <string name="text_pick_station">选择年检站</string>
     <string name="text_pick_location">交接车地点</string>
     <string name="text_reservation_date">预约日期</string>
-    <string name="text_fee_check">年检费用</string>
+    <string name="text_fee_base">基础费用：</string>
+    <string name="text_fee_package">套餐费用：</string>
+    <string name="text_fee_check">年检费用：</string>
+    <string name="text_check_total">总计费用：</string>
+    <string name="text_select_package">选择套餐</string>
+    <string name="text_package_a">A套餐</string>
+    <string name="text_package_b">B套餐</string>
+    <string name="text_package_detail">套餐明细：</string>
+    <string name="text_package_detail2">20公里以内收费标准200元，20公里以上加收20元/公里，B套餐包含A套餐基础费用。</string>
+    <string name="text_package_light">车灯</string>
+    <string name="text_package_gas">排气</string>
+    <string name="text_package_sight">外观</string>
+    <string name="text_package_else">其他</string>
+    <string name="text_package_per_price">￥200.00</string>
     <!-- 代驾取车页 -->
     <string name="text_driving_pick_car">代驾取车</string>
     <string name="text_driving_pick_car_driver">司机信息</string>
@@ -349,5 +364,11 @@
     <string name="text_payment_wechat">微信支付</string>
     <string name="text_payment_ali">支付宝支付</string>
     <string name="text_payment_pay">确认支付</string>
+
+    <!--年检类型-->
+    <string name="text_check_type">年检类型</string>
+    <string name="text_type_select">请选择年检类型！</string>
+    <string name="text_type_other">代驾年检</string>
+    <string name="text_type_own">自驾年检</string>
 
 </resources>

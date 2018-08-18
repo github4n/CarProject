@@ -402,12 +402,12 @@
             android:id="@+id/acf_et_car_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:drawableRight="@drawable/acf_more"
             android:drawableEnd="@drawable/acf_more"
+            android:drawableRight="@drawable/acf_more"
             android:gravity="center_horizontal"
             android:textColor="@color/color_text"
             app:layout_constraintBottom_toBottomOf="@id/acf_tv_car_type"
@@ -591,41 +591,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/acf_line9" />
 
-        <TextView
-            android:id="@+id/acf_tv_date2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:padding="4dp"
-            android:drawableEnd="@drawable/acf_more"
-            android:drawableRight="@drawable/acf_more"
-            android:gravity="center"
-            android:text="上午"
-            android:textSize="12sp"
-            android:background="@drawable/shape_gray"
-            android:textColor="@color/color_text"
-            app:layout_constraintBottom_toBottomOf="@id/acf_tv_reservation_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/acf_tv_reservation_date" />
+        <!--<TextView-->
+            <!--android:id="@+id/acf_tv_date2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="16dp"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:padding="4dp"-->
+            <!--android:drawableEnd="@drawable/acf_more"-->
+            <!--android:drawableRight="@drawable/acf_more"-->
+            <!--android:gravity="center"-->
+            <!--android:text="上午"-->
+            <!--android:textSize="12sp"-->
+            <!--android:background="@drawable/shape_gray"-->
+            <!--android:textColor="@color/color_text"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/acf_tv_reservation_date"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="@id/acf_tv_reservation_date" />-->
 
         <TextView
             android:id="@+id/acf_tv_date1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:drawableEnd="@drawable/acf_more"
-            android:drawableRight="@drawable/acf_more"
-            android:padding="4dp"
-            android:gravity="center"
-            android:textSize="12sp"
             android:background="@drawable/shape_gray"
+            android:gravity="center"
+            android:padding="4dp"
             android:textColor="@color/color_text"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/acf_tv_reservation_date"
-            app:layout_constraintEnd_toStartOf="@id/acf_tv_date2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/acf_tv_reservation_date"
             app:layout_constraintTop_toTopOf="@id/acf_tv_reservation_date" />
 
@@ -651,25 +649,331 @@
 
         <TextView
             android:id="@+id/acf_tv_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:gravity="start"
+            android:textColor="@color/color_text"
+            android:text="@string/text_select_package"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_fee_sum" />
+
+        <RadioGroup
+            android:id="@+id/acf_radio_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/shape_gray"
-            android:drawableEnd="@drawable/acf_more"
-            android:drawableRight="@drawable/acf_more"
-            android:gravity="start"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:text="A套餐"
-            android:textSize="18sp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_set"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_set"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_set">
+
+            <RadioButton
+                android:id="@+id/acf_btn_package_a"
+                style="@style/AnnualCheckRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:checked="true"
+                android:text="@string/text_package_a"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/acf_btn_package_b"
+                style="@style/AnnualCheckRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:gravity="center"
+                android:text="@string/text_package_b"
+                android:textSize="12sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/acf_tv_package_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/text_package_detail"
+            android:textSize="12sp"
+            android:textColor="@color/color_sub_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_set" />
+
+        <TextView
+            android:id="@+id/acf_package_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/text_package_detail2"
+            android:textColor="@color/color_sub_line"
+            android:textSize="12sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_package_detail"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_package_detail" />
+
+        <!--<RadioGroup-->
+            <!--android:id="@+id/acf_rg_package"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:orientation="vertical"-->
+            <!--android:visibility="gone"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toEndOf="@id/acf_tv_package_detail"-->
+            <!--app:layout_constraintTop_toTopOf="@id/acf_tv_package_detail">-->
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/acf_package_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_package_detail"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_package_detail">
+
+            <CheckBox
+                android:id="@+id/acf_rb_light"
+                style="@style/AnnualCheckRadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/text_package_light"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/acf_rb_gas"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/acf_tv_package_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/text_package_per_price"
+                android:textColor="@color/color_text_shop_price"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/acf_rb_light"
+                app:layout_constraintStart_toStartOf="@id/acf_rb_light"
+                app:layout_constraintTop_toBottomOf="@id/acf_rb_light" />
+
+            <CheckBox
+                android:id="@+id/acf_rb_gas"
+                style="@style/AnnualCheckRadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/text_package_gas"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/text_package_per_price"
+                android:textColor="@color/color_text_shop_price"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/acf_rb_gas"
+                app:layout_constraintStart_toStartOf="@id/acf_rb_gas"
+                app:layout_constraintTop_toBottomOf="@id/acf_rb_gas" />
+
+            <CheckBox
+                android:id="@+id/acf_rb_sight"
+                style="@style/AnnualCheckRadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/text_package_sight"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/acf_rb_gas"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/text_package_per_price"
+                android:textColor="@color/color_text_shop_price"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/acf_rb_sight"
+                app:layout_constraintStart_toStartOf="@id/acf_rb_sight"
+                app:layout_constraintTop_toBottomOf="@id/acf_rb_sight" />
+
+            <CheckBox
+                android:id="@+id/acf_rb_else"
+                style="@style/AnnualCheckRadioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/text_package_else"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/acf_rb_light"
+                app:layout_constraintStart_toStartOf="@id/acf_rb_light"
+                app:layout_constraintTop_toBottomOf="@id/acf_tv_package_price" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/text_package_per_price"
+                android:textColor="@color/color_text_shop_price"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/acf_rb_else"
+                app:layout_constraintStart_toStartOf="@id/acf_rb_else"
+                app:layout_constraintTop_toBottomOf="@id/acf_rb_else" />
+
+        </android.support.constraint.ConstraintLayout>
+
+            <!--<android.support.constraint.ConstraintLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="4dp">-->
+
+                <!--<RadioButton-->
+                    <!--android:id="@+id/acf_rb_holding"-->
+                    <!--style="@style/AnnualCheckRadioButton2"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/text_package_gas"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:clickable="false"-->
+                    <!--app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+                <!--<RadioButton-->
+                    <!--android:id="@+id/acf_rb_else"-->
+                    <!--style="@style/AnnualCheckRadioButton2"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@string/text_package_else"-->
+                    <!--android:textSize="12sp"-->
+                    <!--app:layout_constraintEnd_toStartOf="@id/acf_rb_holding"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/text_package_per_price"-->
+                    <!--android:textColor="@color/color_text_shop_price"-->
+                    <!--android:layout_marginTop="4dp"-->
+                    <!--android:layout_marginBottom="4dp"-->
+                    <!--android:textSize="12sp"-->
+                    <!--app:layout_constraintTop_toBottomOf="@id/acf_rb_else"-->
+                    <!--app:layout_constraintStart_toStartOf="@id/acf_rb_else"-->
+                    <!--app:layout_constraintEnd_toEndOf="@id/acf_rb_else" />-->
+
+            <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--</RadioGroup>-->
+
+        <ImageView
+            android:id="@+id/acf_line10"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/acf_tv_fee_sum" />
+            app:layout_constraintTop_toBottomOf="@id/acf_package_layout"
+            app:layout_goneMarginTop="40dp"/>
+
+        <TextView
+            android:id="@+id/acf_tv_fee_base"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_fee_base"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_line10" />
+
+        <TextView
+            android:id="@+id/acf_et_fee_base"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="right"
+            android:text="$100.00"
+            android:textColor="@color/color_text"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_fee_base"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_fee_base"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_fee_base" />
+
+        <TextView
+            android:id="@+id/acf_tv_fee_package"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_fee_package"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_fee_base" />
+
+        <TextView
+            android:id="@+id/acf_et_fee_package"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="right"
+            android:text="$100.00"
+            android:textColor="@color/color_text"
+            app:layout_constraintBottom_toBottomOf="@id/acf_tv_fee_package"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/acf_tv_fee_package"
+            app:layout_constraintTop_toTopOf="@id/acf_tv_fee_package" />
 
         <TextView
             android:id="@+id/acf_tv_fee_check"
@@ -677,11 +981,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/text_fee_check"
             android:textColor="@color/color_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/acf_tv_set" />
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_fee_package"/>
 
         <TextView
             android:id="@+id/acf_et_fee_check"
@@ -705,7 +1009,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/text_fee_total"
             android:textColor="@color/color_text"
             app:layout_constraintStart_toStartOf="parent"
@@ -721,7 +1025,7 @@
             android:layout_marginStart="8dp"
             android:gravity="right"
             android:text="$100.00"
-            android:textColor="@color/color_text"
+            android:textColor="@color/color_text_shop_price"
             app:layout_constraintBottom_toBottomOf="@id/acf_tv_fee_total"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/acf_tv_fee_total"

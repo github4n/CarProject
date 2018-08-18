@@ -48,7 +48,32 @@
         <item name="android:background">@drawable/btn_cycrect_blue_gray_selector</item>
         <item name="android:button">@null</item>
         <item name="android:textColor">@drawable/rb_text_white_gray_selector</item>
-        <item name="android:padding">2dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+    </style>
+    <!-- activity_annual_check_fill_info.xml使用 -->
+    <style name="AnnualCheckRadioButton2">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_cycrect_blue_gray_selector</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@drawable/rb_text_white_gray_selector</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+    </style>
+    <!-- activity_own_check_flow.xml使用 -->
+    <style name="OwnCheckBox">
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@drawable/rb_text_blue_gray_selector</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
     </style>
 
     <style name="CustomButton">

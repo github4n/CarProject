@@ -1,8 +1,11 @@
 package com.littleant.carrepair.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.Constraints;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +63,34 @@ public class AnnualCheckFragment extends BaseFragment {
         reservationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), AnnualCheckFillInfoActivity.class);
-                getActivity().startActivity(intent);
+                final Dialog d = new Dialog(getActivity());
+                View contentView = View.inflate(getActivity(), R.layout.layout_check_type, null);
+//                        d.setContentView(R.layout.layout_point);
+                DisplayMetrics dm = getActivity().getResources().getDisplayMetrics();
+                int dialogWidth = (int) (dm.widthPixels * 0.7);
+                int dialogHeight = (int) (dm.heightPixels * 0.25);
+                d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+                contentView.findViewById(R.id.lct_close).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                    }
+                });
+                contentView.findViewById(R.id.lct_tv_own).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                    }
+                });
+                contentView.findViewById(R.id.lct_tv_other).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), AnnualCheckFillInfoActivity.class);
+                        getActivity().startActivity(intent);
+                        d.dismiss();
+                    }
+                });
+                d.show();
             }
         });
         myReservationView = subView.findViewById(R.id.ac_cl_my_reservation);

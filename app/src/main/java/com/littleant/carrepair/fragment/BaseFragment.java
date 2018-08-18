@@ -47,7 +47,9 @@ public abstract class BaseFragment extends Fragment {
                              Bundle savedInstanceState) {
         subView =  inflater.inflate(getLayoutId(), container, false);
         mTitle = subView.findViewById(R.id.header_title);
-        mTitle.setText(getTitleId());
+        if(getTitleId() != 0) {
+            mTitle.setText(getTitleId());
+        }
 
         backButton = subView.findViewById(R.id.title_back);
         if(!showBackButton()) {
