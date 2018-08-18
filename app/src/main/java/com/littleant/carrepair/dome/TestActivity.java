@@ -186,6 +186,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.date:
+                c = DateActivity.class;
                 break;
         }
         Intent i = new Intent(this, c);
