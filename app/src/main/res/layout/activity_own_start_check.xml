@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_sub_background"
+    tools:context=".activies.OwnStartCheckActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aosc_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aosc_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.86"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aosc_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aosc_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aosc_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/layout_own_start_flow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include" />
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/aosc_map"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/aosc_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include2" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/aosc_guideline">
+
+        <TextView
+            android:id="@+id/aosc_tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_start_annual_check_type"
+            android:textColor="@color/color_sub_line"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/aosc_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/color_sub_line"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/aosc_tv_type"
+            app:layout_constraintStart_toEndOf="@id/aosc_tv_type"
+            app:layout_constraintTop_toTopOf="@id/aosc_tv_type" />
+
+        <TextView
+            android:id="@+id/aosc_tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_start_annual_check_location"
+            android:textColor="@color/color_uc_text"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/aosc_tv_type"
+            app:layout_constraintTop_toBottomOf="@id/aosc_tv_type" />
+
+        <TextView
+            android:id="@+id/aosc_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/color_uc_text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/aosc_tv_location"
+            app:layout_constraintStart_toEndOf="@id/aosc_tv_location"
+            app:layout_constraintTop_toTopOf="@id/aosc_tv_location" />
+
+        <TextView
+            android:id="@+id/aosc_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_start_annual_check_time"
+            android:textColor="@color/color_text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/aosc_tv_location"
+            app:layout_constraintTop_toBottomOf="@id/aosc_tv_location" />
+
+        <TextView
+            android:id="@+id/aosc_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/color_text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/aosc_tv_time"
+            app:layout_constraintStart_toEndOf="@id/aosc_tv_time"
+            app:layout_constraintTop_toTopOf="@id/aosc_tv_time" />
+
+        <ImageView
+            android:id="@+id/aosc_iv_navi"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            app:layout_constraintBottom_toTopOf="@id/aosc_tv_time"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aosc_tv_type"
+            app:srcCompat="@drawable/mf_navi" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/aose_pay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/text_start_annual_check_arrive"
+        android:background="@drawable/shape_blue_fill"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="@id/aosc_guideline4"
+        app:layout_constraintEnd_toEndOf="@id/aosc_guideline5"
+        app:layout_constraintBottom_toTopOf="@id/aosc_guideline3"
+        app:layout_constraintTop_toTopOf="@id/aosc_guideline2" />
+
+</android.support.constraint.ConstraintLayout>

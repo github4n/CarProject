@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:orientation="horizontal" >
 
     <android.support.constraint.Guideline
@@ -18,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <android.support.constraint.Guideline
         android:id="@+id/locf_guideline3"
@@ -32,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <TextView
         android:id="@+id/locf_tv_check_flow"
@@ -44,11 +45,11 @@
         android:background="@color/color_sub_background"
         android:paddingBottom="4dp"
         android:paddingTop="4dp"
-        android:text="@string/text_check_flow"
+        android:text="@string/text_check_flow_own"
         android:textColor="@color/color_text"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/locf_tv_check_know"
+        app:layout_constraintEnd_toStartOf="@id/locf_tv_check_know"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,19 +57,17 @@
         android:id="@+id/locf_tv_check_know"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
         android:background="@color/color_sub_background"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
         android:text="@string/text_check_know"
         android:textColor="@color/color_main"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/locf_guideline"
+        app:layout_constraintBottom_toBottomOf="@id/locf_tv_check_flow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/locf_tv_check_flow" />
 
     <CheckBox
         android:id="@+id/locf_tv_fill"
@@ -83,8 +82,8 @@
         android:gravity="center_horizontal"
         android:text="@string/text_fill_info"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/locf_guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/locf_tv_check_flow" />
+        app:layout_constraintStart_toStartOf="@id/locf_guideline2"
+        app:layout_constraintTop_toBottomOf="@id/locf_tv_check_flow" />
 
     <CheckBox
         android:id="@+id/locf_tv_start"
@@ -97,9 +96,9 @@
         android:drawableTop="@drawable/flow_start_selector"
         android:gravity="center_horizontal"
         android:text="@string/text_start_annual_check"
-        app:layout_constraintBottom_toBottomOf="@+id/locf_tv_fill"
-        app:layout_constraintEnd_toStartOf="@+id/locf_guideline4"
-        app:layout_constraintTop_toTopOf="@+id/locf_tv_fill" />
+        app:layout_constraintBottom_toBottomOf="@id/locf_tv_fill"
+        app:layout_constraintEnd_toStartOf="@id/locf_guideline4"
+        app:layout_constraintTop_toTopOf="@id/locf_tv_fill" />
 
     <TextView
         android:id="@+id/locf_line2"
@@ -110,10 +109,10 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:background="@color/color_sub_line"
-        app:layout_constraintBottom_toBottomOf="@+id/locf_tv_fill"
-        app:layout_constraintEnd_toStartOf="@+id/locf_tv_start"
-        app:layout_constraintStart_toEndOf="@+id/locf_tv_fill"
-        app:layout_constraintTop_toTopOf="@+id/locf_tv_fill" />
+        app:layout_constraintBottom_toBottomOf="@id/locf_tv_fill"
+        app:layout_constraintEnd_toStartOf="@id/locf_tv_start"
+        app:layout_constraintStart_toEndOf="@id/locf_tv_fill"
+        app:layout_constraintTop_toTopOf="@id/locf_tv_fill" />
 
 
 </android.support.constraint.ConstraintLayout>

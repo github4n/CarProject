@@ -4,28 +4,23 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
+import android.support.constraint.Constraints;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 
-public class AnnualCheckFillInfoActivity extends BaseActivity {
-
-    private ConstraintLayout acf_package_layout;
-    private RadioButton acf_btn_package_a, acf_btn_package_b;
-    private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station;
+public class OwnCheckFillInfoActivity extends BaseActivity {
+    private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station;
     private String[] carType = new String[]{"汽车1", "汽车2"};
     private String[] stations = new String[]{"站点1", "站点2", "站点3"};
 
@@ -33,51 +28,22 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //套餐A
-        acf_btn_package_a = findViewById(R.id.acf_btn_package_a);
-        //套餐B
-        acf_btn_package_b = findViewById(R.id.acf_btn_package_b);
-        //套餐A明细布局
-        acf_package_detail = findViewById(R.id.acf_package_detail);
-        //套餐B明细布局
-        acf_package_layout = findViewById(R.id.acf_package_layout);
-
-        acf_confirm_pay = findViewById(R.id.acf_confirm_pay);
-        acf_confirm_pay.setOnClickListener(new View.OnClickListener() {
+        aocf_confirm_pay = findViewById(R.id.aocf_confirm_pay);
+        aocf_confirm_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
-                AnnualCheckFillInfoActivity.this.startActivity(intent);
+                Intent intent = new Intent(OwnCheckFillInfoActivity.this, PaymentActivity.class);
+                OwnCheckFillInfoActivity.this.startActivity(intent);
             }
         });
 
-        acf_btn_package_a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) {
-                    acf_package_layout.setVisibility(View.GONE);
-                    acf_package_detail.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
-        acf_btn_package_b.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) {
-                    acf_package_detail.setVisibility(View.GONE);
-                    acf_package_layout.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
-        acf_et_car_type = findViewById(R.id.acf_et_car_type);
-        acf_et_car_type.setOnClickListener(new View.OnClickListener() {
+        aocf_et_car_type = findViewById(R.id.aocf_et_car_type);
+        aocf_et_car_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                View contentView = LayoutInflater.from(AnnualCheckFillInfoActivity.this).inflate(R.layout.layout_select_dialog, null);
+                View contentView = LayoutInflater.from(OwnCheckFillInfoActivity.this).inflate(R.layout.layout_select_dialog, null);
 //                View contentView = View.inflate(OwnCheckFillInfoActivity.this, R.layout.layout_select_dialog, null);
-                final Dialog d = setDialog(AnnualCheckFillInfoActivity.this, contentView);
+                final Dialog d = setDialog(OwnCheckFillInfoActivity.this, contentView);
                 d.setContentView(contentView);
                 contentView.findViewById(R.id.lsd_tv_cancel).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -87,7 +53,7 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
                 });
 
                 ListView listView = contentView.findViewById(R.id.lsd_list);
-                listView.setAdapter(new ArrayAdapter<>(AnnualCheckFillInfoActivity.this, android.R.layout.simple_list_item_1, carType));
+                listView.setAdapter(new ArrayAdapter<>(OwnCheckFillInfoActivity.this, android.R.layout.simple_list_item_1, carType));
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -98,13 +64,13 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
             }
         });
 
-        acf_et_pick_station = findViewById(R.id.acf_et_pick_station);
-        acf_et_pick_station.setOnClickListener(new View.OnClickListener() {
+        aocf_et_pick_station = findViewById(R.id.aocf_et_pick_station);
+        aocf_et_pick_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                View contentView = LayoutInflater.from(AnnualCheckFillInfoActivity.this).inflate(R.layout.layout_select_dialog, null);
+                View contentView = LayoutInflater.from(OwnCheckFillInfoActivity.this).inflate(R.layout.layout_select_dialog, null);
 //                View contentView = View.inflate(OwnCheckFillInfoActivity.this, R.layout.layout_select_dialog, null);
-                final Dialog d = setDialog(AnnualCheckFillInfoActivity.this, contentView);
+                final Dialog d = setDialog(OwnCheckFillInfoActivity.this, contentView);
                 d.setContentView(contentView);
                 contentView.findViewById(R.id.lsd_tv_cancel).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -114,7 +80,7 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
                 });
 
                 ListView listView = contentView.findViewById(R.id.lsd_list);
-                listView.setAdapter(new ArrayAdapter<>(AnnualCheckFillInfoActivity.this, android.R.layout.simple_list_item_1, stations));
+                listView.setAdapter(new ArrayAdapter<>(OwnCheckFillInfoActivity.this, android.R.layout.simple_list_item_1, stations));
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -124,7 +90,6 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
                 d.show();
             }
         });
-
     }
 
     private Dialog setDialog(Activity activity, View contentView) {
@@ -151,7 +116,7 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_annual_check_fill_info;
+        return R.layout.activity_own_check_fill_info;
     }
 
     @Override

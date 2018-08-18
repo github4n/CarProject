@@ -244,7 +244,7 @@
 
     <!-- 年检流程功能公共项 -->
     <string name="text_check_flow">代驾年检流程</string>
-    <string name="text_check_flow_oen">自驾年检流程</string>
+    <string name="text_check_flow_own">自驾年检流程</string>
     <string name="text_check_know">年检须知</string>
     <string name="text_check_contact">联系方式</string>
     <string name="text_fee_sum">费用统计</string>
@@ -294,6 +294,10 @@
     <string name="text_driving_pick_car_time">取车时间</string>
     <!-- 开始年检页 -->
     <string name="text_start_annual_check">开始年检</string>
+    <string name="text_start_annual_check_type">车型：</string>
+    <string name="text_start_annual_check_location">年检地点：</string>
+    <string name="text_start_annual_check_time">年检时间：</string>
+    <string name="text_start_annual_check_arrive">确认到达</string>
     <string name="text_annual_check_time">到站年检时间</string>
     <string name="text_annual_check_state">年检状态</string>
     <!-- 年检反馈 -->
@@ -370,5 +374,9 @@
     <string name="text_type_select">请选择年检类型！</string>
     <string name="text_type_other">代驾年检</string>
     <string name="text_type_own">自驾年检</string>
+
+    <!--弹窗选择-->
+    <string name="text_dialog_ok">确认</string>
+    <string name="text_dialog_cancel">取消</string>
 
 </resources>

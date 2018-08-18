@@ -1,5 +1,6 @@
 package com.littleant.carrepair.dome;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -68,6 +69,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.startcheck).setOnClickListener(this);
         findViewById(R.id.returncar).setOnClickListener(this);
         findViewById(R.id.map).setOnClickListener(this);
+        findViewById(R.id.date).setOnClickListener(this);
 
     }
 
@@ -181,6 +183,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.map:
                 c = MapActivity.class;
+                break;
+
+            case R.id.date:
                 break;
         }
         Intent i = new Intent(this, c);

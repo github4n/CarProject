@@ -144,7 +144,10 @@
             android:name=".activies.PaymentActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activies.ForgetPasswordActivity" />
-        <activity android:name=".activies.RegisterActivity"></activity>
+        <activity android:name=".activies.RegisterActivity" />
+        <activity android:name=".activies.OwnCheckFillInfoActivity" />
+        <activity android:name=".activies.OwnStartCheckActivity" />
+        <activity android:name=".dome.DateActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activies.AnnualCheckFillInfoActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/layout_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/include2"
+            layout="@layout/layout_own_check_flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/aocf_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/aocf_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66" />
+
+        <TextView
+            android:id="@+id/aocf_tv_contact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_background"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:text="@string/text_check_contact"
+            android:textColor="@color/color_text"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include2" />
+
+        <TextView
+            android:id="@+id/aocf_tv_contact_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_check_contact_name"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_contact" />
+
+        <EditText
+            android:id="@+id/aocf_et_contact_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            android:textColor="@color/color_text"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_contact_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_contact_name"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_contact_name" />
+
+        <ImageView
+            android:id="@+id/aocf_line"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_contact_name" />
+
+        <TextView
+            android:id="@+id/aocf_tv_contact_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_check_contact_phone"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_line" />
+
+        <EditText
+            android:id="@+id/aocf_et_contact_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            android:textColor="@color/color_text"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_contact_phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_contact_phone"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_contact_phone" />
+
+        <TextView
+            android:id="@+id/aocf_tv_upload_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_background"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:text="@string/text_upload_credit_info"
+            android:textColor="@color/color_text"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_et_contact_phone" />
+
+        <TextView
+            android:id="@+id/aocf_tv_with_certificate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_with_certificate"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_upload_info" />
+
+        <TextView
+            android:id="@+id/aocf_tv_id_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_gray"
+            android:paddingLeft="4dp"
+
+            android:paddingRight="4dp"
+            android:text="@string/text_id_card"
+            android:textColor="@color/color_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_with_certificate"
+            app:layout_constraintStart_toStartOf="@+id/aocf_guideline"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_with_certificate" />
+
+        <TextView
+            android:id="@+id/aocf_tv_plus_insurance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:text="@string/text_plus_insurance"
+            android:background="@drawable/shape_gray"
+            android:textColor="@color/color_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_id_card"
+            app:layout_constraintEnd_toStartOf="@+id/aocf_tv_insurance_order"
+            app:layout_constraintStart_toEndOf="@+id/aocf_tv_id_card"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_id_card" />
+
+        <TextView
+            android:id="@+id/aocf_tv_insurance_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:text="@string/text_insurance_order"
+            android:background="@drawable/shape_gray"
+            android:textColor="@color/color_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_plus_insurance"
+            app:layout_constraintStart_toStartOf="@+id/aocf_guideline2"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_plus_insurance" />
+
+        <ImageView
+            android:id="@+id/aocf_line2"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_with_certificate" />
+
+        <TextView
+            android:id="@+id/aocf_tv_driver_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_driver_name"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_line2" />
+
+        <EditText
+            android:id="@+id/aocf_et_driver_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            android:textColor="@color/color_text"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_driver_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_driver_name"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_driver_name" />
+
+        <ImageView
+            android:id="@+id/aocf_line3"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_et_driver_name" />
+
+        <TextView
+            android:id="@+id/aocf_tv_driver_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_driver_brand"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aocf_line3" />
+
+        <EditText
+            android:id="@+id/aocf_et_driver_brand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            android:textColor="@color/color_text"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_driver_brand"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_driver_brand"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_driver_brand" />
+
+        <ImageView
+            android:id="@+id/aocf_line5"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_et_driver_brand" />
+
+        <TextView
+            android:id="@+id/aocf_tv_driver_plate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_driver_plate"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_line5" />
+
+        <EditText
+            android:id="@+id/aocf_et_driver_plate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            android:textColor="@color/color_text"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_driver_plate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_driver_plate"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_driver_plate" />
+
+        <ImageView
+            android:id="@+id/aocf_line6"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_et_driver_plate" />
+
+        <TextView
+            android:id="@+id/aocf_tv_car_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_car_type"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_line6" />
+
+        <TextView
+            android:id="@+id/aocf_et_car_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="8dp"
+            android:drawableEnd="@drawable/acf_more"
+            android:drawableRight="@drawable/acf_more"
+            android:gravity="center_horizontal"
+            android:textColor="@color/color_text"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_car_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_car_type"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_car_type" />
+
+        <ImageView
+            android:id="@+id/aocf_line7"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_et_car_type" />
+
+        <TextView
+            android:id="@+id/aocf_tv_pick_reservation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_background"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:text="@string/text_pick_reservation"
+            android:textColor="@color/color_text"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aocf_tv_car_type" />
+
+        <TextView
+            android:id="@+id/aocf_tv_pick_station"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_pick_station"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_pick_reservation" />
+
+        <TextView
+            android:id="@+id/aocf_et_pick_station"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="8dp"
+            android:drawableRight="@drawable/acf_more"
+            android:drawableEnd="@drawable/acf_more"
+            android:textColor="@color/color_text"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_pick_station"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_pick_station"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_pick_station" />
+
+        <ImageView
+            android:id="@+id/aocf_line8"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_sub_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_pick_station" />
+
+        <TextView
+            android:id="@+id/aocf_tv_reservation_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_reservation_date"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_line8" />
+
+        <TextView
+            android:id="@+id/aocf_tv_date1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:textColor="@color/color_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_reservation_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_reservation_date"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_reservation_date" />
+
+        <TextView
+            android:id="@+id/aocf_tv_fee_sum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@color/color_sub_background"
+            android:text="@string/text_fee_sum"
+            android:textStyle="bold"
+            android:textColor="@color/color_text"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_reservation_date" />
+
+        <TextView
+            android:id="@+id/aocf_tv_fee_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/text_fee_total"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_fee_sum" />
+
+        <TextView
+            android:id="@+id/aocf_et_fee_total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="right"
+            android:text="$100.00"
+            android:textColor="@color/color_text_shop_price"
+            app:layout_constraintBottom_toBottomOf="@id/aocf_tv_fee_total"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/aocf_tv_fee_total"
+            app:layout_constraintTop_toTopOf="@id/aocf_tv_fee_total" />
+
+        <TextView
+            android:id="@+id/aocf_tv_feedback_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@color/color_sub_background"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            android:text="@string/text_check_feedback_confirm"
+            android:textColor="@color/color_text"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_et_fee_total" />
+
+        <TextView
+            android:id="@+id/aocf_confirm_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_blue_fill"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="6dp"
+            android:text="@string/text_confirm_pay"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aocf_tv_feedback_confirm" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

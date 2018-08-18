@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.AnnualCheckFillInfoActivity;
 import com.littleant.carrepair.activies.AnnualCheckRecordActivity;
+import com.littleant.carrepair.activies.OwnCheckFillInfoActivity;
 import com.littleant.carrepair.activies.PickCarActivity;
 
 public class AnnualCheckFragment extends BaseFragment {
@@ -79,6 +80,8 @@ public class AnnualCheckFragment extends BaseFragment {
                 contentView.findViewById(R.id.lct_tv_own).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), OwnCheckFillInfoActivity.class);
+                        getActivity().startActivity(intent);
                         d.dismiss();
                     }
                 });
