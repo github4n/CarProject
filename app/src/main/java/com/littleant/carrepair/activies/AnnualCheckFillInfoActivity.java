@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,18 +15,23 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.dome.DateActivity;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class AnnualCheckFillInfoActivity extends BaseActivity {
 
     private ConstraintLayout acf_package_layout;
     private RadioButton acf_btn_package_a, acf_btn_package_b;
-    private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station;
+    private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station, acf_tv_date1;
     private String[] carType = new String[]{"汽车1", "汽车2"};
     private String[] stations = new String[]{"站点1", "站点2", "站点3"};
 
@@ -122,6 +128,26 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
                     }
                 });
                 d.show();
+            }
+        });
+
+        acf_tv_date1 = findViewById(R.id.acf_tv_date1);
+        acf_tv_date1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                int year = Calendar.getInstance().get(Calendar.YEAR);
+//                int month = Calendar.getInstance().get(Calendar.MONTH);
+//                int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+//                DatePickerDialog dialog = new DatePickerDialog(AnnualCheckFillInfoActivity.this, 0,new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+//                        // TODO Auto-generated method stub
+//
+//                    }
+//                }, year, month, day);
+//                dialog.show();
+                DateActivity dateActivity = new DateActivity();
+                dateActivity.show(getFragmentManager(), DateActivity.class.getSimpleName());
             }
         });
 

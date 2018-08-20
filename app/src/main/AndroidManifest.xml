@@ -147,7 +147,8 @@
         <activity android:name=".activies.RegisterActivity" />
         <activity android:name=".activies.OwnCheckFillInfoActivity" />
         <activity android:name=".activies.OwnStartCheckActivity" />
-        <activity android:name=".dome.DateActivity"></activity>
+        <activity android:name=".dome.DateActivity" />
+        <activity android:name=".activies.SelectPlaceActivity"></activity>
     </application>
 
 </manifest>
