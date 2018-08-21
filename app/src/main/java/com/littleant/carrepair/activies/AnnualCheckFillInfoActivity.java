@@ -32,6 +32,7 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
     private ConstraintLayout acf_package_layout;
     private RadioButton acf_btn_package_a, acf_btn_package_b;
     private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station, acf_tv_date1;
+    private TextView acf_et_pick_location;
     private String[] carType = new String[]{"汽车1", "汽车2"};
     private String[] stations = new String[]{"站点1", "站点2", "站点3"};
 
@@ -135,22 +136,20 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
         acf_tv_date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int year = Calendar.getInstance().get(Calendar.YEAR);
-//                int month = Calendar.getInstance().get(Calendar.MONTH);
-//                int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-//                DatePickerDialog dialog = new DatePickerDialog(AnnualCheckFillInfoActivity.this, 0,new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-//                        // TODO Auto-generated method stub
-//
-//                    }
-//                }, year, month, day);
-//                dialog.show();
                 DateActivity dateActivity = new DateActivity();
                 dateActivity.show(getFragmentManager(), DateActivity.class.getSimpleName());
             }
         });
 
+        acf_et_pick_location = findViewById(R.id.acf_et_pick_location);
+        acf_et_pick_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AnnualCheckFillInfoActivity.this, SelectPlaceActivity.class);
+                AnnualCheckFillInfoActivity.this.startActivity(intent);
+            }
+        });
+        
     }
 
     private Dialog setDialog(Activity activity, View contentView) {
