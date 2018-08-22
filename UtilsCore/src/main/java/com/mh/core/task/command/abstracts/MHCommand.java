@@ -15,8 +15,7 @@ import java.util.Map;
 public abstract class MHCommand extends MHBaseCommand{
 	
 	private static final long serialVersionUID = 1L;
-	protected Map<String, String> params;
-	
+
 	/**
 	 * getRequest Method
 	 * Method Description :返回值

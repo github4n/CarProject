@@ -7,10 +7,14 @@ import com.littleant.carrepair.request.utils.RequestHelper;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHLogUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class BaseRequestCmd extends MHCommand {
     protected String result;
     protected String requestUrl;
     private Context mContext;
+    Map<String, String> params = new HashMap<>();
 
     protected BaseRequestCmd(Context context){
         this.mContext = context;

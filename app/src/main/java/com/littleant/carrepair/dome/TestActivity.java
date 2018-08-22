@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.littleant.carrepair.R;
@@ -34,6 +35,7 @@ import com.littleant.carrepair.activies.ShoppingActivity;
 import com.littleant.carrepair.activies.ShoppingCarActivity;
 import com.littleant.carrepair.activies.StartCheckActivity;
 import com.littleant.carrepair.activies.UserCenterActivity;
+import com.mh.core.tools.MHLogUtil;
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,6 +43,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+//        MHLogUtil.enableDebug(true);
+//        MHLogUtil.enableInfo(true);
+        MHLogUtil.enableLogLevel(Log.VERBOSE);
 
         findViewById(R.id.login).setOnClickListener(this);
         findViewById(R.id.main).setOnClickListener(this);

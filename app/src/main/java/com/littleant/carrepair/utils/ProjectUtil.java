@@ -13,5 +13,11 @@ public class ProjectUtil {
         return isCorrect;
     }
 
-
+    public static boolean checkPassword(Context context, String password) {
+        boolean isCorrect = true;
+        if(!password.matches("\\w{6,20}")) {
+            isCorrect = false;
+        }
+        return isCorrect;
+    }
 }
