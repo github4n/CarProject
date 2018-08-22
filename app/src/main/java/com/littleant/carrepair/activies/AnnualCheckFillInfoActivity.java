@@ -149,7 +149,7 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
                 AnnualCheckFillInfoActivity.this.startActivity(intent);
             }
         });
-        
+
     }
 
     private Dialog setDialog(Activity activity, View contentView) {

@@ -83,6 +83,8 @@ dependencies {
     implementation 'com.xingliuhua:xlhratingbar_lib:1.0.1'
     implementation 'com.github.fodroid:XRadioGroup:v1.1'
     implementation(name: 'CircleImageView-release', ext: 'aar')
+    implementation project (':SelectPlace')
+    implementation project (':UtilsCore')
 }
 
 def getReleaseTime() {

@@ -4,6 +4,8 @@ import com.mh.core.task.command.MHBaseCommand;
 
 import android.content.DialogInterface.OnCancelListener;
 
+import java.util.Map;
+
 /**
  * Class Description：
  * @author Joe
@@ -13,6 +15,7 @@ import android.content.DialogInterface.OnCancelListener;
 public abstract class MHCommand extends MHBaseCommand{
 	
 	private static final long serialVersionUID = 1L;
+	protected Map<String, String> params;
 	
 	/**
 	 * getRequest Method
