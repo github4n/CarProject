@@ -111,28 +111,6 @@ public class HttpRequestCore{
 		return httpResponse;
 	}
 	
-	/**
-	 * <p>Description: 发送post请求</p>
-	 * @param urlStr 请求地址
-	 * @param data 参数键值
-	 * @return  请求的结果
-	 * @date 2015年10月9日
-	 */
-/*	public String post(String urlStr,Map<String, String> dataMap) {
-		
-		if (TextUtils.isEmpty(urlStr)) {
-			return "";
-		}
-		
-		this.requestUrl = urlStr;
-
-		String postData = MHStringUtil.map2strData(dataMap);
-		MHLogUtil.logD("http request:" + urlStr + "?" + postData);
-		this.sendData = postData;
-		return doReuqestByPost().getResult();
-	
-	}*/
-	
 	public HttpResponse excutePostRequest(String urlStr,Map<String, String> dataMap) {
 		
 		String postData = MHStringUtil.map2strData(dataMap);
@@ -178,7 +156,7 @@ public class HttpRequestCore{
 		if (TextUtils.isEmpty(requestUrl)) {
 			return httpResponse;
 		}
-		checkHttpsUrl(requestUrl);
+//		checkHttpsUrl(requestUrl);
 		HttpURLConnection urlConnection = null;
 		String result = "";
 		try {
@@ -258,37 +236,6 @@ public class HttpRequestCore{
 		os.close();
 	}
 	
-/*	public String readStream1(InputStream inputStream) throws IOException {
-		BufferedInputStream bis = new BufferedInputStream(inputStream);
-		
-		StringBuilder data = new StringBuilder();
-		int offset = 0;
-		byte[] buffer = new byte[2048];
-		while ((offset = bis.read(buffer, 0, buffer.length)) != -1) {
-			String string = new String(buffer, 0, offset,"UTF-8");
-			data.append(string);
-			offset = 0;
-		}
-		bis.close();
-		
-		return data.toString();
-	}*/
-
-	
-/*	readStream1 发现可能是由于我采用字节流从网络读取数据，且每次读取2048个字节，读取完成后能后强制转化为字符串，又因为使用编码为UTF-8，
-	UTF-8是一种变长码（英文1个字节，中文两个字节），
-	所以2048可能会造成刚好截取了某个汉字的一半（前一个字节），然后转化为字符串时造成乱码。
-	于是把读取数据的代码从字节流改成字符流，修改后的代码为readStream:
-	
-	一个char 可以保持一个汉字。 
-	对于字符还可以使用：
-	BufferedReader buff = new BufferedReader(new InputStreamReader(is));
-	String temp = null;
-	StringBuffer sb = new StringBuffer();
-	while( ( temp = buff.readLine()) != null ){
-	sb.append(temp);
-	}
-	*/
 	private String readStream(InputStream inputStream) throws IOException {
 		InputStreamReader isr = new InputStreamReader(inputStream, "UTF-8");
 		StringBuilder data = new StringBuilder();
@@ -318,7 +265,7 @@ public class HttpRequestCore{
 		InputStream is = null;
 		try {
 			MHLogUtil.logD("start down load...");
-			checkHttpsUrl(downLoadFileUrl);
+//			checkHttpsUrl(downLoadFileUrl);
 			MHLogUtil.logD("http request:" + downLoadFileUrl);
 			URL url = new URL(downLoadFileUrl);
 			conn = (HttpURLConnection) url.openConnection();
@@ -382,14 +329,9 @@ public class HttpRequestCore{
 		return false;
 	}
 	
-	/**
-	 * <p>Description: 添加非https 请求地址的判断（之后需要全部改为https）</p>
-	 * @param url
-	 * @date 2016年10月26日
-	 */
-	public static void checkHttpsUrl(String url) {
-		if (!TextUtils.isEmpty(url) && !url.startsWith("https")) {
-			MHLogUtil.logE(TAG, "sdk warming: " + url + " is not https url, please check that is it correct ??");
-		}
-	}
+//	public static void checkHttpsUrl(String url) {
+//		if (!TextUtils.isEmpty(url) && !url.startsWith("https")) {
+//			MHLogUtil.logE(TAG, "sdk warming: " + url + " is not https url, please check that is it correct ??");
+//		}
+//	}
 }

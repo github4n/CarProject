@@ -32,21 +32,7 @@ public class HttpRequest {
 		HttpRequestCore requestCore = new HttpRequestCore();
 		if (dataMap != null) {
 			dataMap = putCommonParams(dataMap);
-		}else{
-			try {//拼接accessToken请求
-				if (accessToken && !TextUtils.isEmpty(MHResConfiguration.getSDKLoginReturnData()) && !urlStr.contains("&accessToken=") && urlStr.contains("?")) {
-					String appendAccessTokenUrl = urlStr + "&accessToken=" + URLEncoder.encode(MHResConfiguration.getSDKLoginReturnData(), "UTF-8");
-					HttpResponse mHttpResponse = requestCore.excuteGetRequest(appendAccessTokenUrl, null);
-					if (mHttpResponse.getHttpResponseCode() == 200 && !TextUtils.isEmpty(mHttpResponse.getResult())) {
-						return mHttpResponse.getResult();
-					}
-				}
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
-		
 		HttpResponse hr = requestCore.excuteGetRequest(urlStr, dataMap);
 		return hr.getResult();
 	}
@@ -101,7 +87,7 @@ public class HttpRequest {
 	 * @date 2015年10月9日
 	 */
 	public static String post(String urlStr,Map<String, String> dataMap) {
-		dataMap = putCommonParams(dataMap);
+//		dataMap = putCommonParams(dataMap);
 		HttpRequestCore requestCore = new HttpRequestCore();
 		HttpResponse hr = requestCore.excutePostRequest(urlStr, dataMap);
 		if (hr != null) {

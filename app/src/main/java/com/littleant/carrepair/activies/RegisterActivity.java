@@ -1,7 +1,6 @@
 package com.littleant.carrepair.activies;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
-import com.littleant.carrepair.request.excute.RegisterCmd;
+import com.littleant.carrepair.request.excute.login.RegisterCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
