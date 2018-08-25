@@ -1,14 +1,13 @@
-package com.littleant.carrepair.request.excute.user.car;
+package com.littleant.carrepair.request.excute.user.address;
 
 import android.content.Context;
 
 import com.littleant.carrepair.request.constant.ParamsConstant;
-import com.littleant.carrepair.request.excute.user.user.BaseUserCmd;
 import com.mh.core.tools.MHLogUtil;
 
-public class CarQueryAllCmd extends BaseUserCmd {
+public class AddressQueryAllCmd extends BaseAddressCmd {
 
-    protected CarQueryAllCmd(Context context, ParamsConstant.QueryType type) {
+    protected AddressQueryAllCmd(Context context, ParamsConstant.QueryType type) {
         super(context);
         switch (type) {
             case NONE:
