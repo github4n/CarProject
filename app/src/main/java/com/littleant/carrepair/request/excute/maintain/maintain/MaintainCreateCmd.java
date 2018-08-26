@@ -23,6 +23,9 @@ public class MaintainCreateCmd extends BaseMaintainCmd {
         params.put(ParamsConstant.CONTENT, content);
         if(picUrls != null && picUrls.length > 0) {
             int size = picUrls.length;
+            for(int i = 0; i < size; i++) {
+                params.put("pic" + i, picUrls[i]);
+            }
         }
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }

@@ -42,10 +42,6 @@ public class InterfaceConstant {
     /**
      * get:查询三级地址信息<br>
      */
-    public static final String USER_ADDRESS_INFO = "api/user/address_info/";
-    /**
-     * get:查询三级地址信息<br>
-     */
     public static final String USER_ADDRESSINFO = "api/user/addressinfo/";
     /**
      * get:查询地址列表信息 / 查询地址信息<br>
@@ -139,7 +135,7 @@ public class InterfaceConstant {
     /**
      * get:保养、维修订单列表信息<br>
      */
-    public static final String MAINTAIN_MAINTAIN_LIST = "api/maintain/list/";
+    public static final String MAINTAIN_LIST = "api/maintain/list/";
 
     //年检部分
     /**

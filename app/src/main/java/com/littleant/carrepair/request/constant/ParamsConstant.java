@@ -89,11 +89,11 @@ public class ParamsConstant {
     //服务（订单）部分
     public static final String STATUS = "status";
     public static final String IS_COMMENT = "is_comment";
-    public static final int SERVICE_ORDER_STATUS_ALL = -1; //商城
-    public static final int SERVICE_ORDER_STATUS_WAIT_PAY = 0; //商城
-    public static final int SERVICE_ORDER_STATUS_WAIT_SEND = 1; //商城
-    public static final int SERVICE_ORDER_STATUS_WAIT_RECEIVE = 2; //商城
-    public static final int SERVICE_ORDER_STATUS_FINISH = 3; //商城
+    public static final int SERVICE_ORDER_STATUS_ALL = -1;
+    public static final int SERVICE_ORDER_STATUS_WAIT_PAY = 0;
+    public static final int SERVICE_ORDER_STATUS_WAIT_SEND = 1;
+    public static final int SERVICE_ORDER_STATUS_WAIT_RECEIVE = 2;
+    public static final int SERVICE_ORDER_STATUS_FINISH = 3;
     public static final String ADDRESS_ID = "address_id";
     public static final String ORDER_CAR_LIST = "order_car_list";
 
@@ -130,9 +130,9 @@ public class ParamsConstant {
 
     //维修（保养）部分
     public static final String FINISH =  "finish";
-    public static final int MAINTAIN_ALL = 0; //商城
-    public static final int MAINTAIN_NOT_FINISH = 1; //商城
-    public static final int MAINTAIN_FINISH = 2; //商城
+    public static final int MAINTAIN_ALL = 0;
+    public static final int MAINTAIN_NOT_FINISH = 1;
+    public static final int MAINTAIN_FINISH = 2;
     public static final String CAR_ID =  "car_id";
     public static final String SUBSCRIBE_TIME =  "subscribe_time";
     public static final String OIL_ID =  "oil_id";
@@ -140,4 +140,51 @@ public class ParamsConstant {
     //维修（维修）部分
     public static final String CONTENT =  "content";
     public static final String NUMBER =  "number";
+
+    //维修（保养、维修订单列表信息）部分
+    public static final String STATE =  "state";
+    public static final int MAINTAIN_LIST_STATUS_ALL = -1;
+    public static final int MAINTAIN_LIST_STATUS_WAIT_PAY = 0;
+    public static final int MAINTAIN_LIST_STATUS_WAIT_SEND = 1;
+    public static final int MAINTAIN_LIST_STATUS_WAIT_RECEIVE = 2;
+    public static final int MAINTAIN_LIST_STATUS_FINISH = 3;
+
+    //年检（订单）部分
+    public static final int SURVEY_ALL = 0;
+    public static final int SURVEY_OT_FINISH = 1;
+    public static final int SURVEY_FINISH = 2;
+    public static final String CAR_NAME =  "car_name";
+    public static final String CAR_BRAND =  "car_brand";
+    public static final String CAR_CODE =  "car_code";
+    public static final String CAR_TYPE =  "car_type";
+    public static final String SURVEYSTATION_ID =  "surveystation_id";
+    public static final String ORDER_LONGITUDE =  "order_longitude";
+    public static final String ORDER_LATITUDE =  "order_latitude";
+    public static final String ORDER_ADDRESS =  "order_address";
+    public static final String IS_SELF =  "is_self";
+    public static final String COMBO_ID =  "combo_id";
+    public static final String COMBOITEM_LIST =  "comboitem_list";
+    /**
+     * 订单状态
+     */
+    public enum SurveyMethodType {
+        //查询费用
+        GET("get"),
+        //支付（自驾代驾）
+        PAY("pay"),
+        //确认还车（代驾）
+        RETURN("return"),
+        //到达年检（自驾）
+        SURVEY("survey");
+
+        String des;
+
+        SurveyMethodType(String s) {
+            this.des = s;
+        }
+
+        public String getDes() {
+            return des;
+        }
+    }
 }
