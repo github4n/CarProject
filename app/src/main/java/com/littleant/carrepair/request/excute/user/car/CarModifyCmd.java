@@ -6,7 +6,7 @@ import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.user.BaseUserCmd;
 import com.mh.core.tools.MHLogUtil;
 
-public class CarModifyCmd extends BaseUserCmd {
+public class CarModifyCmd extends BaseCarCmd {
 
     protected CarModifyCmd(Context context, String id, String brand, String code, String engine, String buyTime, String mile, boolean isDefault, String picUrl) {
         super(context);

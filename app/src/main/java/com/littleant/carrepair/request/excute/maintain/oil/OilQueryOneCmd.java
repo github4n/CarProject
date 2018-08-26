@@ -1,4 +1,4 @@
-package com.littleant.carrepair.request.excute.service.order;
+package com.littleant.carrepair.request.excute.maintain.oil;
 
 import android.content.Context;
 
@@ -7,24 +7,21 @@ import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
-public class OrderMethodCmd extends BaseRequestCmd {
-    protected OrderMethodCmd(Context context, String id, ParamsConstant.MethodStatus type, int score) {
+public class OilQueryOneCmd extends BaseRequestCmd {
+
+    protected OilQueryOneCmd(Context context, String id) {
         super(context);
         params.put(ParamsConstant.ID, id);
-        params.put(ParamsConstant.METHOD, type.getDes());
-        if(type == ParamsConstant.MethodStatus.COMMENT) {
-            params.put(ParamsConstant.ORDER_CAR_LIST, score + "");
-        }
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 
     @Override
     protected String getInterfaceName() {
-        return InterfaceConstant.SERVICE_ORDER_METHOD;
+        return InterfaceConstant.MAINTAIN_OIL;
     }
 
     @Override
     protected RequestMethod getRequestMethod() {
-        return RequestMethod.POST;
+        return RequestMethod.GET;
     }
 }

@@ -1,4 +1,4 @@
-package com.littleant.carrepair.request.excute.service.order;
+package com.littleant.carrepair.request.excute.maintain.upkeep;
 
 import android.content.Context;
 
@@ -7,8 +7,15 @@ import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
-public class OrderMethodCmd extends BaseRequestCmd {
-    protected OrderMethodCmd(Context context, String id, ParamsConstant.MethodStatus type, int score) {
+public class UpkeepMethodCmd extends BaseRequestCmd {
+    /**
+     *
+     * @param context
+     * @param id
+     * @param type 只有付款或评论
+     * @param score
+     */
+    protected UpkeepMethodCmd(Context context, String id, ParamsConstant.MethodStatus type, int score) {
         super(context);
         params.put(ParamsConstant.ID, id);
         params.put(ParamsConstant.METHOD, type.getDes());
@@ -20,7 +27,7 @@ public class OrderMethodCmd extends BaseRequestCmd {
 
     @Override
     protected String getInterfaceName() {
-        return InterfaceConstant.SERVICE_ORDER_METHOD;
+        return InterfaceConstant.MAINTAIN_UPKEEP_METHOD;
     }
 
     @Override

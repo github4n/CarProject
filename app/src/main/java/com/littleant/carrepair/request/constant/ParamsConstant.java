@@ -101,16 +101,16 @@ public class ParamsConstant {
     public static final String METHOD = "method";
     public static final String SCORE = "score";
     /**
-     * 验证码的枚举类型
+     * 订单状态
      */
-    public enum OrderMethodType {
+    public enum MethodStatus {
         PAY("pay"),
         COMMENT("comment"),
         FINISH("finish");
 
         String des;
 
-        OrderMethodType(String s) {
+        MethodStatus(String s) {
             this.des = s;
         }
 
@@ -118,4 +118,26 @@ public class ParamsConstant {
             return des;
         }
     }
+
+    //服务（资讯）部分
+    public static final String NEWS_CATALOG_ID =  "news_catalog_id";
+
+    //维修（汽修厂）部分
+    public static final String ORDERBY =  "orderby";
+    public static final String LONGITUDE =  "longitude";
+    public static final String LATITUDE =  "latitude";
+    public static final String GARAGE_ID =  "garage_id";
+
+    //维修（保养）部分
+    public static final String FINISH =  "finish";
+    public static final int MAINTAIN_ALL = 0; //商城
+    public static final int MAINTAIN_NOT_FINISH = 1; //商城
+    public static final int MAINTAIN_FINISH = 2; //商城
+    public static final String CAR_ID =  "car_id";
+    public static final String SUBSCRIBE_TIME =  "subscribe_time";
+    public static final String OIL_ID =  "oil_id";
+
+    //维修（维修）部分
+    public static final String CONTENT =  "content";
+    public static final String NUMBER =  "number";
 }

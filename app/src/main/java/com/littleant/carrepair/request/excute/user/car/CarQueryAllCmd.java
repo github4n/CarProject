@@ -6,7 +6,7 @@ import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.user.BaseUserCmd;
 import com.mh.core.tools.MHLogUtil;
 
-public class CarQueryAllCmd extends BaseUserCmd {
+public class CarQueryAllCmd extends BaseCarCmd {
 
     protected CarQueryAllCmd(Context context, ParamsConstant.QueryType type) {
         super(context);
