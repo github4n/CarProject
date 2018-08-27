@@ -28,7 +28,7 @@ public abstract class BaseRequestCmd extends MHCommand {
 
     protected BaseRequestCmd(Context context){
         this.mContext = context;
-        user_id = DataHelper.getUserId(context);
+        user_id = DataHelper.getUserId(context) + "";
         timestamp = System.currentTimeMillis() + "";
         token = DataHelper.getToken(context);
         sign = TextUtils.isEmpty(token) ? "" : MHStringUtil.toMd5(token + timestamp, false);

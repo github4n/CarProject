@@ -3,15 +3,16 @@ package com.littleant.carrepair.request.utils;
 import android.content.Context;
 
 import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.mh.core.cipher.MHCipher;
 import com.mh.core.db.MHDatabase;
 
 public class DataHelper {
     //保存、获取UserId
-    public static void saveUserId(Context context, String userId) {
+    public static void saveUserId(Context context, int userId) {
         MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, ParamsConstant.USER_ID, userId);
     }
-    public static String getUserId(Context context) {
-        return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, ParamsConstant.USER_ID);
+    public static int getUserId(Context context) {
+        return MHDatabase.getSimpleInteger(context, MHDatabase.MH_FILE, ParamsConstant.USER_ID);
     }
 
     //保存、获取token
@@ -28,6 +29,22 @@ public class DataHelper {
     }
     public static String getExpire(Context context) {
         return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, ParamsConstant.EXPIRE);
+    }
+
+    //保存、获取phone
+    public static void savePhone(Context context, String expire) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, ParamsConstant.PHONE, expire);
+    }
+    public static String getPhone(Context context) {
+        return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, ParamsConstant.PHONE);
+    }
+
+    //保存、获取password
+    public static void savePassword(Context context, String expire) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, ParamsConstant.PASSWORD, MHCipher.encryptMHData(expire));
+    }
+    public static String getPassword(Context context) {
+        return MHCipher.decryptMHData(MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, ParamsConstant.PASSWORD));
     }
 
 }

@@ -7,7 +7,6 @@ public class BaseResponseBean {
 	private String code = "";
 	private String msg = "";
 	private JSONObject data;
-	private String rawResponse = "";//原始数据
 
 	public String getCode() {
 		return code;
@@ -33,21 +32,12 @@ public class BaseResponseBean {
 		this.data = data;
 	}
 
-	public String getRawResponse() {
-		return rawResponse;
-	}
-
-	public void setRawResponse(String rawResponse) {
-		this.rawResponse = rawResponse;
-	}
-
 	@Override
 	public String toString() {
 		return "BaseResponseBean{" +
 				"code='" + code + '\'' +
 				", msg='" + msg + '\'' +
 				", data='" + data + '\'' +
-				", rawResponse='" + rawResponse + '\'' +
 				'}';
 	}
 }

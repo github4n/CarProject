@@ -12,6 +12,7 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.login.MessageCmd;
 import com.littleant.carrepair.request.excute.login.RegisterCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
@@ -63,6 +64,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         phone = ar_et_phone.getText().toString();
         password = ar_et_new_password.getText().toString();
+        authCode = ar_et_auth.getText().toString();
         switch (v.getId()) {
             case R.id.ar_btn_save:
                 if (!ProjectUtil.checkPhone(mContext, phone)) {
@@ -84,6 +86,15 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     public void cmdCallBack(MHCommand command) {
                         if (command != null) {
                             Log.i("register response", command.getResponse());
+                            BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
+                                DataHelper.savePhone(mContext, phone);
+                                DataHelper.savePassword(mContext, password);
+                                RegisterActivity.this.setResult(100);
+                                RegisterActivity.this.finish();
+                            }
+                        } else {
+                            MHToast.showS(mContext, R.string.request_fail);
                         }
                     }
                 });
@@ -107,6 +118,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                     MHToast.showS(mContext, R.string.get_auth_code_fail);
                                 }
                             }
+                        } else {
+                            MHToast.showS(mContext, R.string.request_fail);
                         }
                     }
                 });
