@@ -54,9 +54,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-
-//        auth = findViewById(R.id.auth);
-//        auth.setOnClickListener(this);
     }
 
     @Override
@@ -72,9 +69,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 LoginActivity.this.finish();
                 break;
 
-//            case R.id.auth:
-//                Toast.makeText(this, "点击获取验证码按钮", Toast.LENGTH_SHORT).show();
-//                break;
         }
     }
 }

@@ -9,10 +9,10 @@ import com.mh.core.tools.MHLogUtil;
 
 public class MessageCmd extends BaseRequestCmd {
 
-    public MessageCmd(Context context, String phone, String type) {
+    public MessageCmd(Context context, String phone, ParamsConstant.MessageType type) {
         super(context);
         params.put(ParamsConstant.PHONE, phone);
-        params.put(ParamsConstant.TYPE, type);
+        params.put(ParamsConstant.TYPE, type.getDes());
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 

@@ -23,7 +23,7 @@ android {
 
 dependencies {
     implementation 'com.android.support:support-v4:25.0.0'
-    implementation files('libs/gson-2.6.1.jar')
+    compileOnly files('libs/gson-2.6.1.jar')
 //    compile project(':google:google-play-service-src')
 //    compile 'com.google.android.gms:play-services-plus:9.2.0'
 //    compile 'com.google.android.gms:play-services-auth:9.2.0'

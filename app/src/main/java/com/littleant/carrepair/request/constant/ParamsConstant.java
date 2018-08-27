@@ -15,6 +15,11 @@ public class ParamsConstant {
     public static final String PIC = "pic";
     public static final String IS_DEFAULT = "is_default";
     public static final String TYPE = "type";
+    public static final String REAPONSE_CODE_SUCCESS = "100";
+    public static final String REAPONSE_CODE_FAIL = "200";
+    public static final String REAPONSE_CODE_AUTH_FAIL = "300";
+    public static final String REAPONSE_CODE_NO_FUNC = "999";
+
     /**
      * 查询的公用类型
      */

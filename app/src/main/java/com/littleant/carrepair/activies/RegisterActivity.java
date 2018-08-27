@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.login.MessageCmd;
 import com.littleant.carrepair.request.excute.login.RegisterCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -15,10 +18,17 @@ import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     private EditText ar_et_phone, ar_et_auth, ar_et_new_password, ar_et_confirm_password;
+    /**
+     * 获取验证码
+     */
     private TextView ar_auth;
+    /**
+     * 注册按钮
+     */
     private Button ar_btn_save;
+    private String authCode, phone, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,39 +43,10 @@ public class RegisterActivity extends BaseActivity {
         ar_et_confirm_password = findViewById(R.id.ar_et_confirm_password);
 
         ar_auth = findViewById(R.id.ar_auth);
+        ar_auth.setOnClickListener(this);
 
         ar_btn_save = findViewById(R.id.ar_btn_save);
-        ar_btn_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String phone = ar_et_phone.getText().toString();
-                if(!ProjectUtil.checkPhone(mContext, phone)) {
-                    MHToast.showS(mContext, R.string.phone_wrong);
-                    return;
-                }
-                String password = ar_et_new_password.getText().toString();
-                String confirmPassword = ar_et_confirm_password.getText().toString();
-                if(!password.equals(confirmPassword)) {
-                    MHToast.showS(mContext, R.string.password_different);
-                    return;
-                }
-                if(!ProjectUtil.checkPassword(mContext, password)) {
-                    MHToast.showS(mContext, R.string.password_wrong);
-                    return;
-                }
-                RegisterCmd registerCmd = new RegisterCmd(mContext, phone, password);
-                registerCmd.setCommandMsg(mContext.getResources().getString(R.string.hint_waiting));
-                registerCmd.setCallback(new MHCommandCallBack() {
-                    @Override
-                    public void cmdCallBack(MHCommand command) {
-                        if(command != null) {
-                            Log.i("register response", command.getResponse());
-                        }
-                    }
-                });
-                MHCommandExecute.getInstance().asynExecute(mContext, registerCmd);
-            }
-        });
+        ar_btn_save.setOnClickListener(this);
     }
 
     @Override
@@ -76,5 +57,61 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
         return 0;
+    }
+
+    @Override
+    public void onClick(View v) {
+        phone = ar_et_phone.getText().toString();
+        password = ar_et_new_password.getText().toString();
+        switch (v.getId()) {
+            case R.id.ar_btn_save:
+                if (!ProjectUtil.checkPhone(mContext, phone)) {
+                    MHToast.showS(mContext, R.string.phone_wrong);
+                    return;
+                }
+                String confirmPassword = ar_et_confirm_password.getText().toString();
+                if (!password.equals(confirmPassword)) {
+                    MHToast.showS(mContext, R.string.password_different);
+                    return;
+                }
+                if (!ProjectUtil.checkPassword(mContext, password)) {
+                    MHToast.showS(mContext, R.string.password_wrong);
+                    return;
+                }
+                RegisterCmd registerCmd = new RegisterCmd(mContext, phone, password, authCode);
+                registerCmd.setCallback(new MHCommandCallBack() {
+                    @Override
+                    public void cmdCallBack(MHCommand command) {
+                        if (command != null) {
+                            Log.i("register response", command.getResponse());
+                        }
+                    }
+                });
+                MHCommandExecute.getInstance().asynExecute(mContext, registerCmd);
+                break;
+
+            case R.id.ar_auth:
+                if (!ProjectUtil.checkPhone(mContext, phone)) {
+                    MHToast.showS(mContext, R.string.phone_wrong);
+                    return;
+                }
+                MessageCmd messageCmd = new MessageCmd(this, phone, ParamsConstant.MessageType.REGISTER);
+                messageCmd.setCallback(new MHCommandCallBack() {
+                    @Override
+                    public void cmdCallBack(MHCommand command) {
+                        if (command != null) {
+                            BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                            if(responseBean != null) {
+                                Log.i("register response", responseBean.getMsg());
+                                if(!ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
+                                    MHToast.showS(mContext, R.string.get_auth_code_fail);
+                                }
+                            }
+                        }
+                    }
+                });
+                MHCommandExecute.getInstance().asynExecute(mContext, messageCmd);
+                break;
+        }
     }
 }

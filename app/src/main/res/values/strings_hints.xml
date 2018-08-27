@@ -6,4 +6,5 @@
     <string name="phone_wrong" translatable="false">手机号格式错误</string>
     <string name="password_different" translatable="false">两次输入的密码不一样</string>
     <string name="password_wrong" translatable="false">密码格式错误</string>
+    <string name="get_auth_code_fail" translatable="false">获取验证码失败，请稍后再试</string>
 </resources>

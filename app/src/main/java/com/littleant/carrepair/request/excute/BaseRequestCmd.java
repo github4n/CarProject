@@ -3,11 +3,14 @@ package com.littleant.carrepair.request.excute;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.constant.InterfaceConstant;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.request.utils.RequestHelper;
+import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.db.MHDatabase;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHLogUtil;
@@ -35,6 +38,8 @@ public abstract class BaseRequestCmd extends MHCommand {
         params.put(ParamsConstant.SIGN, sign);
         params.put(ParamsConstant.VERSION, ParamsConstant.API_VERSION);
         params.put(ParamsConstant.SYSTEM, ParamsConstant.SYSTEM_ANDROID);
+
+        this.setCommandMsg(mContext.getResources().getString(R.string.hint_waiting));
     }
 
     @Override
