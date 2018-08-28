@@ -8,7 +8,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class OrderCarModifyCmd extends BaseOrderCarCmd {
 
-    protected OrderCarModifyCmd(Context context, String id, int amount) {
+    public OrderCarModifyCmd(Context context, String id, int amount) {
         super(context);
         params.put(ParamsConstant.ID, id);
         params.put(ParamsConstant.AMOUNT, amount + "");

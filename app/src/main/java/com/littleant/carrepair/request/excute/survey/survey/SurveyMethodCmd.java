@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class SurveyMethodCmd extends BaseRequestCmd {
-    protected SurveyMethodCmd(Context context, String id, ParamsConstant.SurveyMethodType method, String longitude, String latitude,
+    public SurveyMethodCmd(Context context, String id, ParamsConstant.SurveyMethodType method, String longitude, String latitude,
                               int surveystation_id, int combo_id, String comboitem_list) {
         super(context);
         params.put(ParamsConstant.ID, id);

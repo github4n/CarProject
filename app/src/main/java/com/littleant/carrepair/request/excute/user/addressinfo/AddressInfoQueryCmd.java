@@ -6,7 +6,7 @@ import com.littleant.carrepair.request.constant.InterfaceConstant;
 import com.littleant.carrepair.request.excute.BaseRequestCmd;
 
 public class AddressInfoQueryCmd extends BaseRequestCmd {
-    protected AddressInfoQueryCmd(Context context) {
+    public AddressInfoQueryCmd(Context context) {
         super(context);
     }
 

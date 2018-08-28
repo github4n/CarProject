@@ -9,7 +9,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class OilQueryOneCmd extends BaseRequestCmd {
 
-    protected OilQueryOneCmd(Context context, String id) {
+    public OilQueryOneCmd(Context context, String id) {
         super(context);
         params.put(ParamsConstant.ID, id);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

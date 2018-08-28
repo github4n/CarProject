@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.service.ordercar.BaseOrderCarCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class RuleQueryAllCmd extends BaseRequestCmd {
-    protected RuleQueryAllCmd(Context context) {
+    public RuleQueryAllCmd(Context context) {
         super(context);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }

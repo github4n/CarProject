@@ -8,7 +8,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class CarModifyCmd extends BaseCarCmd {
 
-    protected CarModifyCmd(Context context, String id, String brand, String code, String engine, String buyTime, String mile, boolean isDefault, String picUrl) {
+    public CarModifyCmd(Context context, String id, String brand, String code, String engine, String buyTime, String mile, boolean isDefault, String picUrl) {
         super(context);
         params.put(ParamsConstant.ID, id);
         params.put(ParamsConstant.BRAND, brand);

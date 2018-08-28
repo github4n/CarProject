@@ -10,7 +10,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class OrderQueryOneCmd extends BaseRequestCmd {
 
-    protected OrderQueryOneCmd(Context context, String id) {
+    public OrderQueryOneCmd(Context context, String id) {
         super(context);
         params.put(ParamsConstant.ID, id);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

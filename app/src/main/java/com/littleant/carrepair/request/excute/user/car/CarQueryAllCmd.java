@@ -8,7 +8,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class CarQueryAllCmd extends BaseCarCmd {
 
-    protected CarQueryAllCmd(Context context, ParamsConstant.QueryType type) {
+    public CarQueryAllCmd(Context context, ParamsConstant.QueryType type) {
         super(context);
         switch (type) {
             case NONE:

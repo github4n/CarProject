@@ -6,7 +6,7 @@ import com.littleant.carrepair.request.constant.InterfaceConstant;
 import com.littleant.carrepair.request.excute.BaseRequestCmd;
 
 public class SurveyImgCmd extends BaseRequestCmd {
-    protected SurveyImgCmd(Context context) {
+    public SurveyImgCmd(Context context) {
         super(context);
     }
 

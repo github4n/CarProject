@@ -7,7 +7,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class AddressQueryAllCmd extends BaseAddressCmd {
 
-    protected AddressQueryAllCmd(Context context, ParamsConstant.QueryType type) {
+    public AddressQueryAllCmd(Context context, ParamsConstant.QueryType type) {
         super(context);
         switch (type) {
             case NONE:

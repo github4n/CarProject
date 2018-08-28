@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class OilQueryAllCmd extends BaseRequestCmd {
-    protected OilQueryAllCmd(Context context, String garage_id) {
+    public OilQueryAllCmd(Context context, String garage_id) {
         super(context);
         params.put(ParamsConstant.GARAGE_ID, garage_id);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

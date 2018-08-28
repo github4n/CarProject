@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class GarageQueryAllCmd extends BaseRequestCmd {
-    protected GarageQueryAllCmd(Context context, String name, String orderby, String longitude, String latitude) {
+    public GarageQueryAllCmd(Context context, String name, String orderby, String longitude, String latitude) {
         super(context);
         params.put(ParamsConstant.NAME, name);
         params.put(ParamsConstant.ORDERBY, orderby);

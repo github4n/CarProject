@@ -7,7 +7,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class NewsInfoQueryAllCmd extends BaseRequestCmd {
-    protected NewsInfoQueryAllCmd(Context context) {
+    public NewsInfoQueryAllCmd(Context context) {
         super(context);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }

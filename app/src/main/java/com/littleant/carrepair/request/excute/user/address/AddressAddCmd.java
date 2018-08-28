@@ -8,7 +8,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class AddressAddCmd extends BaseAddressCmd {
 
-    protected AddressAddCmd(Context context, String name, String phone, String node1, String node2, String node3, String address, boolean isDefault) {
+    public AddressAddCmd(Context context, String name, String phone, String node1, String node2, String node3, String address, boolean isDefault) {
         super(context);
         params.put(ParamsConstant.NAME, name);
         params.put(ParamsConstant.PHONE, phone);

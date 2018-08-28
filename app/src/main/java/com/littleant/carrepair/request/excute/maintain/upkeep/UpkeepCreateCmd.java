@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class UpkeepCreateCmd extends BaseUpkeepCmd {
-    protected UpkeepCreateCmd(Context context, int garage_id, int car_id, String name, String phone, String subscribe_time, String longitude, String latitude, String address, int oil_id) {
+    public UpkeepCreateCmd(Context context, int garage_id, int car_id, String name, String phone, String subscribe_time, String longitude, String latitude, String address, int oil_id) {
         super(context);
         params.put(ParamsConstant.GARAGE_ID, garage_id + "");
         params.put(ParamsConstant.CAR_ID, car_id + "");

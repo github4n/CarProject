@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class SurveyCreateCmd extends BaseRequestCmd {
-    protected SurveyCreateCmd(Context context, String name, String phone, String car_name, String car_brand, String car_code,
+    public SurveyCreateCmd(Context context, String name, String phone, String car_name, String car_brand, String car_code,
                               String car_type, int surveystation_id, String order_longitude, String order_latitude,
                               String order_address, String subscribe_time, String is_self, int combo_id, String comboitem_list) {
         super(context);

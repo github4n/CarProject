@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class OrderQueryAllCmd extends BaseRequestCmd {
-    protected OrderQueryAllCmd(Context context, int status, boolean is_comment) {
+    public OrderQueryAllCmd(Context context, int status, boolean is_comment) {
         super(context);
         params.put(ParamsConstant.STATUS, status + "");
         params.put(ParamsConstant.IS_COMMENT, is_comment + "");

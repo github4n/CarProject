@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class ProductQueryAllCmd extends BaseRequestCmd {
-    protected ProductQueryAllCmd(Context context, int catalog_id, int price_order, int sale_order) {
+    public ProductQueryAllCmd(Context context, int catalog_id, int price_order, int sale_order) {
         super(context);
         params.put(ParamsConstant.CATALOG_ID, catalog_id + "");
         params.put(ParamsConstant.PRICE_ORDER, price_order + "");

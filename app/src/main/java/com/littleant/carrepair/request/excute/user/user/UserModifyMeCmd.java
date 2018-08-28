@@ -7,7 +7,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class UserModifyMeCmd extends BaseUserCmd {
 
-    protected UserModifyMeCmd(Context context, String phone, String name, String picUrl) {
+    public UserModifyMeCmd(Context context, String phone, String name, String picUrl) {
         super(context);
         params.put(ParamsConstant.ID, user_id);
         params.put(ParamsConstant.PHONE, phone);

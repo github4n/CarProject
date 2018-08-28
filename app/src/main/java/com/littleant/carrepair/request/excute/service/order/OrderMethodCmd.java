@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class OrderMethodCmd extends BaseRequestCmd {
-    protected OrderMethodCmd(Context context, String id, ParamsConstant.MethodStatus type, int score) {
+    public OrderMethodCmd(Context context, String id, ParamsConstant.MethodStatus type, int score) {
         super(context);
         params.put(ParamsConstant.ID, id);
         params.put(ParamsConstant.METHOD, type.getDes());

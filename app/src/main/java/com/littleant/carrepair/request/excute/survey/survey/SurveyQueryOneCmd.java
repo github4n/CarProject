@@ -9,7 +9,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class SurveyQueryOneCmd extends BaseRequestCmd {
 
-    protected SurveyQueryOneCmd(Context context, String id) {
+    public SurveyQueryOneCmd(Context context, String id) {
         super(context);
         params.put(ParamsConstant.ID, id);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

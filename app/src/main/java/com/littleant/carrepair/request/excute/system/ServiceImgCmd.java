@@ -6,7 +6,7 @@ import com.littleant.carrepair.request.constant.InterfaceConstant;
 import com.littleant.carrepair.request.excute.BaseRequestCmd;
 
 public class ServiceImgCmd extends BaseRequestCmd {
-    protected ServiceImgCmd(Context context) {
+    public ServiceImgCmd(Context context) {
         super(context);
     }
 

@@ -7,7 +7,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class UserMeCmd extends BaseUserCmd {
 
-    protected UserMeCmd(Context context) {
+    public UserMeCmd(Context context) {
         super(context);
         params.put(ParamsConstant.ID, user_id);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

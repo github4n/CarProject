@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class OrderCreateCmd extends BaseRequestCmd {
-    protected OrderCreateCmd(Context context, int address_id, String order_car_list) {
+    public OrderCreateCmd(Context context, int address_id, String order_car_list) {
         super(context);
         params.put(ParamsConstant.ADDRESS_ID, address_id + "");
         params.put(ParamsConstant.ORDER_CAR_LIST, order_car_list + "");

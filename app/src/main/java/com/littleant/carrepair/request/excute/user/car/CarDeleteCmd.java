@@ -10,7 +10,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class CarDeleteCmd extends BaseRequestCmd {
 
-    protected CarDeleteCmd(Context context, String id) {
+    public CarDeleteCmd(Context context, String id) {
         super(context);
         params.put(ParamsConstant.ID, id);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

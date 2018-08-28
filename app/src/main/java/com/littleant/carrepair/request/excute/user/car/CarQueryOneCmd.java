@@ -8,7 +8,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class CarQueryOneCmd extends BaseCarCmd {
 
-    protected CarQueryOneCmd(Context context, String id) {
+    public CarQueryOneCmd(Context context, String id) {
         super(context);
         params.put(ParamsConstant.ID, id);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

@@ -7,7 +7,7 @@ import com.littleant.carrepair.request.excute.maintain.upkeep.BaseUpkeepCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class MaintainQueryAllCmd extends BaseMaintainCmd {
-    protected MaintainQueryAllCmd(Context context, int finish) {
+    public MaintainQueryAllCmd(Context context, int finish) {
         super(context);
         params.put(ParamsConstant.FINISH, finish + "");
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

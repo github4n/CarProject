@@ -15,7 +15,7 @@ public class UpkeepMethodCmd extends BaseRequestCmd {
      * @param type 只有付款或评论
      * @param score
      */
-    protected UpkeepMethodCmd(Context context, String id, ParamsConstant.MethodStatus type, int score) {
+    public UpkeepMethodCmd(Context context, String id, ParamsConstant.MethodStatus type, int score) {
         super(context);
         params.put(ParamsConstant.ID, id);
         params.put(ParamsConstant.METHOD, type.getDes());

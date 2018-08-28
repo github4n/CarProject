@@ -2,6 +2,7 @@ package com.littleant.carrepair.activies;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +28,7 @@ import com.littleant.carrepair.fragment.BaseFragment;
 import com.littleant.carrepair.fragment.MainFragment;
 import com.littleant.carrepair.fragment.ServiceFragment;
 import com.littleant.carrepair.fragment.UserCenterFragment;
+import com.littleant.carrepair.request.excute.service.rule.RuleQueryAllCmd;
 
 /**
  * 主页
@@ -37,12 +40,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     private static final int permission_request_code = 10;
     private RadioGroup radioGroup;
     private RadioButton mainBtn, annaulCheckBtn, serviceBtn, userCenterBtn;
+    private Context mContext;
+    private RecyclerView mList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mContext = this;
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, permission_request_code);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -50,6 +55,28 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         transaction.add(R.id.main_fragment, new MainFragment(), MainFragment.class.getSimpleName());
         transaction.commit();
 
+        init();
+
+        requestViolation();
+
+        final Dialog d = new Dialog(MainActivity.this);
+        View contentView = View.inflate(MainActivity.this, R.layout.layout_violation, null);
+//                        d.setContentView(R.layout.layout_point);
+        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
+        int dialogWidth = (int) (dm.widthPixels * 0.8);
+        int dialogHeight = (int) (dm.heightPixels * 0.3);
+        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+        contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+            }
+        });
+        d.show();
+
+    }
+
+    private void init() {
         radioGroup = findViewById(R.id.linearLayout);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -84,21 +111,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
             }
         });
 
-        final Dialog d = new Dialog(MainActivity.this);
-        View contentView = View.inflate(MainActivity.this, R.layout.layout_violation, null);
-//                        d.setContentView(R.layout.layout_point);
-        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
-        int dialogWidth = (int) (dm.widthPixels * 0.8);
-        int dialogHeight = (int) (dm.heightPixels * 0.3);
-        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
-        contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                d.dismiss();
-            }
-        });
-        d.show();
+    }
 
+    private void requestViolation() {
+        RuleQueryAllCmd ruleQueryAllCmd = new RuleQueryAllCmd(this);
     }
 
     @Override

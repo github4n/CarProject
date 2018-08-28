@@ -8,7 +8,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class SurveyStationQueryAllCmd extends BaseRequestCmd {
-    protected SurveyStationQueryAllCmd(Context context) {
+    public SurveyStationQueryAllCmd(Context context) {
         super(context);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
