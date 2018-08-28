@@ -87,7 +87,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         if (command != null) {
                             Log.i("register response", command.getResponse());
                             BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
+                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+//                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
                                 DataHelper.savePhone(mContext, phone);
                                 DataHelper.savePassword(mContext, password);
                                 RegisterActivity.this.setResult(100);
@@ -114,7 +115,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                             BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                             if(responseBean != null) {
                                 Log.i("register response", responseBean.getMsg());
-                                if(!ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
+                                if(ParamsConstant.REAPONSE_CODE_SUCCESS != responseBean.getCode()) {
+//                                if(!ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
                                     MHToast.showS(mContext, R.string.get_auth_code_fail);
                                 }
                             }

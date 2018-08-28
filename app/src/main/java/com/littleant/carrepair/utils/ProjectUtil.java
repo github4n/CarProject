@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.LoginBean;
 import com.mh.core.tools.MHLogUtil;
 
 public class ProjectUtil {
@@ -26,12 +27,21 @@ public class ProjectUtil {
     }
 
     public static BaseResponseBean getBaseResponseBean(String result) {
-        BaseResponseBean responseBean = new Gson().fromJson(result, BaseResponseBean.class);
-        if(responseBean != null) {
-            String msg = responseBean.getMsg();
-            responseBean.setMsg(ProjectUtil.decodeUnicode(msg));
+        BaseResponseBean t = new Gson().fromJson(result, BaseResponseBean.class);
+        if(t != null) {
+            String msg = t.getMsg();
+            t.setMsg(ProjectUtil.decodeUnicode(msg));
         }
-        return responseBean;
+        return t;
+    }
+
+    public static<T> T getBaseResponseBean(String result, Class<T> tClass) {
+        T t = new Gson().fromJson(result, tClass);
+        if(t != null) {
+            String msg = ((BaseResponseBean) t).getMsg();
+            ((BaseResponseBean) t).setMsg(ProjectUtil.decodeUnicode(msg));
+        }
+        return t;
     }
 
     public static String decodeUnicode(String theString) {

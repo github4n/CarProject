@@ -105,15 +105,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void cmdCallBack(MHCommand command) {
                         if (command != null) {
                             Log.i("register response", command.getResponse());
-                            BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
-                                LoginBean loginBean = new Gson().fromJson(responseBean.getData().toString(), LoginBean.class);
-                                int uid = loginBean.getUser_id();
-                                String token = loginBean.getToken();
-                                String expire = loginBean.getExpire();
+                            LoginBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), LoginBean.class);
+                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+//                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
+//                                LoginBean loginBean = new Gson().fromJson(responseBean.getData().toString(), LoginBean.class);
+                                int uid = responseBean.getData().getUser_id();
+                                String token = responseBean.getData().getToken();
+                                String expire = responseBean.getData().getExpire();
                                 DataHelper.saveUserId(mContext, uid);
                                 DataHelper.saveToken(mContext, token);
                                 DataHelper.saveExpire(mContext, expire);
+                                DataHelper.savePhone(mContext, phone);
+                                DataHelper.savePassword(mContext, password);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                LoginActivity.this.startActivity(intent);
+                                LoginActivity.this.finish();
                             } else {
                                 MHToast.showS(mContext, R.string.login_fail);
                             }
@@ -123,9 +129,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
                 MHCommandExecute.getInstance().asynExecute(mContext, loginCmd);
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                LoginActivity.this.startActivity(intent);
-                LoginActivity.this.finish();
                 break;
 
         }

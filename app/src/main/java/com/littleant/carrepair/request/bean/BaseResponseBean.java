@@ -1,22 +1,28 @@
 package com.littleant.carrepair.request.bean;
 
-import org.json.JSONObject;
+import java.lang.reflect.Field;
 
 public class BaseResponseBean {
 	
-	private String code = "";
-	private String msg = "";
-	private JSONObject data;
+	protected int code;
+	protected String msg = "";
 
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
+//	public String getCode() {
+//        return code;
+//    }
+//
+//    public void setCode(String code) {
+//        this.code = code;
+//    }
 
-	public String getMsg() {
+    public String getMsg() {
 		return msg;
 	}
 
@@ -24,20 +30,32 @@ public class BaseResponseBean {
 		this.msg = msg;
 	}
 
-	public JSONObject getData() {
-		return data;
-	}
-
-	public void setData(JSONObject data) {
-		this.data = data;
-	}
-
 	@Override
 	public String toString() {
-		return "BaseResponseBean{" +
-				"code='" + code + '\'' +
-				", msg='" + msg + '\'' +
-				", data='" + data + '\'' +
-				'}';
+		Class c = this.getClass();
+		StringBuilder sb = new StringBuilder();
+		while (c != null && c != BaseResponseBean.class.getSuperclass()) {
+			Field fields[] = c.getDeclaredFields();
+
+			for (int i = 0; i < fields.length; i++) {
+				try {
+					fields[i].setAccessible(true);
+					String name = fields[i].getName();
+					if (name.equals("serialVersionUID")) {
+						continue;
+					}
+					Object value = fields[i].get(this);
+					sb.append(name + "=" + value + ",");
+					//EfunLogUtil.logD("efun", name + "=" + value);
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+
+			c = c.getSuperclass();
+		}
+		return sb.toString();
 	}
 }
