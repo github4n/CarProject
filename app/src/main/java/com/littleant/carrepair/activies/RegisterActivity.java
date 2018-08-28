@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -126,6 +127,26 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     }
                 });
                 MHCommandExecute.getInstance().asynExecute(mContext, messageCmd);
+                ar_auth.setClickable(false);
+                CountDownTimer timer = new CountDownTimer(1000 * 60, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        // 每秒刷新提示
+                        int i = (int) (millisUntilFinished / 1000);
+                        ar_auth.setText(i + "s");
+                        ar_auth.setTextColor(mContext.getResources().getColor(R.color.color_sub_line));
+                        ar_auth.setBackgroundResource(R.drawable.shape_gray);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ar_auth.setClickable(true);
+                        ar_auth.setText(R.string.login_request_auth_number);
+                        ar_auth.setTextColor(mContext.getResources().getColor(R.color.color_main));
+                        ar_auth.setBackgroundResource(R.drawable.shape_blue);
+                    }
+                };
+                timer.start();
                 break;
         }
     }

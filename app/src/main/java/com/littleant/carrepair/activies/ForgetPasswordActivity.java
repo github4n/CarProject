@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,9 @@ import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ForgetPasswordActivity extends BaseActivity implements View.OnClickListener {
     private EditText afp_et_phone, afp_et_auth, afp_et_new_password, afp_et_confirm_password;
@@ -93,6 +97,26 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
                     }
                 });
                 MHCommandExecute.getInstance().asynExecute(mContext, messageCmd);
+                afp_auth.setClickable(false);
+                CountDownTimer timer = new CountDownTimer(1000 * 60, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        // 每秒刷新提示
+                        int i = (int) (millisUntilFinished / 1000);
+                        afp_auth.setText(i + "s");
+                        afp_auth.setBackgroundResource(R.drawable.shape_gray);
+                        afp_auth.setTextColor(mContext.getResources().getColor(R.color.color_sub_line));
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        afp_auth.setClickable(true);
+                        afp_auth.setText(R.string.login_request_auth_number);
+                        afp_auth.setTextColor(mContext.getResources().getColor(R.color.color_main));
+                        afp_auth.setBackgroundResource(R.drawable.shape_blue);
+                    }
+                };
+                timer.start();
                 break;
 
             case R.id.afp_btn_save:
