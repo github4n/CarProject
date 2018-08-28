@@ -2,10 +2,12 @@ package com.littleant.carrepair.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,7 @@ import com.littleant.carrepair.activies.SearchActivity;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements AMap.OnMyLocationChangeListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -95,6 +97,9 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
+        mMapView = view.findViewById(R.id.m_map);
+        mMapView.onCreate(savedInstanceState);// 此方法必须重写
+
         mRepair = view.findViewById(R.id.m_repair);
         mMaintain = view.findViewById(R.id.m_maintain);
 
@@ -130,20 +135,21 @@ public class MainFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mMapView = getView().findViewById(R.id.m_map);
-        mMapView.onCreate(savedInstanceState);// 此方法必须重写
         aMap = mMapView.getMap();
         MyLocationStyle myLocationStyle;
         myLocationStyle = new MyLocationStyle();
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);
+        myLocationStyle.interval(1000 * 60);
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_MAP_ROTATE);//连续定位、且将视角移动到地图中心点，地图依照设备方向旋转，定位点会跟随设备移动。（1秒1次定位）
         aMap.setMyLocationStyle(myLocationStyle);
         aMap.setMyLocationEnabled(true);
+        aMap.setOnMyLocationChangeListener(this);
 
         UiSettings uiSettings = aMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(false);
@@ -171,6 +177,11 @@ public class MainFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onMyLocationChange(Location location) {
+        Log.i("CarProject", "onMyLocationChange");
     }
 
     /**

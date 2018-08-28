@@ -10,16 +10,20 @@ import android.support.annotation.Nullable;
 import android.support.constraint.Constraints;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.littleant.carrepair.R;
@@ -28,7 +32,16 @@ import com.littleant.carrepair.fragment.BaseFragment;
 import com.littleant.carrepair.fragment.MainFragment;
 import com.littleant.carrepair.fragment.ServiceFragment;
 import com.littleant.carrepair.fragment.UserCenterFragment;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.ViolationBean;
+import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.service.rule.RuleQueryAllCmd;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
+
+import java.util.List;
 
 /**
  * 主页
@@ -41,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     private RadioGroup radioGroup;
     private RadioButton mainBtn, annaulCheckBtn, serviceBtn, userCenterBtn;
     private Context mContext;
-    private RecyclerView mList;
+//    private RecyclerView mList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,21 +71,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         init();
 
         requestViolation();
-
-        final Dialog d = new Dialog(MainActivity.this);
-        View contentView = View.inflate(MainActivity.this, R.layout.layout_violation, null);
-//                        d.setContentView(R.layout.layout_point);
-        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
-        int dialogWidth = (int) (dm.widthPixels * 0.8);
-        int dialogHeight = (int) (dm.heightPixels * 0.3);
-        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
-        contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                d.dismiss();
-            }
-        });
-        d.show();
 
     }
 
@@ -115,6 +113,36 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
     private void requestViolation() {
         RuleQueryAllCmd ruleQueryAllCmd = new RuleQueryAllCmd(this);
+        ruleQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    Log.i("register response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        ViolationBean violationBean = ProjectUtil.getBaseResponseBean(command.getResponse(), ViolationBean.class);
+                        List<ViolationBean.ViolationInfo> data = violationBean.getData();
+                        final Dialog d = new Dialog(mContext);
+                        View contentView = View.inflate(mContext, R.layout.layout_violation, null);
+                        DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
+                        int dialogWidth = (int) (dm.widthPixels * 0.8);
+                        int dialogHeight = (int) (dm.heightPixels * 0.4);
+                        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+                        contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                d.dismiss();
+                            }
+                        });
+                        RecyclerView mList = contentView.findViewById(R.id.lv_list);
+                        mList.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+                        mList.setAdapter(new MyAdapter(data));
+                        d.show();
+                    }
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, ruleQueryAllCmd);
     }
 
     @Override
@@ -171,5 +199,46 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+        List<ViolationBean.ViolationInfo> mData;
+
+        public MyAdapter(List<ViolationBean.ViolationInfo> data) {
+            this.mData = data;
+        }
+
+        @Override
+        public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_violation_item, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
+            ViolationBean.ViolationInfo info = mData.get(position);
+            holder.lvi_tv_name.setText(info.getCar_brand());
+            holder.lvi_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info.getAmount() + ""));
+            holder.lvi_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info.getScore() + ""));
+            holder.lvi_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info.getPrice() + ""));
+        }
+
+        @Override
+        public int getItemCount() {
+            return mData.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            TextView lvi_tv_name, lvi_tv_sum, lvi_tv_score, lvi_tv_fine;
+
+            ViewHolder(View itemView) {
+                super(itemView);
+                lvi_tv_name = itemView.findViewById(R.id.lvi_tv_name);
+                lvi_tv_sum = itemView.findViewById(R.id.lvi_tv_sum);
+                lvi_tv_score = itemView.findViewById(R.id.lvi_tv_score);
+                lvi_tv_fine = itemView.findViewById(R.id.lvi_tv_fine);
+            }
+
+        }
     }
 }
