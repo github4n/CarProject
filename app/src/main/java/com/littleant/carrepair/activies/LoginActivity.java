@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //获取验证码
     private TextView al_forget_pw, al_register;
     private static final int REQUEST_REGISTER = 1000;
+    private static final int REQUEST_RESET = 1001;
     private String phone, password;
     private Context mContext;
 
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
-                LoginActivity.this.startActivity(intent);
+                LoginActivity.this.startActivityForResult(intent, REQUEST_RESET);
             }
         });
 
@@ -137,7 +138,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_REGISTER && resultCode == 100) {
+        if(requestCode == REQUEST_REGISTER && resultCode == ParamsConstant.REAPONSE_CODE_SUCCESS) {
+            phone = DataHelper.getPhone(this);
+            password = DataHelper.getPassword(this);
+            phoneEdt.setText(phone);
+            pswEdt.setText(password);
+        } else if(requestCode == REQUEST_RESET && resultCode == ParamsConstant.REAPONSE_CODE_SUCCESS) {
             phone = DataHelper.getPhone(this);
             password = DataHelper.getPassword(this);
             phoneEdt.setText(phone);

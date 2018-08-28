@@ -34,10 +34,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
     }
 
-    private void init() {
+    @Override
+    protected void init() {
         ar_et_phone = findViewById(R.id.ar_et_phone);
         ar_et_auth = findViewById(R.id.ar_et_auth);
         ar_et_new_password = findViewById(R.id.ar_et_new_password);
@@ -91,7 +91,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 //                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
                                 DataHelper.savePhone(mContext, phone);
                                 DataHelper.savePassword(mContext, password);
-                                RegisterActivity.this.setResult(100);
+                                RegisterActivity.this.setResult(ParamsConstant.REAPONSE_CODE_SUCCESS);
                                 RegisterActivity.this.finish();
                             }
                         } else {

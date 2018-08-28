@@ -47,10 +47,13 @@ public abstract class BaseActivity extends AppCompatActivity {
                 BaseActivity.this.finish();
             }
         });
+
+        init();
     }
 
     protected abstract int getLayoutId();
     protected abstract int getTitleId();
+    protected void init(){}
 
     protected int getOptionStringId() {
         return 0;
