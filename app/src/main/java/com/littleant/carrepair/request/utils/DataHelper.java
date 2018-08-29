@@ -1,10 +1,14 @@
 package com.littleant.carrepair.request.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Base64;
 
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.mh.core.cipher.MHCipher;
 import com.mh.core.db.MHDatabase;
+
+import java.io.ByteArrayOutputStream;
 
 public class DataHelper {
     //保存、获取UserId
@@ -45,6 +49,14 @@ public class DataHelper {
     }
     public static String getPassword(Context context) {
         return MHCipher.decryptMHData(MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, ParamsConstant.PASSWORD));
+    }
+
+    //图片转换成Base64
+    public static String bitmap2StrByBase64(Bitmap bit) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bit.compress(Bitmap.CompressFormat.JPEG, 40, bos);//参数100表示不压缩
+        byte[] bytes = bos.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
 }

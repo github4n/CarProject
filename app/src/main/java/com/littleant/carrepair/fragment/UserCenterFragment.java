@@ -44,6 +44,7 @@ public class UserCenterFragment extends BaseFragment implements View.OnClickList
     private ImageView iv_all_order, iv_wait_pay, iv_wait_service, iv_wait_rate;
     private TextView tv_user_name, tv_user_score;
     private CircleImageView iv_userImg;
+    private UserMeBean meBean;
 
     private static final int REQUEST_CODE_SETTING = 100;
 
@@ -151,12 +152,14 @@ public class UserCenterFragment extends BaseFragment implements View.OnClickList
                     Log.i("user me response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
-                        UserMeBean userMeBean = ProjectUtil.getBaseResponseBean(command.getResponse(), UserMeBean.class);
-                        UserMeBean.MeBean data = userMeBean.getData();
+                        meBean = ProjectUtil.getBaseResponseBean(command.getResponse(), UserMeBean.class);
+                        UserMeBean.MeBean data = meBean.getData();
                         tv_user_name.setText(data.getName());
                         tv_user_score.setText(String.format(getActivity().getResources().getString(R.string.text_user_center_score), data.getPoint() + ""));
                         // https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1299928916,1871201900&fm=173&app=25&f=JPEG?w=640&h=427&s=95B1ED370F426E435844BCFF03004031
-                        Picasso.with(getContext()).load(data.getPic_url()).into(iv_userImg);
+                        // TODO: 2018/8/29 图片链接能访问后改回加载返回的图片url
+                        Picasso.with(getContext()).load(R.drawable.uc_user_icon).into(iv_userImg);
+//                        Picasso.with(getContext()).load(data.getPic_url()).into(iv_userImg);
                     } else {
                         MHToast.showS(getContext(), R.string.request_fail);
                     }
@@ -172,6 +175,7 @@ public class UserCenterFragment extends BaseFragment implements View.OnClickList
         switch (v.getId()) {
             case R.id.header_option_content: //设置
                 intent = new Intent(getContext(), SettingActivity.class);
+                intent.putExtra(ParamsConstant.EXTRA_USER_ME_BEAN, meBean);
                 startActivityForResult(intent, REQUEST_CODE_SETTING);
                 break;
 
@@ -226,10 +230,12 @@ public class UserCenterFragment extends BaseFragment implements View.OnClickList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.i("usercenter", "onActivityResult");
-        if(requestCode == REQUEST_CODE_SETTING && resultCode == Activity.RESULT_OK) {
+        if(requestCode == REQUEST_CODE_SETTING && resultCode == ParamsConstant.ACTIVITY_RESULT_LOGOUT) {
             Intent i = new Intent(getActivity(), LoginActivity.class);
             startActivity(i);
             getActivity().finish();
+        } else if(requestCode == REQUEST_CODE_SETTING && resultCode == ParamsConstant.ACTIVITY_RESULT_ME_MODIFY) {
+            requestUserInfo();
         }
     }
 }

@@ -1,8 +1,9 @@
 package com.littleant.carrepair.request.bean;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
-public class BaseResponseBean {
+public class BaseResponseBean implements Serializable {
 	
 	protected int code;
 	protected String msg = "";

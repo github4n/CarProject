@@ -80,6 +80,8 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="@string/text_setting_name_hint"
+            android:maxLines="1"
+            android:maxLength="10"
             android:textColor="@color/color_sub_line"
             app:layout_constraintBottom_toBottomOf="@id/setting_tv_name"
             app:layout_constraintEnd_toEndOf="@id/setting_iv_icon"

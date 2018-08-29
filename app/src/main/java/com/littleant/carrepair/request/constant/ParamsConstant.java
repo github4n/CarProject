@@ -196,4 +196,8 @@ public class ParamsConstant {
             return des;
         }
     }
+
+    public static final String EXTRA_USER_ME_BEAN = "extra_user_me_bean";
+    public static final int ACTIVITY_RESULT_LOGOUT = 10;
+    public static final int ACTIVITY_RESULT_ME_MODIFY = 11;
 }

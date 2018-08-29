@@ -1,5 +1,7 @@
 package com.littleant.carrepair.request.bean;
 
+import java.io.Serializable;
+
 public class UserMeBean extends BaseResponseBean{
 
     public MeBean data;
@@ -12,7 +14,7 @@ public class UserMeBean extends BaseResponseBean{
         this.data = data;
     }
 
-    public class MeBean {
+    public class MeBean implements Serializable{
         private String phone = "";
         private String name = "";
         private String pic_url = "";

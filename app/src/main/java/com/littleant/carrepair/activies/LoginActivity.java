@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.loginBtn:
                 if(TextUtils.isEmpty(phoneEdt.getText().toString()) || TextUtils.isEmpty(pswEdt.getText().toString())) {
-                    Toast.makeText(this, "账号或密码为空", Toast.LENGTH_SHORT).show();
+                    MHToast.showS(mContext, R.string.need_finish_info);
                     return;
                 }
                 if (!ProjectUtil.checkPhone(mContext, phone)) {
