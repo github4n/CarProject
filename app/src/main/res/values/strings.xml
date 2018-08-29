@@ -138,6 +138,7 @@
     <string name="text_user_center_address">收货地址</string>
     <string name="text_user_center_repaire_record">维修记录</string>
     <string name="text_user_center_service_phone">客服</string>
+    <string name="text_user_center_user_name">用户名</string>
 
     <!---->
     <string name="text_shopping_car">购物车</string>

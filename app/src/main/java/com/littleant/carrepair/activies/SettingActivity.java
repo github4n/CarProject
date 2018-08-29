@@ -114,7 +114,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     MHToast.showS(mContext, R.string.info_not_modify);
                     return;
                 }
-                // TODO: 2018/8/29 确认没有修改头像时，是否不传pic参数 
+                // TODO: 2018/8/29 确认没有修改头像时，是否不传pic参数
                 UserModifyMeCmd userModifyMeCmd = new UserModifyMeCmd(mContext, phone, name, meIcon);
                 userModifyMeCmd.setCallback(new MHCommandCallBack() {
                     @Override
