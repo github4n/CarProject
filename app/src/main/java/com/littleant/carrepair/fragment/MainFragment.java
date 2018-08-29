@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,14 @@ import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.RepairActivity;
 import com.littleant.carrepair.activies.RepairStationActivity;
 import com.littleant.carrepair.activies.SearchActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -153,6 +162,29 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
         UiSettings uiSettings = aMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(false);
+
+        requestStationList();
+    }
+
+    private void requestStationList() {
+        SurveyStationQueryAllCmd stationQueryAllCmd = new SurveyStationQueryAllCmd(getContext());
+        stationQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("login response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(getContext(), responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(getContext(), R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(getContext(), stationQueryAllCmd);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
