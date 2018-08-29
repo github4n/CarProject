@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toBottomOf="@id/include">
 
         <TextView
             android:id="@+id/setting_tv_icon"
@@ -47,7 +47,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_tv_icon"
+            app:layout_constraintTop_toBottomOf="@id/setting_tv_icon"
             app:srcCompat="@color/color_sub_line" />
 
         <com.littleant.circleimageview.CircleImageView
@@ -58,7 +58,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/setting_line1"
+            app:layout_constraintBottom_toTopOf="@id/setting_line1"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -70,17 +70,20 @@
             android:layout_marginTop="16dp"
             android:text="@string/text_setting_name"
             android:textColor="@color/color_uc_text"
-            app:layout_constraintStart_toStartOf="@+id/setting_tv_icon"
-            app:layout_constraintTop_toBottomOf="@+id/setting_line1" />
+            app:layout_constraintStart_toStartOf="@id/setting_tv_icon"
+            app:layout_constraintTop_toBottomOf="@id/setting_line1" />
 
-        <TextView
+        <EditText
             android:id="@+id/setting_name"
+            style="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="用户名字"
+            android:background="@null"
+            android:hint="@string/text_setting_name_hint"
             android:textColor="@color/color_sub_line"
-            app:layout_constraintEnd_toEndOf="@+id/setting_iv_icon"
-            app:layout_constraintTop_toTopOf="@+id/setting_tv_name" />
+            app:layout_constraintBottom_toBottomOf="@id/setting_tv_name"
+            app:layout_constraintEnd_toEndOf="@id/setting_iv_icon"
+            app:layout_constraintTop_toTopOf="@id/setting_tv_name" />
 
         <ImageView
             android:id="@+id/setting_line2"
@@ -93,7 +96,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_tv_name"
+            app:layout_constraintTop_toBottomOf="@id/setting_tv_name"
             app:srcCompat="@color/color_sub_line" />
 
         <TextView
@@ -103,17 +106,19 @@
             android:layout_marginTop="16dp"
             android:text="@string/text_setting_phone"
             android:textColor="@color/color_uc_text"
-            app:layout_constraintStart_toStartOf="@+id/setting_tv_icon"
-            app:layout_constraintTop_toBottomOf="@+id/setting_line2" />
+            app:layout_constraintStart_toStartOf="@id/setting_tv_icon"
+            app:layout_constraintTop_toBottomOf="@id/setting_line2" />
 
-        <TextView
+        <EditText
             android:id="@+id/setting_phone"
+            style="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="用户手机号"
+            android:background="@null"
             android:textColor="@color/color_sub_line"
-            app:layout_constraintEnd_toEndOf="@+id/setting_iv_icon"
-            app:layout_constraintTop_toTopOf="@+id/setting_tv_phone" />
+            app:layout_constraintBottom_toBottomOf="@id/setting_tv_phone"
+            app:layout_constraintEnd_toEndOf="@id/setting_iv_icon"
+            app:layout_constraintTop_toTopOf="@id/setting_tv_phone" />
 
         <ImageView
             android:id="@+id/setting_line3"
@@ -128,7 +133,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setting_tv_phone"
+            app:layout_constraintTop_toBottomOf="@id/setting_tv_phone"
             app:srcCompat="@color/color_sub_line" />
 
     </android.support.constraint.ConstraintLayout>
@@ -144,10 +149,10 @@
         android:background="@color/color_main"
         android:text="@string/text_setting_logout"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/setting_guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/setting_guideline2"
-        app:layout_constraintStart_toStartOf="@+id/setting_guideline"
-        app:layout_constraintTop_toTopOf="@+id/setting_guideline3" />
+        app:layout_constraintBottom_toTopOf="@id/setting_guideline4"
+        app:layout_constraintEnd_toStartOf="@id/setting_guideline2"
+        app:layout_constraintStart_toStartOf="@id/setting_guideline"
+        app:layout_constraintTop_toTopOf="@id/setting_guideline3" />
 
     <android.support.constraint.Guideline
         android:id="@+id/setting_guideline"

@@ -85,7 +85,7 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
                         if (command != null) {
                             BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                             if(responseBean != null) {
-                                Log.i("register response", responseBean.getMsg());
+                                Log.i("authcode response", responseBean.getMsg());
                                 if(ParamsConstant.REAPONSE_CODE_SUCCESS != responseBean.getCode()) {
 //                                if(!ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
                                     MHToast.showS(mContext, R.string.get_auth_code_fail);
@@ -138,7 +138,7 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
                     @Override
                     public void cmdCallBack(MHCommand command) {
                         if (command != null) {
-                            Log.i("register response", command.getResponse());
+                            Log.i("reset response", command.getResponse());
                             BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                             if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
 //                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {

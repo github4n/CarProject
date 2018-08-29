@@ -3,6 +3,7 @@ package com.littleant.carrepair.activies;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -167,6 +168,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 //        if(mMapView != null) {
 //            mMapView.onDestroy();
 //        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

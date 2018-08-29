@@ -115,7 +115,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         if (command != null) {
                             BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                             if(responseBean != null) {
-                                Log.i("register response", responseBean.getMsg());
+                                Log.i("authcode response", responseBean.getMsg());
                                 if(ParamsConstant.REAPONSE_CODE_SUCCESS != responseBean.getCode()) {
 //                                if(!ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
                                     MHToast.showS(mContext, R.string.get_auth_code_fail);

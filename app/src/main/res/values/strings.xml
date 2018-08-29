@@ -351,6 +351,7 @@
     <string name="text_setting_icon">头像</string>
     <string name="text_setting_name">昵称</string>
     <string name="text_setting_phone">手机号</string>
+    <string name="text_setting_name_hint">请输入用户名</string>
 
     <!--年检记录-->
     <string name="text_annual_check_record">年检记录</string>
