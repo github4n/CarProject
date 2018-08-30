@@ -70,7 +70,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="伟航汽修厂"
         android:textStyle="bold"
         android:textColor="@color/color_uc_text"
         android:textSize="14sp"
@@ -82,7 +81,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="距你1111公里  大石xxxxxxxx"
         android:textSize="12sp"
         android:textColor="@color/color_text"
         app:layout_constraintStart_toStartOf="@id/lmfd_tv_title"
@@ -108,9 +106,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="汽车维修"
         android:textColor="@color/color_text"
         android:textSize="12sp"
+        android:text="@string/text_main_garage_des"
         app:layout_constraintStart_toStartOf="@id/lmfd_ratingBar"
         app:layout_constraintTop_toBottomOf="@id/lmfd_ratingBar" />
 

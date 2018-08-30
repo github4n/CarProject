@@ -136,6 +136,24 @@ public class ParamsConstant {
     public static final String LONGITUDE =  "longitude";
     public static final String LATITUDE =  "latitude";
     public static final String GARAGE_ID =  "garage_id";
+    /**
+     * 排列顺序
+     */
+    public enum OrderRule {
+        ALL("all"),
+        DISTANCE("distance"),
+        POPULAR("popular");
+
+        String des;
+
+        OrderRule(String s) {
+            this.des = s;
+        }
+
+        public String getDes() {
+            return des;
+        }
+    }
 
     //维修（保养）部分
     public static final String FINISH =  "finish";

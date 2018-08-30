@@ -28,6 +28,8 @@
     <string name="text_main_more">详情</string>
     <string name="text_main_book">预约</string>
     <string name="text_main_phone">电话</string>
+    <string name="text_main_garage_location">距你%s公里  %s</string>
+    <string name="text_main_garage_des">汽车维修</string>
 
     <!--搜索-->
     <string name="text_search_contant">联系人：</string>

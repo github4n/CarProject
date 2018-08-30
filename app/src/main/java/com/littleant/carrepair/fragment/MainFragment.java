@@ -16,25 +16,37 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
-import com.amap.api.maps.MapView;
+import com.amap.api.maps.CameraUpdate;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.CameraPosition;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BookMaintainActivity;
-import com.littleant.carrepair.activies.MainActivity;
 import com.littleant.carrepair.activies.RepairActivity;
 import com.littleant.carrepair.activies.RepairStationActivity;
 import com.littleant.carrepair.activies.SearchActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.GarageListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
-import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
+import com.littleant.carrepair.request.excute.maintain.garage.GarageQueryAllCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,11 +56,14 @@ import com.mh.core.tools.MHToast;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment implements AMap.OnMyLocationChangeListener{
+public class MainFragment extends Fragment implements AMap.OnMyLocationChangeListener,
+        AMap.OnMarkerClickListener, AMap.OnMapClickListener, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private static final String TAG = MainFragment.class.getSimpleName();
 
     //初始化地图控制器对象
     private AMap aMap;
@@ -60,7 +75,18 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     private RadioButton mRepair, mMaintain;
     //主页汽修厂地图指引部分
     private TextView lmfd_tv_more, lmfd_tv_book, lmfd_tv_phone;
-
+    //主页汽修厂信息部分
+    private TextView lmfd_tv_title, lmfd_tv_address;
+    //主页汽修厂评分控件
+    private XLHRatingBar lmfd_ratingBar;
+    //我的位置
+    private double myLatitude, myLongitude;
+    //维修厂信息列表
+    private List<GarageListBean.GarageInfo> data;
+    //当前选中的维修点
+    private GarageListBean.GarageInfo selectedInfo;
+    //主页维修厂View
+    private View main_include;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -93,6 +119,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate");
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -104,6 +131,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.i(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         mMapView = view.findViewById(R.id.m_map);
@@ -113,37 +141,24 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         mMaintain = view.findViewById(R.id.m_maintain);
 
         m_input_search = view.findViewById(R.id.m_input_search);
-        m_input_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SearchActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
+        m_input_search.setOnClickListener(this);
+
         lmfd_tv_more = view.findViewById(R.id.lmfd_tv_more);
-        lmfd_tv_more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), RepairStationActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
+        lmfd_tv_more.setOnClickListener(this);
 
         lmfd_tv_book = view.findViewById(R.id.lmfd_tv_book);
-        lmfd_tv_book.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent;
-                if(mRepair.isChecked()) {
-                    intent = new Intent(getContext(), RepairActivity.class);
-                } else if(mMaintain.isChecked()) {
-                    intent = new Intent(getContext(), BookMaintainActivity.class);
-                } else {
-                    return;
-                }
-                getActivity().startActivity(intent);
-            }
-        });
+        lmfd_tv_book.setOnClickListener(this);
+
+        lmfd_tv_phone = view.findViewById(R.id.lmfd_tv_phone);
+        lmfd_tv_phone.setOnClickListener(this);
+
+        lmfd_tv_title = view.findViewById(R.id.lmfd_tv_title);
+
+        lmfd_tv_address = view.findViewById(R.id.lmfd_tv_address);
+
+        lmfd_ratingBar = view.findViewById(R.id.lmfd_ratingBar);
+
+        main_include = view.findViewById(R.id.main_include);
 
         return view;
     }
@@ -151,30 +166,41 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.i(TAG, "onActivityCreated");
         aMap = mMapView.getMap();
         MyLocationStyle myLocationStyle;
         myLocationStyle = new MyLocationStyle();
-        myLocationStyle.interval(1000 * 60);
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_MAP_ROTATE);//连续定位、且将视角移动到地图中心点，地图依照设备方向旋转，定位点会跟随设备移动。（1秒1次定位）
+        myLocationStyle.interval(1000 * 2);
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);//连续定位、蓝点不会移动到地图中心点，并且蓝点会跟随设备移动。
         aMap.setMyLocationStyle(myLocationStyle);
         aMap.setMyLocationEnabled(true);
         aMap.setOnMyLocationChangeListener(this);
+        aMap.setOnMarkerClickListener(this);
+        aMap.setOnMapClickListener(this);
 
         UiSettings uiSettings = aMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(false);
 
-        requestStationList();
     }
 
-    private void requestStationList() {
-        SurveyStationQueryAllCmd stationQueryAllCmd = new SurveyStationQueryAllCmd(getContext());
-        stationQueryAllCmd.setCallback(new MHCommandCallBack() {
+    private void requestGarageList() {
+        GarageQueryAllCmd garageQueryAllCmd = new GarageQueryAllCmd(getContext(), "", ParamsConstant.OrderRule.ALL, myLongitude, myLatitude);
+        garageQueryAllCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
                 if (command != null) {
                     Log.i("login response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        GarageListBean garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
+                        data = garageListBean.getData();
+                        if(data != null && data.size() > 0) {
+                            for(int index = 0; index < data.size(); index++) {
+                                GarageListBean.GarageInfo info = data.get(index);
+                                LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+                                aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + ""));
+                            }
+                        }
 
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(getContext(), responseBean.getMsg());
@@ -184,7 +210,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 }
             }
         });
-        MHCommandExecute.getInstance().asynExecute(getContext(), stationQueryAllCmd);
+        MHCommandExecute.getInstance().asynExecute(getContext(), garageQueryAllCmd);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -213,7 +239,84 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
     @Override
     public void onMyLocationChange(Location location) {
-        Log.i("CarProject", "onMyLocationChange");
+        Log.i("map", "onLocationChanged");
+        if (location != null) {
+            if (myLongitude == 0 || myLatitude == 0) { //第一次进入地图，首次定位成功时，移动屏幕并请求站点信息
+                //可在其中解析amapLocation获取相应内容。
+                myLatitude = location.getLatitude();
+                myLongitude = location.getLongitude();
+                LatLng myLatLng = new LatLng(myLatitude, myLongitude);
+                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 12f, 0, 0));
+                aMap.moveCamera(mCameraUpdate);
+                requestGarageList();
+            } else { //只刷新当前位置
+                myLatitude = location.getLatitude();
+                myLongitude = location.getLongitude();
+            }
+        }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        int index = -1;
+        try {
+            index = Integer.parseInt(marker.getSnippet());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(data != null && index !=  -1) {
+            selectedInfo = data.get(index);
+            if(selectedInfo != null) {
+                main_include.setVisibility(View.VISIBLE);
+                lmfd_tv_title.setText(selectedInfo.getName());
+                String distance = Math.round(selectedInfo.getDistance()) + "";
+                String address = selectedInfo.getAddress();
+                lmfd_tv_address.setText(String.format(getResources().getString(R.string.text_main_garage_location), distance, address));
+                // TODO: 2018/8/30 等服务端添加评分返回
+//                int count = selectedInfo.get
+//                lmfd_ratingBar.setCountSelected();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+        switch (v.getId()) {
+            case R.id.m_input_search:
+                intent = new Intent(getContext(), SearchActivity.class);
+                getActivity().startActivity(intent);
+                break;
+
+            case R.id.lmfd_tv_more:
+                intent = new Intent(getContext(), RepairStationActivity.class);
+                getActivity().startActivity(intent);
+                break;
+
+            case R.id.lmfd_tv_book:
+                if(mRepair.isChecked()) {
+                    intent = new Intent(getContext(), RepairActivity.class);
+                } else if(mMaintain.isChecked()) {
+                    intent = new Intent(getContext(), BookMaintainActivity.class);
+                } else {
+                    return;
+                }
+                getActivity().startActivity(intent);
+                break;
+
+            case R.id.lmfd_tv_phone:
+
+                break;
+        }
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        if(main_include != null && main_include.getVisibility() == View.VISIBLE) {
+            main_include.setVisibility(View.GONE);
+        }
     }
 
     /**

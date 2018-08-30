@@ -8,12 +8,12 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class GarageQueryAllCmd extends BaseRequestCmd {
-    public GarageQueryAllCmd(Context context, String name, String orderby, String longitude, String latitude) {
+    public GarageQueryAllCmd(Context context, String name, ParamsConstant.OrderRule orderby, double longitude, double latitude) {
         super(context);
         params.put(ParamsConstant.NAME, name);
-        params.put(ParamsConstant.ORDERBY, orderby);
-        params.put(ParamsConstant.LONGITUDE, longitude);
-        params.put(ParamsConstant.LATITUDE, latitude);
+        params.put(ParamsConstant.ORDERBY, orderby.getDes());
+        params.put(ParamsConstant.LONGITUDE, longitude + "");
+        params.put(ParamsConstant.LATITUDE, latitude + "");
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 
