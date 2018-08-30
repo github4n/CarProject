@@ -4,7 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".activies.AddCarActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aac_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aac_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aac_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aac_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aac_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/aac_guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.96" />
 
     <include
         android:id="@+id/include"
@@ -15,167 +58,239 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/aac_iv_pic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintDimensionRatio="21:12"
+        app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_guideline4"
+        app:layout_constraintTop_toBottomOf="@id/include"
+        app:srcCompat="@color/color_sub_line" />
+
     <TextView
-        android:id="@+id/brand"
+        android:id="@+id/aac_tv_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/text_car_pic"
+        android:textColor="@color/color_sub_line"
+        app:layout_constraintBottom_toBottomOf="@id/aac_iv_pic"
+        app:layout_constraintStart_toStartOf="@+id/aac_guideline"
+        app:layout_constraintTop_toTopOf="@id/aac_iv_pic" />
+
+    <TextView
+        android:id="@+id/aac_line"
+        android:layout_width="0dp"
+        android:layout_height="1px"
         android:layout_marginTop="16dp"
-        android:text="@string/text_brand"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include" />
+        android:background="@color/color_sub_line"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_guideline"
+        app:layout_constraintTop_toBottomOf="@id/aac_iv_pic" />
 
     <EditText
-        android:id="@+id/et_brand"
-        android:layout_width="wrap_content"
+        android:id="@+id/aac_et_brand"
+        style="@null"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="法拉利"
+        android:layout_marginTop="16dp"
         android:background="@null"
-        app:layout_constraintBottom_toBottomOf="@id/brand"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/brand" />
+        android:hint="@string/text_brand"
+        android:textColor="@color/color_sub_line"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@+id/aac_guideline"
+        app:layout_constraintTop_toBottomOf="@id/aac_line" />
+
+    <!--<EditText-->
+        <!--android:id="@+id/et_brand"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="法拉利"-->
+        <!--android:background="@null"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/brand"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.9"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@id/brand" />-->
 
     <TextView
         android:id="@+id/add_line1"
         android:layout_width="0dp"
         android:layout_height="1px"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_sub_line"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/et_brand" />
-
-    <TextView
-        android:id="@+id/buytime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/text_buy_car_time"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/add_line1" />
+        app:layout_constraintEnd_toEndOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_guideline"
+        app:layout_constraintTop_toBottomOf="@id/aac_et_brand" />
 
     <EditText
-        android:id="@+id/et_buy_time"
-        android:layout_width="wrap_content"
+        android:id="@+id/aac_et_plate"
+        style="@null"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@null"
-        android:hint="2018.06.25"
-        app:layout_constraintBottom_toBottomOf="@id/buytime"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintTop_toTopOf="@id/buytime" />
+        android:hint="@string/text_car_plate"
+        android:textColor="@color/color_sub_line"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_et_brand"
+        app:layout_constraintTop_toBottomOf="@id/add_line1" />
+
+    <!--<EditText-->
+        <!--android:id="@+id/et_buy_time"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@null"-->
+        <!--android:hint="2018.06.25"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/buytime"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/et_brand"-->
+        <!--app:layout_constraintTop_toTopOf="@id/buytime" />-->
 
     <TextView
         android:id="@+id/add_line2"
         android:layout_width="0dp"
         android:layout_height="1px"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_sub_line"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/buytime" />
-
-    <TextView
-        android:id="@+id/mile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/text_car_mile"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/add_line2" />
+        app:layout_constraintEnd_toEndOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_guideline"
+        app:layout_constraintTop_toBottomOf="@id/aac_et_plate" />
 
     <EditText
-        android:id="@+id/et_mile"
-        android:layout_width="wrap_content"
+        android:id="@+id/aac_et_engine"
+        style="@null"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@null"
-        android:hint="55KM"
-        app:layout_constraintBottom_toBottomOf="@id/mile"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintTop_toTopOf="@id/mile" />
+        android:hint="@string/text_car_engine"
+        android:textColor="@color/color_sub_line"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_et_brand"
+        app:layout_constraintTop_toBottomOf="@id/add_line2" />
+
+    <!--<EditText-->
+        <!--android:id="@+id/et_mile"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@null"-->
+        <!--android:hint="55KM"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/mile"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/et_brand"-->
+        <!--app:layout_constraintTop_toTopOf="@id/mile" />-->
 
     <TextView
         android:id="@+id/add_line3"
         android:layout_width="0dp"
         android:layout_height="1px"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_sub_line"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/mile" />
+        app:layout_constraintEnd_toEndOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_guideline"
+        app:layout_constraintTop_toBottomOf="@id/aac_et_engine" />
 
     <TextView
-        android:id="@+id/plate"
-        android:layout_width="wrap_content"
+        android:id="@+id/aac_tv_time"
+        style="@null"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/text_car_plate"
-        app:layout_constraintStart_toStartOf="@id/brand"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:text="@string/text_buy_car_time"
+        android:textColor="@color/color_sub_line"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/imageView4"
+        app:layout_constraintStart_toStartOf="@id/aac_et_brand"
         app:layout_constraintTop_toBottomOf="@id/add_line3" />
 
-    <EditText
-        android:id="@+id/et_plate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="粤A13456"
-        app:layout_constraintBottom_toBottomOf="@id/plate"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintTop_toTopOf="@id/plate" />
+    <!--<EditText-->
+        <!--android:id="@+id/et_plate"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@null"-->
+        <!--android:hint="粤A13456"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/plate"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/et_brand"-->
+        <!--app:layout_constraintTop_toTopOf="@id/plate" />-->
 
     <TextView
         android:id="@+id/add_line4"
         android:layout_width="0dp"
         android:layout_height="1px"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_sub_line"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/plate" />
-
-    <TextView
-        android:id="@+id/engine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/text_car_engine"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/add_line4" />
+        app:layout_constraintEnd_toEndOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_guideline"
+        app:layout_constraintTop_toBottomOf="@id/aac_tv_time" />
 
     <EditText
-        android:id="@+id/et_engine"
-        android:layout_width="wrap_content"
+        android:id="@+id/aac_et_mile"
+        style="@null"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@null"
-        android:hint="XG643541"
-        app:layout_constraintBottom_toBottomOf="@id/engine"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintTop_toTopOf="@id/engine" />
+        android:hint="@string/text_car_mile"
+        android:inputType="number"
+        android:textColor="@color/color_sub_line"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_et_brand"
+        app:layout_constraintTop_toBottomOf="@id/add_line4" />
+
+    <!--<EditText-->
+        <!--android:id="@+id/et_engine"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@null"-->
+        <!--android:hint="XG643541"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/engine"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/et_brand"-->
+        <!--app:layout_constraintTop_toTopOf="@id/engine" />-->
 
     <TextView
         android:id="@+id/add_line5"
         android:layout_width="0dp"
         android:layout_height="1px"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/color_sub_line"
-        app:layout_constraintEnd_toEndOf="@id/et_brand"
-        app:layout_constraintStart_toStartOf="@id/brand"
-        app:layout_constraintTop_toBottomOf="@id/engine" />
+        app:layout_constraintEnd_toEndOf="@id/aac_guideline2"
+        app:layout_constraintStart_toStartOf="@id/aac_guideline"
+        app:layout_constraintTop_toBottomOf="@id/aac_et_mile" />
 
     <Button
         android:id="@+id/ac_btn_save"
+        style="@null"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_blue_fill"
         android:text="@string/text_save"
         android:textColor="@android:color/white"
-        style="@null"
-        android:background="@drawable/shape_blue_fill"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/add_line5"
-        app:layout_constraintStart_toStartOf="@id/add_line5"
-        app:layout_constraintTop_toBottomOf="@id/include"
+        app:layout_constraintBottom_toTopOf="@+id/aac_guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/aac_guideline4"
+        app:layout_constraintStart_toStartOf="@+id/aac_guideline3"
+        app:layout_constraintTop_toTopOf="@+id/aac_guideline5"
         app:layout_constraintVertical_bias="0.95" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/aac_tv_time"
+        app:layout_constraintEnd_toStartOf="@+id/aac_guideline2"
+        app:layout_constraintTop_toTopOf="@+id/aac_tv_time"
+        app:srcCompat="@drawable/uc_arrow" />
 
 </android.support.constraint.ConstraintLayout>
