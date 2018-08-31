@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,8 @@ import java.util.List;
  * 我的地址
  */
 public class MyAddressActivity extends BaseActivity implements View.OnClickListener {
+
+    private static final int REQUEST_CODE_ADD_ADDRESS = 100;
     private RecyclerView mList;
     private List<MyAddressListBean.AddressInfo> data;
 
@@ -93,8 +96,17 @@ public class MyAddressActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.header_option_content:
-
+                Intent intent = new Intent(mContext, AddAddressActivity.class);
+                MyAddressActivity.this.startActivityForResult(intent, REQUEST_CODE_ADD_ADDRESS);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_ADD_ADDRESS) {
+
         }
     }
 

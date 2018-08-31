@@ -105,18 +105,6 @@
         app:layout_constraintStart_toStartOf="@+id/aac_guideline"
         app:layout_constraintTop_toBottomOf="@id/aac_line" />
 
-    <!--<EditText-->
-        <!--android:id="@+id/et_brand"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:hint="法拉利"-->
-        <!--android:background="@null"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/brand"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.9"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="@id/brand" />-->
-
     <TextView
         android:id="@+id/add_line1"
         android:layout_width="0dp"
@@ -140,16 +128,6 @@
         app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
         app:layout_constraintStart_toStartOf="@id/aac_et_brand"
         app:layout_constraintTop_toBottomOf="@id/add_line1" />
-
-    <!--<EditText-->
-        <!--android:id="@+id/et_buy_time"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@null"-->
-        <!--android:hint="2018.06.25"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/buytime"-->
-        <!--app:layout_constraintEnd_toEndOf="@id/et_brand"-->
-        <!--app:layout_constraintTop_toTopOf="@id/buytime" />-->
 
     <TextView
         android:id="@+id/add_line2"
@@ -175,16 +153,6 @@
         app:layout_constraintStart_toStartOf="@id/aac_et_brand"
         app:layout_constraintTop_toBottomOf="@id/add_line2" />
 
-    <!--<EditText-->
-        <!--android:id="@+id/et_mile"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@null"-->
-        <!--android:hint="55KM"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/mile"-->
-        <!--app:layout_constraintEnd_toEndOf="@id/et_brand"-->
-        <!--app:layout_constraintTop_toTopOf="@id/mile" />-->
-
     <TextView
         android:id="@+id/add_line3"
         android:layout_width="0dp"
@@ -207,19 +175,22 @@
         android:text="@string/text_buy_car_time"
         android:textColor="@color/color_sub_line"
         android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@id/imageView4"
+        app:layout_constraintEnd_toStartOf="@id/aac_iv_arrow"
         app:layout_constraintStart_toStartOf="@id/aac_et_brand"
         app:layout_constraintTop_toBottomOf="@id/add_line3" />
 
-    <!--<EditText-->
-        <!--android:id="@+id/et_plate"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@null"-->
-        <!--android:hint="粤A13456"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/plate"-->
-        <!--app:layout_constraintEnd_toEndOf="@id/et_brand"-->
-        <!--app:layout_constraintTop_toTopOf="@id/plate" />-->
+    <ImageView
+        android:id="@+id/aac_iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/aac_tv_time"
+        app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
+        app:layout_constraintTop_toTopOf="@id/aac_tv_time"
+        app:srcCompat="@drawable/uc_arrow" />
 
     <TextView
         android:id="@+id/add_line4"
@@ -246,16 +217,6 @@
         app:layout_constraintStart_toStartOf="@id/aac_et_brand"
         app:layout_constraintTop_toBottomOf="@id/add_line4" />
 
-    <!--<EditText-->
-        <!--android:id="@+id/et_engine"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@null"-->
-        <!--android:hint="XG643541"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/engine"-->
-        <!--app:layout_constraintEnd_toEndOf="@id/et_brand"-->
-        <!--app:layout_constraintTop_toTopOf="@id/engine" />-->
-
     <TextView
         android:id="@+id/add_line5"
         android:layout_width="0dp"
@@ -274,23 +235,9 @@
         android:background="@drawable/shape_blue_fill"
         android:text="@string/text_save"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/aac_guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/aac_guideline4"
-        app:layout_constraintStart_toStartOf="@+id/aac_guideline3"
-        app:layout_constraintTop_toTopOf="@+id/aac_guideline5"
-        app:layout_constraintVertical_bias="0.95" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/aac_tv_time"
-        app:layout_constraintEnd_toStartOf="@+id/aac_guideline2"
-        app:layout_constraintTop_toTopOf="@+id/aac_tv_time"
-        app:srcCompat="@drawable/uc_arrow" />
+        app:layout_constraintBottom_toTopOf="@id/aac_guideline6"
+        app:layout_constraintEnd_toStartOf="@id/aac_guideline4"
+        app:layout_constraintStart_toStartOf="@id/aac_guideline3"
+        app:layout_constraintTop_toTopOf="@id/aac_guideline5" />
 
 </android.support.constraint.ConstraintLayout>

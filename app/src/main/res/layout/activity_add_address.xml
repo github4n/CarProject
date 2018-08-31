@@ -61,21 +61,22 @@
         android:id="@+id/et_add_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@null"
         android:hint="@string/hint_receiver_name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:inputType="text"
+        android:textColor="@color/color_uc_text"
+        android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
         app:layout_constraintStart_toStartOf="@id/aa_guideline1"
-        app:layout_constraintTop_toBottomOf="@id/include"
-        app:layout_constraintVertical_bias="0.06"
-        android:inputType="text" />
+        app:layout_constraintTop_toBottomOf="@id/include" />
 
     <TextView
         android:id="@+id/aa_line1"
         android:layout_width="0dp"
         android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
         app:layout_constraintStart_toStartOf="@id/aa_guideline1"
         app:layout_constraintTop_toBottomOf="@id/et_add_name" />
@@ -84,44 +85,60 @@
         android:id="@+id/et_add_phone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@null"
         android:hint="@string/hint_receiver_phone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:inputType="phone"
+        android:textColor="@color/color_uc_text"
+        android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
         app:layout_constraintStart_toStartOf="@id/aa_guideline1"
-        app:layout_constraintTop_toBottomOf="@id/aa_line1"
-        app:layout_constraintVertical_bias="0.06"
-        android:inputType="phone" />
+        app:layout_constraintTop_toBottomOf="@id/aa_line1" />
 
     <TextView
         android:id="@+id/aa_line2"
         android:layout_width="0dp"
         android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
         app:layout_constraintStart_toStartOf="@id/aa_guideline1"
         app:layout_constraintTop_toBottomOf="@id/et_add_phone" />
 
-    <EditText
+    <TextView
         android:id="@+id/et_add_city"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
         android:background="@null"
         android:hint="@string/hint_receiver_city"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
+        android:textColor="@color/color_uc_text"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/aa_iv_arrow"
         app:layout_constraintStart_toStartOf="@id/aa_guideline1"
-        app:layout_constraintTop_toBottomOf="@id/aa_line2"
-        app:layout_constraintVertical_bias="0.06"
-        android:inputType="text" />
+        app:layout_constraintTop_toBottomOf="@id/aa_line2" />
+
+    <ImageView
+        android:id="@+id/aa_iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/et_add_city"
+        app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
+        app:layout_constraintTop_toTopOf="@id/et_add_city"
+        app:srcCompat="@drawable/uc_arrow" />
 
     <TextView
         android:id="@+id/aa_line3"
         android:layout_width="0dp"
         android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
+        android:background="@color/color_sub_line"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
         app:layout_constraintStart_toStartOf="@id/aa_guideline1"
         app:layout_constraintTop_toBottomOf="@id/et_add_city" />
@@ -130,50 +147,59 @@
         android:id="@+id/et_add_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:background="@null"
-        android:hint="@string/hint_receiver_city"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="@string/hint_receiver_address"
+        android:inputType="text"
+        android:textColor="@color/color_uc_text"
+        android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
         app:layout_constraintStart_toStartOf="@id/aa_guideline1"
-        app:layout_constraintTop_toBottomOf="@id/aa_line3"
-        app:layout_constraintVertical_bias="0.06"
-        android:inputType="text" />
+        app:layout_constraintTop_toBottomOf="@id/aa_line3" />
 
     <TextView
         android:id="@+id/aa_line4"
         android:layout_width="0dp"
-        android:layout_height="1px"
+        android:layout_height="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
-        app:layout_constraintStart_toStartOf="@id/aa_guideline1"
+        android:background="@color/color_sub_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_add_address" />
 
-    <Button
-        android:id="@+id/aa_cancel"
+    <TextView
+        android:id="@+id/aa_tv_default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/CustomButton"
-        android:text="@string/text_cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/aa_guideline2"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="@+id/aa_guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.95" />
+        android:layout_marginTop="8dp"
+        android:text="@string/hint_set_default_address"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/aa_guideline1"
+        app:layout_constraintTop_toBottomOf="@id/aa_line4" />
+
+    <CheckBox
+        android:id="@+id/aa_cb_default"
+        style="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@id/aa_tv_default"
+        app:layout_constraintEnd_toStartOf="@id/aa_guideline2"
+        app:layout_constraintTop_toTopOf="@id/aa_tv_default" />
 
     <Button
-        android:id="@+id/aa_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/CustomButton"
+        android:id="@+id/aa_btn_save"
+        style="@null"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_blue_fill"
         android:text="@string/text_save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/aa_guideline2"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="@+id/aa_guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.95"/>
-
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/aa_guideline6"
+        app:layout_constraintEnd_toStartOf="@id/aa_guideline4"
+        app:layout_constraintStart_toStartOf="@id/aa_guideline3"
+        app:layout_constraintTop_toTopOf="@id/aa_guideline5" />
 
 </android.support.constraint.ConstraintLayout>

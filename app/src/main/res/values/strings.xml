@@ -93,12 +93,13 @@
     <string name="text_client_address">地址</string>
     <string name="text_client_save">保存</string>
 
-    <!---->
+    <!--添加地址-->
     <string name="text_add_address">添加地址</string>
     <string name="hint_receiver_name">请输入收货人姓名</string>
     <string name="hint_receiver_phone">请输入收货人联系电话</string>
-    <string name="hint_receiver_city">请选择市区</string>
-    <string name="hint_receiver_address">请输入你的详细地址</string>
+    <string name="hint_receiver_city">请选择省市区</string>
+    <string name="hint_receiver_address">请输入详细地址</string>
+    <string name="hint_set_default_address">设为默认地址</string>
 
     <!---->
     <string name="text_send_car_service">送车服务</string>
