@@ -191,6 +191,7 @@
     <string name="text_my_car">我的汽车</string>
     <string name="text_my_car_list">我的车库</string>
     <string name="text_my_car_add">添加</string>
+    <string name="text_my_car_miles">已行驶%skm</string>
 
     <!---->
     <string name="text_my_address">我的地址</string>

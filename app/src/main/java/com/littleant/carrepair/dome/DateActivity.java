@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
@@ -25,6 +26,15 @@ public class DateActivity extends DialogFragment implements DatePickerDialog.OnD
 //        datePicker.show();
 //    }
 
+    private SelectDateCallback selectDateCallback;
+
+    public interface SelectDateCallback {
+        void onSelectDate(int year, int month, int day);
+    }
+
+    public void setCallback(SelectDateCallback callback) {
+        this.selectDateCallback = callback;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -39,6 +49,8 @@ public class DateActivity extends DialogFragment implements DatePickerDialog.OnD
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-
+        if(this.selectDateCallback != null) {
+            selectDateCallback.onSelectDate(i, i1, i2);
+        }
     }
 }

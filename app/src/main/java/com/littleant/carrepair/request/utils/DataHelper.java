@@ -76,4 +76,10 @@ public class DataHelper {
         activity.startActivity(intent);
     }
 
+    //格式化请求日期
+    public static String parseDate(int year, int month, int day) {
+        month++;
+        return year + "-" + month + "-" + day;
+
+    }
 }

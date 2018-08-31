@@ -19,6 +19,7 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.GarageListBean;
+import com.littleant.carrepair.request.bean.MyCarListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.car.CarQueryAllCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -26,8 +27,10 @@ import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 我的汽车
@@ -35,6 +38,7 @@ import java.io.IOException;
 public class MyCarActivity extends BaseActivity implements View.OnClickListener {
     private RecyclerView mList;
     private static final int REQUEST_CODE_ADD_CAR = 100;
+    private List<MyCarListBean.CarInfo> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +56,11 @@ public class MyCarActivity extends BaseActivity implements View.OnClickListener 
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-
+                        MyCarListBean carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
+                        data = carListBean.getData();
+                        if(data != null && data.size() > 0){
+                            mList.setAdapter(new MyAdapter(data));
+                        }
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -83,7 +91,7 @@ public class MyCarActivity extends BaseActivity implements View.OnClickListener 
     protected void init() {
         super.init();
         mList = findViewById(R.id.mc_list);
-//        mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 //        mList.setAdapter(new MyAdapter());
         mOptionContent.setOnClickListener(this);
     }
@@ -100,6 +108,12 @@ public class MyCarActivity extends BaseActivity implements View.OnClickListener 
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
+        private List<MyCarListBean.CarInfo> list;
+
+        public MyAdapter(List<MyCarListBean.CarInfo> list) {
+            this.list = list;
+        }
+
         @Override
         public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_my_car_item, parent, false);
@@ -109,14 +123,19 @@ public class MyCarActivity extends BaseActivity implements View.OnClickListener 
 
         @Override
         public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
-            holder.mc_item_name.setText("车名");
-            holder.mc_plate.setText("车牌");
-            holder.mc_mile.setText("历程");
+            MyCarListBean.CarInfo carInfo = list.get(position);
+            if(carInfo != null) {
+                holder.mc_item_name.setText(carInfo.getBrand());
+                holder.mc_plate.setText(carInfo.getCode());
+                holder.mc_mile.setText(String.format(getResources().getString(R.string.text_my_car_miles), carInfo.getMileage() + ""));
+                Picasso.with(mContext).load(R.drawable.mc_icon).into(holder.mc_iv_itemImg);
+//                Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(holder.mc_iv_itemImg);
+            }
         }
 
         @Override
         public int getItemCount() {
-            return 2;
+            return list.size();
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

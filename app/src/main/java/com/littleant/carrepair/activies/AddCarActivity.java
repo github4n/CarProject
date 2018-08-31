@@ -39,7 +39,7 @@ public class AddCarActivity extends BaseActivity implements View.OnClickListener
     private EditText aac_et_brand, aac_et_plate, aac_et_engine, aac_et_mile;
     private Button ac_btn_save;
     private Bitmap pic;
-    private String brand, code, engine, buyTime, mile, picUrl;
+    private String brand, code, engine, buyTime, mile;
     private boolean isDefault;
 
     @Override
@@ -88,6 +88,17 @@ public class AddCarActivity extends BaseActivity implements View.OnClickListener
 
             case R.id.aac_tv_time:
                 DateActivity dateActivity = new DateActivity();
+                dateActivity.setCallback(new DateActivity.SelectDateCallback() {
+                    @Override
+                    public void onSelectDate(int year, int month, int day) {
+                        Log.i("aac_tv_time", "year -- " + year);
+                        Log.i("aac_tv_time", "month -- " + month);
+                        Log.i("aac_tv_time", "day -- " + day);
+                        //格式示例2018-03-20
+                        String date = DataHelper.parseDate(year, month, day);
+                        aac_tv_time.setText(date);
+                    }
+                });
                 dateActivity.show(getFragmentManager(), DateActivity.class.getSimpleName());
                 break;
 
