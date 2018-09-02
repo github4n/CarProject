@@ -84,7 +84,9 @@ dependencies {
     implementation 'com.github.fodroid:XRadioGroup:v1.1'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+//    implementation 'liji.library.dev:citypickerview:3.1.12'
     implementation(name: 'CircleImageView-release', ext: 'aar')
+    implementation(name: 'citypickerview-release', ext: 'aar')
     implementation project (':SelectPlace')
     implementation project (':UtilsCore')
 }
