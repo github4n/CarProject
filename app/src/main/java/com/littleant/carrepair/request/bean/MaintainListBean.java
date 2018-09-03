@@ -1,5 +1,6 @@
 package com.littleant.carrepair.request.bean;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class MaintainListBean extends BaseResponseBean {
         this.data = data;
     }
 
-    public class MaintainInfo {
+    public class MaintainInfo implements Serializable {
         private int id;
         private int state;
         private int score;

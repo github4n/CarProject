@@ -55,7 +55,7 @@ public class RepairRecordActivity extends BaseActivity {
                 switch (checkedId) {
                     case R.id.rr_doing:
                         queryType = ParamsConstant.MAINTAIN_NOT_FINISH;
-                        if(dataNotFinish == null || dataNotFinish.size() < 1) {
+                        if(dataNotFinish == null) {
                             requestMaintainRecord();
                         } else {
                             setListItem(dataNotFinish);
@@ -64,7 +64,7 @@ public class RepairRecordActivity extends BaseActivity {
 
                     case R.id.rr_finish:
                         queryType = ParamsConstant.MAINTAIN_FINISH;
-                        if(dataFinish == null || dataFinish.size() < 1) {
+                        if(dataFinish == null) {
                             requestMaintainRecord();
                         } else {
                             setListItem(dataFinish);
@@ -164,7 +164,7 @@ public class RepairRecordActivity extends BaseActivity {
     }
 
     private void setListItem(List<MaintainListBean.MaintainInfo> listItem) {
-        if(listItem != null && listItem.size() > 0) {
+        if(listItem != null) {
             mList.setAdapter(new MyAdapter(listItem));
         }
     }

@@ -23,6 +23,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.GarageInfo;
 import com.littleant.carrepair.request.bean.GarageListBean;
+import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.SurveyStationListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
@@ -39,7 +40,7 @@ public class OwnCheckFillInfoActivity extends BaseActivity implements View.OnCli
     private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station;
     private String[] carType;
     private String[] stations;
-    private List<SurveyStationListBean.SurveyStationInfo> data;
+    private List<SurveyStationInfo> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

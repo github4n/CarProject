@@ -178,7 +178,7 @@ public class ParamsConstant {
 
     //年检（订单）部分
     public static final int SURVEY_ALL = 0;
-    public static final int SURVEY_OT_FINISH = 1;
+    public static final int SURVEY_NOT_FINISH = 1;
     public static final int SURVEY_FINISH = 2;
     public static final String CAR_NAME =  "car_name";
     public static final String CAR_BRAND =  "car_brand";

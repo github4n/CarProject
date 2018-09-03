@@ -17,7 +17,7 @@ import com.littleant.carrepair.activies.AnnualCheckRecordActivity;
 import com.littleant.carrepair.activies.OwnCheckFillInfoActivity;
 import com.littleant.carrepair.activies.PickCarActivity;
 
-public class AnnualCheckFragment extends BaseFragment {
+public class AnnualCheckFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -57,10 +57,19 @@ public class AnnualCheckFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+
         reservationView = subView.findViewById(R.id.ac_cl_reservation);
-        reservationView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        reservationView.setOnClickListener(this);
+
+        myReservationView = subView.findViewById(R.id.ac_cl_my_reservation);
+        myReservationView.setOnClickListener(this);
+        return subView;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ac_cl_reservation:
                 final Dialog d = new Dialog(getActivity());
                 View contentView = View.inflate(getActivity(), R.layout.layout_check_type, null);
 //                        d.setContentView(R.layout.layout_point);
@@ -91,16 +100,12 @@ public class AnnualCheckFragment extends BaseFragment {
                     }
                 });
                 d.show();
-            }
-        });
-        myReservationView = subView.findViewById(R.id.ac_cl_my_reservation);
-        myReservationView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+
+            case R.id.ac_cl_my_reservation:
                 Intent intent = new Intent(getContext(), AnnualCheckRecordActivity.class);
                 getActivity().startActivity(intent);
-            }
-        });
-        return subView;
+                break;
+        }
     }
 }
