@@ -3,6 +3,8 @@ package com.littleant.carrepair.activies;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.MaintainListBean;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.service.newscatalog.NewsCatalogQueryAllCmd;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
 
 public class InformationActivity extends BaseActivity {
     private RecyclerView mList;
@@ -17,9 +28,38 @@ public class InformationActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void init() {
+        super.init();
         mList = findViewById(R.id.info_list);
         mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mList.setAdapter(new MyAdapter());
+//        mList.setAdapter(new MyAdapter());
+
+        requestInfoList();
+    }
+
+    private void requestInfoList() {
+        NewsCatalogQueryAllCmd newsCatalogQueryAllCmd = new NewsCatalogQueryAllCmd(mContext);
+        newsCatalogQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, newsCatalogQueryAllCmd);
     }
 
     @Override

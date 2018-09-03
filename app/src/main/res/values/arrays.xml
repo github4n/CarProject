@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="annual_car_type">
+        <item name="car_type_blue">小型蓝牌</item>
+        <item name="car_type_seven_below">七座以下</item>
+    </string-array>
+
+</resources>
