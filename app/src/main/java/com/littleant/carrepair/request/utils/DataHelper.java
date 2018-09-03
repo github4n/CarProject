@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.text.TextUtils;
 import android.util.Base64;
 
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -72,6 +73,9 @@ public class DataHelper {
 
     //打电话
     public static void callPhone(Activity activity, String phoneNum) {
+        if(TextUtils.isEmpty(phoneNum)) {
+            return;
+        }
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNum));
         activity.startActivity(intent);
     }

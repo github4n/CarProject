@@ -15,7 +15,6 @@ public class UserModifyMeCmd extends BaseUserCmd {
         params.put(ParamsConstant.PHONE, phone);
         params.put(ParamsConstant.NAME, name);
         String picBase64 = DataHelper.bitmap2StrByBase64(bitmap);
-        // TODO: 2018/8/24 处理图片转换
         params.put(ParamsConstant.PIC, picBase64);
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }

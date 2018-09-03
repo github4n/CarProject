@@ -18,8 +18,6 @@ import com.littleant.carrepair.activies.OwnCheckFillInfoActivity;
 import com.littleant.carrepair.activies.PickCarActivity;
 
 public class AnnualCheckFragment extends BaseFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -47,7 +45,6 @@ public class AnnualCheckFragment extends BaseFragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment AnnualCheckFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static AnnualCheckFragment newInstance(String param1, String param2) {
         AnnualCheckFragment fragment = new AnnualCheckFragment();
         Bundle args = new Bundle();

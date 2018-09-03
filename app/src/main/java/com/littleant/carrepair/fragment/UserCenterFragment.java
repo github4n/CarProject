@@ -35,8 +35,6 @@ import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
 public class UserCenterFragment extends BaseFragment implements View.OnClickListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -76,7 +74,6 @@ public class UserCenterFragment extends BaseFragment implements View.OnClickList
      * @param param2 Parameter 2.
      * @return A new instance of fragment UserCenterFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static UserCenterFragment newInstance(String param1, String param2) {
         UserCenterFragment fragment = new UserCenterFragment();
         Bundle args = new Bundle();
@@ -156,10 +153,7 @@ public class UserCenterFragment extends BaseFragment implements View.OnClickList
                         UserMeBean.MeBean data = meBean.getData();
                         tv_user_name.setText(data.getName());
                         tv_user_score.setText(String.format(getActivity().getResources().getString(R.string.text_user_center_score), data.getPoint() + ""));
-                        // https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1299928916,1871201900&fm=173&app=25&f=JPEG?w=640&h=427&s=95B1ED370F426E435844BCFF03004031
-                        // TODO: 2018/8/29 图片链接能访问后改回加载返回的图片url
-                        Picasso.with(getContext()).load(R.drawable.uc_user_icon).into(iv_userImg);
-//                        Picasso.with(getContext()).load(data.getPic_url()).into(iv_userImg);
+                        Picasso.with(getContext()).load(data.getPic_url()).into(iv_userImg);
                     } else {
                         MHToast.showS(getContext(), R.string.request_fail);
                     }

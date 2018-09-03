@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.89" />
 
     <android.support.constraint.Guideline
         android:id="@+id/rs_guideline6"
@@ -61,7 +61,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/rs_logo"
         app:layout_constraintBottom_toTopOf="@id/rs_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +71,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/text_station_name"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@color/color_uc_text"
@@ -108,7 +106,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="1200"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintStart_toEndOf="@id/rs_iv_like2"
         app:layout_constraintTop_toBottomOf="@id/rs_tv_title" />

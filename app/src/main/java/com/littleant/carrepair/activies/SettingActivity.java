@@ -54,9 +54,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             picUrl = meBean.getData().getPic_url();
             setting_phone.setText(phone);
             setting_name.setText(name);
-            // TODO: 2018/8/29 图片链接能访问后改回加载返回的图片url
-            Picasso.with(mContext).load(R.drawable.uc_user_icon).into(setting_iv_icon);
-//            Picasso.with(mContext).load(picUrl).into(setting_iv_icon);
+            Picasso.with(mContext).load(picUrl).into(setting_iv_icon);
         }
     }
 

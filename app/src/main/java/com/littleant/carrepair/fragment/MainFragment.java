@@ -16,10 +16,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdate;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -40,13 +36,14 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.GarageListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.garage.GarageQueryAllCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,8 +55,6 @@ import java.util.List;
  */
 public class MainFragment extends Fragment implements AMap.OnMyLocationChangeListener,
         AMap.OnMarkerClickListener, AMap.OnMapClickListener, View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -82,13 +77,17 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     //我的位置
     private double myLatitude, myLongitude;
     //维修厂信息列表
-    private List<GarageListBean.GarageInfo> data;
+    private ArrayList<GarageListBean.GarageInfo> data;
     //当前选中的维修点
     private GarageListBean.GarageInfo selectedInfo;
     //主页维修厂View
     private View main_include;
+    public static final String GARAGE_LIST = "garage_list";
+    public static final String MY_LATITUDE = "my_latitude";
+    public static final String MY_LONGITUDE = "my_longitude";
+    //
+    public static final String GARAGE_INFO = "garage_info";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -106,7 +105,6 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
      * @param param2 Parameter 2.
      * @return A new instance of fragment MainFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static MainFragment newInstance(String param1, String param2) {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
@@ -189,11 +187,11 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
             @Override
             public void cmdCallBack(MHCommand command) {
                 if (command != null) {
-                    Log.i("login response", command.getResponse());
+                    Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         GarageListBean garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
-                        data = garageListBean.getData();
+                        data = (ArrayList<GarageListBean.GarageInfo>) garageListBean.getData();
                         if(data != null && data.size() > 0) {
                             for(int index = 0; index < data.size(); index++) {
                                 GarageListBean.GarageInfo info = data.get(index);
@@ -213,7 +211,6 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         MHCommandExecute.getInstance().asynExecute(getContext(), garageQueryAllCmd);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -272,9 +269,8 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 String distance = Math.round(selectedInfo.getDistance()) + "";
                 String address = selectedInfo.getAddress();
                 lmfd_tv_address.setText(String.format(getResources().getString(R.string.text_main_garage_location), distance, address));
-                // TODO: 2018/8/30 等服务端添加评分返回
-//                int count = selectedInfo.get
-//                lmfd_ratingBar.setCountSelected();
+                int count = Math.round(selectedInfo.getScore());
+                lmfd_ratingBar.setCountSelected(count);
                 return true;
             }
         }
@@ -287,11 +283,15 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         switch (v.getId()) {
             case R.id.m_input_search:
                 intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtra(GARAGE_LIST, data);
+                intent.putExtra(MY_LATITUDE, myLatitude);
+                intent.putExtra(MY_LONGITUDE, myLongitude);
                 getActivity().startActivity(intent);
                 break;
 
             case R.id.lmfd_tv_more:
                 intent = new Intent(getContext(), RepairStationActivity.class);
+                intent.putExtra(GARAGE_INFO, selectedInfo);
                 getActivity().startActivity(intent);
                 break;
 
@@ -307,7 +307,10 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 break;
 
             case R.id.lmfd_tv_phone:
-
+                String phone = selectedInfo.getPhone();
+                if(!TextUtils.isEmpty(phone)) {
+                    DataHelper.callPhone(getActivity(), phone);
+                }
                 break;
         }
     }
@@ -330,7 +333,6 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

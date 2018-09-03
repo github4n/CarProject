@@ -19,7 +19,6 @@ public class CarAddCmd extends BaseCarCmd {
         params.put(ParamsConstant.BUY_TIME, buyTime);
         params.put(ParamsConstant.MILEAGE, mile);
         params.put(ParamsConstant.IS_DEFAULT, isDefault + "");
-        // TODO: 2018/8/24 处理图片转换
         params.put(ParamsConstant.PIC, DataHelper.bitmap2StrByBase64(bitmap));
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }

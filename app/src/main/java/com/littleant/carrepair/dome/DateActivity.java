@@ -12,20 +12,6 @@ import java.util.Calendar;
 
 public class DateActivity extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_date);
-//        DatePickerDialog datePicker = new DatePickerDialog(DateActivity.this, AlertDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-//                // TODO Auto-generated method stub
-//
-//            }
-//        }, 2014, 1, 7);
-//        datePicker.show();
-//    }
-
     private SelectDateCallback selectDateCallback;
 
     public interface SelectDateCallback {

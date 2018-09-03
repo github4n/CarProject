@@ -18,6 +18,7 @@ public class GarageListBean extends BaseResponseBean {
     public class GarageInfo implements Serializable {
         private int id;
         private int popular;
+        private float score;
         private float filter_price;
         private float distance;
         private String create_time = "";
@@ -36,19 +37,28 @@ public class GarageListBean extends BaseResponseBean {
             return "GarageInfo{" +
                     "id=" + id +
                     ", popular=" + popular +
+                    ", score=" + score +
                     ", filter_price=" + filter_price +
                     ", distance=" + distance +
                     ", create_time='" + create_time + '\'' +
                     ", update_time='" + update_time + '\'' +
                     ", name='" + name + '\'' +
                     ", user_name='" + user_name + '\'' +
-                    ", longitude='" + longitude + '\'' +
-                    ", latitude='" + latitude + '\'' +
+                    ", longitude=" + longitude +
+                    ", latitude=" + latitude +
                     ", address='" + address + '\'' +
                     ", mobile_phone='" + mobile_phone + '\'' +
                     ", phone='" + phone + '\'' +
                     ", pic_url='" + pic_url + '\'' +
                     '}';
+        }
+
+        public float getScore() {
+            return score;
+        }
+
+        public void setScore(float score) {
+            this.score = score;
         }
 
         public int getId() {
