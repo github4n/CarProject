@@ -216,6 +216,7 @@
     <string name="text_repaire_record_send_car">送车上门:</string>
     <string name="text_repaire_record_item_pay">付款</string>
     <string name="text_repaire_record_item_cancel">取消</string>
+    <string name="text_repaire_record_not_get_car">未取车</string>
 
     <!---->
     <string name="text_station_name">新领域汽车维修公司</string>

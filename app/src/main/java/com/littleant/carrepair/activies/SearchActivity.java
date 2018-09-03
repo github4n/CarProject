@@ -21,6 +21,7 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.GarageInfo;
 import com.littleant.carrepair.request.bean.GarageListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.garage.GarageQueryAllCmd;
@@ -44,9 +45,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private Context mContext;
     private RecyclerView mList;
     private TextView as_tv_cancel;
-    private ArrayList<GarageListBean.GarageInfo> allData;
-    private ArrayList<GarageListBean.GarageInfo> distanceData;
-    private ArrayList<GarageListBean.GarageInfo> popularData;
+    private ArrayList<GarageInfo> allData;
+    private ArrayList<GarageInfo> distanceData;
+    private ArrayList<GarageInfo> popularData;
     private RadioButton as_tv_band, as_tv_near, as_tv_high;
     private RadioGroup as_radioGroup;
     //我的位置
@@ -63,7 +64,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            allData = (ArrayList<GarageListBean.GarageInfo>) extras.getSerializable(GARAGE_LIST);
+            allData = (ArrayList<GarageInfo>) extras.getSerializable(GARAGE_LIST);
             myLatitude = extras.getDouble(MY_LATITUDE);
             myLongitude = extras.getDouble(MY_LONGITUDE);
         }
@@ -139,12 +140,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         GarageListBean garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
                         switch (orderby) {
                             case DISTANCE:
-                                distanceData = (ArrayList<GarageListBean.GarageInfo>) garageListBean.getData();
+                                distanceData = (ArrayList<GarageInfo>) garageListBean.getData();
                                 setListItem(distanceData);
                                 break;
 
                             case POPULAR:
-                                popularData = (ArrayList<GarageListBean.GarageInfo>) garageListBean.getData();
+                                popularData = (ArrayList<GarageInfo>) garageListBean.getData();
                                 setListItem(popularData);
                                 break;
                         }
@@ -161,9 +162,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener {
-        private ArrayList<GarageListBean.GarageInfo> list;
+        private ArrayList<GarageInfo> list;
 
-        public MyAdapter(ArrayList<GarageListBean.GarageInfo> list) {
+        public MyAdapter(ArrayList<GarageInfo> list) {
             this.list = list;
         }
 
@@ -177,7 +178,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         @Override
         public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
-            GarageListBean.GarageInfo garageInfo = list.get(position);
+            GarageInfo garageInfo = list.get(position);
             if(garageInfo != null) {
                 holder.lsi_tv_title.setText(garageInfo.getName());
                 holder.lsi_tv_distance.setText(String.format(mContext.getResources().getString(R.string.text_search_distance), garageInfo.getDistance() + ""));
@@ -197,7 +198,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onClick(View v) {
             int position = (int) v.getTag();
-            GarageListBean.GarageInfo garageInfo = list.get(position);
+            GarageInfo garageInfo = list.get(position);
             if(garageInfo != null) {
                 Intent intent = new Intent(SearchActivity.this, RepairStationActivity.class);
                 intent.putExtra(GARAGE_INFO, garageInfo);
@@ -223,7 +224,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private void setListItem(ArrayList<GarageListBean.GarageInfo> listItem) {
+    private void setListItem(ArrayList<GarageInfo> listItem) {
         if(listItem != null && listItem.size() > 0) {
             mList.setAdapter(new MyAdapter(listItem));
         }

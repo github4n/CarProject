@@ -33,6 +33,7 @@ import com.littleant.carrepair.activies.RepairActivity;
 import com.littleant.carrepair.activies.RepairStationActivity;
 import com.littleant.carrepair.activies.SearchActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.GarageInfo;
 import com.littleant.carrepair.request.bean.GarageListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.garage.GarageQueryAllCmd;
@@ -77,9 +78,9 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     //我的位置
     private double myLatitude, myLongitude;
     //维修厂信息列表
-    private ArrayList<GarageListBean.GarageInfo> data;
+    private ArrayList<GarageInfo> data;
     //当前选中的维修点
-    private GarageListBean.GarageInfo selectedInfo;
+    private GarageInfo selectedInfo;
     //主页维修厂View
     private View main_include;
     public static final String GARAGE_LIST = "garage_list";
@@ -191,10 +192,10 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         GarageListBean garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
-                        data = (ArrayList<GarageListBean.GarageInfo>) garageListBean.getData();
+                        data = (ArrayList<GarageInfo>) garageListBean.getData();
                         if(data != null && data.size() > 0) {
                             for(int index = 0; index < data.size(); index++) {
-                                GarageListBean.GarageInfo info = data.get(index);
+                                GarageInfo info = data.get(index);
                                 LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
                                 aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + ""));
                             }

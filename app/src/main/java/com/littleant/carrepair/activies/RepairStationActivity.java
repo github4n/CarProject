@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.request.bean.GarageInfo;
 import com.littleant.carrepair.request.bean.GarageListBean;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.squareup.picasso.Picasso;
@@ -23,7 +24,7 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
     private Context mContext;
     private ImageView rs_iv_back, rs_iv_like;
     private TextView rs_btn_navi, rs_btn_contact;
-    private GarageListBean.GarageInfo garageInfo;
+    private GarageInfo garageInfo;
     //控件
     private TextView rs_tv_title, rs_tv_like_amount, rs_contact, rs_phone, rs_address;
     private ImageView rs_tv_banner;
@@ -56,7 +57,7 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-           garageInfo = (GarageListBean.GarageInfo) extras.getSerializable(GARAGE_INFO);
+           garageInfo = (GarageInfo) extras.getSerializable(GARAGE_INFO);
         }
         if(garageInfo == null) {
             this.finish();
