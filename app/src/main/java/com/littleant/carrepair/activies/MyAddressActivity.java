@@ -27,14 +27,18 @@ import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
+import static com.littleant.carrepair.activies.AddAddressActivity.RESULT_CODE_SUCCESS;
+
 /**
  * 我的地址
  */
 public class MyAddressActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int REQUEST_CODE_ADD_ADDRESS = 100;
+    private static final int REQUEST_CODE_MODIFY_ADDRESS = 101;
     private RecyclerView mList;
     private List<MyAddressListBean.AddressInfo> data;
+    public static final String USER_ADDRESS_BEAN = "user_address_bean";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +109,10 @@ public class MyAddressActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_ADD_ADDRESS) {
-
+        if(requestCode == REQUEST_CODE_ADD_ADDRESS && resultCode == RESULT_CODE_SUCCESS) {
+            requestAddressList();
+        } else if(requestCode == REQUEST_CODE_MODIFY_ADDRESS && resultCode == RESULT_CODE_SUCCESS) {
+            requestAddressList();
         }
     }
 
@@ -126,7 +132,7 @@ public class MyAddressActivity extends BaseActivity implements View.OnClickListe
         }
 
         @Override
-        public void onBindViewHolder(final MyAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(final MyAdapter.ViewHolder holder, final int position) {
             MyAddressListBean.AddressInfo addressInfo = list.get(position);
             if(addressInfo != null) {
                 holder.lai_address.setText(addressInfo.getAddress());
@@ -136,6 +142,10 @@ public class MyAddressActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onClick(View v) {
                         MHToast.showS(mContext, "编辑" + holder.getAdapterPosition());
+                        Bundle bundle = new Bundle();
+                        Intent intent = new Intent(MyAddressActivity.this, AddAddressActivity.class);
+                        intent.putExtra(USER_ADDRESS_BEAN, list.get(position));
+                        MyAddressActivity.this.startActivityForResult(intent, REQUEST_CODE_MODIFY_ADDRESS);
                     }
                 });
             }

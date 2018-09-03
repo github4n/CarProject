@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.MyAddressListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.address.AddressAddCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -25,6 +26,8 @@ import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
+import static com.littleant.carrepair.activies.MyAddressActivity.USER_ADDRESS_BEAN;
+
 /**
  * 添加地址
  */
@@ -33,10 +36,13 @@ public class AddAddressActivity extends BaseActivity implements View.OnClickList
     private TextView et_add_city;
     private CheckBox aa_cb_default;
     private Button aa_btn_save;
-    private String name, phone, node1, node2, node3, address;
+    private String name, phone, provinceStr, cityStr, districtStr, address;
+    private int node1, node2, node3;
     private boolean isDefault;
+    public static final int RESULT_CODE_SUCCESS = 100;
     //申明对象
-    CityPickerView mPicker = new CityPickerView();
+    private CityPickerView mPicker = new CityPickerView();
+    private MyAddressListBean.AddressInfo addressInfo;
 
 
     @Override
@@ -73,6 +79,21 @@ public class AddAddressActivity extends BaseActivity implements View.OnClickList
 
         aa_btn_save = findViewById(R.id.aa_btn_save);
         aa_btn_save.setOnClickListener(this);
+
+        if(getIntent().getExtras() != null) {
+            addressInfo = (MyAddressListBean.AddressInfo) getIntent().getExtras().getSerializable(USER_ADDRESS_BEAN);
+            if(addressInfo != null) {
+                et_add_name.setText(addressInfo.getName());
+                et_add_phone.setText(addressInfo.getPhone());
+                et_add_address.setText(addressInfo.getAddress());
+                aa_cb_default.setChecked(addressInfo.isIs_default());
+                et_add_city.setText(addressInfo.getNode1().getName() + addressInfo.getNode2().getName() + addressInfo.getNode3().getName());
+                node1 = addressInfo.getNode1().getId();
+                node2 = addressInfo.getNode2().getId();
+                node3 = addressInfo.getNode3().getId();
+            }
+        }
+
     }
 
     @Override
@@ -89,25 +110,28 @@ public class AddAddressActivity extends BaseActivity implements View.OnClickList
 
                         //省份
                         if (province != null) {
-                            Log.i("CityConfig", province.getId() + "");
+                            Log.i("CityConfig", province.getId());
                             Log.i("CityConfig", "province.getName()");
-                            node1 = province.getName();
+                            node1 = Integer.parseInt(province.getId());
+                            provinceStr = province.getName();
                         }
 
                         //城市
                         if (city != null) {
-                            Log.i("CityConfig", city.getId() + "");
+                            Log.i("CityConfig", city.getId());
                             Log.i("CityConfig", "city.getName()");
-                            node2 = city.getName();
+                            node2 = Integer.parseInt(city.getId());
+                            cityStr = city.getName();
                         }
 
                         //地区
                         if (district != null) {
-                            Log.i("CityConfig", district.getId() + "");
+                            Log.i("CityConfig", district.getId());
                             Log.i("CityConfig", "district.getName()");
-                            node3 = district.getName();
+                            node3 = Integer.parseInt(district.getId());
+                            districtStr = district.getName();
                         }
-                        et_add_city.setText(node1 + node2 + node3);
+                        et_add_city.setText(provinceStr + cityStr + districtStr);
                     }
 
                     @Override
@@ -124,8 +148,8 @@ public class AddAddressActivity extends BaseActivity implements View.OnClickList
                 phone = et_add_phone.getText().toString();
                 address = et_add_address.getText().toString();
                 isDefault = aa_cb_default.isChecked();
-                if(TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(node1) ||
-                        TextUtils.isEmpty(node2) || TextUtils.isEmpty(node3) || TextUtils.isEmpty(address)) {
+                if(TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) || node1 == 0 ||
+                        node2 == 0 || node3 == 0 || TextUtils.isEmpty(address)) {
                     MHToast.showS(mContext, R.string.need_finish_info);
                     return;
                 }
@@ -135,7 +159,7 @@ public class AddAddressActivity extends BaseActivity implements View.OnClickList
     }
 
     private void requestAddAddress() {
-        AddressAddCmd addressAddCmd = new AddressAddCmd(mContext, name, phone, node1, node2, node3, address, isDefault);
+        AddressAddCmd addressAddCmd = new AddressAddCmd(mContext, name, phone, node1 + "", node2 + "", node3 + "", address, isDefault);
         addressAddCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
@@ -143,7 +167,8 @@ public class AddAddressActivity extends BaseActivity implements View.OnClickList
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-
+                        AddAddressActivity.this.setResult(RESULT_CODE_SUCCESS);
+                        AddAddressActivity.this.finish();
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
