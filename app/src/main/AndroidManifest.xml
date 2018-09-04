@@ -158,6 +158,7 @@
         <activity android:name=".activies.OwnCheckFillInfoActivity" />
         <activity android:name=".activies.OwnStartCheckActivity" />
         <activity android:name=".activies.SelectPlaceActivity" />
+        <activity android:name=".activies.AnnualCheckFeedbackActivity" />
     </application>
 
 </manifest>

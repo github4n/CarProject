@@ -103,6 +103,14 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/r_pic_list"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/r_btn_add_pic"
+            app:layout_constraintStart_toStartOf="@id/r_cl_guideline"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic" />
+
         <TextView
             android:id="@+id/r_tv_pic"
             android:layout_width="wrap_content"
@@ -118,10 +126,12 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toStartOf="@id/r_cl_guideline"
+            app:layout_constraintStart_toEndOf="@id/r_pic_list"
             app:layout_constraintTop_toBottomOf="@id/r_tv_pic"
             app:srcCompat="@drawable/r_add_pic" />
 

@@ -120,7 +120,7 @@ public class AnnualCheckRecordActivity extends BaseActivity implements View.OnCl
 
     }
 
-    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener {
         private List<SurveyInfo> surveyInfos;
 
         public MyAdapter(List<SurveyInfo> surveyInfos) {
@@ -130,6 +130,7 @@ public class AnnualCheckRecordActivity extends BaseActivity implements View.OnCl
         @Override
         public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_annual_record_item, parent, false);
+            view.setOnClickListener(this);
             final MyAdapter.ViewHolder viewHolder = new MyAdapter.ViewHolder(view);
             return viewHolder;
         }
@@ -137,6 +138,7 @@ public class AnnualCheckRecordActivity extends BaseActivity implements View.OnCl
         @Override
         public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
             SurveyInfo surveyInfo = surveyInfos.get(position);
+            holder.itemView.setTag(position);
             if(surveyInfo != null) {
                 holder.ari_book.setText(surveyInfo.getSubscribe_time());
                 holder.ari_finish.setText(surveyInfo.getSubscribe_time());
@@ -148,6 +150,15 @@ public class AnnualCheckRecordActivity extends BaseActivity implements View.OnCl
         @Override
         public int getItemCount() {
             return surveyInfos.size();
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = (int) v.getTag();
+            SurveyInfo surveyInfo = surveyInfos.get(position);
+            if(surveyInfo != null) {
+
+            }
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
