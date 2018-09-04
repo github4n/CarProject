@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".activies.CheckReturnCarActivity">
 
+        <android.support.constraint.Guideline
+            android:id="@+id/acrc_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.3"
+            android:orientation="vertical" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/acrc_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.7"
+            android:orientation="vertical" />
+
         <include
             android:id="@+id/include"
             layout="@layout/layout_header"
@@ -28,14 +42,11 @@
             android:id="@+id/acrc_tv_driver"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
             android:background="@color/color_sub_background"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:paddingLeft="16dp"
             android:text="@string/text_driving_pick_car_driver"
             android:textColor="@android:color/black"
             android:textSize="15sp"
@@ -45,12 +56,12 @@
 
         <com.littleant.circleimageview.CircleImageView
             android:id="@+id/acrc_iv_driver_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/item_demo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@id/acrc_guideline2"
+            app:layout_constraintStart_toStartOf="@id/acrc_guideline"
             app:layout_constraintTop_toBottomOf="@+id/acrc_tv_driver" />
 
         <TextView
@@ -58,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="司机名"
+            android:textColor="@color/color_text"
             app:layout_constraintEnd_toEndOf="@id/acrc_iv_driver_icon"
             app:layout_constraintStart_toStartOf="@id/acrc_iv_driver_icon"
             app:layout_constraintTop_toBottomOf="@id/acrc_iv_driver_icon" />
@@ -77,8 +88,8 @@
             android:id="@+id/acrc_tv_check_contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/text_check_contact"
             android:textColor="@color/color_text"
@@ -89,10 +100,11 @@
             android:id="@+id/acrc_et_check_contact"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="16dp"
             android:layout_marginStart="8dp"
+            android:gravity="right"
             app:layout_constraintBottom_toBottomOf="@id/acrc_tv_check_contact"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/acrc_tv_check_contact"
@@ -102,38 +114,31 @@
             android:id="@+id/acrc_line2"
             android:layout_width="0dp"
             android:layout_height="1px"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@color/color_sub_line"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/acrc_et_check_contact"
+            app:layout_constraintStart_toStartOf="@id/acrc_tv_check_contact"
             app:layout_constraintTop_toBottomOf="@id/acrc_tv_check_contact" />
 
         <TextView
             android:id="@+id/acrc_tv_return_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/text_return_car_time"
             android:textColor="@color/color_text"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/acrc_tv_check_contact"
             app:layout_constraintTop_toBottomOf="@id/acrc_line2" />
 
         <TextView
             android:id="@+id/acrc_et_return_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:gravity="right"
             app:layout_constraintBottom_toBottomOf="@id/acrc_tv_return_time"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/acrc_et_check_contact"
             app:layout_constraintStart_toEndOf="@id/acrc_tv_return_time"
             app:layout_constraintTop_toTopOf="@id/acrc_tv_return_time" />
 
@@ -141,14 +146,12 @@
             android:id="@+id/acrc_tv_confirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
             android:background="@color/color_sub_background"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:text="@string/text_return_car_des"
             android:textColor="@color/color_text"
             android:textSize="12sp"

@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +33,17 @@ public class AnnualCheckRecordActivity extends BaseActivity implements View.OnCl
     private List<SurveyInfo> dataNotFinish;
     private List<SurveyInfo> dataFinish;
     private RadioGroup acr_radiogroup;
+
+    public static final String SURVEY_INFO = "surveyinfo";
+    public static final int STATE_WAIT_PAY = 0;
+    public static final int STATE_WAIT_GET = 1;
+    public static final int STATE_WAIT_PICK_CAR = 2;
+    public static final int STATE_WAIT_CHECK = 3;
+    public static final int STATE_CHECKING = 4;
+    public static final int STATE_CHECK_FINISH = 5;
+    public static final int STATE_ARRIVE_CAR = 6;
+    public static final int STATE_RETURN_CAR = 7;
+    public static final int STATE_FINISH = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +169,29 @@ public class AnnualCheckRecordActivity extends BaseActivity implements View.OnCl
             int position = (int) v.getTag();
             SurveyInfo surveyInfo = surveyInfos.get(position);
             if(surveyInfo != null) {
+                int state = surveyInfo.getState();
+                Intent intent = null;
+                switch (state) {
+                    case STATE_WAIT_PICK_CAR:
+                        intent = new Intent(mContext, PickCarActivity.class);
+                        break;
 
+                    case STATE_WAIT_CHECK:
+                    case STATE_CHECKING:
+                    case STATE_CHECK_FINISH:
+                        intent = new Intent(mContext, StartCheckActivity.class);
+                        break;
+
+                    case STATE_ARRIVE_CAR:
+                    case STATE_RETURN_CAR:
+                    case STATE_FINISH:
+                        intent = new Intent(mContext, CheckReturnCarActivity.class);
+                        break;
+                }
+                if(intent != null) {
+                    intent.putExtra(SURVEY_INFO, surveyInfo);
+                    AnnualCheckRecordActivity.this.startActivity(intent);
+                }
             }
         }
 

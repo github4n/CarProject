@@ -308,6 +308,8 @@
     <string name="text_start_annual_check_arrive">确认到达</string>
     <string name="text_annual_check_time">到站年检时间</string>
     <string name="text_annual_check_state">年检状态</string>
+    <string name="text_annual_check_state_wait">等待年检</string>
+    <string name="text_annual_check_state_ing">正在年检</string>
     <!-- 年检反馈 -->
     <string name="text_check_feedback">年检反馈</string>
     <string name="text_check_feedback_light">车灯</string>
