@@ -20,12 +20,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <!--用于申请调用A-GPS模块-->
+    <!-- 用于申请调用A-GPS模块 -->
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <!--用于申请获取蓝牙信息进行室内定位-->
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <!--打电话-->
+    <!-- 打电话 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -34,8 +34,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        tools:replace="android:theme"
-        android:theme="@style/MyTheme_Light">
+        android:theme="@style/MyTheme_Light"
+        tools:replace="android:theme">
         <activity
             android:name=".dome.TestActivity"
             android:screenOrientation="portrait">
@@ -159,6 +159,7 @@
         <activity android:name=".activies.OwnStartCheckActivity" />
         <activity android:name=".activies.SelectPlaceActivity" />
         <activity android:name=".activies.AnnualCheckFeedbackActivity" />
+        <activity android:name=".activies.AnnualCheckDetailActivity"></activity>
     </application>
 
 </manifest>

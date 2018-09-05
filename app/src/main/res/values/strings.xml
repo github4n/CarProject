@@ -63,6 +63,16 @@
     <string name="text_product_price">商品总价</string>
     <string name="text_order_price">订单总价</string>
     <string name="text_final_price">实付款</string>
+    <string name="text_order_detail_code">车辆号码：</string>
+    <string name="text_order_detail_type">车辆型号：</string>
+    <string name="text_order_detail_time">预约时间：</string>
+    <string name="text_order_detail_item">服务项目：</string>
+    <string name="text_order_detail_material">项目材料：</string>
+    <string name="text_order_detail_exid">交易单号：</string>
+    <string name="text_order_detail_oid">订单单号：</string>
+    <string name="text_order_detail_price">订单金额</string>
+    <string name="text_order_detail_part">拆卸零件</string>
+    <string name="text_order_detail_process">维修过程</string>
 
     <!--商城订单-->
     <string name="text_all_order">商城订单</string>
@@ -256,7 +266,7 @@
     <string name="text_check_know">年检须知</string>
     <string name="text_check_contact">联系方式</string>
     <string name="text_fee_sum">费用统计</string>
-    <string name="text_fee_total">总计费用</string>
+    <string name="text_fee_total">总计费用：</string>
     <string name="text_confirm_pay">确认并支付</string>
     <!--填写信息页-->
     <string name="text_fill_info">填写信息</string>
@@ -330,6 +340,17 @@
     <string name="text_finish_time">完成时间</string>
     <string name="text_finish_place">地点</string>
     <string name="text_service_driver">服务司机</string>
+    <!--年检详情-->
+    <string name="text_check_detail">年检详情</string>
+    <string name="text_check_brand">品牌型号：</string>
+    <string name="text_check_code">号码号牌：</string>
+    <string name="text_check_book_time">预约时间：</string>
+    <string name="text_check_ok_time">完成时间：</string>
+    <string name="text_check_car_type">车辆类型：</string>
+    <string name="text_check_check_type">年检类型：</string>
+    <string name="text_check_station">年检站点：</string>
+    <string name="text_check_oid">订单单号：</string>
+    <string name="text_check_price">订单金额</string>
 
     <!---->
     <string name="text_evaluate">评价</string>

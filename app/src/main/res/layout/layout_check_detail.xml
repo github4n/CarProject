@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lcd_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lcd_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <TextView
+        android:id="@+id/lcd_tv_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_check_brand"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/lcd_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lcd_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="@id/lcd_tv_brand"
+        app:layout_constraintStart_toEndOf="@id/lcd_tv_brand"
+        app:layout_constraintTop_toTopOf="@id/lcd_tv_brand" />
+
+    <TextView
+        android:id="@+id/lcd_tv_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_check_code"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/lcd_guideline"
+        app:layout_constraintTop_toBottomOf="@id/lcd_tv_brand" />
+
+    <TextView
+        android:id="@+id/lcd_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="@id/lcd_tv_code"
+        app:layout_constraintStart_toEndOf="@id/lcd_tv_code"
+        app:layout_constraintTop_toTopOf="@id/lcd_tv_code" />
+
+    <TextView
+        android:id="@+id/lcd_tv_book_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_check_book_time"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/lcd_guideline"
+        app:layout_constraintTop_toBottomOf="@id/lcd_tv_code" />
+
+    <TextView
+        android:id="@+id/lcd_book_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="@id/lcd_tv_book_time"
+        app:layout_constraintStart_toEndOf="@id/lcd_tv_book_time"
+        app:layout_constraintTop_toTopOf="@id/lcd_tv_book_time" />
+
+    <TextView
+        android:id="@+id/lcd_tv_ok_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_check_ok_time"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/lcd_guideline"
+        app:layout_constraintTop_toBottomOf="@id/lcd_tv_book_time" />
+
+    <TextView
+        android:id="@+id/lcd_ok_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="@id/lcd_tv_ok_time"
+        app:layout_constraintStart_toEndOf="@id/lcd_tv_ok_time"
+        app:layout_constraintTop_toTopOf="@id/lcd_tv_ok_time" />
+
+    <TextView
+        android:id="@+id/lcd_tv_car_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_check_car_type"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/lcd_guideline"
+        app:layout_constraintTop_toBottomOf="@id/lcd_tv_ok_time" />
+
+    <TextView
+        android:id="@+id/lcd_car_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="@id/lcd_tv_car_type"
+        app:layout_constraintStart_toEndOf="@id/lcd_tv_car_type"
+        app:layout_constraintTop_toTopOf="@id/lcd_tv_car_type" />
+
+    <TextView
+        android:id="@+id/lcd_tv_check_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_check_check_type"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/lcd_guideline"
+        app:layout_constraintTop_toBottomOf="@id/lcd_tv_car_type" />
+
+    <TextView
+        android:id="@+id/lcd_check_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="@id/lcd_tv_check_type"
+        app:layout_constraintStart_toEndOf="@id/lcd_tv_check_type"
+        app:layout_constraintTop_toTopOf="@id/lcd_tv_check_type" />
+
+    <TextView
+        android:id="@+id/lcd_tv_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_check_station"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/lcd_guideline"
+        app:layout_constraintTop_toBottomOf="@id/lcd_tv_check_type" />
+
+    <TextView
+        android:id="@+id/lcd_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="@id/lcd_tv_station"
+        app:layout_constraintStart_toEndOf="@id/lcd_tv_station"
+        app:layout_constraintTop_toTopOf="@id/lcd_tv_station" />
+
+    <TextView
+        android:id="@+id/lcd_tv_oid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_check_oid"
+        android:textColor="@color/color_text"
+        app:layout_constraintStart_toStartOf="@id/lcd_guideline"
+        app:layout_constraintTop_toBottomOf="@id/lcd_tv_station" />
+
+    <TextView
+        android:id="@+id/lcd_oid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintBottom_toBottomOf="@id/lcd_tv_oid"
+        app:layout_constraintStart_toEndOf="@id/lcd_tv_oid"
+        app:layout_constraintTop_toTopOf="@id/lcd_tv_oid" />
+
+</android.support.constraint.ConstraintLayout>
