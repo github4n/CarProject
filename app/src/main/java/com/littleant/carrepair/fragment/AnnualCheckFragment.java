@@ -4,18 +4,15 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.Constraints;
-import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.littleant.carrepair.R;
-import com.littleant.carrepair.activies.AnnualCheckFillInfoActivity;
-import com.littleant.carrepair.activies.AnnualCheckRecordActivity;
-import com.littleant.carrepair.activies.OwnCheckFillInfoActivity;
-import com.littleant.carrepair.activies.PickCarActivity;
+import com.littleant.carrepair.activies.annualcheck.AnnualCheckFillInfoActivity;
+import com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity;
+import com.littleant.carrepair.activies.annualcheck.OwnCheckFillInfoActivity;
 
 public class AnnualCheckFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";

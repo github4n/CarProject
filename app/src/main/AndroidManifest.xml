@@ -37,7 +37,7 @@
         android:theme="@style/MyTheme_Light"
         tools:replace="android:theme">
         <activity
-            android:name=".dome.TestActivity"
+            android:name=".demo.TestActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,10 +46,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activies.MainActivity"
+            android:name=".activies.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.LoginActivity"
+            android:name=".activies.login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyThemeDark" />
 
@@ -58,108 +58,108 @@
             android:value="@string/gaode_map_api_key" />
 
         <activity
-            android:name=".activies.OrderDetailActivity"
+            android:name=".activies.order.OrderDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.AllOrderActivity"
+            android:name=".activies.order.AllOrderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.AddCarActivity"
+            android:name=".activies.car.AddCarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.SendCarAddressActivity"
+            android:name=".demo.SendCarAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.AddAddressActivity"
+            android:name=".activies.address.AddAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.SendCarServiceActivity"
+            android:name=".demo.SendCarServiceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.RemainingSumActivity"
+            android:name=".demo.RemainingSumActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.ExchangeRecordActivity"
+            android:name=".demo.ExchangeRecordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.OrderPageActivity"
+            android:name=".activies.order.OrderPageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.UserCenterActivity"
+            android:name=".demo.UserCenterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.ShoppingCarActivity"
+            android:name=".activies.shopping.ShoppingCarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.ShoppingActivity"
+            android:name=".activies.shopping.ShoppingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.RepairActivity"
+            android:name=".activies.repair.RepairActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.MyCarActivity"
+            android:name=".activies.car.MyCarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.MyAddressActivity"
+            android:name=".activies.address.MyAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.RepairRecordActivity"
+            android:name=".activies.repair.RepairRecordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.RepairStationActivity"
+            android:name=".activies.repair.RepairStationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.InformationActivity"
+            android:name=".activies.info.InformationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.ServiceMainActivity"
+            android:name=".demo.ServiceMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.AnnualCheckActivity"
+            android:name=".activies.annualcheck.AnnualCheckActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.AnnualCheckFillInfoActivity"
+            android:name=".activies.annualcheck.AnnualCheckFillInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.PickCarActivity"
+            android:name=".activies.annualcheck.PickCarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.StartCheckActivity"
+            android:name=".activies.annualcheck.StartCheckActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.CheckReturnCarActivity"
+            android:name=".activies.annualcheck.CheckReturnCarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.InsuranceProxyActivity"
+            android:name=".activies.insurance.InsuranceProxyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.SettingActivity"
+            android:name=".activies.setting.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.AnnualCheckRecordActivity"
+            android:name=".activies.annualcheck.AnnualCheckRecordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.BookMaintainActivity"
+            android:name=".activies.maintain.BookMaintainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.SearchActivity"
+            android:name=".activies.main.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.MapActivity"
+            android:name=".activies.map.MapActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.MyOrderActivity"
+            android:name=".activies.order.MyOrderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.PaymentActivity"
+            android:name=".activies.pay.PaymentActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.ForgetPasswordActivity" />
-        <activity android:name=".activies.RegisterActivity" />
-        <activity android:name=".activies.OwnCheckFillInfoActivity" />
-        <activity android:name=".activies.OwnStartCheckActivity" />
-        <activity android:name=".activies.SelectPlaceActivity" />
-        <activity android:name=".activies.AnnualCheckFeedbackActivity" />
-        <activity android:name=".activies.AnnualCheckDetailActivity"></activity>
+        <activity android:name=".activies.login.ForgetPasswordActivity" />
+        <activity android:name=".activies.login.RegisterActivity" />
+        <activity android:name=".activies.annualcheck.OwnCheckFillInfoActivity" />
+        <activity android:name=".activies.annualcheck.OwnStartCheckActivity" />
+        <activity android:name=".activies.map.SelectPlaceActivity" />
+        <activity android:name=".activies.annualcheck.AnnualCheckFeedbackActivity" />
+        <activity android:name=".activies.annualcheck.AnnualCheckDetailActivity"></activity>
     </application>
 
 </manifest>

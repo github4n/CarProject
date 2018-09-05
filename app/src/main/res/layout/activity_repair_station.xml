@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".activies.RepairStationActivity">
+    tools:context=".activies.repair.RepairStationActivity">
 
     <android.support.constraint.Guideline
         android:id="@+id/rs_guideline"

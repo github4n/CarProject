@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_sub_background"
-    tools:context=".activies.RepairActivity">
+    tools:context=".activies.repair.RepairActivity">
 
     <include
         android:id="@+id/include"

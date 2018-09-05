@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.littleant.carrepair.R;
-import com.littleant.carrepair.activies.InformationActivity;
-import com.littleant.carrepair.activies.InsuranceProxyActivity;
-import com.littleant.carrepair.activies.ShoppingActivity;
+import com.littleant.carrepair.activies.info.InformationActivity;
+import com.littleant.carrepair.activies.insurance.InsuranceProxyActivity;
+import com.littleant.carrepair.activies.shopping.ShoppingActivity;
 
 public class ServiceFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";

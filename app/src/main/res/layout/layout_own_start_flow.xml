@@ -29,7 +29,6 @@
         android:layout_marginTop="16dp"
         style="@style/OwnCheckBox"
         android:drawableTop="@drawable/flow_fill_selector"
-        android:checked="true"
         android:clickable="false"
         android:gravity="center_horizontal"
         android:text="@string/text_fill_info"

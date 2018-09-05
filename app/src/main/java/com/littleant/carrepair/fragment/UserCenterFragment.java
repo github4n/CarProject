@@ -1,10 +1,8 @@
 package com.littleant.carrepair.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +12,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
-import com.littleant.carrepair.activies.AllOrderActivity;
-import com.littleant.carrepair.activies.AnnualCheckRecordActivity;
-import com.littleant.carrepair.activies.LoginActivity;
-import com.littleant.carrepair.activies.MyAddressActivity;
-import com.littleant.carrepair.activies.MyCarActivity;
-import com.littleant.carrepair.activies.MyOrderActivity;
-import com.littleant.carrepair.activies.RepairRecordActivity;
-import com.littleant.carrepair.activies.SettingActivity;
+import com.littleant.carrepair.activies.order.AllOrderActivity;
+import com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity;
+import com.littleant.carrepair.activies.login.LoginActivity;
+import com.littleant.carrepair.activies.address.MyAddressActivity;
+import com.littleant.carrepair.activies.car.MyCarActivity;
+import com.littleant.carrepair.activies.order.MyOrderActivity;
+import com.littleant.carrepair.activies.repair.RepairRecordActivity;
+import com.littleant.carrepair.activies.setting.SettingActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.UserMeBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
