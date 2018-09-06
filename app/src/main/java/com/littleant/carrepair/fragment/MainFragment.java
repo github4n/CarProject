@@ -199,6 +199,13 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                                 LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
                                 aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + ""));
                             }
+                            selectedInfo = data.get(0);
+                            lmfd_tv_title.setText(selectedInfo.getName());
+                            String distance = Math.round(selectedInfo.getDistance()) + "";
+                            String address = selectedInfo.getAddress();
+                            lmfd_tv_address.setText(String.format(getResources().getString(R.string.text_main_garage_location), distance, address));
+                            int count = Math.round(selectedInfo.getScore());
+                            lmfd_ratingBar.setCountSelected(count);
                         }
 
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
@@ -265,7 +272,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         if(data != null && index !=  -1) {
             selectedInfo = data.get(index);
             if(selectedInfo != null) {
-                main_include.setVisibility(View.VISIBLE);
+//                main_include.setVisibility(View.VISIBLE);
                 lmfd_tv_title.setText(selectedInfo.getName());
                 String distance = Math.round(selectedInfo.getDistance()) + "";
                 String address = selectedInfo.getAddress();
@@ -318,9 +325,9 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
     @Override
     public void onMapClick(LatLng latLng) {
-        if(main_include != null && main_include.getVisibility() == View.VISIBLE) {
-            main_include.setVisibility(View.GONE);
-        }
+//        if(main_include != null && main_include.getVisibility() == View.VISIBLE) {
+//            main_include.setVisibility(View.GONE);
+//        }
     }
 
     /**

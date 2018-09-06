@@ -56,7 +56,7 @@
     <string name="text_my_order_state3">完成服务</string>
     <string name="text_my_order_state4">服务中</string>
 
-    <!---->
+    <!--订单详情-->
     <string name="text_order_detail">订单详情</string>
     <string name="text_destination_address">收货地址</string>
     <string name="text_order_info">订单信息</string>

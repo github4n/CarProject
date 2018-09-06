@@ -19,7 +19,7 @@ import com.littleant.carrepair.activies.main.MainActivity;
 import com.littleant.carrepair.activies.map.MapActivity;
 import com.littleant.carrepair.activies.address.MyAddressActivity;
 import com.littleant.carrepair.activies.car.MyCarActivity;
-import com.littleant.carrepair.activies.order.OrderDetailActivity;
+import com.littleant.carrepair.activies.shopping.ShoppingOrderDetailActivity;
 import com.littleant.carrepair.activies.order.OrderPageActivity;
 import com.littleant.carrepair.activies.annualcheck.PickCarActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
@@ -85,7 +85,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.order_detail:
-                c = OrderDetailActivity.class;
+                c = ShoppingOrderDetailActivity.class;
                 break;
 
             case R.id.all_order:

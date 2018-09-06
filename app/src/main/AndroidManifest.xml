@@ -58,7 +58,7 @@
             android:value="@string/gaode_map_api_key" />
 
         <activity
-            android:name=".activies.order.OrderDetailActivity"
+            android:name=".activies.shopping.ShoppingOrderDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.order.AllOrderActivity"
@@ -159,7 +159,8 @@
         <activity android:name=".activies.annualcheck.OwnStartCheckActivity" />
         <activity android:name=".activies.map.SelectPlaceActivity" />
         <activity android:name=".activies.annualcheck.AnnualCheckFeedbackActivity" />
-        <activity android:name=".activies.annualcheck.AnnualCheckDetailActivity"></activity>
+        <activity android:name=".activies.annualcheck.AnnualCheckDetailActivity" />
+        <activity android:name=".activies.order.ServiceOrderDetailActivity"></activity>
     </application>
 
 </manifest>

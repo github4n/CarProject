@@ -5,10 +5,7 @@ import android.os.Bundle;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 
-/**
- * 订单详情
- */
-public class OrderDetailActivity extends BaseActivity {
+public class ServiceOrderDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,8 +13,13 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
     @Override
+    protected void init() {
+        super.init();
+    }
+
+    @Override
     protected int getLayoutId() {
-        return R.layout.activity_order_detail;
+        return R.layout.activity_service_order_detail;
     }
 
     @Override
