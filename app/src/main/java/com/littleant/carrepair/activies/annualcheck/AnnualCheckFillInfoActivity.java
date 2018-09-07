@@ -22,7 +22,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.map.SelectPlaceActivity;
-import com.littleant.carrepair.demo.DateActivity;
+import com.littleant.carrepair.activies.datetime.DateActivity;
 
 public class AnnualCheckFillInfoActivity extends BaseActivity {
 

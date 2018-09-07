@@ -109,7 +109,6 @@ public class ShoppingCarActivity extends BaseActivity {
                 sci_plus = itemView.findViewById(R.id.sci_plus);
                 sci_amount = itemView.findViewById(R.id.sci_amount);
             }
-
         }
     }
 }

@@ -86,4 +86,10 @@ public class DataHelper {
         return year + "-" + month + "-" + day;
 
     }
+
+    //格式化请求日期
+    public static String parseTime(int hour, int minute) {
+        return hour + ":" + minute + ":" + "00";
+
+    }
 }

@@ -160,7 +160,18 @@
         <activity android:name=".activies.map.SelectPlaceActivity" />
         <activity android:name=".activies.annualcheck.AnnualCheckFeedbackActivity" />
         <activity android:name=".activies.annualcheck.AnnualCheckDetailActivity" />
-        <activity android:name=".activies.order.ServiceOrderDetailActivity"></activity>
+        <activity android:name=".activies.order.ServiceOrderDetailActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.littleant.carrepair.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
     </application>
 
 </manifest>
