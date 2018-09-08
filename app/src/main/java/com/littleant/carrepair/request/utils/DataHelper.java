@@ -11,6 +11,12 @@ import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Base64;
 
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Poi;
+import com.amap.api.navi.AmapNaviPage;
+import com.amap.api.navi.AmapNaviParams;
+import com.amap.api.navi.AmapNaviType;
+import com.amap.api.navi.INaviInfoCallback;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.mh.core.cipher.MHCipher;
 import com.mh.core.db.MHDatabase;
@@ -91,5 +97,11 @@ public class DataHelper {
     public static String parseTime(int hour, int minute) {
         return hour + ":" + minute + ":" + "00";
 
+    }
+
+    public static void prepareNavi(Context context, LatLng startLocation, LatLng endLocation, INaviInfoCallback iNaviInfoCallback) {
+        Poi start = new Poi("", startLocation, "");
+        Poi end = new Poi("", endLocation, "");
+        AmapNaviPage.getInstance().showRouteActivity(context, new AmapNaviParams(start, null, end, AmapNaviType.DRIVER), iNaviInfoCallback);
     }
 }
