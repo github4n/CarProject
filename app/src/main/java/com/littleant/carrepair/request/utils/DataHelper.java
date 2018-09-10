@@ -16,6 +16,7 @@ import com.amap.api.maps.model.Poi;
 import com.amap.api.navi.AmapNaviPage;
 import com.amap.api.navi.AmapNaviParams;
 import com.amap.api.navi.AmapNaviType;
+import com.amap.api.navi.AmapRouteActivity;
 import com.amap.api.navi.INaviInfoCallback;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.mh.core.cipher.MHCipher;
@@ -99,6 +100,7 @@ public class DataHelper {
 
     }
 
+    //导航功能
     public static void prepareNavi(Context context, LatLng startLocation, LatLng endLocation, INaviInfoCallback iNaviInfoCallback) {
         Poi start = new Poi("", startLocation, "");
         Poi end = new Poi("", endLocation, "");

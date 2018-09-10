@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.navi.INaviInfoCallback;
+import com.amap.api.navi.model.AMapNaviLocation;
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
@@ -55,7 +58,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class MainFragment extends Fragment implements AMap.OnMyLocationChangeListener,
-        AMap.OnMarkerClickListener, AMap.OnMapClickListener, View.OnClickListener {
+        AMap.OnMarkerClickListener, AMap.OnMapClickListener, View.OnClickListener, INaviInfoCallback {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -83,6 +86,8 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     private GarageInfo selectedInfo;
     //主页维修厂View
     private View main_include;
+    //导航按钮
+    private ImageView lmfd_iv_navi;
     public static final String GARAGE_LIST = "garage_list";
     public static final String MY_LATITUDE = "my_latitude";
     public static final String MY_LONGITUDE = "my_longitude";
@@ -158,6 +163,9 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         lmfd_ratingBar = view.findViewById(R.id.lmfd_ratingBar);
 
         main_include = view.findViewById(R.id.main_include);
+
+        lmfd_iv_navi = view.findViewById(R.id.lmfd_iv_navi);
+        lmfd_iv_navi.setOnClickListener(this);
 
         return view;
     }
@@ -320,6 +328,12 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                     DataHelper.callPhone(getActivity(), phone);
                 }
                 break;
+
+            case R.id.lmfd_iv_navi:
+                LatLng startLocation = new LatLng(myLatitude, myLongitude);
+                LatLng endLocation = new LatLng(selectedInfo.getLatitude(), selectedInfo.getLongitude());
+                DataHelper.prepareNavi(getContext(), startLocation, endLocation, this);
+                break;
         }
     }
 
@@ -328,6 +342,76 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 //        if(main_include != null && main_include.getVisibility() == View.VISIBLE) {
 //            main_include.setVisibility(View.GONE);
 //        }
+    }
+
+    @Override
+    public void onInitNaviFailure() {
+
+    }
+
+    @Override
+    public void onGetNavigationText(String s) {
+
+    }
+
+    @Override
+    public void onLocationChange(AMapNaviLocation aMapNaviLocation) {
+
+    }
+
+    @Override
+    public void onArriveDestination(boolean b) {
+
+    }
+
+    @Override
+    public void onStartNavi(int i) {
+
+    }
+
+    @Override
+    public void onCalculateRouteSuccess(int[] ints) {
+
+    }
+
+    @Override
+    public void onCalculateRouteFailure(int i) {
+
+    }
+
+    @Override
+    public void onStopSpeaking() {
+
+    }
+
+    @Override
+    public void onReCalculateRoute(int i) {
+
+    }
+
+    @Override
+    public void onExitPage(int i) {
+
+    }
+
+    @Override
+    public void onStrategyChanged(int i) {
+
+    }
+
+    @Override
+    public View getCustomNaviBottomView() {
+        return null;
+    }
+
+    @Override
+    public View getCustomNaviView() {
+        return null;
+    }
+
+    @Override
+    public void onArrivedWayPoint(int i) {
+
     }
 
     /**

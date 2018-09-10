@@ -1,6 +1,5 @@
 package com.littleant.carrepair.activies.repair;
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -16,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amap.searchdemo.SelectPlaceActivity;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.datetime.DateActivity;
@@ -89,7 +89,8 @@ public class RepairActivity extends BaseActivity implements View.OnClickListener
                 break;
 
             case R.id.r_tv_location_display:
-
+                Intent intent1 = new Intent(mContext, SelectPlaceActivity.class);
+                RepairActivity.this.startActivityForResult(intent1, REQUEST_CODE_SELECT_PLACE);
                 break;
 
             case R.id.r_tv_time_display:
@@ -142,6 +143,8 @@ public class RepairActivity extends BaseActivity implements View.OnClickListener
             if(mSelected != null && mSelected.size() > 0) {
                 r_pic_list.setAdapter(new MyAdapter(mSelected));
             }
+        } else if(requestCode == REQUEST_CODE_SELECT_PLACE) {
+
         }
     }
 

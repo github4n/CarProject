@@ -38,9 +38,9 @@ dependencies {
 //    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
 //        exclude group: 'com.android.support', module: 'support-annotations'
 //    })
-    implementation 'com.android.support:appcompat-v7:24.2.1'
-    implementation 'com.amap.api:location:latest.integration'
-    implementation 'com.amap.api:search:latest.integration'
-    implementation 'com.amap.api:3dmap:latest.integration'
+    compileOnly 'com.android.support:appcompat-v7:24.2.1'
+    compileOnly 'com.amap.api:location:latest.integration'
+    compileOnly 'com.amap.api:search:latest.integration'
+    compileOnly 'com.amap.api:3dmap:latest.integration'
 //    testCompile 'junit:junit:4.12'
 }

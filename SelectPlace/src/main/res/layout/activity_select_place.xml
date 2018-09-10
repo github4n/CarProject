@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:background="#3CADFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="选择位置"/>
+
+        <TextView
+            android:id="@+id/asp_tv_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="选择"
+             />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -48,7 +78,7 @@
 
 
     <com.amap.api.maps.MapView
-        android:id="@+id/asp_map"
+        android:id="@+id/asp_mapview"
         android:layout_width="match_parent"
         android:layout_height="220dp" />
 
@@ -102,7 +132,7 @@
         android:id="@+id/asp_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/asp_map"
+        android:layout_below="@id/asp_mapview"
         android:layout_weight="1"
         android:cacheColorHint="#00000000"
         android:dividerHeight="1px"

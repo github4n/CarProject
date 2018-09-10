@@ -96,7 +96,7 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_select_place);
 
-        mapView = (MapView) findViewById(R.id.asp_map);
+        mapView = (MapView) findViewById(R.id.asp_mapview);
         mapView.onCreate(savedInstanceState);
         init();
 

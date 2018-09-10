@@ -18,11 +18,11 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.amap.searchdemo.SelectPlaceActivity;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.activies.pay.PaymentActivity;
-import com.littleant.carrepair.activies.map.SelectPlaceActivity;
 import com.littleant.carrepair.activies.datetime.DateActivity;
+import com.littleant.carrepair.activies.pay.PaymentActivity;
 
 public class AnnualCheckFillInfoActivity extends BaseActivity {
 

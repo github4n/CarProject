@@ -153,20 +153,38 @@
         <activity
             android:name=".activies.pay.PaymentActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.login.ForgetPasswordActivity" />
-        <activity android:name=".activies.login.RegisterActivity" />
-        <activity android:name=".activies.annualcheck.OwnCheckFillInfoActivity" />
-        <activity android:name=".activies.annualcheck.OwnStartCheckActivity" />
-        <activity android:name=".activies.map.SelectPlaceActivity" />
-        <activity android:name=".activies.annualcheck.AnnualCheckFeedbackActivity" />
-        <activity android:name=".activies.annualcheck.AnnualCheckDetailActivity" />
-        <activity android:name=".activies.order.ServiceOrderDetailActivity" />
+        <activity
+            android:name=".activies.login.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.login.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.annualcheck.OwnCheckFillInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.annualcheck.OwnStartCheckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.annualcheck.AnnualCheckFeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.annualcheck.AnnualCheckDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activies.order.ServiceOrderDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.amap.api.navi.AmapRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.NoTitleBar" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.littleant.carrepair.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />

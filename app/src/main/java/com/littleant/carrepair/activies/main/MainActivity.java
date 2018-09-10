@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         mContext = this;
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE}, permission_request_code);
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.BLUETOOTH}, permission_request_code);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
