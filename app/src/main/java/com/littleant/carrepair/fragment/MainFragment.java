@@ -17,6 +17,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdate;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -29,6 +31,11 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.navi.INaviInfoCallback;
 import com.amap.api.navi.model.AMapNaviLocation;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
@@ -57,7 +64,7 @@ import java.util.ArrayList;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment implements AMap.OnMyLocationChangeListener,
+public class MainFragment extends Fragment implements AMap.OnMyLocationChangeListener, AMapLocationListener,
         AMap.OnMarkerClickListener, AMap.OnMapClickListener, View.OnClickListener, INaviInfoCallback {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -68,7 +75,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     private AMap aMap;
     private TextureMapView mMapView;
 //    private MapView mMapView = null;
-    private TextView m_input_search;
+    private TextView m_input_search, m_location;
     private RadioGroup mRadiogroup;
     //单选项
     private RadioButton mRepair, mMaintain;
@@ -163,6 +170,9 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         lmfd_ratingBar = view.findViewById(R.id.lmfd_ratingBar);
 
         main_include = view.findViewById(R.id.main_include);
+
+        //城市名
+        m_location = view.findViewById(R.id.m_location);
 
         lmfd_iv_navi = view.findViewById(R.id.lmfd_iv_navi);
         lmfd_iv_navi.setOnClickListener(this);
@@ -265,6 +275,24 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
             } else { //只刷新当前位置
                 myLatitude = location.getLatitude();
                 myLongitude = location.getLongitude();
+            }
+            String city = m_location.getText().toString();
+            if(TextUtils.isEmpty(city)) {
+                GeocodeSearch geocoderSearch = new GeocodeSearch(getContext());
+                geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+                    @Override
+                    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+                        m_location.setText(regeocodeResult.getRegeocodeAddress().getCity());
+                    }
+
+                    @Override
+                    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
+                    }
+                });
+                LatLonPoint latLonPoint = new LatLonPoint(myLatitude, myLongitude);
+                RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200, GeocodeSearch.AMAP);
+                geocoderSearch.getFromLocationAsyn(query);
             }
         }
     }
@@ -411,6 +439,11 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
     @Override
     public void onArrivedWayPoint(int i) {
+
+    }
+
+    @Override
+    public void onLocationChanged(AMapLocation aMapLocation) {
 
     }
 

@@ -48,6 +48,11 @@ public class BookMaintainActivity extends BaseActivity {
         return R.string.text_maintain;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public static final int TYPE_HEADER = 0;  //说明是带有Header的
         public static final int TYPE_FOOTER = 1;  //说明是带有Footer的

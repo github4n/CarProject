@@ -32,7 +32,7 @@ import static com.littleant.carrepair.activies.address.MyAddressActivity.USER_AD
 /**
  * 添加地址
  */
-public class AddAddressActivity extends BaseActivity implements View.OnClickListener {
+public class AddAddressActivity extends BaseActivity {
     private EditText et_add_name, et_add_phone, et_add_address;
     private TextView et_add_city;
     private CheckBox aa_cb_default;

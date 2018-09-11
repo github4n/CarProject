@@ -1,6 +1,7 @@
 package com.littleant.carrepair.demo;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
@@ -23,5 +24,10 @@ public class SendCarAddressActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
         return R.string.text_send_car_address;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

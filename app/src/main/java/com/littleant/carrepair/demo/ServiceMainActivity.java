@@ -1,6 +1,7 @@
 package com.littleant.carrepair.demo;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
@@ -25,5 +26,10 @@ public class ServiceMainActivity extends BaseActivity {
     @Override
     protected boolean showBackButton() {
         return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

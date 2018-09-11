@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.repair;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -32,7 +33,7 @@ import java.util.List;
 /**
  * 维修保养
  */
-public class RepairActivity extends BaseActivity implements View.OnClickListener {
+public class RepairActivity extends BaseActivity {
 
     private Button r_btn_confrm;
     private TextView r_tv_location_display, r_tv_time_display;
@@ -42,6 +43,8 @@ public class RepairActivity extends BaseActivity implements View.OnClickListener
     private static final int REQUEST_CODE_CHOOSE = 10;//定义请求码常量
     private static final int REQUEST_CODE_SELECT_PLACE = 11;//定义请求码常量
     private List<Uri> mSelected;
+    private double selectLat, selectLon;
+    private String selectAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,8 +146,14 @@ public class RepairActivity extends BaseActivity implements View.OnClickListener
             if(mSelected != null && mSelected.size() > 0) {
                 r_pic_list.setAdapter(new MyAdapter(mSelected));
             }
-        } else if(requestCode == REQUEST_CODE_SELECT_PLACE) {
-
+        } else if(requestCode == REQUEST_CODE_SELECT_PLACE && resultCode == Activity.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            if(extras != null) {
+                selectAddress = extras.getString(SelectPlaceActivity.SELECT_PLACE_ADDRESS, "");
+                selectLat = extras.getDouble(SelectPlaceActivity.SELECT_PLACE_LAT);
+                selectLon = extras.getDouble(SelectPlaceActivity.SELECT_PLACE_LON);
+                r_tv_location_display.setText(selectAddress);
+            }
         }
     }
 

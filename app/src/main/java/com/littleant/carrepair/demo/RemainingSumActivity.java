@@ -1,6 +1,7 @@
 package com.littleant.carrepair.demo;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
@@ -29,5 +30,10 @@ public class RemainingSumActivity extends BaseActivity
     @Override
     protected int getOptionStringId() {
         return R.string.text_recharge_record;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

@@ -37,6 +37,11 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    protected void init() {
+        super.init();
         //套餐A
         acf_btn_package_a = findViewById(R.id.acf_btn_package_a);
         //套餐B
@@ -146,7 +151,6 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
                 AnnualCheckFillInfoActivity.this.startActivity(intent);
             }
         });
-
     }
 
     private Dialog setDialog(Activity activity, View contentView) {
@@ -179,5 +183,10 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
         return R.string.text_fill_info;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

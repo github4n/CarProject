@@ -35,6 +35,11 @@ public class InsuranceProxyActivity extends BaseActivity {
         return R.string.text_insurance_proxy;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         @Override

@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.annualcheck;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,5 +57,10 @@ public class CheckReturnCarActivity extends BaseFlowActivity {
     @Override
     protected int getTitleId() {
         return R.string.text_check_return_car;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

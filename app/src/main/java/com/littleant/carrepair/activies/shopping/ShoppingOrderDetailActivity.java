@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.shopping;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
@@ -23,5 +24,10 @@ public class ShoppingOrderDetailActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
         return R.string.text_order_detail;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

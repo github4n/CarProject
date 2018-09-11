@@ -30,7 +30,7 @@ import static com.littleant.carrepair.activies.address.AddAddressActivity.RESULT
 /**
  * 我的地址
  */
-public class MyAddressActivity extends BaseActivity implements View.OnClickListener {
+public class MyAddressActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_ADD_ADDRESS = 100;
     private static final int REQUEST_CODE_MODIFY_ADDRESS = 101;

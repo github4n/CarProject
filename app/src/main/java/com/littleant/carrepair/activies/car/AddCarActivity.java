@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * 添加车辆
  */
-public class AddCarActivity extends BaseActivity implements View.OnClickListener {
+public class AddCarActivity extends BaseActivity {
 
     private static final int REQUEST_GET_SINGLE_FILE = 100;
     private ImageView aac_iv_pic;

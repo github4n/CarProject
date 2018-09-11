@@ -1,11 +1,14 @@
 package com.amap.searchdemo;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
@@ -89,6 +93,12 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
     private List<Tip> autoTips;
     private boolean isfirstinput = true;
     private PoiItem firstItem;
+    private TextView asp_tv_select;
+    private String curAddress, city;
+    private double myLat, myLon;
+    public static final String SELECT_PLACE_ADDRESS = "select_place_address";
+    public static final String SELECT_PLACE_LAT = "select_place_lat";
+    public static final String SELECT_PLACE_LON = "select_place_lon";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +157,7 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String newText = s.toString().trim();
                 if (newText.length() > 0) {
-                    InputtipsQuery inputquery = new InputtipsQuery(newText, "北京");
+                    InputtipsQuery inputquery = new InputtipsQuery(newText, TextUtils.isEmpty(city) ? "北京" : city);
                     Inputtips inputTips = new Inputtips(SelectPlaceActivity.this, inputquery);
                     inputquery.setCityLimit(true);
                     inputTips.setInputtipsListener(inputtipsListener);
@@ -169,6 +179,19 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
                     Tip tip = autoTips.get(position);
                     searchPoi(tip);
                 }
+            }
+        });
+
+        asp_tv_select = (TextView) findViewById(R.id.asp_tv_select);
+        asp_tv_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra(SELECT_PLACE_LAT, myLat);
+                intent.putExtra(SELECT_PLACE_LON, myLon);
+                intent.putExtra(SELECT_PLACE_ADDRESS, curAddress);
+                SelectPlaceActivity.this.setResult(Activity.RESULT_OK, intent);
+                SelectPlaceActivity.this.finish();
             }
         });
 
@@ -270,7 +293,7 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
      */
     @Override
     public void onLocationChanged(AMapLocation amapLocation) {
-//        Log.i("MY", "onLocationChanged");
+        Log.i("MY", "onLocationChanged");
         if (mListener != null && amapLocation != null) {
             if (amapLocation != null
                     && amapLocation.getErrorCode() == 0) {
@@ -285,6 +308,12 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
                 isInputKeySearch = false;
 
                 searchText.setText("");
+
+                curAddress = amapLocation.getAddress();
+                myLat = amapLocation.getLatitude();
+                myLon = amapLocation.getLongitude();
+
+                city = amapLocation.getCity();
 
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode()+ ": " + amapLocation.getErrorInfo();

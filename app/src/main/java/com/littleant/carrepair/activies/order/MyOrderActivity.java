@@ -32,6 +32,11 @@ public class MyOrderActivity extends BaseActivity {
         return R.string.text_my_order;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         @Override

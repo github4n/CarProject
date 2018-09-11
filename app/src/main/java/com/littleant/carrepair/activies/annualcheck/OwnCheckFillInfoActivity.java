@@ -22,7 +22,7 @@ import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
-public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements View.OnClickListener {
+public class OwnCheckFillInfoActivity extends BaseFillInfoActivity {
     private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station;
     private List<SurveyStationInfo> data;
 

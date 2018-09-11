@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * 我的汽车
  */
-public class MyCarActivity extends BaseActivity implements View.OnClickListener {
+public class MyCarActivity extends BaseActivity{
     private RecyclerView mList;
     private static final int REQUEST_CODE_ADD_CAR = 100;
     private List<MyCarListBean.CarInfo> data;

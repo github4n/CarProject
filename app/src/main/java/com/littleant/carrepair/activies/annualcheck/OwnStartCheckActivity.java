@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.annualcheck;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 
 import com.littleant.carrepair.R;
@@ -25,5 +26,10 @@ public class OwnStartCheckActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
         return R.string.text_start_annual_check;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

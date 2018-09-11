@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.annualcheck;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
@@ -25,5 +26,10 @@ public class AnnualCheckDetailActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
         return R.string.text_check_detail;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

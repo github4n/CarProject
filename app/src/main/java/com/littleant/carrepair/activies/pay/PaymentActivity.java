@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.pay;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
@@ -20,5 +21,10 @@ public class PaymentActivity extends BaseActivity {
     @Override
     protected int getTitleId() {
         return R.string.text_payment;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

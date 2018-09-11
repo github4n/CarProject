@@ -22,7 +22,7 @@ import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
-public class ForgetPasswordActivity extends BaseActivity implements View.OnClickListener {
+public class ForgetPasswordActivity extends BaseActivity {
     private EditText afp_et_phone, afp_et_auth, afp_et_new_password, afp_et_confirm_password;
     private TextView afp_auth;
     private Button afp_btn_save;

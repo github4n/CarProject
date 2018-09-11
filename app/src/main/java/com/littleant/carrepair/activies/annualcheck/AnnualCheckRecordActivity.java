@@ -27,7 +27,7 @@ import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
-public class AnnualCheckRecordActivity extends BaseActivity implements View.OnClickListener {
+public class AnnualCheckRecordActivity extends BaseActivity {
 
     private RecyclerView mList;
     private int queryType = ParamsConstant.SURVEY_NOT_FINISH;

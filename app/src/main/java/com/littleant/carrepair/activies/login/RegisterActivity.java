@@ -21,7 +21,7 @@ import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
-public class RegisterActivity extends BaseActivity implements View.OnClickListener {
+public class RegisterActivity extends BaseActivity {
     private EditText ar_et_phone, ar_et_auth, ar_et_new_password, ar_et_confirm_password;
     /**
      * 获取验证码

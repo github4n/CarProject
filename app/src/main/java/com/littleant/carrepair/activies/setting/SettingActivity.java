@@ -27,7 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
-public class SettingActivity extends BaseActivity implements View.OnClickListener{
+public class SettingActivity extends BaseActivity {
 
     private static final int REQUEST_GET_SINGLE_FILE = 100;
     private Button setting_logout;

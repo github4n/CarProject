@@ -13,7 +13,7 @@ import com.littleant.carrepair.R;
 /**
  * 基类Activity
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     protected TextView mTitle, mOptionContent, mOptionText;
     protected ImageView backButton;
     protected Context mContext;

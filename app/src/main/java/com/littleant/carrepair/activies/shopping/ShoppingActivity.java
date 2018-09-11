@@ -52,6 +52,11 @@ public class ShoppingActivity extends BaseActivity {
         return R.drawable.shopping_search;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
     private class MyAdapter extends BaseAdapter {
 
         @Override

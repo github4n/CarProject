@@ -34,6 +34,11 @@ public class ExchangeRecordActivity extends BaseActivity {
         return R.string.text_remaining_sum_list;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
+
     private class MyAdapter extends BaseAdapter {
 
         @Override

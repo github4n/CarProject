@@ -5,7 +5,7 @@ import android.view.View;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 
-public class AnnualCheckFeedbackActivity extends BaseActivity implements View.OnClickListener {
+public class AnnualCheckFeedbackActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
 
