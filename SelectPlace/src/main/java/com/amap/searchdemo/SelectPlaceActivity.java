@@ -189,6 +189,16 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
                 Intent intent = new Intent();
                 intent.putExtra(SELECT_PLACE_LAT, myLat);
                 intent.putExtra(SELECT_PLACE_LON, myLon);
+                PoiItem poiItem = resultData.get(searchResultAdapter.getSelectedPosition());
+                if(!TextUtils.isEmpty(poiItem.getCityName())) {
+                    curAddress += poiItem.getCityName();
+                }
+                if(!TextUtils.isEmpty(poiItem.getAdName())) {
+                    curAddress += poiItem.getAdName();
+                }
+                if(!TextUtils.isEmpty(poiItem.getSnippet())) {
+                    curAddress += poiItem.getSnippet();
+                }
                 intent.putExtra(SELECT_PLACE_ADDRESS, curAddress);
                 SelectPlaceActivity.this.setResult(Activity.RESULT_OK, intent);
                 SelectPlaceActivity.this.finish();
@@ -314,6 +324,9 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
                 myLon = amapLocation.getLongitude();
 
                 city = amapLocation.getCity();
+                Log.e("Amap city", city + "  " + curAddress);
+                Log.e("Amap myLat", myLat + "  ");
+                Log.e("Amap myLon", myLon + "  ");
 
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode()+ ": " + amapLocation.getErrorInfo();
