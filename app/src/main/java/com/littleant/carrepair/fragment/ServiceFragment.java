@@ -2,6 +2,7 @@ package com.littleant.carrepair.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,10 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.info.InformationActivity;
 import com.littleant.carrepair.activies.insurance.InsuranceProxyActivity;
 import com.littleant.carrepair.activies.shopping.ShoppingActivity;
+import com.littleant.carrepair.request.excute.system.ServiceImgCmd;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
 
 public class ServiceFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
@@ -84,7 +89,22 @@ public class ServiceFragment extends BaseFragment {
                 Toast.makeText(getContext(), "更多服务", Toast.LENGTH_SHORT).show();
             }
         });
+
+        requestImage();
         return subView;
+    }
+
+    private void requestImage() {
+        ServiceImgCmd serviceImgCmd = new ServiceImgCmd(getContext());
+        serviceImgCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    Log.i("response", command.getResponse());
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(getContext(), serviceImgCmd);
     }
 
 }

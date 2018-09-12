@@ -23,15 +23,23 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.datetime.DateActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
+import com.littleant.carrepair.activies.repair.RepairActivity;
+import com.littleant.carrepair.request.bean.SurveyStationInfo;
+import com.littleant.carrepair.request.utils.DataHelper;
 
-public class AnnualCheckFillInfoActivity extends BaseActivity {
+import java.util.List;
+
+public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
 
     private ConstraintLayout acf_package_layout;
     private RadioButton acf_btn_package_a, acf_btn_package_b;
     private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station, acf_tv_date1;
     private TextView acf_et_pick_location;
-    private String[] carType = new String[]{"汽车1", "汽车2"};
-    private String[] stations = new String[]{"站点1", "站点2", "站点3"};
+    private static final int REQUEST_CODE_SELECT_PLACE = 11;//定义请求码常量
+    private double selectLat, selectLon;
+    private String selectAddress;
+//    private String[] carType = new String[]{"汽车1", "汽车2"};
+//    private String[] stations = new String[]{"站点1", "站点2", "站点3"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +60,7 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
         acf_package_layout = findViewById(R.id.acf_package_layout);
 
         acf_confirm_pay = findViewById(R.id.acf_confirm_pay);
-        acf_confirm_pay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
-                AnnualCheckFillInfoActivity.this.startActivity(intent);
-            }
-        });
+        acf_confirm_pay.setOnClickListener(this);
 
         acf_btn_package_a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -81,76 +83,16 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
         });
 
         acf_et_car_type = findViewById(R.id.acf_et_car_type);
-        acf_et_car_type.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View contentView = LayoutInflater.from(AnnualCheckFillInfoActivity.this).inflate(R.layout.layout_select_dialog, null);
-//                View contentView = View.inflate(OwnCheckFillInfoActivity.this, R.layout.layout_select_dialog, null);
-                final Dialog d = setDialog(AnnualCheckFillInfoActivity.this, contentView);
-                d.setContentView(contentView);
-                contentView.findViewById(R.id.lsd_tv_cancel).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        d.dismiss();
-                    }
-                });
-
-                ListView listView = contentView.findViewById(R.id.lsd_list);
-                listView.setAdapter(new ArrayAdapter<>(AnnualCheckFillInfoActivity.this, android.R.layout.simple_list_item_1, carType));
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        d.dismiss();
-                    }
-                });
-                d.show();
-            }
-        });
+        acf_et_car_type.setOnClickListener(this);
 
         acf_et_pick_station = findViewById(R.id.acf_et_pick_station);
-        acf_et_pick_station.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View contentView = LayoutInflater.from(AnnualCheckFillInfoActivity.this).inflate(R.layout.layout_select_dialog, null);
-//                View contentView = View.inflate(OwnCheckFillInfoActivity.this, R.layout.layout_select_dialog, null);
-                final Dialog d = setDialog(AnnualCheckFillInfoActivity.this, contentView);
-                d.setContentView(contentView);
-                contentView.findViewById(R.id.lsd_tv_cancel).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        d.dismiss();
-                    }
-                });
-
-                ListView listView = contentView.findViewById(R.id.lsd_list);
-                listView.setAdapter(new ArrayAdapter<>(AnnualCheckFillInfoActivity.this, android.R.layout.simple_list_item_1, stations));
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        d.dismiss();
-                    }
-                });
-                d.show();
-            }
-        });
+        acf_et_pick_station.setOnClickListener(this);
 
         acf_tv_date1 = findViewById(R.id.acf_tv_date1);
-        acf_tv_date1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DateActivity dateActivity = new DateActivity();
-                dateActivity.show(getFragmentManager(), DateActivity.class.getSimpleName());
-            }
-        });
+        acf_tv_date1.setOnClickListener(this);
 
         acf_et_pick_location = findViewById(R.id.acf_et_pick_location);
-        acf_et_pick_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AnnualCheckFillInfoActivity.this, SelectPlaceActivity.class);
-                AnnualCheckFillInfoActivity.this.startActivity(intent);
-            }
-        });
+        acf_et_pick_location.setOnClickListener(this);
     }
 
     private Dialog setDialog(Activity activity, View contentView) {
@@ -187,6 +129,56 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.acf_confirm_pay:
+                Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
+                AnnualCheckFillInfoActivity.this.startActivity(intent);
+                break;
 
+            case R.id.acf_et_car_type:
+                showList(carType, null, acf_et_car_type);
+                break;
+
+            case R.id.acf_et_pick_station:
+                if(stations == null) {
+                    requestStation(this);
+                } else {
+                    showList(carType, stations, acf_et_pick_station);
+                }
+                break;
+
+            case R.id.acf_et_pick_location:
+                Intent intent1 = new Intent(mContext, SelectPlaceActivity.class);
+                startActivityForResult(intent1, REQUEST_CODE_SELECT_PLACE);
+                break;
+
+            case R.id.acf_tv_date1:
+                DataHelper.pickDateAndTime(this, new DataHelper.PickDateListener() {
+                    @Override
+                    public void onDatePick(String dateAndTime) {
+                        acf_tv_date1.setText(dateAndTime);
+                    }
+                });
+                break;
+        }
+    }
+
+    @Override
+    public void onRequestComplete(List<SurveyStationInfo> stations) {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_SELECT_PLACE && resultCode == Activity.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            if (extras != null) {
+                selectAddress = extras.getString(SelectPlaceActivity.SELECT_PLACE_ADDRESS, "");
+                selectLat = extras.getDouble(SelectPlaceActivity.SELECT_PLACE_LAT);
+                selectLon = extras.getDouble(SelectPlaceActivity.SELECT_PLACE_LON);
+                acf_et_pick_location.setText(selectAddress);
+            }
+        }
     }
 }

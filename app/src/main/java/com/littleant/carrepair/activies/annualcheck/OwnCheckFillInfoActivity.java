@@ -14,6 +14,7 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.SurveyStationListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
 import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -27,11 +28,27 @@ import java.util.List;
 public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
     private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station, aocf_tv_date1;
     private EditText aocf_et_contact_name, aocf_et_contact_phone, aocf_et_driver_name, aocf_et_driver_brand, aocf_et_driver_plate;
+    private String price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestPrice();
+    }
 
+    private void requestPrice() {
+        SurveyMethodCmd surveyMethodCmd = new SurveyMethodCmd(mContext, "", ParamsConstant.SurveyMethodType.GET,
+                "", "", 0, 0, "");
+        surveyMethodCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    // TODO: 2018/9/12 返回500错误
+                    Log.i("register response", command.getResponse());
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, surveyMethodCmd);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class SurveyMethodCmd extends BaseRequestCmd {
 
     @Override
     protected String getInterfaceName() {
-        return InterfaceConstant.SURVEY_SURVEY_METHOD;
+        return InterfaceConstant.SURVEY_SURVEY_SELFMETHOD;
     }
 
     @Override
