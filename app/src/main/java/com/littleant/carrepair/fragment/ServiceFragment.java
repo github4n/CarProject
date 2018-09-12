@@ -1,27 +1,45 @@
 package com.littleant.carrepair.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.info.InformationActivity;
 import com.littleant.carrepair.activies.insurance.InsuranceProxyActivity;
 import com.littleant.carrepair.activies.shopping.ShoppingActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.PictureListBean;
+import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.system.ServiceImgCmd;
+import com.littleant.carrepair.utils.GlideImageLoader;
+import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
+import com.squareup.picasso.Picasso;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+
+import java.util.List;
 
 public class ServiceFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private View mallView, insuranceView, infoView, moreView;
+    private String picUrl;
+    private List<String> picList;
+    private Banner sm_banner;
+    private ImageView sm_picture;
 
     public ServiceFragment() {
         // Required empty public constructor
@@ -90,6 +108,13 @@ public class ServiceFragment extends BaseFragment {
             }
         });
 
+        sm_banner = subView.findViewById(R.id.sm_banner);
+        sm_banner.setImageLoader(new GlideImageLoader());
+        //设置banner样式
+        sm_banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+
+        sm_picture= subView.findViewById(R.id.sm_picture);
+
         requestImage();
         return subView;
     }
@@ -99,8 +124,27 @@ public class ServiceFragment extends BaseFragment {
         serviceImgCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
-                if(command != null) {
+                if (command != null) {
                     Log.i("response", command.getResponse());
+                    PictureListBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), PictureListBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        PictureListBean.PictureBean pictureBean = responseBean.getData();
+                        if(pictureBean != null) {
+                            picUrl = pictureBean.getPic_url();
+                            picList = pictureBean.getPic_url_list();
+                            if(!TextUtils.isEmpty(picUrl)) {
+                                Picasso.with(getContext()).load(Uri.parse(picUrl)).into(sm_picture);
+                            }
+                            if(picList != null) {
+                                sm_banner.setImages(picList);
+                                sm_banner.start();
+                            }
+                        }
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(getContext(), responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(getContext(), R.string.request_fail);
                 }
             }
         });

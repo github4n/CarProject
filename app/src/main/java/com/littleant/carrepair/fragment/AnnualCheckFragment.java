@@ -2,23 +2,46 @@ package com.littleant.carrepair.fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.Constraints;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.annualcheck.AnnualCheckFillInfoActivity;
 import com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity;
 import com.littleant.carrepair.activies.annualcheck.OwnCheckFillInfoActivity;
+import com.littleant.carrepair.request.bean.PictureListBean;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.system.ServiceImgCmd;
+import com.littleant.carrepair.request.excute.system.SurveyImgCmd;
+import com.littleant.carrepair.utils.GlideImageLoader;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
+import com.squareup.picasso.Picasso;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+
+import java.util.List;
 
 public class AnnualCheckFragment extends BaseFragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private View reservationView, myReservationView;
+    private String picUrl;
+    private List<String> picList;
+    private Banner ac_banner;
+    private ImageView ac_picture;
 
     public AnnualCheckFragment() {
         // Required empty public constructor
@@ -60,7 +83,48 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
 
         myReservationView = subView.findViewById(R.id.ac_cl_my_reservation);
         myReservationView.setOnClickListener(this);
+
+        ac_banner = subView.findViewById(R.id.ac_banner);
+        ac_banner.setImageLoader(new GlideImageLoader());
+        //设置banner样式
+        ac_banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+
+        ac_picture= subView.findViewById(R.id.ac_picture);
+
+        requestImage();
         return subView;
+    }
+
+    private void requestImage() {
+        SurveyImgCmd surveyImgCmd = new SurveyImgCmd(getContext());
+        surveyImgCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    PictureListBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), PictureListBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        PictureListBean.PictureBean pictureBean = responseBean.getData();
+                        if(pictureBean != null) {
+                            picUrl = pictureBean.getPic_url();
+                            picList = pictureBean.getPic_url_list();
+                            if(!TextUtils.isEmpty(picUrl)) {
+                                Picasso.with(getContext()).load(Uri.parse(picUrl)).into(ac_picture);
+                            }
+                            if(picList != null) {
+                                ac_banner.setImages(picList);
+                                ac_banner.start();
+                            }
+                        }
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(getContext(), responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(getContext(), R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(getContext(), surveyImgCmd);
     }
 
     @Override
