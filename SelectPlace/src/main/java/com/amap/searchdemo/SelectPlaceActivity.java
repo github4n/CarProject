@@ -57,7 +57,6 @@ import java.util.List;
 public class SelectPlaceActivity extends AppCompatActivity implements LocationSource,
         AMapLocationListener, GeocodeSearch.OnGeocodeSearchListener, PoiSearch.OnPoiSearchListener { // Inputtips.InputtipsListener
 
-
     private ListView listView;
     private SegmentedGroup mSegmentedGroup;
     private AutoCompleteTextView searchText;

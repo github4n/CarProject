@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.navi.INaviInfoCallback;
+import com.amap.api.navi.model.AMapNaviLocation;
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.fragment.MainFragment;
 import com.littleant.carrepair.request.bean.GarageInfo;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.squareup.picasso.Picasso;
@@ -18,7 +22,7 @@ import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
 /**
  * 维修点
  */
-public class RepairStationActivity extends AppCompatActivity implements View.OnClickListener {
+public class RepairStationActivity extends AppCompatActivity implements View.OnClickListener, INaviInfoCallback {
 
     private Context mContext;
     private ImageView rs_iv_back, rs_iv_like;
@@ -27,6 +31,7 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
     //控件
     private TextView rs_tv_title, rs_tv_like_amount, rs_contact, rs_phone, rs_address;
     private ImageView rs_tv_banner;
+    private double myLatitude, myLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,8 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
            garageInfo = (GarageInfo) extras.getSerializable(GARAGE_INFO);
+           myLatitude = extras.getDouble(MainFragment.MY_LATITUDE);
+           myLongitude = extras.getDouble(MainFragment.MY_LONGITUDE);
         }
         if(garageInfo == null) {
             this.finish();
@@ -77,7 +84,9 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
                 break;
 
             case R.id.rs_btn_navi:
-
+                LatLng startLocation = new LatLng(myLatitude, myLongitude);
+                LatLng endLocation = new LatLng(garageInfo.getLatitude(), garageInfo.getLongitude());
+                DataHelper.prepareNavi(mContext, startLocation, endLocation, this);
                 break;
 
             case R.id.rs_btn_contact:
@@ -101,5 +110,75 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
 //                d.show();
                 break;
         }
+    }
+
+    @Override
+    public void onInitNaviFailure() {
+
+    }
+
+    @Override
+    public void onGetNavigationText(String s) {
+
+    }
+
+    @Override
+    public void onLocationChange(AMapNaviLocation aMapNaviLocation) {
+
+    }
+
+    @Override
+    public void onArriveDestination(boolean b) {
+
+    }
+
+    @Override
+    public void onStartNavi(int i) {
+
+    }
+
+    @Override
+    public void onCalculateRouteSuccess(int[] ints) {
+
+    }
+
+    @Override
+    public void onCalculateRouteFailure(int i) {
+
+    }
+
+    @Override
+    public void onStopSpeaking() {
+
+    }
+
+    @Override
+    public void onReCalculateRoute(int i) {
+
+    }
+
+    @Override
+    public void onExitPage(int i) {
+
+    }
+
+    @Override
+    public void onStrategyChanged(int i) {
+
+    }
+
+    @Override
+    public View getCustomNaviBottomView() {
+        return null;
+    }
+
+    @Override
+    public View getCustomNaviView() {
+        return null;
+    }
+
+    @Override
+    public void onArrivedWayPoint(int i) {
+
     }
 }

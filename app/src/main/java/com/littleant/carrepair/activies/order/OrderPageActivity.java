@@ -90,7 +90,7 @@ public class OrderPageActivity extends BaseActivity {
                 holder.oei_detail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final Dialog d = new Dialog(OrderPageActivity.this);
+                        final Dialog d = new Dialog(OrderPageActivity.this, R.style.MyTransparentDialog);
                         View contentView = View.inflate(OrderPageActivity.this, R.layout.layout_point, null);
 //                        d.setContentView(R.layout.layout_point);
                         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();

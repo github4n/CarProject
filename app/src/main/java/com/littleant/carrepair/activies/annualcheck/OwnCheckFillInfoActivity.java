@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
@@ -14,6 +15,7 @@ import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.SurveyStationListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
@@ -22,9 +24,9 @@ import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
-public class OwnCheckFillInfoActivity extends BaseFillInfoActivity {
-    private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station;
-    private List<SurveyStationInfo> data;
+public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
+    private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station, aocf_tv_date1;
+    private EditText aocf_et_contact_name, aocf_et_contact_phone, aocf_et_driver_name, aocf_et_driver_brand, aocf_et_driver_plate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,16 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity {
 
         aocf_et_pick_station = findViewById(R.id.aocf_et_pick_station);
         aocf_et_pick_station.setOnClickListener(this);
+
+        aocf_tv_date1 = findViewById(R.id.aocf_tv_date1);
+        aocf_tv_date1.setOnClickListener(this);
+
+        //EditText输入框
+        aocf_et_contact_name = findViewById(R.id.aocf_et_contact_name);
+        aocf_et_contact_phone = findViewById(R.id.aocf_et_contact_phone);
+        aocf_et_driver_name = findViewById(R.id.aocf_et_driver_name);
+        aocf_et_driver_brand = findViewById(R.id.aocf_et_driver_brand);
+        aocf_et_driver_plate = findViewById(R.id.aocf_et_driver_plate);
     }
 
     @Override
@@ -69,39 +81,27 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity {
                 break;
 
             case R.id.aocf_et_pick_station:
-                if(data == null) {
-                    requestStation();
+                if(stations == null) {
+                    requestStation(this);
                 } else {
-                    showList(carType, data, aocf_et_pick_station);
+                    showList(carType, stations, aocf_et_pick_station);
                 }
+                break;
+
+            case R.id.aocf_tv_date1:
+                DataHelper.pickDateAndTime(this, new DataHelper.PickDateListener() {
+                    @Override
+                    public void onDatePick(String dateAndTime) {
+                        aocf_tv_date1.setText(dateAndTime);
+                    }
+                });
                 break;
 
         }
     }
 
-    private void requestStation() {
-        SurveyStationQueryAllCmd surveyStationQueryAllCmd = new SurveyStationQueryAllCmd(mContext);
-        surveyStationQueryAllCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if (command != null) {
-                    Log.i("response", command.getResponse());
-                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        SurveyStationListBean listBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SurveyStationListBean.class);
-                        data = listBean.getData();
-                        if(data != null && data.size() > 0) {
-                            showList(carType, data, aocf_et_pick_station);
-                        }
-                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
-                        MHToast.showS(mContext, responseBean.getMsg());
-                    }
-                } else {
-                    MHToast.showS(mContext, R.string.request_fail);
-                }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(mContext, surveyStationQueryAllCmd);
+    @Override
+    public void onRequestComplete(List<SurveyStationInfo> stations) {
+        showList(carType, stations, aocf_et_pick_station);
     }
-
 }

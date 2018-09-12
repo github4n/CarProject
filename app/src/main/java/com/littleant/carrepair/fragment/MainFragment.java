@@ -336,6 +336,8 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
             case R.id.lmfd_tv_more:
                 intent = new Intent(getContext(), RepairStationActivity.class);
                 intent.putExtra(GARAGE_INFO, selectedInfo);
+                intent.putExtra(MY_LATITUDE, myLatitude);
+                intent.putExtra(MY_LONGITUDE, myLongitude);
                 getActivity().startActivity(intent);
                 break;
 
@@ -347,6 +349,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 } else {
                     return;
                 }
+                intent.putExtra(GARAGE_INFO, selectedInfo);
                 getActivity().startActivity(intent);
                 break;
 

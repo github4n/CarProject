@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         ViolationBean violationBean = ProjectUtil.getBaseResponseBean(command.getResponse(), ViolationBean.class);
                         List<ViolationBean.ViolationInfo> data = violationBean.getData();
-                        final Dialog d = new Dialog(mContext);
+                        final Dialog d = new Dialog(mContext, R.style.MyTransparentDialog);
                         View contentView = View.inflate(mContext, R.layout.layout_violation, null);
                         DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
                         int dialogWidth = (int) (dm.widthPixels * 0.8);

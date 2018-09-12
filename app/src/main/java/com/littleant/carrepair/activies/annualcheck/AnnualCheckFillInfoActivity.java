@@ -154,7 +154,7 @@ public class AnnualCheckFillInfoActivity extends BaseActivity {
     }
 
     private Dialog setDialog(Activity activity, View contentView) {
-        final Dialog d = new Dialog(activity);
+        final Dialog d = new Dialog(activity, R.style.MyTransparentDialog);
         d.setContentView(contentView);
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int dialogWidth = dm.widthPixels;

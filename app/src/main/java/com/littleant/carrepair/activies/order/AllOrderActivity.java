@@ -60,7 +60,7 @@ public class AllOrderActivity extends BaseActivity {
             holder.lpr_btn_rate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    final Dialog d = new Dialog(AllOrderActivity.this);
+                    final Dialog d = new Dialog(AllOrderActivity.this, R.style.MyTransparentDialog);
                     View contentView = View.inflate(AllOrderActivity.this, R.layout.layout_rating, null);
 //                        d.setContentView(R.layout.layout_point);
                     DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();

@@ -67,7 +67,7 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ac_cl_reservation:
-                final Dialog d = new Dialog(getActivity());
+                final Dialog d = new Dialog(getActivity(), R.style.MyTransparentDialog);
                 View contentView = View.inflate(getActivity(), R.layout.layout_check_type, null);
 //                        d.setContentView(R.layout.layout_point);
                 DisplayMetrics dm = getActivity().getResources().getDisplayMetrics();

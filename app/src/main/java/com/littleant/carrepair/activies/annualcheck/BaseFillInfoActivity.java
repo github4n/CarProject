@@ -2,6 +2,7 @@ package com.littleant.carrepair.activies.annualcheck;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,7 +18,16 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.SurveyStationInfo;
+import com.littleant.carrepair.request.bean.SurveyStationListBean;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
@@ -26,6 +36,7 @@ public abstract class BaseFillInfoActivity extends BaseActivity {
     protected SurveyStationInfo selectedStation;
     protected int selectedPosition;
     protected String[] carType;
+    protected List<SurveyStationInfo> stations;
     protected boolean showCarType = true;
 
     @Override
@@ -35,7 +46,7 @@ public abstract class BaseFillInfoActivity extends BaseActivity {
     }
 
     protected Dialog setDialog(Context activity, View contentView) {
-        final Dialog d = new Dialog(activity);
+        final Dialog d = new Dialog(activity, R.style.MyTransparentDialog);
         d.setContentView(contentView);
         DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
         int dialogWidth = dm.widthPixels;
@@ -170,5 +181,36 @@ public abstract class BaseFillInfoActivity extends BaseActivity {
                 mTextView = convertView.findViewById(R.id.lli_text);
             }
         }
+    }
+
+    protected interface RequestStationListener {
+        void onRequestComplete(List<SurveyStationInfo> stations);
+    }
+
+    protected void requestStation(final RequestStationListener listener) {
+        SurveyStationQueryAllCmd surveyStationQueryAllCmd = new SurveyStationQueryAllCmd(mContext);
+        surveyStationQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        SurveyStationListBean listBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SurveyStationListBean.class);
+                        stations = listBean.getData();
+                        if(stations != null && stations.size() > 0) {
+                            if(listener != null) {
+                                listener.onRequestComplete(stations);
+                            }
+                        }
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, surveyStationQueryAllCmd);
     }
 }
