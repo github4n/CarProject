@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,6 +45,7 @@ public class BookMaintainActivity extends BaseActivity {
     private GarageInfo garageInfo;
     private MyAdapter myAdapter;
     private List<OilInfo> oilList;
+    private TextView bm_tv_total_money;
 
 
     @Override
@@ -89,6 +92,8 @@ public class BookMaintainActivity extends BaseActivity {
         mList = findViewById(R.id.bm_list);
         mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 //        mList.setAdapter(new MyAdapter());
+
+        bm_tv_total_money = findViewById(R.id.bm_tv_total_money);
 
         bm_submit = findViewById(R.id.bm_submit);
         bm_submit.setOnClickListener(this);
@@ -155,7 +160,7 @@ public class BookMaintainActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
-            OilInfo oilInfo = mOilList.get(position);
+            final OilInfo oilInfo = mOilList.get(position);
             if(oilInfo != null) {
                 if (getItemViewType(position) == TYPE_NORMAL) {
                     holder.lmi_item_name.setText(oilInfo.getName());
@@ -164,6 +169,18 @@ public class BookMaintainActivity extends BaseActivity {
                     holder.lmi_gas_amount.setText(oilInfo.getL() + "");
                     holder.lmi_tv_old_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                     Picasso.with(mContext).load(Uri.parse(oilInfo.getPic_url())).into(holder.lmi_iv_itemImg);
+                    holder.lmi_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            float price = Float.parseFloat(bm_tv_total_money.getText().toString());
+                            if(isChecked) {
+                                price += oilInfo.getNew_price();
+                            } else {
+                                price -= oilInfo.getNew_price();
+                            }
+                            bm_tv_total_money.setText(price + "");
+                        }
+                    });
                 } else {
                     holder.bmei_time_price.setText(garageInfo.getFilter_price() + "");
                 }
@@ -180,6 +197,7 @@ public class BookMaintainActivity extends BaseActivity {
             //一般子项
             private TextView lmi_item_name, lmi_gas_amount, lmi_tv_new_price, lmi_tv_old_price;
             private ImageView lmi_iv_itemImg;
+            private CheckBox lmi_select;
 
             //底项
             private TextView bmei_time_price;
@@ -194,6 +212,7 @@ public class BookMaintainActivity extends BaseActivity {
                     lmi_tv_new_price = itemView.findViewById(R.id.lmi_tv_new_price);
                     lmi_tv_old_price = itemView.findViewById(R.id.lmi_tv_old_price);
                     lmi_iv_itemImg = itemView.findViewById(R.id.lmi_iv_itemImg);
+                    lmi_select = itemView.findViewById(R.id.lmi_select);
                 }
 
             }
