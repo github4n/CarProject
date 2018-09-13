@@ -33,8 +33,7 @@ public class StartCheckActivity extends BaseFlowActivity {
         if(info != null) {
             Picasso.with(mContext).load(info.getDriver_user_pic_url()).into(asc_iv_driver_icon);
             asc_et_check_time.setText(info.getArrive_survey_time());
-            // TODO: 2018/9/4 缺少司机的联系方式
-//            apc_et_check_contact.setText(info.get);
+            asc_et_check_contact.setText(info.getDrive_user_phone());
             String stateText = "";
             switch (info.getState()) {
                 case STATE_WAIT_CHECK:

@@ -5,16 +5,6 @@ import java.util.List;
 
 public class SurveyInfo  implements Serializable {
     private int id;
-    private int driver_user_id;
-    private int state;
-    private double order_longitude;
-    private double order_latitude;
-    private float base_price;
-    private float combo_price;
-    private float survey_price;
-    private float total_price;
-    private boolean is_self;
-    private boolean is_success;
     private String create_time = "";
     private String update_time = "";
     private String name = "";
@@ -24,10 +14,22 @@ public class SurveyInfo  implements Serializable {
     private String car_code = "";
     private String car_type = "";
     private SurveyStationInfo surveystation;
+    private double order_longitude;
+    private double order_latitude;
     private String order_address = "";
     private String subscribe_time = "";
+    private boolean is_self;
+    private ComboBean combo;
+    private float base_price;
+    private float combo_price;
+    private float survey_price;
+    private float total_price;
+    private int state;
+    private int survey_state;
+    private int driver_user_id;
     private String driver_user_pic_url = "";
     private String driver_user_name = "";
+    private String drive_user_phone = "";
     private String order_time = "";
     private String receive_time = "";
     private String get_time = "";
@@ -37,22 +39,17 @@ public class SurveyInfo  implements Serializable {
     private String return_time = "";
     private String confirm_time = "";
     private String cancel_time = "";
-    private ComboBean combo;
+    private SurveyPicList get_confirm;
+    private SurveyPicList get_car;
+    private SurveyPicList survey_upload;
+    private SurveyPicList return_confirm;
+    private SurveyPicList return_car;
+    private List<FailureListBean> failure_list;
 
     @Override
     public String toString() {
         return "SurveyInfo{" +
                 "id=" + id +
-                ", driver_user_id=" + driver_user_id +
-                ", state=" + state +
-                ", order_longitude=" + order_longitude +
-                ", order_latitude=" + order_latitude +
-                ", base_price=" + base_price +
-                ", combo_price=" + combo_price +
-                ", survey_price=" + survey_price +
-                ", total_price=" + total_price +
-                ", is_self=" + is_self +
-                ", is_success=" + is_success +
                 ", create_time='" + create_time + '\'' +
                 ", update_time='" + update_time + '\'' +
                 ", name='" + name + '\'' +
@@ -62,10 +59,22 @@ public class SurveyInfo  implements Serializable {
                 ", car_code='" + car_code + '\'' +
                 ", car_type='" + car_type + '\'' +
                 ", surveystation=" + surveystation +
+                ", order_longitude=" + order_longitude +
+                ", order_latitude=" + order_latitude +
                 ", order_address='" + order_address + '\'' +
                 ", subscribe_time='" + subscribe_time + '\'' +
+                ", is_self=" + is_self +
+                ", combo=" + combo +
+                ", base_price=" + base_price +
+                ", combo_price=" + combo_price +
+                ", survey_price=" + survey_price +
+                ", total_price=" + total_price +
+                ", state=" + state +
+                ", survey_state=" + survey_state +
+                ", driver_user_id=" + driver_user_id +
                 ", driver_user_pic_url='" + driver_user_pic_url + '\'' +
                 ", driver_user_name='" + driver_user_name + '\'' +
+                ", drive_user_phone='" + drive_user_phone + '\'' +
                 ", order_time='" + order_time + '\'' +
                 ", receive_time='" + receive_time + '\'' +
                 ", get_time='" + get_time + '\'' +
@@ -75,9 +84,21 @@ public class SurveyInfo  implements Serializable {
                 ", return_time='" + return_time + '\'' +
                 ", confirm_time='" + confirm_time + '\'' +
                 ", cancel_time='" + cancel_time + '\'' +
-                ", combo=" + combo +
-                ", surveypic_list=" + surveypic_list +
+                ", get_confirm=" + get_confirm +
+                ", get_car=" + get_car +
+                ", survey_upload=" + survey_upload +
+                ", return_confirm=" + return_confirm +
+                ", return_car=" + return_car +
+                ", failure_list=" + failure_list +
                 '}';
+    }
+
+    public String getCancel_time() {
+        return cancel_time;
+    }
+
+    public void setCancel_time(String cancel_time) {
+        this.cancel_time = cancel_time;
     }
 
     public int getId() {
@@ -86,86 +107,6 @@ public class SurveyInfo  implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getDriver_user_id() {
-        return driver_user_id;
-    }
-
-    public void setDriver_user_id(int driver_user_id) {
-        this.driver_user_id = driver_user_id;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public double getOrder_longitude() {
-        return order_longitude;
-    }
-
-    public void setOrder_longitude(double order_longitude) {
-        this.order_longitude = order_longitude;
-    }
-
-    public double getOrder_latitude() {
-        return order_latitude;
-    }
-
-    public void setOrder_latitude(double order_latitude) {
-        this.order_latitude = order_latitude;
-    }
-
-    public float getBase_price() {
-        return base_price;
-    }
-
-    public void setBase_price(float base_price) {
-        this.base_price = base_price;
-    }
-
-    public float getCombo_price() {
-        return combo_price;
-    }
-
-    public void setCombo_price(float combo_price) {
-        this.combo_price = combo_price;
-    }
-
-    public float getSurvey_price() {
-        return survey_price;
-    }
-
-    public void setSurvey_price(float survey_price) {
-        this.survey_price = survey_price;
-    }
-
-    public float getTotal_price() {
-        return total_price;
-    }
-
-    public void setTotal_price(float total_price) {
-        this.total_price = total_price;
-    }
-
-    public boolean isIs_self() {
-        return is_self;
-    }
-
-    public void setIs_self(boolean is_self) {
-        this.is_self = is_self;
-    }
-
-    public boolean isIs_success() {
-        return is_success;
-    }
-
-    public void setIs_success(boolean is_success) {
-        this.is_success = is_success;
     }
 
     public String getCreate_time() {
@@ -240,6 +181,22 @@ public class SurveyInfo  implements Serializable {
         this.surveystation = surveystation;
     }
 
+    public double getOrder_longitude() {
+        return order_longitude;
+    }
+
+    public void setOrder_longitude(double order_longitude) {
+        this.order_longitude = order_longitude;
+    }
+
+    public double getOrder_latitude() {
+        return order_latitude;
+    }
+
+    public void setOrder_latitude(double order_latitude) {
+        this.order_latitude = order_latitude;
+    }
+
     public String getOrder_address() {
         return order_address;
     }
@@ -256,6 +213,78 @@ public class SurveyInfo  implements Serializable {
         this.subscribe_time = subscribe_time;
     }
 
+    public boolean isIs_self() {
+        return is_self;
+    }
+
+    public void setIs_self(boolean is_self) {
+        this.is_self = is_self;
+    }
+
+    public ComboBean getCombo() {
+        return combo;
+    }
+
+    public void setCombo(ComboBean combo) {
+        this.combo = combo;
+    }
+
+    public float getBase_price() {
+        return base_price;
+    }
+
+    public void setBase_price(float base_price) {
+        this.base_price = base_price;
+    }
+
+    public float getCombo_price() {
+        return combo_price;
+    }
+
+    public void setCombo_price(float combo_price) {
+        this.combo_price = combo_price;
+    }
+
+    public float getSurvey_price() {
+        return survey_price;
+    }
+
+    public void setSurvey_price(float survey_price) {
+        this.survey_price = survey_price;
+    }
+
+    public float getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(float total_price) {
+        this.total_price = total_price;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public int getSurvey_state() {
+        return survey_state;
+    }
+
+    public void setSurvey_state(int survey_state) {
+        this.survey_state = survey_state;
+    }
+
+    public int getDriver_user_id() {
+        return driver_user_id;
+    }
+
+    public void setDriver_user_id(int driver_user_id) {
+        this.driver_user_id = driver_user_id;
+    }
+
     public String getDriver_user_pic_url() {
         return driver_user_pic_url;
     }
@@ -270,6 +299,14 @@ public class SurveyInfo  implements Serializable {
 
     public void setDriver_user_name(String driver_user_name) {
         this.driver_user_name = driver_user_name;
+    }
+
+    public String getDrive_user_phone() {
+        return drive_user_phone;
+    }
+
+    public void setDrive_user_phone(String drive_user_phone) {
+        this.drive_user_phone = drive_user_phone;
     }
 
     public String getOrder_time() {
@@ -336,29 +373,51 @@ public class SurveyInfo  implements Serializable {
         this.confirm_time = confirm_time;
     }
 
-    public String getCancel_time() {
-        return cancel_time;
+    public SurveyPicList getGet_confirm() {
+        return get_confirm;
     }
 
-    public void setCancel_time(String cancel_time) {
-        this.cancel_time = cancel_time;
+    public void setGet_confirm(SurveyPicList get_confirm) {
+        this.get_confirm = get_confirm;
     }
 
-    public ComboBean getCombo() {
-        return combo;
+    public SurveyPicList getGet_car() {
+        return get_car;
     }
 
-    public void setCombo(ComboBean combo) {
-        this.combo = combo;
+    public void setGet_car(SurveyPicList get_car) {
+        this.get_car = get_car;
     }
 
-    public List<SurveyPicList> getSurveypic_list() {
-        return surveypic_list;
+    public SurveyPicList getSurvey_upload() {
+        return survey_upload;
     }
 
-    public void setSurveypic_list(List<SurveyPicList> surveypic_list) {
-        this.surveypic_list = surveypic_list;
+    public void setSurvey_upload(SurveyPicList survey_upload) {
+        this.survey_upload = survey_upload;
     }
 
-    private List<SurveyPicList> surveypic_list;
+    public SurveyPicList getReturn_confirm() {
+        return return_confirm;
+    }
+
+    public void setReturn_confirm(SurveyPicList return_confirm) {
+        this.return_confirm = return_confirm;
+    }
+
+    public SurveyPicList getReturn_car() {
+        return return_car;
+    }
+
+    public void setReturn_car(SurveyPicList return_car) {
+        this.return_car = return_car;
+    }
+
+    public List<FailureListBean> getFailure_list() {
+        return failure_list;
+    }
+
+    public void setFailure_list(List<FailureListBean> failure_list) {
+        this.failure_list = failure_list;
+    }
 }

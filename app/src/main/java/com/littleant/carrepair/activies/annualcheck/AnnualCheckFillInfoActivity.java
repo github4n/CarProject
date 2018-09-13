@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -24,8 +28,17 @@ import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.datetime.DateActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.SurveyStationInfo;
+import com.littleant.carrepair.request.bean.SurveyStationListBean;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.survey.combo.ComboQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
@@ -33,17 +46,25 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
     private ConstraintLayout acf_package_layout;
     private RadioButton acf_btn_package_a, acf_btn_package_b;
-    private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station, acf_tv_date1;
+    private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station, acf_tv_date1, acf_tv_package_detail;
     private TextView acf_et_pick_location;
     private static final int REQUEST_CODE_SELECT_PLACE = 11;//定义请求码常量
     private double selectLat, selectLon;
     private String selectAddress;
+    private EditText acf_et_contact_name, acf_et_contact_phone, acf_et_driver_name, acf_et_driver_brand,
+            acf_et_driver_plate;
+    private CheckBox acf_rb_light, acf_rb_gas, acf_rb_sight;
+    private TextView acf_et_fee_base, acf_et_fee_package, acf_et_fee_check, acf_et_fee_total;
+
 //    private String[] carType = new String[]{"汽车1", "汽车2"};
 //    private String[] stations = new String[]{"站点1", "站点2", "站点3"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        lacf_tv_fill.setChecked(true);
+
+        requestCombo();
 
     }
 
@@ -58,6 +79,68 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         acf_package_detail = findViewById(R.id.acf_package_detail);
         //套餐B明细布局
         acf_package_layout = findViewById(R.id.acf_package_layout);
+        //详细说明
+        acf_tv_package_detail = findViewById(R.id.acf_tv_package_detail);
+
+        //输入框
+        acf_et_contact_name = findViewById(R.id.acf_et_contact_name);
+        acf_et_contact_phone = findViewById(R.id.acf_et_contact_phone);
+        acf_et_driver_name = findViewById(R.id.acf_et_driver_name);
+        acf_et_driver_brand = findViewById(R.id.acf_et_driver_brand);
+        acf_et_driver_plate = findViewById(R.id.acf_et_driver_plate);
+
+        //checkbox
+        acf_rb_light = findViewById(R.id.acf_rb_light);
+        acf_rb_light.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
+                if(b) {
+                    price += 200;
+                } else {
+                    price -= 200;
+                }
+                acf_et_fee_package.setText("￥" + price);
+                int totlal = 200 + price;
+                acf_et_fee_total.setText("￥" + totlal);
+            }
+        });
+        acf_rb_gas = findViewById(R.id.acf_rb_gas);
+        acf_rb_gas.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
+                if(b) {
+                    price += 200;
+                } else {
+                    price -= 200;
+                }
+                acf_et_fee_package.setText("￥" + price);
+                int totlal = 200 + price;
+                acf_et_fee_total.setText("￥" + totlal);
+            }
+        });
+        acf_rb_sight = findViewById(R.id.acf_rb_sight);
+        acf_rb_sight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
+                if(b) {
+                    price += 200;
+                } else {
+                    price -= 200;
+                }
+                acf_et_fee_package.setText("￥" + price);
+                int totlal = 200 + price;
+                acf_et_fee_total.setText("￥" + totlal);
+            }
+        });
+
+        //价钱
+        acf_et_fee_base = findViewById(R.id.acf_et_fee_base);
+        acf_et_fee_package = findViewById(R.id.acf_et_fee_package);
+        acf_et_fee_check = findViewById(R.id.acf_et_fee_check);
+        acf_et_fee_total = findViewById(R.id.acf_et_fee_total);
 
         acf_confirm_pay = findViewById(R.id.acf_confirm_pay);
         acf_confirm_pay.setOnClickListener(this);
@@ -66,8 +149,16 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
+                    acf_tv_package_detail.setVisibility(View.VISIBLE);
                     acf_package_layout.setVisibility(View.GONE);
                     acf_package_detail.setVisibility(View.VISIBLE);
+
+                    //价钱
+                    acf_et_fee_base.setText("￥200");
+                    acf_et_fee_package.setText("￥0");
+                    acf_et_fee_check.setText("￥0");
+                    acf_et_fee_total.setText("￥200");
+
                 }
             }
         });
@@ -76,6 +167,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
+                    acf_tv_package_detail.setVisibility(View.VISIBLE);
                     acf_package_detail.setVisibility(View.GONE);
                     acf_package_layout.setVisibility(View.VISIBLE);
                 }
@@ -165,7 +257,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
     @Override
     public void onRequestComplete(List<SurveyStationInfo> stations) {
-
+        showList(carType, stations, acf_et_pick_station);
     }
 
     @Override
@@ -180,5 +272,27 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 acf_et_pick_location.setText(selectAddress);
             }
         }
+    }
+
+    private void requestCombo() {
+        ComboQueryAllCmd comboQueryAllCmd = new ComboQueryAllCmd(mContext);
+        comboQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+
+
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, comboQueryAllCmd);
     }
 }

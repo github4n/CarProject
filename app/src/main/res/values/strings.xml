@@ -351,6 +351,7 @@
     <string name="text_check_station">年检站点：</string>
     <string name="text_check_oid">订单单号：</string>
     <string name="text_check_price">订单金额</string>
+    <string name="text_check_cancel_order">取消订单</string>
 
     <!---->
     <string name="text_evaluate">评价</string>
@@ -392,6 +393,7 @@
     <string name="text_annual_check_record_finish_time">完成时间:</string>
     <string name="text_annual_check_record_location">地点:</string>
     <string name="text_annual_check_record_driver">服务司机:</string>
+    <string name="text_annual_check_type">年检类型:</string>
 
     <!--支付订单-->
     <string name="text_payment">支付订单</string>

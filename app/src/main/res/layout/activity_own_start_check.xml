@@ -153,13 +153,25 @@
             android:id="@+id/aosc_iv_navi"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             app:layout_constraintBottom_toTopOf="@id/aosc_tv_time"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/aosc_tv_type"
             app:srcCompat="@drawable/mf_navi" />
+
+        <ImageView
+            android:id="@+id/aosc_iv_call"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toBottomOf="@+id/aosc_iv_navi"
+            app:layout_constraintEnd_toStartOf="@id/aosc_iv_navi"
+            app:layout_constraintTop_toTopOf="@id/aosc_iv_navi"
+            app:srcCompat="@drawable/mf_call" />
 
     </android.support.constraint.ConstraintLayout>
 

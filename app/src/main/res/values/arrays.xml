@@ -6,4 +6,48 @@
         <item name="car_type_seven_below">七座以下</item>
     </string-array>
 
+    <!--年检状态-->
+    <string-array name="annual_check_state">
+        <item name="state_wait_pay">等待支付</item>
+        <item name="state_wait_get_order">等待接单</item>
+        <item name="state_wait_get_car">等待取车</item>
+        <item name="state_wait_check">等待年检</item>
+        <item name="state_checking">正在年检</item>
+        <item name="state_check_success">已通过</item>
+        <item name="state_arrive_car">到达还车</item>
+        <item name="state_return_car">已还车</item>
+        <item name="state_finish">已完成</item>
+        <item name="state_fail">未通过</item>
+    </string-array>
+
+    <!--年检状态对应的颜色-->
+    <string-array name="annual_check_state_color">
+        <item>@color/color_survey_checking</item>
+        <item>@color/color_survey_wait_order</item>
+        <item>@color/color_survey_checking</item>
+        <item>@color/color_survey_checking</item>
+        <item>@color/color_survey_checking</item>
+        <item>@color/color_survey_success</item>
+        <item>@color/color_survey_success</item>
+        <item>@color/color_survey_success</item>
+        <item>@color/color_survey_success</item>
+        <item>@color/color_survey_fail</item>
+    </string-array>
+
+    <!--年检状态=4的子状态-->
+    <string-array name="survey_state">
+        <item name="state_unknow">正在年检</item>
+        <item name="state_success">已通过</item>
+        <item name="state_fail">未通过</item>
+        <item name="state_recheck">复检中</item>
+    </string-array>
+
+    <!--年检状态=4的子状态对应颜色-->
+    <string-array name="survey_state_color">
+        <item>@color/color_survey_checking</item>
+        <item>@color/color_survey_success</item>
+        <item>@color/color_survey_fail</item>
+        <item>@color/color_survey_checking</item>
+    </string-array>
+
 </resources>

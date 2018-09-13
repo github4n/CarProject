@@ -27,8 +27,7 @@ public class PickCarActivity extends BaseFlowActivity {
         if(info != null) {
             Picasso.with(mContext).load(info.getDriver_user_pic_url()).into(apc_iv_driver_icon);
             apc_tv_driver_name.setText(info.getDriver_user_name());
-            // TODO: 2018/9/4 缺少司机的联系方式
-//            apc_et_check_contact.setText(info.get);
+            apc_et_check_contact.setText(info.getDrive_user_phone());
             apc_et_pick_time.setText(info.getGet_time());
         } else {
             finish();

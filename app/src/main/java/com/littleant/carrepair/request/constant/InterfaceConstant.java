@@ -163,6 +163,10 @@ public class InterfaceConstant {
      * post:自驾年检订单操作信息-取消、查询费用、支付、确认到达、完成订单
      */
     public static final String SURVEY_SURVEY_SELFMETHOD = "api/survey/survey_selfmethod/";
+    /**
+     * post:代驾年检订单操作信息-取消、查询费用、支付、失败支付、确认还车
+     */
+    public static final String SURVEY_SURVEY_BEHALFMETHOD = "api/survey/survey_behalfmethod/";
 
     //系统部分
     /**

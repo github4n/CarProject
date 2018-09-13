@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.annualcheck;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -156,7 +157,31 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                 holder.ari_book.setText(surveyInfo.getSubscribe_time());
                 holder.ari_finish.setText(surveyInfo.getSubscribe_time());
                 holder.ari_location.setText(surveyInfo.getSurveystation().getName());
-                holder.ari_driver.setText(surveyInfo.getDriver_user_name());
+                if(surveyInfo.isIs_self()) {
+                    holder.ari_driver.setText("自驾年检");
+                } else {
+                    holder.ari_driver.setText("代驾年检");
+                }
+                int state = surveyInfo.getState();
+                String text;
+                int color;
+                if(state == 4) {
+                    int survey_state = surveyInfo.getSurvey_state();
+                    String[] surveyStateHint = mContext.getResources().getStringArray(R.array.survey_state);
+                    TypedArray surveyStateColor = getResources().obtainTypedArray(R.array.survey_state_color);
+                    text = surveyStateHint[survey_state];
+                    color = surveyStateColor.getColor(survey_state, 0);
+                    surveyStateColor.recycle();
+                } else {
+                    String[] stateHint = mContext.getResources().getStringArray(R.array.annual_check_state);
+                    TypedArray stateColor = getResources().obtainTypedArray(R.array.annual_check_state_color);
+                    text = stateHint[state];
+                    color = stateColor.getColor(state, 0);
+                    stateColor.recycle();
+                }
+                holder.air_state.setText(text);
+                holder.air_state.setTextColor(color);
+
             }
         }
 
@@ -180,13 +205,22 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                     case STATE_WAIT_CHECK:
                     case STATE_CHECKING:
                     case STATE_CHECK_FINISH:
-                        intent = new Intent(mContext, StartCheckActivity.class);
+                        if(surveyInfo.isIs_self()) {
+                            intent = new Intent(mContext, OwnStartCheckActivity.class);
+                        } else {
+                            intent = new Intent(mContext, StartCheckActivity.class);
+                        }
                         break;
 
                     case STATE_ARRIVE_CAR:
                     case STATE_RETURN_CAR:
-                    case STATE_FINISH:
                         intent = new Intent(mContext, CheckReturnCarActivity.class);
+                        break;
+
+                    case STATE_WAIT_PAY:
+                    case STATE_WAIT_GET:
+                    case STATE_FINISH:
+                        intent = new Intent(mContext, AnnualCheckDetailActivity.class);
                         break;
                 }
                 if(intent != null) {
@@ -197,7 +231,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            TextView ari_book, ari_finish, ari_location, ari_driver;
+            TextView ari_book, ari_finish, ari_location, ari_driver, air_state;
 
             ViewHolder(View itemView) {
                 super(itemView);
@@ -205,6 +239,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                 ari_finish = itemView.findViewById(R.id.ari_finish);
                 ari_location = itemView.findViewById(R.id.ari_location);
                 ari_driver = itemView.findViewById(R.id.ari_driver);
+                air_state = itemView.findViewById(R.id.air_state);
             }
 
         }

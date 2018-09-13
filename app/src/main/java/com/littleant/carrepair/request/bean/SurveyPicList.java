@@ -5,23 +5,23 @@ import java.util.List;
 
 public class SurveyPicList implements Serializable {
 
-    private String type = "";
+    private String name = "";
     private List<ObjList> obj_list;
 
     @Override
     public String toString() {
         return "SurveyPicList{" +
-                "type='" + type + '\'' +
+                "name='" + name + '\'' +
                 ", obj_list=" + obj_list +
                 '}';
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<ObjList> getObj_list() {

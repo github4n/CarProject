@@ -31,7 +31,7 @@ import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
-public abstract class BaseFillInfoActivity extends BaseActivity {
+public abstract class BaseFillInfoActivity extends BaseFlowActivity {
 
     protected SurveyStationInfo selectedStation;
     protected int selectedPosition;

@@ -30,8 +30,7 @@ public class CheckReturnCarActivity extends BaseFlowActivity {
         }
         if(info != null) {
             Picasso.with(mContext).load(info.getDriver_user_pic_url()).into(acrc_iv_driver_icon);
-            // TODO: 2018/9/4 缺少司机的联系方式
-//            apc_et_check_contact.setText(info.get);
+            acrc_et_check_contact.setText(info.getDrive_user_phone());
             acrc_et_return_time.setText(info.getReturn_time());
         } else {
             finish();

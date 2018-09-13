@@ -24,23 +24,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         setContentView(getLayoutId());
         mContext = this;
         mTitle = findViewById(R.id.header_title);
-        if(getTitleId() != 0) {
-            mTitle.setText(getTitleId());
-        }
 
         mOptionText = findViewById(R.id.header_option_text);
-        if(getOptionStringId() != 0) {
-            mOptionText.setText(getOptionStringId());
-        }
+
         mOptionContent = findViewById(R.id.header_option_content);
-        if(getOptionBackgroundId() != 0) {
-            mOptionContent.setBackgroundResource(getOptionBackgroundId());
-        }
 
         backButton = findViewById(R.id.title_back);
-        if(!showBackButton()) {
-            backButton.setVisibility(View.INVISIBLE);
-        }
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +39,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         });
 
         init();
+
+        if(getTitleId() != 0) {
+            mTitle.setText(getTitleId());
+        }
+        if(getOptionStringId() != 0) {
+            mOptionText.setText(getOptionStringId());
+        }
+        if(getOptionBackgroundId() != 0) {
+            mOptionContent.setBackgroundResource(getOptionBackgroundId());
+        }
+        if(!showBackButton()) {
+            backButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     protected abstract int getLayoutId();

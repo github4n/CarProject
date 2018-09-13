@@ -38,4 +38,14 @@
     <color name="color_search_bg">#DEDEDE</color>
     <!--搜索背景-->
     <color name="color_login_line">#B7B7B8</color>
+
+    <!--已通过-->
+    <color name="color_survey_success">#5FFF54</color>
+    <!--等待支付、开始导航、等待取车、等待年检、正在年检、复检中-->
+    <color name="color_survey_checking">#FF8A4E</color>
+    <!--等待接单-->
+    <color name="color_survey_wait_order">#63BDFF</color>
+    <!--未通过-->
+    <color name="color_survey_fail">#FF3C3C</color>
+
 </resources>
