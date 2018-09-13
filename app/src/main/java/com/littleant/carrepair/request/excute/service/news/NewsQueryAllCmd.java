@@ -8,9 +8,9 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class NewsQueryAllCmd extends BaseRequestCmd {
-    public NewsQueryAllCmd(Context context, String news_catalog_id) {
+    public NewsQueryAllCmd(Context context, int news_catalog_id) {
         super(context);
-        params.put(ParamsConstant.NEWS_CATALOG_ID, news_catalog_id);
+        params.put(ParamsConstant.NEWS_CATALOG_ID, news_catalog_id + "");
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 

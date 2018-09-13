@@ -13,13 +13,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.4" />
 
-    <!--<android.support.constraint.Guideline-->
-        <!--android:id="@+id/guideline3"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_constraintGuide_percent="0.4" />-->
-
     <ImageView
         android:id="@+id/ii_iv_itemImg"
         android:layout_width="0dp"
@@ -30,14 +23,12 @@
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/info_demo"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/ii_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/ii_tv_title"
@@ -50,7 +41,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:maxLines="1"
-        android:text="减震器的维修与检验"
         android:textColor="@color/color_uc_text"
         app:layout_constraintBottom_toTopOf="@+id/ii_tv_description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,41 +58,11 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:maxLines="2"
-        android:text="为了使车架与车身的震动迅速衰减，改善汽车"
         android:textColor="@color/color_insurance_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/ii_guideline"
         app:layout_constraintTop_toBottomOf="@id/ii_tv_title"
         app:layout_constraintVertical_weight="3" />
-
-    <!--<ImageView-->
-        <!--android:id="@+id/ii_iv_hot"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/ii_iv_itemImg"-->
-        <!--app:layout_constraintStart_toStartOf="@id/ii_guideline"-->
-        <!--app:srcCompat="@drawable/info_hot" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/ii_tv_count"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:gravity="bottom"-->
-        <!--android:text="16843"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/ii_iv_itemImg"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toEndOf="@id/ii_iv_hot"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/ii_tv_description"-->
-        <!--app:layout_constraintVertical_weight="1" />-->
 
 </android.support.constraint.ConstraintLayout>
