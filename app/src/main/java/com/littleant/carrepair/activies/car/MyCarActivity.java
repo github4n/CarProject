@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.car;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -123,8 +124,8 @@ public class MyCarActivity extends BaseActivity{
                 holder.mc_item_name.setText(carInfo.getBrand());
                 holder.mc_plate.setText(carInfo.getCode());
                 holder.mc_mile.setText(String.format(getResources().getString(R.string.text_my_car_miles), carInfo.getMileage() + ""));
-                Picasso.with(mContext).load(R.drawable.mc_icon).into(holder.mc_iv_itemImg);
-//                Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(holder.mc_iv_itemImg);
+//                Picasso.with(mContext).load(R.drawable.mc_icon).into(holder.mc_iv_itemImg);
+                Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(holder.mc_iv_itemImg);
             }
         }
 
