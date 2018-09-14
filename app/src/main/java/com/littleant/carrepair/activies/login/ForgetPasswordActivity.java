@@ -44,6 +44,11 @@ public class ForgetPasswordActivity extends BaseActivity {
     }
 
     @Override
+    protected int getBackgroundColor() {
+        return android.R.color.transparent;
+    }
+
+    @Override
     protected void init() {
         super.init();
         afp_et_phone = findViewById(R.id.afp_et_phone);

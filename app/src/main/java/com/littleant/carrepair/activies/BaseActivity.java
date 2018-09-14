@@ -3,6 +3,7 @@ package com.littleant.carrepair.activies;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,12 +18,16 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected TextView mTitle, mOptionContent, mOptionText;
     protected ImageView backButton;
     protected Context mContext;
+//    protected View lh_header;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         mContext = this;
+
+//        lh_header = findViewById(R.id.lh_header3);
+
         mTitle = findViewById(R.id.header_title);
 
         mOptionText = findViewById(R.id.header_option_text);
@@ -39,6 +44,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         });
 
         init();
+
+//        if(getBackgroundColor() != 0) {
+//            lh_header.setBackgroundColor(getBackgroundColor());
+//        }
 
         if(getTitleId() != 0) {
             mTitle.setText(getTitleId());
@@ -67,4 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected boolean showBackButton() {
         return true;
     }
+
+    protected int getBackgroundColor() { return 0; }
 }

@@ -39,11 +39,6 @@
         <activity
             android:name=".demo.TestActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activies.main.MainActivity"
@@ -51,7 +46,13 @@
         <activity
             android:name=".activies.login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MyThemeDark" />
+            android:theme="@style/MyThemeDark" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

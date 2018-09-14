@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * 我的汽车
  */
-public class MyCarActivity extends BaseActivity{
+public class MyCarActivity extends BaseActivity {
     private RecyclerView mList;
     private static final int REQUEST_CODE_ADD_CAR = 100;
     private static final int REQUEST_CODE_MODIFY_CAR = 101;
@@ -163,7 +163,7 @@ public class MyCarActivity extends BaseActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_ADD_CAR && resultCode == ParamsConstant.ACTIVITY_RESULT_ADD_CAR) {
+        if(resultCode == ParamsConstant.ACTIVITY_RESULT_ADD_CAR) {
             requestMyCarList();
         }
     }

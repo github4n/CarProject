@@ -63,6 +63,11 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @Override
+    protected int getBackgroundColor() {
+        return android.R.color.transparent;
+    }
+
+    @Override
     public void onClick(View v) {
         phone = ar_et_phone.getText().toString();
         password = ar_et_new_password.getText().toString();
