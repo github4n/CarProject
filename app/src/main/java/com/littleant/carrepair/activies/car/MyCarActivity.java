@@ -34,6 +34,8 @@ import java.util.List;
 public class MyCarActivity extends BaseActivity{
     private RecyclerView mList;
     private static final int REQUEST_CODE_ADD_CAR = 100;
+    private static final int REQUEST_CODE_MODIFY_CAR = 101;
+    public static final String CAR_INFO = "CarInfo";
     private List<MyCarListBean.CarInfo> data;
 
     @Override
@@ -119,13 +121,22 @@ public class MyCarActivity extends BaseActivity{
 
         @Override
         public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
-            MyCarListBean.CarInfo carInfo = list.get(position);
+            final MyCarListBean.CarInfo carInfo = list.get(position);
             if(carInfo != null) {
                 holder.mc_item_name.setText(carInfo.getBrand());
                 holder.mc_plate.setText(carInfo.getCode());
                 holder.mc_mile.setText(String.format(getResources().getString(R.string.text_my_car_miles), carInfo.getMileage() + ""));
 //                Picasso.with(mContext).load(R.drawable.mc_icon).into(holder.mc_iv_itemImg);
                 Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(holder.mc_iv_itemImg);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, AddCarActivity.class);
+                        intent.putExtra(CAR_INFO, carInfo);
+                        MyCarActivity.this.startActivityForResult(intent, REQUEST_CODE_MODIFY_CAR);
+                    }
+                });
             }
         }
 

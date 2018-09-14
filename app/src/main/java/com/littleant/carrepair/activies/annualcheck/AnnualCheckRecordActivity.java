@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.annualcheck;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -46,6 +47,8 @@ public class AnnualCheckRecordActivity extends BaseActivity {
     public static final int STATE_ARRIVE_CAR = 6;
     public static final int STATE_RETURN_CAR = 7;
     public static final int STATE_FINISH = 8;
+
+    public static final int REQUEST_CODE_CHECK_DETAIL = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,6 +200,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
             if(surveyInfo != null) {
                 int state = surveyInfo.getState();
                 Intent intent = null;
+                int requestCode = 0;
                 switch (state) {
                     case STATE_WAIT_PICK_CAR:
                         intent = new Intent(mContext, PickCarActivity.class);
@@ -220,12 +224,17 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                     case STATE_WAIT_PAY:
                     case STATE_WAIT_GET:
                     case STATE_FINISH:
+                        requestCode = REQUEST_CODE_CHECK_DETAIL;
                         intent = new Intent(mContext, AnnualCheckDetailActivity.class);
                         break;
                 }
                 if(intent != null) {
                     intent.putExtra(SURVEY_INFO, surveyInfo);
-                    AnnualCheckRecordActivity.this.startActivity(intent);
+                    if(requestCode == 0) {
+                        AnnualCheckRecordActivity.this.startActivity(intent);
+                    } else {
+                        AnnualCheckRecordActivity.this.startActivityForResult(intent, requestCode);
+                    }
                 }
             }
         }
@@ -251,4 +260,11 @@ public class AnnualCheckRecordActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_CHECK_DETAIL && resultCode == Activity.RESULT_OK) {
+            requestCheckRecord();
+        }
+    }
 }

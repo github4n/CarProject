@@ -17,6 +17,8 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.datetime.DateActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.MyCarListBean;
+import com.littleant.carrepair.request.bean.SurveyInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.car.CarAddCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
@@ -25,8 +27,12 @@ import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+
+import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;
+import static com.littleant.carrepair.activies.car.MyCarActivity.CAR_INFO;
 
 /**
  * 添加车辆
@@ -41,6 +47,8 @@ public class AddCarActivity extends BaseActivity {
     private Bitmap pic;
     private String brand, code, engine, buyTime, mile;
     private boolean isDefault;
+
+    private MyCarListBean.CarInfo carInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +82,23 @@ public class AddCarActivity extends BaseActivity {
 
         ac_btn_save = findViewById(R.id.ac_btn_save);
         ac_btn_save.setOnClickListener(this);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            carInfo = (MyCarListBean.CarInfo) extras.getSerializable(CAR_INFO);
+        }
+        if(carInfo != null) {
+            Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(aac_iv_pic);
+
+            aac_tv_time.setText(carInfo.getBuy_time());
+            aac_et_brand.setText(carInfo.getBrand());
+            aac_et_engine.setText(carInfo.getEngine());
+            aac_et_plate.setText(carInfo.getCode());
+            aac_et_mile.setText(carInfo.getMileage() + "");
+
+        } else {
+            finish();
+        }
     }
 
     @Override
@@ -115,7 +140,11 @@ public class AddCarActivity extends BaseActivity {
         buyTime = aac_tv_time.getText().toString();
         mile = aac_et_mile.getText().toString();
         if(TextUtils.isEmpty(brand) || TextUtils.isEmpty(code) || TextUtils.isEmpty(engine)
-                || TextUtils.isEmpty(buyTime) || TextUtils.isEmpty(mile) || pic == null) {
+                || TextUtils.isEmpty(buyTime) || TextUtils.isEmpty(mile)) {
+            MHToast.showS(mContext, R.string.need_finish_info);
+            return;
+        }
+        if(carInfo == null && pic == null) {
             MHToast.showS(mContext, R.string.need_finish_info);
             return;
         }

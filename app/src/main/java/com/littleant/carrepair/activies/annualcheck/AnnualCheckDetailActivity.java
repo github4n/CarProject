@@ -1,15 +1,28 @@
 package com.littleant.carrepair.activies.annualcheck;
 
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.SurveyInfo;
+import com.littleant.carrepair.request.bean.SurveyListBean;
 import com.littleant.carrepair.request.bean.SurveyPicList;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyBehalfMethodCmd;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
 import java.util.Random;
@@ -75,7 +88,7 @@ public class AnnualCheckDetailActivity extends BaseActivity {
             }
             lcd_station.setText(info.getSurveystation().getName());
             // TODO: 2018/9/14 缺少订单号
-            lcd_oid.setText(new Random(10000).nextInt() + "");
+            lcd_oid.setText(new Random().nextInt() + "");
 
             aacd_price.setText(info.getTotal_price() + "");
 
@@ -113,8 +126,57 @@ public class AnnualCheckDetailActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.header_option_text:
-                finish();
+                cancelOrder();
             break;
         }
+    }
+
+    private void cancelOrder() {
+        if (info.isIs_self()) {
+            SurveyMethodCmd surveyMethodCmd = new SurveyMethodCmd(mContext, info.getId() + "", ParamsConstant.SurveyMethodType.CANCEL,
+                    "", "", -1, -1, "");
+            surveyMethodCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if (command != null) {
+                        Log.i("response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            finishActivityForOk();
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(mContext, responseBean.getMsg());
+                        }
+                    } else {
+                        MHToast.showS(mContext, R.string.request_fail);
+                    }
+                }
+            });
+            MHCommandExecute.getInstance().asynExecute(mContext, surveyMethodCmd);
+        } else {
+            SurveyBehalfMethodCmd behalfMethodCmd = new SurveyBehalfMethodCmd(mContext, info.getId() + "", ParamsConstant.SurveyMethodType.CANCEL,
+                    "", "", -1, -1, "");
+            behalfMethodCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if (command != null) {
+                        Log.i("response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            finishActivityForOk();
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(mContext, responseBean.getMsg());
+                        }
+                    } else {
+                        MHToast.showS(mContext, R.string.request_fail);
+                    }
+                }
+            });
+            MHCommandExecute.getInstance().asynExecute(mContext, behalfMethodCmd);
+        }
+    }
+
+    private void finishActivityForOk() {
+        setResult(Activity.RESULT_OK);
+        finish();
     }
 }
