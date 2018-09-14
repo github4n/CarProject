@@ -96,8 +96,6 @@ public class AddCarActivity extends BaseActivity {
             aac_et_plate.setText(carInfo.getCode());
             aac_et_mile.setText(carInfo.getMileage() + "");
 
-        } else {
-            finish();
         }
     }
 

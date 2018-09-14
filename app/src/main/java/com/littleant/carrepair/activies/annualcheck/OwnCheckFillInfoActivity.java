@@ -33,7 +33,7 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lacf_tv_fill.setChecked(true);
+        locf_tv_fill.setChecked(true);
         requestPrice();
     }
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
@@ -91,7 +92,7 @@ public class MyCarActivity extends BaseActivity {
         mList = findViewById(R.id.mc_list);
         mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 //        mList.setAdapter(new MyAdapter());
-        mOptionContent.setOnClickListener(this);
+
     }
 
     @Override

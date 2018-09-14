@@ -57,6 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
         if(getOptionBackgroundId() != 0) {
             mOptionContent.setBackgroundResource(getOptionBackgroundId());
+            mOptionContent.setOnClickListener(this);
         }
         if(!showBackButton()) {
             backButton.setVisibility(View.INVISIBLE);
