@@ -144,6 +144,6 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
 
     @Override
     public void onRequestComplete(List<SurveyStationInfo> stations) {
-        showList(carType, stations, aocf_et_pick_station);
+        showList(null, stations, aocf_et_pick_station);
     }
 }

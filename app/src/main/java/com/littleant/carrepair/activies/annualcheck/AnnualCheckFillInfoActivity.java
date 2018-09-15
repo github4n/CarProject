@@ -257,7 +257,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
     @Override
     public void onRequestComplete(List<SurveyStationInfo> stations) {
-        showList(carType, stations, acf_et_pick_station);
+        showList(null, stations, acf_et_pick_station);
     }
 
     @Override
