@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.utils.ProjectUtil;
 
 /**
  * 基类Activity
@@ -79,4 +81,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     protected int getBackgroundColor() { return 0; }
+
+    protected boolean validateParams(String... params) {
+        for(String param : params) {
+            if (TextUtils.isEmpty(param)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

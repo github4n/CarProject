@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.SurveyFeeBean;
 import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.SurveyStationListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -26,7 +27,7 @@ import com.mh.core.tools.MHToast;
 import java.util.List;
 
 public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
-    private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station, aocf_tv_date1;
+    private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station, aocf_tv_date1, aocf_et_fee_total;
     private EditText aocf_et_contact_name, aocf_et_contact_phone, aocf_et_driver_name, aocf_et_driver_brand, aocf_et_driver_plate;
     private String price;
 
@@ -39,13 +40,22 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
 
     private void requestPrice() {
         SurveyMethodCmd surveyMethodCmd = new SurveyMethodCmd(mContext, "", ParamsConstant.SurveyMethodType.GET,
-                "", "", 0, 0, "");
+                "", "", 0, -1, "");
         surveyMethodCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
                 if(command != null) {
                     // TODO: 2018/9/12 返回500错误
                     Log.i("register response", command.getResponse());
+                    SurveyFeeBean surveyFeeBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SurveyFeeBean.class);
+                    if(surveyFeeBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == surveyFeeBean.getCode()) {
+                        price = surveyFeeBean.getData().getTotal_price() + "";
+                        aocf_et_fee_total.setText("￥" + price);
+                    } else if(surveyFeeBean != null && !TextUtils.isEmpty(surveyFeeBean.getMsg())) {
+                        MHToast.showS(mContext, surveyFeeBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
                 }
             }
         });
@@ -67,6 +77,8 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
 
         aocf_tv_date1 = findViewById(R.id.aocf_tv_date1);
         aocf_tv_date1.setOnClickListener(this);
+
+        aocf_et_fee_total = findViewById(R.id.aocf_et_fee_total);
 
         //EditText输入框
         aocf_et_contact_name = findViewById(R.id.aocf_et_contact_name);
@@ -90,6 +102,18 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.aocf_confirm_pay:
+                String contactName = aocf_et_contact_name.getText().toString();
+                String contactPhone = aocf_et_contact_phone.getText().toString();
+                String driverName = aocf_et_driver_name.getText().toString();
+                String brand = aocf_et_driver_brand.getText().toString();
+                String plate = aocf_et_driver_plate.getText().toString();
+                String type = aocf_et_car_type.getText().toString();
+                String station = aocf_et_pick_station.getText().toString();
+                String date = aocf_tv_date1.getText().toString();
+                if(!validateParams(contactName, contactPhone, driverName, brand, plate, type, station, date)) {
+                    MHToast.showS(mContext, R.string.need_finish_info);
+                    return;
+                }
                 Intent intent = new Intent(OwnCheckFillInfoActivity.this, PaymentActivity.class);
                 OwnCheckFillInfoActivity.this.startActivity(intent);
                 break;
@@ -102,7 +126,7 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                 if(stations == null) {
                     requestStation(this);
                 } else {
-                    showList(carType, stations, aocf_et_pick_station);
+                    showList(null, stations, aocf_et_pick_station);
                 }
                 break;
 

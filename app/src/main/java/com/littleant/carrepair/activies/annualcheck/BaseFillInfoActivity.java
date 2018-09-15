@@ -84,10 +84,10 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
             @Override
             public void onClick(View view) {
                 d2.dismiss();
-                if(!showCarType && selectedStation != null) {
+                if(selectedStation != null) {
                     showView.setText(selectedStation.getName());
-                } else {
-                    showView.setText(carType[selectedPosition]);
+                } else if(list != null) {
+                    showView.setText(list[selectedPosition]);
                 }
             }
         });

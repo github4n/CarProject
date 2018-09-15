@@ -235,7 +235,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 if(stations == null) {
                     requestStation(this);
                 } else {
-                    showList(carType, stations, acf_et_pick_station);
+                    showList(null, stations, acf_et_pick_station);
                 }
                 break;
 
