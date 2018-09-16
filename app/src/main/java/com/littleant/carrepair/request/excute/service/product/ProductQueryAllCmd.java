@@ -10,9 +10,16 @@ import com.mh.core.tools.MHLogUtil;
 public class ProductQueryAllCmd extends BaseRequestCmd {
     public ProductQueryAllCmd(Context context, int catalog_id, int price_order, int sale_order) {
         super(context);
-        params.put(ParamsConstant.CATALOG_ID, catalog_id + "");
-        params.put(ParamsConstant.PRICE_ORDER, price_order + "");
-        params.put(ParamsConstant.SALE_ORDER, sale_order + "");
+        if(catalog_id >= 0) {
+            params.put(ParamsConstant.CATALOG_ID, catalog_id + "");
+        }
+        if(price_order >= 0) {
+            params.put(ParamsConstant.PRICE_ORDER, price_order + "");
+        }
+        if(sale_order >= 0) {
+            params.put(ParamsConstant.SALE_ORDER, sale_order + "");
+        }
+
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 

@@ -11,7 +11,9 @@ public class CatalogQueryAllCmd extends BaseRequestCmd {
     public CatalogQueryAllCmd(Context context, int type, int p_id) {
         super(context);
         params.put(ParamsConstant.TYPE, type + "");
-        params.put(ParamsConstant.P_ID, p_id + "");
+        if(p_id >= 0) {
+            params.put(ParamsConstant.P_ID, p_id + "");
+        }
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 

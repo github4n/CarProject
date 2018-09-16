@@ -105,6 +105,14 @@ public class ParamsConstant {
     public static final int SERVICE_ORDER_STATUS_FINISH = 3;
     public static final String ADDRESS_ID = "address_id";
     public static final String ORDER_CAR_LIST = "order_car_list";
+    /**
+     * 订单状态
+     */
+    public enum CommentStatus {
+        COMMENT,
+        NOT_COMMENT,
+        NONE
+    }
 
     //服务（付款、完成、评论订单信息）部分
     public static final String METHOD = "method";

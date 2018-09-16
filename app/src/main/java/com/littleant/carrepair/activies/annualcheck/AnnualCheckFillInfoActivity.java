@@ -29,6 +29,9 @@ import com.littleant.carrepair.activies.datetime.DateActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.ComboBean;
+import com.littleant.carrepair.request.bean.ComboItemSet;
+import com.littleant.carrepair.request.bean.ComboListBean;
 import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.SurveyStationListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -45,19 +48,26 @@ import java.util.List;
 public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
 
     private ConstraintLayout acf_package_layout;
+    //两个套餐
     private RadioButton acf_btn_package_a, acf_btn_package_b;
+    //点击跳转或选择的参数
     private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station, acf_tv_date1, acf_tv_package_detail;
     private TextView acf_et_pick_location;
     private static final int REQUEST_CODE_SELECT_PLACE = 11;//定义请求码常量
+    //交车坐标
     private double selectLat, selectLon;
+    //交车地址
     private String selectAddress;
+    //输入的参数
     private EditText acf_et_contact_name, acf_et_contact_phone, acf_et_driver_name, acf_et_driver_brand,
             acf_et_driver_plate;
+    //套餐子选项
     private CheckBox acf_rb_light, acf_rb_gas, acf_rb_sight;
+    //套餐子选项价格
+    private TextView acf_tv_price1, acf_tv_price2, acf_tv_price3;
+    //四个价钱
     private TextView acf_et_fee_base, acf_et_fee_package, acf_et_fee_check, acf_et_fee_total;
-
-//    private String[] carType = new String[]{"汽车1", "汽车2"};
-//    private String[] stations = new String[]{"站点1", "站点2", "站点3"};
+    private List<ComboBean> comboList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +91,11 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         acf_package_layout = findViewById(R.id.acf_package_layout);
         //详细说明
         acf_tv_package_detail = findViewById(R.id.acf_tv_package_detail);
+
+
+        acf_tv_price1 = findViewById(R.id.acf_tv_price1);
+        acf_tv_price2 = findViewById(R.id.acf_tv_price2);
+        acf_tv_price3 = findViewById(R.id.acf_tv_price3);
 
         //输入框
         acf_et_contact_name = findViewById(R.id.acf_et_contact_name);
@@ -223,6 +238,22 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.acf_confirm_pay:
+                String contactName = acf_et_contact_name.getText().toString();
+                String contactPhone = acf_et_contact_phone.getText().toString();
+                String driverName = acf_et_driver_name.getText().toString();
+                String brand = acf_et_driver_brand.getText().toString();
+                String plate = acf_et_driver_plate.getText().toString();
+                String type = acf_et_car_type.getText().toString();
+                String station = acf_et_pick_station.getText().toString();
+                String date = acf_tv_date1.getText().toString();
+                if(!validateParams(contactName, contactPhone, driverName, brand, plate, type, station, date, selectAddress)) {
+                    MHToast.showS(mContext, R.string.need_finish_info);
+                    return;
+                }
+                if(selectLat == 0 || selectLon == 0) {
+                    return;
+                }
+
                 Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
                 AnnualCheckFillInfoActivity.this.startActivity(intent);
                 break;
@@ -252,6 +283,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                     }
                 });
                 break;
+
         }
     }
 
@@ -283,8 +315,11 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-
-
+                        ComboListBean listBean = ProjectUtil.getBaseResponseBean(command.getResponse(), ComboListBean.class);
+                        comboList = listBean.getData();
+                        if(comboList != null) {
+                            showCombo(comboList);
+                        }
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -294,5 +329,28 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
             }
         });
         MHCommandExecute.getInstance().asynExecute(mContext, comboQueryAllCmd);
+    }
+
+    private void showCombo(List<ComboBean> combos) {
+        for(ComboBean comboBean : combos) {
+            int id = comboBean.getId();
+            if(id == 1) {
+                acf_btn_package_a.setText(comboBean.getName());
+                acf_package_detail.setText(comboBean.getDetail());
+            } else if (id == 2) {
+                acf_btn_package_b.setText(comboBean.getName());
+                List<ComboItemSet> comboitem_set = comboBean.getComboitem_set();
+                int itemSize = comboitem_set.size();
+                acf_rb_light.setText(comboitem_set.get(0).getName());
+                acf_tv_price1.setText(DataHelper.displayPrice(this, comboitem_set.get(0).getPrice()));
+
+                acf_rb_gas.setText(comboitem_set.get(1).getName());
+                acf_tv_price2.setText(DataHelper.displayPrice(this, comboitem_set.get(1).getPrice()));
+
+                acf_rb_sight.setText(comboitem_set.get(2).getName());
+                acf_tv_price3.setText(DataHelper.displayPrice(this, comboitem_set.get(2).getPrice()));
+
+            }
+        }
     }
 }

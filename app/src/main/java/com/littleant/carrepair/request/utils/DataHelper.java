@@ -20,6 +20,7 @@ import com.amap.api.navi.AmapNaviParams;
 import com.amap.api.navi.AmapNaviType;
 import com.amap.api.navi.AmapRouteActivity;
 import com.amap.api.navi.INaviInfoCallback;
+import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.datetime.DateActivity;
 import com.littleant.carrepair.activies.datetime.TimeActivity;
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -177,5 +178,19 @@ public class DataHelper {
             }
         });
         dateActivity.show(activity.getFragmentManager(), DateActivity.class.getSimpleName());
+    }
+
+    public static String displayPrice(Context context, float price) {
+        return String.format(context.getResources().getString(R.string.text_price_prefix), price + "");
+    }
+
+    public static float getDisplayPrice(Context context, String display) {
+        if(TextUtils.isEmpty(display)) {
+            return 0;
+        }
+        if(display.startsWith("￥")) {
+            return Float.parseFloat(display.split("￥")[1]);
+        }
+        return Float.parseFloat(display);
     }
 }

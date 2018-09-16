@@ -34,7 +34,7 @@ import java.util.List;
 public abstract class BaseFillInfoActivity extends BaseFlowActivity {
 
     protected SurveyStationInfo selectedStation;
-    protected int selectedPosition;
+    protected int selectedPosition = -1;
     protected String[] carType;
     protected List<SurveyStationInfo> stations;
     protected boolean showCarType = true;
@@ -86,7 +86,7 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
                 d2.dismiss();
                 if(selectedStation != null) {
                     showView.setText(selectedStation.getName());
-                } else if(list != null) {
+                } else if(list != null && selectedPosition != -1) {
                     showView.setText(list[selectedPosition]);
                 }
             }

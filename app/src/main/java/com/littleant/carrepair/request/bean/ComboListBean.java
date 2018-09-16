@@ -1,9 +1,8 @@
 package com.littleant.carrepair.request.bean;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class ComboListBean implements Serializable {
+public class ComboListBean extends BaseResponseBean {
 
     private List<ComboBean> data;
 

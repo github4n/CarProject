@@ -76,37 +76,16 @@ public class ServiceFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mallView = subView.findViewById(R.id.sm_cl_mall);
-        mallView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ShoppingActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-        insuranceView = subView.findViewById(R.id.sm_cl_insurance);
-        insuranceView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), InsuranceProxyActivity.class);
-                getActivity().startActivity(intent);
+        mallView.setOnClickListener(this);
 
-            }
-        });
+        insuranceView = subView.findViewById(R.id.sm_cl_insurance);
+        insuranceView.setOnClickListener(this);
+
         infoView = subView.findViewById(R.id.sm_cl_info);
-        infoView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), InformationActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
+        infoView.setOnClickListener(this);
+
         moreView = subView.findViewById(R.id.sm_cl_more);
-        moreView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "更多服务", Toast.LENGTH_SHORT).show();
-            }
-        });
+        moreView.setOnClickListener(this);
 
         sm_banner = subView.findViewById(R.id.sm_banner);
         sm_banner.setImageLoader(new GlideImageLoader());
@@ -151,4 +130,36 @@ public class ServiceFragment extends BaseFragment {
         MHCommandExecute.getInstance().asynExecute(getContext(), serviceImgCmd);
     }
 
+    @Override
+    public void onClick(View view) {
+        Intent intent;
+        switch (view.getId()) {
+            case R.id.sm_cl_mall:
+                intent = new Intent(getContext(), ShoppingActivity.class);
+                getActivity().startActivity(intent);
+                break;
+
+            case R.id.sm_cl_insurance:
+                intent = new Intent(getContext(), InsuranceProxyActivity.class);
+                getActivity().startActivity(intent);
+                break;
+
+            case R.id.sm_cl_info:
+                intent = new Intent(getContext(), InformationActivity.class);
+                getActivity().startActivity(intent);
+                break;
+
+            case R.id.sm_cl_more:
+                Toast.makeText(getContext(), "更多服务", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.sm_banner:
+
+                break;
+
+            case R.id.sm_picture:
+
+                break;
+        }
+    }
 }

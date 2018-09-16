@@ -572,7 +572,6 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginEnd="20dp"
                 android:gravity="center"
-                android:text="@string/text_package_a"
                 android:textSize="12sp" />
 
             <RadioButton
@@ -583,7 +582,6 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 android:gravity="center"
-                android:text="@string/text_package_b"
                 android:textSize="12sp" />
         </RadioGroup>
 
@@ -609,7 +607,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:text="@string/text_package_detail2"
             android:textColor="@color/color_sub_line"
             android:textSize="12sp"
             android:visibility="gone"
@@ -636,19 +633,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/text_package_light"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@id/acf_rb_gas"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/acf_tv_package_price"
+                android:id="@+id/acf_tv_price1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
-                android:text="@string/text_package_per_price"
                 android:textColor="@color/color_text_shop_price"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/acf_rb_light"
@@ -661,18 +656,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/text_package_gas"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/acf_tv_price2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
-                android:text="@string/text_package_per_price"
                 android:textColor="@color/color_text_shop_price"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/acf_rb_gas"
@@ -685,18 +679,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/text_package_sight"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/acf_rb_gas"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/acf_tv_price3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
-                android:text="@string/text_package_per_price"
                 android:textColor="@color/color_text_shop_price"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/acf_rb_sight"

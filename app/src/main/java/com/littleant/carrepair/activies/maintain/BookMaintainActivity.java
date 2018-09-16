@@ -27,6 +27,7 @@ import com.littleant.carrepair.request.bean.OilInfo;
 import com.littleant.carrepair.request.bean.OilListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.oil.OilQueryAllCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
@@ -164,25 +165,25 @@ public class BookMaintainActivity extends BaseActivity {
             if(oilInfo != null) {
                 if (getItemViewType(position) == TYPE_NORMAL) {
                     holder.lmi_item_name.setText(oilInfo.getName());
-                    holder.lmi_tv_new_price.setText(oilInfo.getNew_price() + "");
-                    holder.lmi_tv_old_price.setText(oilInfo.getPrice() + "");
+                    holder.lmi_tv_new_price.setText(DataHelper.displayPrice(mContext, oilInfo.getNew_price()));
+                    holder.lmi_tv_old_price.setText(DataHelper.displayPrice(mContext, oilInfo.getPrice()));
                     holder.lmi_gas_amount.setText(oilInfo.getL() + "");
                     holder.lmi_tv_old_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                     Picasso.with(mContext).load(Uri.parse(oilInfo.getPic_url())).into(holder.lmi_iv_itemImg);
                     holder.lmi_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            float price = Float.parseFloat(bm_tv_total_money.getText().toString());
+                            float price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
                             if(isChecked) {
                                 price += oilInfo.getNew_price();
                             } else {
                                 price -= oilInfo.getNew_price();
                             }
-                            bm_tv_total_money.setText(price + "");
+                            bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
                         }
                     });
                 } else {
-                    holder.bmei_time_price.setText(garageInfo.getFilter_price() + "");
+                    holder.bmei_time_price.setText(DataHelper.displayPrice(mContext, garageInfo.getFilter_price()));
                 }
             }
         }

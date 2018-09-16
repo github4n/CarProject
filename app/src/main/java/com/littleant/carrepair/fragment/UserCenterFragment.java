@@ -32,7 +32,7 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
-public class UserCenterFragment extends BaseFragment implements View.OnClickListener{
+public class UserCenterFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 

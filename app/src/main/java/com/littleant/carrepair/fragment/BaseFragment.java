@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
