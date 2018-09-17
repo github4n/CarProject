@@ -41,7 +41,7 @@ public class AddAddressActivity extends BaseActivity {
     private int node1, node2, node3;
     private boolean isDefault;
     public static final int RESULT_CODE_SUCCESS = 100;
-    //申明对象
+    //申明对象莫进生
     private CityPickerView mPicker = new CityPickerView();
     private MyAddressListBean.AddressInfo addressInfo;
 
