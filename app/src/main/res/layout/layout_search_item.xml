@@ -29,7 +29,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:scaleType="centerInside"
+        android:scaleType="fitXY"
         android:src="@drawable/item_demo"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/lsi_guideline"
@@ -61,19 +61,27 @@
         android:layout_marginStart="8dp"
         android:maxLines="1"
         android:textColor="@color/color_uc_text"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline"
         app:layout_constraintTop_toTopOf="@id/lsi_iv_itemImg" />
 
     <TextView
         android:id="@+id/lsi_tv_distance"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:ellipsize="end"
+        android:gravity="end"
+        android:maxLines="1"
         android:textColor="@color/color_sub_line"
+        android:textSize="14sp"
+
         app:layout_constraintBottom_toBottomOf="@id/lsi_tv_title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/lsi_tv_title"
         app:layout_constraintTop_toTopOf="@id/lsi_tv_title" />
 
     <!--赞数-->
@@ -127,8 +135,8 @@
         android:id="@+id/lsi_iv_contact"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_contact"
         app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_contact"
         app:layout_constraintEnd_toStartOf="@id/lsi_guideline2"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline"
         app:layout_constraintTop_toTopOf="@id/lsi_tv_contact"
@@ -141,16 +149,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:textColor="@color/color_sub_line"
         app:layout_constraintBottom_toBottomOf="@id/lsi_iv_itemImg"
-        app:layout_constraintStart_toStartOf="@id/lsi_guideline2" />
+        app:layout_constraintStart_toStartOf="@id/lsi_guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lsi_tv_contact" />
 
     <ImageView
         android:id="@+id/lsi_iv_location"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_location"
         app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_location"
         app:layout_constraintEnd_toStartOf="@id/lsi_guideline2"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline"
         app:layout_constraintTop_toTopOf="@id/lsi_tv_location"

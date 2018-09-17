@@ -21,6 +21,7 @@ import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHLogUtil;
 import com.mh.core.tools.MHToast;
 
 /**
@@ -42,6 +43,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // TODO: 2018/9/17 正式发布时去掉日志
+        MHLogUtil.enableLogLevel(Log.VERBOSE);
+
         mContext = this;
         loginBtn = findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(this);

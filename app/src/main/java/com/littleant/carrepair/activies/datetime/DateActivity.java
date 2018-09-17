@@ -29,7 +29,10 @@ public class DateActivity extends DialogFragment implements DatePickerDialog.OnD
         int day = c.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT, this, year, month, day);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT, this, year, month, day);
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+        datePicker.setMinDate(System.currentTimeMillis());
+        return datePickerDialog;
     }
 
     @Override
@@ -38,4 +41,6 @@ public class DateActivity extends DialogFragment implements DatePickerDialog.OnD
             selectDateCallback.onSelectDate(i, i1, i2);
         }
     }
+
+
 }

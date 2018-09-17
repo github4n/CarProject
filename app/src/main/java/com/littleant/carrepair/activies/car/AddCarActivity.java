@@ -78,7 +78,7 @@ public class AddCarActivity extends BaseActivity {
         aac_et_brand = findViewById(R.id.aac_et_brand);
         aac_et_plate = findViewById(R.id.aac_et_plate);
         aac_et_engine = findViewById(R.id.aac_et_engine);
-        aac_et_mile = findViewById(R.id.aac_et_mile);
+//        aac_et_mile = findViewById(R.id.aac_et_mile);
 
         ac_btn_save = findViewById(R.id.ac_btn_save);
         ac_btn_save.setOnClickListener(this);
@@ -94,7 +94,7 @@ public class AddCarActivity extends BaseActivity {
             aac_et_brand.setText(carInfo.getBrand());
             aac_et_engine.setText(carInfo.getEngine());
             aac_et_plate.setText(carInfo.getCode());
-            aac_et_mile.setText(carInfo.getMileage() + "");
+//            aac_et_mile.setText(carInfo.getMileage() + "");
 
         }
     }
@@ -136,9 +136,9 @@ public class AddCarActivity extends BaseActivity {
         code = aac_et_plate.getText().toString();
         engine = aac_et_engine.getText().toString();
         buyTime = aac_tv_time.getText().toString();
-        mile = aac_et_mile.getText().toString();
+//        mile = aac_et_mile.getText().toString();
         if(TextUtils.isEmpty(brand) || TextUtils.isEmpty(code) || TextUtils.isEmpty(engine)
-                || TextUtils.isEmpty(buyTime) || TextUtils.isEmpty(mile)) {
+                || TextUtils.isEmpty(buyTime)) {
             MHToast.showS(mContext, R.string.need_finish_info);
             return;
         }
@@ -146,7 +146,7 @@ public class AddCarActivity extends BaseActivity {
             MHToast.showS(mContext, R.string.need_finish_info);
             return;
         }
-        CarAddCmd carAddCmd = new CarAddCmd(mContext, brand, code, engine, buyTime, mile, false, pic);
+        CarAddCmd carAddCmd = new CarAddCmd(mContext, brand, code, engine, buyTime, "0", false, pic);
         carAddCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {

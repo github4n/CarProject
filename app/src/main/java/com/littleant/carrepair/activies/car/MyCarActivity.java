@@ -126,9 +126,15 @@ public class MyCarActivity extends BaseActivity {
             if(carInfo != null) {
                 holder.mc_item_name.setText(carInfo.getBrand());
                 holder.mc_plate.setText(carInfo.getCode());
-                holder.mc_mile.setText(String.format(getResources().getString(R.string.text_my_car_miles), carInfo.getMileage() + ""));
+                holder.mc_frame.setText(carInfo.getClasssno());
+//                holder.mc_mile.setText(String.format(getResources().getString(R.string.text_my_car_miles), carInfo.getMileage() + ""));
 //                Picasso.with(mContext).load(R.drawable.mc_icon).into(holder.mc_iv_itemImg);
                 Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(holder.mc_iv_itemImg);
+                if(carInfo.isIs_default()) {
+                    holder.mc_default.setVisibility(View.VISIBLE);
+                } else {
+                    holder.mc_default.setVisibility(View.GONE);
+                }
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -147,15 +153,16 @@ public class MyCarActivity extends BaseActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            TextView mc_item_name, mc_plate, mc_mile;
+            TextView mc_item_name, mc_plate, mc_frame, mc_default;
             ImageView mc_iv_itemImg;
 
             ViewHolder(View itemView) {
                 super(itemView);
                 mc_item_name = itemView.findViewById(R.id.mc_item_name);
                 mc_plate = itemView.findViewById(R.id.mc_plate);
-                mc_mile = itemView.findViewById(R.id.mc_mile);
+                mc_frame = itemView.findViewById(R.id.mc_frame);
                 mc_iv_itemImg = itemView.findViewById(R.id.mc_iv_itemImg);
+                mc_default = itemView.findViewById(R.id.mc_default);
             }
 
         }

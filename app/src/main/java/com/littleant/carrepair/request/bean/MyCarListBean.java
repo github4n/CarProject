@@ -26,6 +26,12 @@ public class MyCarListBean extends BaseResponseBean {
         private String buy_time = "";
         private float mileage;
         private boolean is_default;
+        private String city_code = "";
+        private String classsno = "";
+        private String hpzl = "";
+        private String province_code = "";
+        private String city_name = "";
+        private String province_name = "";
 
         @Override
         public String toString() {
@@ -40,6 +46,12 @@ public class MyCarListBean extends BaseResponseBean {
                     ", buy_time='" + buy_time + '\'' +
                     ", mileage=" + mileage +
                     ", is_default=" + is_default +
+                    ", city_code='" + city_code + '\'' +
+                    ", classsno='" + classsno + '\'' +
+                    ", hpzl='" + hpzl + '\'' +
+                    ", province_code='" + province_code + '\'' +
+                    ", city_name='" + city_name + '\'' +
+                    ", province_name='" + province_name + '\'' +
                     '}';
         }
 
@@ -121,6 +133,54 @@ public class MyCarListBean extends BaseResponseBean {
 
         public void setIs_default(boolean is_default) {
             this.is_default = is_default;
+        }
+
+        public String getCity_code() {
+            return city_code;
+        }
+
+        public void setCity_code(String city_code) {
+            this.city_code = city_code;
+        }
+
+        public String getClasssno() {
+            return classsno;
+        }
+
+        public void setClasssno(String classsno) {
+            this.classsno = classsno;
+        }
+
+        public String getHpzl() {
+            return hpzl;
+        }
+
+        public void setHpzl(String hpzl) {
+            this.hpzl = hpzl;
+        }
+
+        public String getProvince_code() {
+            return province_code;
+        }
+
+        public void setProvince_code(String province_code) {
+            this.province_code = province_code;
+        }
+
+        public String getCity_name() {
+            return city_name;
+        }
+
+        public void setCity_name(String city_name) {
+            this.city_name = city_name;
+        }
+
+        public String getProvince_name() {
+            return province_name;
+        }
+
+        public void setProvince_name(String province_name) {
+            this.province_name = province_name;
         }
     }
 }

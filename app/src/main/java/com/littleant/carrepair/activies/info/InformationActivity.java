@@ -139,7 +139,7 @@ public class InformationActivity extends BaseActivity {
     }
 
     private void setTitleCatalog() {
-        if(infoList != null && infoListSize == 3) {
+        if(infoList != null && infoListSize > 2) {
             info_tv_activity.setText(infoList.get(0).getName());
             info_tv_news.setText(infoList.get(1).getName());
             info_tv_konwledge.setText(infoList.get(2).getName());
@@ -254,13 +254,13 @@ public class InformationActivity extends BaseActivity {
     }
 
     private void setListItem(List<NewsInfoListBean.NewsInfoBean> newsList) {
-        if(newsList != null && newsList.size() > 0) {
+        if(newsList != null) {
             mList.setAdapter(new MyAdapter(newsList));
         }
     }
 
     private void setBanner(List<NewsBannerListBean.BannerBean> bannerList) {
-        if(bannerList == null || bannerList.size() == 0) {
+        if(bannerList == null) {
             return;
         }
         List<String> titles = new ArrayList<>();
@@ -269,8 +269,12 @@ public class InformationActivity extends BaseActivity {
             titles.add(bannerList.get(i).getTitle());
             picUrls.add(bannerList.get(i).getPic_url());
         }
-        info_iv_logo.setBannerTitles(titles);
-        info_iv_logo.setImages(picUrls);
-        info_iv_logo.start();
+        if(titles.size() < 1 || picUrls.size() < 1) {
+            info_iv_logo.releaseBanner();
+        } else {
+            info_iv_logo.setBannerTitles(titles);
+            info_iv_logo.setImages(picUrls);
+            info_iv_logo.start();
+        }
     }
 }
