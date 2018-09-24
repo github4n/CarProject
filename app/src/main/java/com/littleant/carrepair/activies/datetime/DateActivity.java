@@ -31,7 +31,7 @@ public class DateActivity extends DialogFragment implements DatePickerDialog.OnD
         // Create a new instance of DatePickerDialog and return it
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT, this, year, month, day);
         DatePicker datePicker = datePickerDialog.getDatePicker();
-        datePicker.setMinDate(System.currentTimeMillis());
+        datePicker.setMinDate(System.currentTimeMillis() + 259200000);
         return datePickerDialog;
     }
 

@@ -11,14 +11,15 @@ import com.mh.core.tools.MHLogUtil;
 
 public class CarAddCmd extends BaseCarCmd {
 
-    public CarAddCmd(Context context, String brand, String code, String engine, String buyTime, String mile, boolean isDefault, Bitmap bitmap) {
+    public CarAddCmd(Context context, String code, int car_style, String engine, String city_code, String classsno, String hpzl, boolean isDefault, Bitmap bitmap) {
         super(context);
-        params.put(ParamsConstant.BRAND, brand);
         params.put(ParamsConstant.CODE, code);
+        params.put(ParamsConstant.CAR_STYLE, car_style + "");
         params.put(ParamsConstant.ENGINE, engine);
-        params.put(ParamsConstant.BUY_TIME, buyTime);
-        params.put(ParamsConstant.MILEAGE, mile);
         params.put(ParamsConstant.IS_DEFAULT, isDefault + "");
+        params.put(ParamsConstant.CITY_CODE, city_code);
+        params.put(ParamsConstant.CLASSSNO, classsno);
+        params.put(ParamsConstant.HPZL, hpzl);
         params.put(ParamsConstant.PIC, DataHelper.bitmap2StrByBase64(bitmap));
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }

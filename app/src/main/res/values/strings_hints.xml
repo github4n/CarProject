@@ -13,4 +13,7 @@
     <string name="need_finish_info" translatable="false">请完善信息</string>
     <string name="info_not_modify" translatable="false">您的资料没有变更</string>
     <string name="need_select_station_and_address" translatable="false">请先选择年检站及交车地点</string>
+    <string name="add_to_shoppingcar_success" translatable="false">已添加到购物车</string>
+    <string name="delete_success" translatable="false">已删除</string>
+    <string name="no_select_item" translatable="false">没有选中的项目</string>
 </resources>

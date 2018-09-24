@@ -3,6 +3,7 @@ package com.littleant.carrepair.activies.shopping;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.Guideline;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
@@ -25,6 +29,7 @@ import com.littleant.carrepair.request.bean.ProductCatalogBean;
 import com.littleant.carrepair.request.bean.ProductListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.service.catalog.CatalogQueryAllCmd;
+import com.littleant.carrepair.request.excute.service.ordercar.OrderCarAddCmd;
 import com.littleant.carrepair.request.excute.service.product.ProductQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -45,18 +50,22 @@ public class ShoppingActivity extends BaseActivity {
     private ImageView shoppingCar;
     private List<ProductBean> productBeanList;
     private List<ProductCatalogBean> catalogBeanList;
+    private RadioGroup shopping_radioGroup;
+    private RadioButton shopping_tv_none, shopping_tv_price, shopping_tv_sale, shopping_tv_type;
+    private Guideline s_guideline;
+    private int catalog_id = -1;
+    private int p_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        requestCatalog();
-        requestProduct();
+        requestProduct(-1, -1, -1);
 
     }
 
-    private void requestCatalog() {
-        CatalogQueryAllCmd catalogQueryAllCmd = new CatalogQueryAllCmd(mContext, ParamsConstant.SERVICE_QUERY_TYPE_SHOP, 0);
+    private void requestCatalog(int p_id) {
+        CatalogQueryAllCmd catalogQueryAllCmd = new CatalogQueryAllCmd(mContext, ParamsConstant.SERVICE_QUERY_TYPE_SHOP, p_id);
         catalogQueryAllCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
@@ -77,8 +86,8 @@ public class ShoppingActivity extends BaseActivity {
         MHCommandExecute.getInstance().asynExecute(mContext, catalogQueryAllCmd);
     }
 
-    private void requestProduct() {
-        ProductQueryAllCmd productQueryAllCmd = new ProductQueryAllCmd(mContext, -1, -1, -1);
+    private void requestProduct(int catalog_id, int price_order, int sale_order) {
+        ProductQueryAllCmd productQueryAllCmd = new ProductQueryAllCmd(mContext, catalog_id, price_order, sale_order);
         productQueryAllCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
@@ -111,6 +120,37 @@ public class ShoppingActivity extends BaseActivity {
 
         shoppingCar = findViewById(R.id.s_iv_shoppingcar);
         shoppingCar.setOnClickListener(this);
+
+        s_guideline = findViewById(R.id.s_guideline);
+
+        shopping_radioGroup = findViewById(R.id.shopping_radioGroup);
+        shopping_radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case 0:
+                        requestProduct(catalog_id, -1, -1);
+                        break;
+
+                    case 1:
+                        requestProduct(catalog_id, 1, -1);
+                        break;
+
+                    case 2:
+                        requestProduct(catalog_id, -1, 1);
+                        break;
+
+                    case 3:
+                        requestCatalog(p_id);
+                        break;
+                }
+            }
+        });
+
+        shopping_tv_none = findViewById(R.id.shopping_tv_none);
+        shopping_tv_price = findViewById(R.id.shopping_tv_price);
+        shopping_tv_sale = findViewById(R.id.shopping_tv_sale);
+        shopping_tv_type = findViewById(R.id.shopping_tv_type);
     }
 
     @Override
@@ -170,14 +210,40 @@ public class ShoppingActivity extends BaseActivity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            ProductBean productBean = list.get(i);
+            final ProductBean productBean = list.get(i);
             if(productBean != null) {
                 holder.si_name.setText(productBean.getName());
                 holder.si_tv_money.setText(DataHelper.displayPrice(mContext, productBean.getPrice()));
                 Picasso.with(mContext).load(Uri.parse(productBean.getPic_url())).into(holder.si_image);
+                holder.si_btn_add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        requestAddProduct(productBean.getId());
+                    }
+                });
             }
 
             return convertView;
+        }
+
+        private void requestAddProduct(int id) {
+            OrderCarAddCmd orderCarAddCmd = new OrderCarAddCmd(mContext, id, 1);
+            orderCarAddCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if(command != null) {
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            MHToast.showS(mContext, R.string.add_to_shoppingcar_success);
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(mContext, responseBean.getMsg());
+                        }
+                    } else {
+                        MHToast.showS(mContext, R.string.request_fail);
+                    }
+                }
+            });
+            MHCommandExecute.getInstance().asynExecute(mContext, orderCarAddCmd);
         }
 
         class ViewHolder {

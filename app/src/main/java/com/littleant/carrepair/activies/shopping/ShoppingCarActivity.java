@@ -24,6 +24,8 @@ import com.littleant.carrepair.request.bean.CatalogListBean;
 import com.littleant.carrepair.request.bean.ShoppingCarItemBean;
 import com.littleant.carrepair.request.bean.ShoppingCarListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.service.order.OrderDeleteCmd;
+import com.littleant.carrepair.request.excute.service.ordercar.OrderCarAddCmd;
 import com.littleant.carrepair.request.excute.service.ordercar.OrderCarQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -33,7 +35,10 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 购物车
@@ -47,6 +52,8 @@ public class ShoppingCarActivity extends BaseActivity {
     private TextView sc_tv_total_money;
     private MyAdapter myAdapter;
     private float price;
+    private ArrayList<Integer> selectProductIdList = new ArrayList<>();
+    private Set<Integer> selectProductIdSet = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +107,8 @@ public class ShoppingCarActivity extends BaseActivity {
 //        });
 
         sc_tv_total_money = findViewById(R.id.sc_tv_total_money);
+
+        mOptionText.setOnClickListener(this);
     }
 
     @Override
@@ -128,7 +137,40 @@ public class ShoppingCarActivity extends BaseActivity {
             case R.id.sc_cb_select_all:
                 myAdapter.selectAll(sc_cb_select_all.isChecked());
                 break;
+
+            case R.id.header_option_text:
+                if(selectProductIdSet.isEmpty()) {
+                    MHToast.showS(mContext, R.string.no_select_item);
+                } else {
+                    StringBuilder ids = new StringBuilder();
+                    for(Integer i : selectProductIdSet) {
+                        ids.append(i).append(",");
+                    }
+                    ids.deleteCharAt(ids.length() - 1);
+                    requestDeleteItem(ids.toString());
+                }
+                break;
         }
+    }
+
+    private void requestDeleteItem(String id) {
+        OrderDeleteCmd orderDeleteCmd = new OrderDeleteCmd(mContext, id);
+        orderDeleteCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        MHToast.showS(mContext, R.string.delete_success);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, orderDeleteCmd);
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -144,44 +186,46 @@ public class ShoppingCarActivity extends BaseActivity {
         public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_shopping_car_item, parent, false);
             final MyAdapter.ViewHolder viewHolder = new MyAdapter.ViewHolder(view);
-//            viewHolder.sci_amount.setText(String.format(ShoppingCarActivity.this.getResources().getString(R.string.text_sc_amount), "1"));
-            viewHolder.sci_plus.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int amount = Integer.parseInt(viewHolder.sci_amount.getText().toString().trim());
-                    amount++;
-                    viewHolder.sci_amount.setText("  " + amount + "  ");
-                }
-            });
-            viewHolder.sci_reduce.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int amount = Integer.parseInt(viewHolder.sci_amount.getText().toString().trim());
-                    if(amount > 0) {
-                        amount--;
-                        viewHolder.sci_amount.setText("  " + amount + "  ");
-                    }
-                }
-            });
-
             return viewHolder;
         }
 
         @Override
-        public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(final MyAdapter.ViewHolder holder, int position) {
             final ShoppingCarItemBean shoppingCarItemBean = list.get(position);
             if(shoppingCarItemBean != null) {
                 holder.sci_item_name.setText(shoppingCarItemBean.getProduct().getName());
                 holder.sci_item_price.setText(DataHelper.displayPrice(mContext, shoppingCarItemBean.getProduct().getPrice()));
                 Picasso.with(mContext).load(Uri.parse(shoppingCarItemBean.getProduct().getPic_url())).into(holder.sci_iv_itemImg);
                 holder.sci_amount.setText("  " + shoppingCarItemBean.getAmount() + "  ");
+                holder.sci_plus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int amount = Integer.parseInt(holder.sci_amount.getText().toString().trim());
+                        amount++;
+//                        holder.sci_amount.setText("  " + amount + "  ");
+                        requestAddProduct(shoppingCarItemBean.getProduct().getId(), 1);
+                    }
+                });
+                holder.sci_reduce.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int amount = Integer.parseInt(holder.sci_amount.getText().toString().trim());
+                        if(amount > 0) {
+                            amount--;
+//                            holder.sci_amount.setText("  " + amount + "  ");
+                            requestAddProduct(shoppingCarItemBean.getProduct().getId(), -1);
+                        }
+                    }
+                });
                 holder.sci_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if(b) {
-                            price += shoppingCarItemBean.getProduct().getPrice();
+                            selectProductIdSet.add(shoppingCarItemBean.getProduct().getId());
+                            price += shoppingCarItemBean.getProduct().getPrice() * shoppingCarItemBean.getAmount();
                         } else {
-                            price -= shoppingCarItemBean.getProduct().getPrice();
+                            selectProductIdSet.remove(shoppingCarItemBean.getProduct().getId());
+                            price -= shoppingCarItemBean.getProduct().getPrice() * shoppingCarItemBean.getAmount();
                             sc_cb_select_all.setChecked(false);
                         }
                         sc_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
@@ -221,6 +265,26 @@ public class ShoppingCarActivity extends BaseActivity {
         public void selectAll(boolean selectAll) {
             this.isSelectAll = selectAll;
             notifyDataSetChanged();
+        }
+
+        private void requestAddProduct(int id, int amount) {
+            OrderCarAddCmd orderCarAddCmd = new OrderCarAddCmd(mContext, id, amount);
+            orderCarAddCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if(command != null) {
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            requestItem();
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(mContext, responseBean.getMsg());
+                        }
+                    } else {
+                        MHToast.showS(mContext, R.string.request_fail);
+                    }
+                }
+            });
+            MHCommandExecute.getInstance().asynExecute(mContext, orderCarAddCmd);
         }
     }
 }

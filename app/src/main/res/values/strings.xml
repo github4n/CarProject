@@ -201,6 +201,7 @@
     <string name="text_market_price">市场价格：</string>
     <string name="text_time_price">工时费：</string>
     <string name="text_filter">过滤格：</string>
+    <string name="text_select_car">请选择汽车</string>
 
     <!---->
     <string name="text_my_car">我的汽车</string>

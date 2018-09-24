@@ -52,6 +52,10 @@ public class InterfaceConstant {
      * get:删除地址信息<br>
      */
     public static final String USER_ADDRESS_DELETE = "api/user/address_delete/";
+    /**
+     * get:删除地址信息<br>
+     */
+    public static final String USER_CARADDRESS = "api/user/caraddress/";
 
     //服务部分
     /**

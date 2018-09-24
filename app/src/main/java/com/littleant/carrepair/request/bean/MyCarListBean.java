@@ -20,11 +20,12 @@ public class MyCarListBean extends BaseResponseBean {
         private String create_time = "";
         private String update_time = "";
         private String pic_url = "";
-        private String brand = "";
+        private String brand_name = "";
+        private int car_brand_id;
+        private int car_type_id;
+        private int car_style_id;
         private String code = "";
         private String engine = "";
-        private String buy_time = "";
-        private float mileage;
         private boolean is_default;
         private String city_code = "";
         private String classsno = "";
@@ -40,11 +41,12 @@ public class MyCarListBean extends BaseResponseBean {
                     ", create_time='" + create_time + '\'' +
                     ", update_time='" + update_time + '\'' +
                     ", pic_url='" + pic_url + '\'' +
-                    ", brand='" + brand + '\'' +
+                    ", brand_name='" + brand_name + '\'' +
+                    ", car_brand_id=" + car_brand_id +
+                    ", car_type_id=" + car_type_id +
+                    ", car_style_id=" + car_style_id +
                     ", code='" + code + '\'' +
                     ", engine='" + engine + '\'' +
-                    ", buy_time='" + buy_time + '\'' +
-                    ", mileage=" + mileage +
                     ", is_default=" + is_default +
                     ", city_code='" + city_code + '\'' +
                     ", classsno='" + classsno + '\'' +
@@ -87,12 +89,36 @@ public class MyCarListBean extends BaseResponseBean {
             this.pic_url = pic_url;
         }
 
-        public String getBrand() {
-            return brand;
+        public String getBrand_name() {
+            return brand_name;
         }
 
-        public void setBrand(String brand) {
-            this.brand = brand;
+        public void setBrand_name(String brand_name) {
+            this.brand_name = brand_name;
+        }
+
+        public int getCar_brand_id() {
+            return car_brand_id;
+        }
+
+        public void setCar_brand_id(int car_brand_id) {
+            this.car_brand_id = car_brand_id;
+        }
+
+        public int getCar_type_id() {
+            return car_type_id;
+        }
+
+        public void setCar_type_id(int car_type_id) {
+            this.car_type_id = car_type_id;
+        }
+
+        public int getCar_style_id() {
+            return car_style_id;
+        }
+
+        public void setCar_style_id(int car_style_id) {
+            this.car_style_id = car_style_id;
         }
 
         public String getCode() {
@@ -109,22 +135,6 @@ public class MyCarListBean extends BaseResponseBean {
 
         public void setEngine(String engine) {
             this.engine = engine;
-        }
-
-        public String getBuy_time() {
-            return buy_time;
-        }
-
-        public void setBuy_time(String buy_time) {
-            this.buy_time = buy_time;
-        }
-
-        public float getMileage() {
-            return mileage;
-        }
-
-        public void setMileage(float mileage) {
-            this.mileage = mileage;
         }
 
         public boolean isIs_default() {

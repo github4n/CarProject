@@ -56,10 +56,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/bm_guideline3"
+        app:layout_constraintBottom_toTopOf="@id/bm_guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toBottomOf="@id/include">
 
         <ImageView
             android:id="@+id/bm_iv_icon"
@@ -72,8 +72,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/item_demo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/bm_tv_title"
@@ -81,11 +80,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="粤A13543"
             android:textColor="@color/color_uc_text"
+            android:text="@string/text_select_car"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/bm_iv_icon"
-            app:layout_constraintTop_toTopOf="@+id/bm_iv_icon" />
+            app:layout_constraintBottom_toTopOf="@id/bm_tv_des"
+            app:layout_constraintStart_toEndOf="@id/bm_iv_icon"
+            app:layout_constraintTop_toTopOf="@id/bm_iv_icon" />
 
         <TextView
             android:id="@+id/bm_tv_des"
@@ -93,10 +93,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="Passat 2011款 2.0T旅行版 豪华型"
             android:textColor="@color/color_sub_line"
-            app:layout_constraintBottom_toBottomOf="@+id/bm_iv_icon"
-            app:layout_constraintStart_toEndOf="@+id/bm_iv_icon" />
+            app:layout_constraintTop_toBottomOf="@id/bm_tv_title"
+            app:layout_constraintBottom_toBottomOf="@id/bm_iv_icon"
+            app:layout_constraintStart_toEndOf="@id/bm_iv_icon" />
 
     </android.support.constraint.ConstraintLayout>
 

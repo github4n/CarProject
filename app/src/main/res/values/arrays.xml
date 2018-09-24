@@ -6,6 +6,12 @@
         <item name="car_type_seven_below">七座以下</item>
     </string-array>
 
+    <string-array name="car_plate_type">
+        <item name="car_type_blue">02:小型车</item>
+        <item name="car_type_blue">01:大型车</item>
+        <item name="car_type_seven_below">16:教练车</item>
+    </string-array>
+
     <!--年检状态-->
     <string-array name="annual_check_state">
         <item name="state_wait_pay">等待支付</item>

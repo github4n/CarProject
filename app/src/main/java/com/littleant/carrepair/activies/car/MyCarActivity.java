@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.MyCarListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -38,10 +39,16 @@ public class MyCarActivity extends BaseActivity {
     private static final int REQUEST_CODE_MODIFY_CAR = 101;
     public static final String CAR_INFO = "CarInfo";
     private List<MyCarListBean.CarInfo> data;
+    private boolean isPick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            isPick = extras.getBoolean(BookMaintainActivity.PICK_CAR);
+        }
 
         requestMyCarList();
     }
@@ -124,7 +131,7 @@ public class MyCarActivity extends BaseActivity {
         public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
             final MyCarListBean.CarInfo carInfo = list.get(position);
             if(carInfo != null) {
-                holder.mc_item_name.setText(carInfo.getBrand());
+                holder.mc_item_name.setText(carInfo.getBrand_name());
                 holder.mc_plate.setText(carInfo.getCode());
                 holder.mc_frame.setText(carInfo.getClasssno());
 //                holder.mc_mile.setText(String.format(getResources().getString(R.string.text_my_car_miles), carInfo.getMileage() + ""));
@@ -139,9 +146,16 @@ public class MyCarActivity extends BaseActivity {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(mContext, AddCarActivity.class);
-                        intent.putExtra(CAR_INFO, carInfo);
-                        MyCarActivity.this.startActivityForResult(intent, REQUEST_CODE_MODIFY_CAR);
+                        if(isPick) {
+                            Intent intent = new Intent();
+                            intent.putExtra(CAR_INFO, carInfo);
+                            MyCarActivity.this.setResult(RESULT_OK, intent);
+                            MyCarActivity.this.finish();
+                        } else {
+                            Intent intent = new Intent(mContext, AddCarActivity.class);
+                            intent.putExtra(CAR_INFO, carInfo);
+                            MyCarActivity.this.startActivityForResult(intent, REQUEST_CODE_MODIFY_CAR);
+                        }
                     }
                 });
             }

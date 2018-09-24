@@ -74,6 +74,10 @@ public class ParamsConstant {
     public static final String CODE = "code";
     public static final String BUY_TIME = "buy_time";
     public static final String MILEAGE = "mileage";
+    public static final String CAR_STYLE = "car_style";
+    public static final String CITY_CODE = "city_code";
+    public static final String CLASSSNO = "classsno";
+    public static final String HPZL = "hpzl";
 
     //个人中心（地址）部分
     public static final String NODE1 = "node1";
