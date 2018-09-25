@@ -19,10 +19,12 @@ import android.widget.TextView;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.MyCarListBean;
 import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.SurveyStationListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
+import com.littleant.carrepair.request.excute.user.car.CarQueryAllCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
@@ -212,5 +214,36 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
             }
         });
         MHCommandExecute.getInstance().asynExecute(mContext, surveyStationQueryAllCmd);
+    }
+
+    protected void requestDefaultCar(final DefaultCarCallBack callBack) {
+        CarQueryAllCmd carQueryAllCmd = new CarQueryAllCmd(mContext, ParamsConstant.QueryType.DEFAULT);
+        carQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        MyCarListBean carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
+                        if(carListBean != null && carListBean.getData().size() > 0) {
+                            MyCarListBean.CarInfo carInfo = carListBean.getData().get(0);
+                            if(callBack != null) {
+                                callBack.onResponse(carInfo);
+                            }
+                        }
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, carQueryAllCmd);
+    }
+
+    interface DefaultCarCallBack {
+        void onResponse(MyCarListBean.CarInfo carInfo);
     }
 }

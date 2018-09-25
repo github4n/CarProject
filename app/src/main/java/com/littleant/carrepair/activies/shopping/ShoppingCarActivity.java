@@ -26,6 +26,7 @@ import com.littleant.carrepair.request.bean.ShoppingCarListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.service.order.OrderDeleteCmd;
 import com.littleant.carrepair.request.excute.service.ordercar.OrderCarAddCmd;
+import com.littleant.carrepair.request.excute.service.ordercar.OrderCarDeleteCmd;
 import com.littleant.carrepair.request.excute.service.ordercar.OrderCarQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -154,7 +155,7 @@ public class ShoppingCarActivity extends BaseActivity {
     }
 
     private void requestDeleteItem(String id) {
-        OrderDeleteCmd orderDeleteCmd = new OrderDeleteCmd(mContext, id);
+        OrderCarDeleteCmd orderDeleteCmd = new OrderCarDeleteCmd(mContext, id);
         orderDeleteCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
@@ -162,6 +163,7 @@ public class ShoppingCarActivity extends BaseActivity {
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         MHToast.showS(mContext, R.string.delete_success);
+                        requestItem();
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

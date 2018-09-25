@@ -28,9 +28,17 @@ public class ParamsConstant {
      * 查询的公用类型
      */
     public enum QueryType {
-        DEFAULT,
-        NONE,
-        NORMAL
+        DEFAULT(1),
+        NONE(-1),
+        NORMAL(0);
+        int des;
+
+        QueryType(int i) {
+            this.des = i;
+        }
+        public int getDes() {
+            return des;
+        }
     }
     /**
      * 通用参数，根据功能不同传入不同ID

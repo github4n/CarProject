@@ -14,10 +14,8 @@ public class CarQueryAllCmd extends BaseCarCmd {
             case NONE:
                 break;
             case DEFAULT:
-                params.put(ParamsConstant.IS_DEFAULT, "true");
-                break;
             case NORMAL:
-                params.put(ParamsConstant.IS_DEFAULT, "false");
+                params.put(ParamsConstant.IS_DEFAULT, type.getDes() + "");
                 break;
         }
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

@@ -1,11 +1,16 @@
 package com.littleant.carrepair.activies.shopping;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Guideline;
+import android.support.v4.widget.PopupWindowCompat;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +18,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -55,6 +62,8 @@ public class ShoppingActivity extends BaseActivity {
     private Guideline s_guideline;
     private int catalog_id = -1;
     private int p_id = 0;
+    protected PopupWindow popupWindow;
+    private RecyclerView list1, list2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +84,9 @@ public class ShoppingActivity extends BaseActivity {
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         CatalogListBean listBean = ProjectUtil.getBaseResponseBean(command.getResponse(), CatalogListBean.class);
                         catalogBeanList= listBean.getData();
+                        if(listBean != null) {
+                            showPopup(listBean);
+                        }
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -84,6 +96,21 @@ public class ShoppingActivity extends BaseActivity {
             }
         });
         MHCommandExecute.getInstance().asynExecute(mContext, catalogQueryAllCmd);
+    }
+
+    private void showPopup(CatalogListBean listBean) {
+        if(popupWindow == null) {
+            View contentView = LayoutInflater.from(mContext).inflate(R.layout.layout_shopping_classify, null);
+            popupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, 300, true);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setFocusable(true);
+            popupWindow.setBackgroundDrawable(new ColorDrawable());
+
+            list1 = contentView.findViewById(R.id.lsc_list1);
+            list2 = contentView.findViewById(R.id.lsc_list2);
+        }
+        //根据指定View定位
+        popupWindow.showAsDropDown(s_guideline, 0, 0);
     }
 
     private void requestProduct(int catalog_id, int price_order, int sale_order) {
@@ -128,21 +155,18 @@ public class ShoppingActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
-                    case 0:
+                    case R.id.shopping_tv_none:
                         requestProduct(catalog_id, -1, -1);
                         break;
 
-                    case 1:
+                    case R.id.shopping_tv_price:
                         requestProduct(catalog_id, 1, -1);
                         break;
 
-                    case 2:
+                    case R.id.shopping_tv_sale:
                         requestProduct(catalog_id, -1, 1);
                         break;
 
-                    case 3:
-                        requestCatalog(p_id);
-                        break;
                 }
             }
         });
@@ -151,6 +175,7 @@ public class ShoppingActivity extends BaseActivity {
         shopping_tv_price = findViewById(R.id.shopping_tv_price);
         shopping_tv_sale = findViewById(R.id.shopping_tv_sale);
         shopping_tv_type = findViewById(R.id.shopping_tv_type);
+        shopping_tv_type.setOnClickListener(this);
     }
 
     @Override
@@ -174,6 +199,10 @@ public class ShoppingActivity extends BaseActivity {
             case R.id.s_iv_shoppingcar:
                 Intent intent = new Intent(ShoppingActivity.this, ShoppingCarActivity.class);
                 ShoppingActivity.this.startActivity(intent);
+                break;
+
+            case R.id.shopping_tv_type:
+                requestCatalog(p_id);
                 break;
         }
     }

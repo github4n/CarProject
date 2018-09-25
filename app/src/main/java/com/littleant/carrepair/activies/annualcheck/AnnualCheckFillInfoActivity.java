@@ -32,6 +32,7 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.ComboBean;
 import com.littleant.carrepair.request.bean.ComboItemSet;
 import com.littleant.carrepair.request.bean.ComboListBean;
+import com.littleant.carrepair.request.bean.MyCarListBean;
 import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.SurveyStationListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -75,7 +76,13 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         lacf_tv_fill.setChecked(true);
 
         requestCombo();
-
+        requestDefaultCar(new DefaultCarCallBack() {
+            @Override
+            public void onResponse(MyCarListBean.CarInfo carInfo) {
+                acf_et_driver_brand.setText(carInfo.getBrand_name());
+                acf_et_driver_plate.setText(carInfo.getCode());
+            }
+        });
     }
 
     @Override

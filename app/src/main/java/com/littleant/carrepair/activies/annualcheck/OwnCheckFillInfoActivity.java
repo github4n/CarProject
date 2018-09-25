@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.MyCarListBean;
 import com.littleant.carrepair.request.bean.SurveyFeeBean;
 import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.SurveyStationListBean;
@@ -36,6 +37,13 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
         super.onCreate(savedInstanceState);
         locf_tv_fill.setChecked(true);
         requestPrice();
+        requestDefaultCar(new DefaultCarCallBack() {
+            @Override
+            public void onResponse(MyCarListBean.CarInfo carInfo) {
+                aocf_et_driver_brand.setText(carInfo.getBrand_name());
+                aocf_et_driver_plate.setText(carInfo.getCode());
+            }
+        });
     }
 
     private void requestPrice() {
