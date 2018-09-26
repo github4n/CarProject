@@ -137,6 +137,9 @@ public class ShoppingActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ProductCatalogBean itemAtPosition = (ProductCatalogBean) parent.getItemAtPosition(position);
                 requestProduct(itemAtPosition.getId(), -1, -1);
+                if(popupWindow != null && popupWindow.isShowing()) {
+                    popupWindow.dismiss();
+                }
             }
         });
     }
