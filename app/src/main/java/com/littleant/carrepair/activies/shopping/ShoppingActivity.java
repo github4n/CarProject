@@ -14,11 +14,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -46,6 +48,7 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,7 +66,7 @@ public class ShoppingActivity extends BaseActivity {
     private int catalog_id = -1;
     private int p_id = 0;
     protected PopupWindow popupWindow;
-    private RecyclerView list1, list2;
+    private ListView list1, list2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +76,7 @@ public class ShoppingActivity extends BaseActivity {
 
     }
 
-    private void requestCatalog(int p_id) {
+    private void requestCatalog(int p_id, final boolean isOutside) {
         CatalogQueryAllCmd catalogQueryAllCmd = new CatalogQueryAllCmd(mContext, ParamsConstant.SERVICE_QUERY_TYPE_SHOP, p_id);
         catalogQueryAllCmd.setCallback(new MHCommandCallBack() {
             @Override
@@ -84,8 +87,10 @@ public class ShoppingActivity extends BaseActivity {
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         CatalogListBean listBean = ProjectUtil.getBaseResponseBean(command.getResponse(), CatalogListBean.class);
                         catalogBeanList= listBean.getData();
-                        if(listBean != null) {
-                            showPopup(listBean);
+                        if(isOutside) {
+                            showPopup(catalogBeanList);
+                        } else {
+                            showSecondListData(list2, catalogBeanList);
                         }
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
@@ -98,7 +103,7 @@ public class ShoppingActivity extends BaseActivity {
         MHCommandExecute.getInstance().asynExecute(mContext, catalogQueryAllCmd);
     }
 
-    private void showPopup(CatalogListBean listBean) {
+    private void showPopup( List<ProductCatalogBean> listBean) {
         if(popupWindow == null) {
             View contentView = LayoutInflater.from(mContext).inflate(R.layout.layout_shopping_classify, null);
             popupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, 300, true);
@@ -109,8 +114,31 @@ public class ShoppingActivity extends BaseActivity {
             list1 = contentView.findViewById(R.id.lsc_list1);
             list2 = contentView.findViewById(R.id.lsc_list2);
         }
+        showFirstListData(list1, listBean);
         //根据指定View定位
         popupWindow.showAsDropDown(s_guideline, 0, 0);
+    }
+
+    private void showFirstListData(ListView listView, List<ProductCatalogBean> listBean) {
+        listView.setAdapter(new MyCatalogAdapter(listBean));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ProductCatalogBean itemAtPosition = (ProductCatalogBean) parent.getItemAtPosition(position);
+                requestCatalog(itemAtPosition.getId(), false);
+            }
+        });
+    }
+
+    private void showSecondListData(ListView listView, List<ProductCatalogBean> listBean) {
+        listView.setAdapter(new MyCatalogAdapter(listBean));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ProductCatalogBean itemAtPosition = (ProductCatalogBean) parent.getItemAtPosition(position);
+                requestProduct(itemAtPosition.getId(), -1, -1);
+            }
+        });
     }
 
     private void requestProduct(int catalog_id, int price_order, int sale_order) {
@@ -202,7 +230,13 @@ public class ShoppingActivity extends BaseActivity {
                 break;
 
             case R.id.shopping_tv_type:
-                requestCatalog(p_id);
+                if(catalogBeanList == null) {
+                    requestCatalog(p_id, true);
+                } else {
+                    list2.setAdapter(new MyCatalogAdapter(new ArrayList<ProductCatalogBean>()));
+                    showFirstListData(list1, catalogBeanList);
+
+                }
                 break;
         }
     }
@@ -288,6 +322,56 @@ public class ShoppingActivity extends BaseActivity {
                 si_name = convertView.findViewById(R.id.si_name);
                 si_tv_money = convertView.findViewById(R.id.si_tv_money);
                 si_btn_add = convertView.findViewById(R.id.si_btn_add);
+            }
+        }
+    }
+
+    private class MyCatalogAdapter extends BaseAdapter {
+        private List<ProductCatalogBean> list;
+
+        public MyCatalogAdapter(List<ProductCatalogBean> list) {
+            this.list = list;
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return list.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View convertView, ViewGroup viewGroup) {
+            ViewHolder holder;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.layout_listview_item, null);
+                holder = new ViewHolder(convertView);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            final ProductCatalogBean productCatalogBean = list.get(i);
+            if(productCatalogBean != null) {
+                holder.lli_text.setText(productCatalogBean.getName());
+            }
+
+            return convertView;
+        }
+
+        class ViewHolder {
+            //商品名、价格
+            private TextView lli_text;
+
+            public ViewHolder(View convertView) {
+                lli_text = convertView.findViewById(R.id.lli_text);
             }
         }
     }
