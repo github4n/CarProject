@@ -38,20 +38,25 @@
         tools:replace="android:theme">
         <activity
             android:name=".demo.TestActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".activies.SplashActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
         <activity
             android:name=".activies.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MyThemeDark" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/MyThemeDark">
         </activity>
 
         <meta-data
@@ -175,7 +180,6 @@
         <activity
             android:name=".activies.order.ServiceOrderDetailActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.amap.api.navi.AmapRouteActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

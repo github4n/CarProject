@@ -36,8 +36,8 @@
     <color name="color_rating">#FFBD4E</color>
     <!--搜索背景-->
     <color name="color_search_bg">#DEDEDE</color>
-    <!--搜索背景-->
-    <color name="color_login_line">#B7B7B8</color>
+    <!--登录页横线-->
+    <color name="color_login_line">##0093DD</color>
 
     <!--已通过-->
     <color name="color_survey_success">#5FFF54</color>
@@ -47,5 +47,8 @@
     <color name="color_survey_wait_order">#63BDFF</color>
     <!--未通过-->
     <color name="color_survey_fail">#FF3C3C</color>
+
+    <!--启动页字体颜色-->
+    <color name="color_splash">#0093DD</color>
 
 </resources>

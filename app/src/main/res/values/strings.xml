@@ -5,12 +5,17 @@
     <string name="text_save">保存</string>
     <string name="text_price_prefix">￥%s</string>
 
+    <!--启动页-->
+    <string name="splash_des">开启汽车服务新体验</string>
+
     <!--登入页-->
     <string name="login_login">登录</string>
     <string name="login_account">请输入手机号</string>
     <string name="login_password">请输入密码</string>
     <string name="login_forget_password">忘记密码？</string>
     <string name="login_register">新用户注册</string>
+    <string name="login_term1">阅读并同意</string>
+    <string name="login_term2">《8号养车用户协议》</string>
 
     <!--重置密码-->
     <string name="login_reset_password">重置密码</string>

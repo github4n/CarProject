@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
+    android:background="@color/white"
     tools:context=".activies.login.LoginActivity">
 
     <android.support.constraint.Guideline
@@ -69,12 +69,12 @@
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="206:177"
+        app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintEnd_toStartOf="@+id/al_guideline4"
         app:layout_constraintStart_toStartOf="@+id/al_guideline3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.17"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/splash_logo" />
 
     <ImageView
         android:id="@+id/phoneImg"
@@ -112,7 +112,7 @@
         android:inputType="phone"
         android:textSize="14sp"
         android:maxLines="1"
-        android:textColorHint="@color/color_login_line"
+        android:textColorHint="@color/color_main"
         android:textColor="@color/color_login_line"
         app:layout_constraintBottom_toBottomOf="@id/phoneImg"
         app:layout_constraintEnd_toStartOf="@id/al_guideline2"
@@ -163,7 +163,7 @@
         android:hint="@string/login_password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:textColorHint="@color/color_login_line"
+        android:textColorHint="@color/color_main"
         android:textSize="14sp"
         android:textColor="@color/color_login_line"
         app:layout_constraintBottom_toBottomOf="@+id/pswImg"
@@ -204,7 +204,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/login_forget_password"
-        android:textColorHint="@color/color_login_line"
+        android:textColor="@color/color_splash"
         app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toBottomOf="@id/al_line2" />
 
@@ -214,7 +214,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/login_register"
-        android:textColorHint="@color/color_login_line"
+        android:textColor="@color/color_splash"
         app:layout_constraintEnd_toStartOf="@id/al_guideline2"
         app:layout_constraintTop_toBottomOf="@id/al_line2" />
 
@@ -222,12 +222,61 @@
         android:id="@+id/loginBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/color_main"
+        android:background="@drawable/shape_cycrect_blue_fill"
         android:text="@string/login_login"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@id/al_guideline6"
         app:layout_constraintEnd_toStartOf="@id/al_guideline2"
         app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toTopOf="@id/al_guideline5" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <CheckBox
+            android:id="@+id/al_cb_term"
+            style="@null"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@id/al_tv_term1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/al_tv_term1" />
+
+        <TextView
+            android:id="@+id/al_tv_term1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/login_term1"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toEndOf="@+id/al_cb_term" />
+
+        <TextView
+            android:id="@+id/al_tv_term2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/login_term2"
+            android:textColor="@color/color_splash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/al_tv_term1" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
