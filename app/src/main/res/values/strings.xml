@@ -16,6 +16,8 @@
     <string name="login_register">新用户注册</string>
     <string name="login_term1">阅读并同意</string>
     <string name="login_term2">《8号养车用户协议》</string>
+    <string name="register_welcome">您好，</string>
+    <string name="register_welcome2">欢迎来到8号养车！</string>
 
     <!--重置密码-->
     <string name="login_reset_password">重置密码</string>
@@ -25,6 +27,7 @@
     <string name="login_confirm_password">请确认新密码</string>
     <string name="login_save">保存</string>
     <string name="login_btn_register">注册</string>
+    <string name="login_reset_hint">请重置你的密码</string>
 
     <!--首页-->
     <string name="text_main">首页</string>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
+    android:background="@color/white"
     tools:context=".activies.login.RegisterActivity">
 
     <include
@@ -34,15 +34,15 @@
         android:id="@+id/ar_guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.35" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
 
     <android.support.constraint.Guideline
         android:id="@+id/ar_guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.65" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
 
     <android.support.constraint.Guideline
         android:id="@+id/ar_guideline5"
@@ -58,18 +58,26 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85" />
 
-    <ImageView
-        android:id="@+id/ar_logoImg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="206:177"
-        app:layout_constraintEnd_toStartOf="@id/ar_guideline4"
-        app:layout_constraintStart_toStartOf="@id/ar_guideline3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17"
-        app:srcCompat="@drawable/logo" />
+    <TextView
+        android:id="@+id/ar_tv_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_welcome"
+        android:textColor="@color/color_register_hello"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/ar_guideline"
+        app:layout_constraintTop_toTopOf="@+id/ar_guideline3" />
+
+    <TextView
+        android:id="@+id/ar_tv_welcome2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/register_welcome2"
+        android:textColor="@color/color_register_hello2"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/ar_guideline"
+        app:layout_constraintTop_toBottomOf="@id/ar_tv_welcome" />
 
     <EditText
         android:id="@+id/ar_et_phone"
@@ -79,14 +87,12 @@
         android:hint="@string/login_account"
         android:inputType="phone"
         android:maxLines="1"
-        android:textColor="@color/color_login_line"
-        android:textColorHint="@color/color_login_line"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/ar_guideline5"
+        android:textColor="@color/color_sub_line"
+        android:textColorHint="@color/color_sub_line"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
         app:layout_constraintStart_toStartOf="@id/ar_guideline"
-        app:layout_constraintTop_toBottomOf="@id/ar_logoImg"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toTopOf="@id/ar_guideline4" />
 
     <ImageView
         android:id="@+id/ar_line"
@@ -96,7 +102,7 @@
         app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
         app:layout_constraintStart_toStartOf="@id/ar_guideline"
         app:layout_constraintTop_toBottomOf="@id/ar_et_phone"
-        app:srcCompat="@color/color_login_line" />
+        app:srcCompat="@color/color_sub_line" />
 
     <TextView
         android:id="@+id/ar_auth"
@@ -119,9 +125,9 @@
         android:hint="@string/login_input_auth"
         android:inputType="phone"
         android:maxLines="1"
-        android:textColor="@color/color_login_line"
-        android:textColorHint="@color/color_login_line"
-        android:textSize="14sp"
+        android:textColor="@color/color_sub_line"
+        android:textColorHint="@color/color_sub_line"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@id/ar_auth"
         app:layout_constraintStart_toStartOf="@id/ar_guideline"
         app:layout_constraintTop_toBottomOf="@id/ar_line" />
@@ -134,7 +140,7 @@
         app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
         app:layout_constraintStart_toStartOf="@id/ar_guideline"
         app:layout_constraintTop_toBottomOf="@id/ar_et_auth"
-        app:srcCompat="@color/color_login_line" />
+        app:srcCompat="@color/color_sub_line" />
 
     <EditText
         android:id="@+id/ar_et_new_password"
@@ -142,12 +148,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@null"
-        android:hint="@string/login_input_new_password"
+        android:hint="@string/login_password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:textColor="@color/color_login_line"
-        android:textColorHint="@color/color_login_line"
-        android:textSize="14sp"
+        android:textColor="@color/color_sub_line"
+        android:textColorHint="@color/color_sub_line"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
         app:layout_constraintStart_toStartOf="@id/ar_guideline"
         app:layout_constraintTop_toBottomOf="@id/ar_line2" />
@@ -160,44 +166,91 @@
         app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
         app:layout_constraintStart_toStartOf="@id/ar_guideline"
         app:layout_constraintTop_toBottomOf="@id/ar_et_new_password"
-        app:srcCompat="@color/color_login_line" />
+        app:srcCompat="@color/color_sub_line" />
 
-    <EditText
-        android:id="@+id/ar_et_confirm_password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@null"
-        android:hint="@string/login_confirm_password"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:textColor="@color/color_login_line"
-        android:textColorHint="@color/color_login_line"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ar_term_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@id/ar_guideline"
-        app:layout_constraintTop_toBottomOf="@id/ar_line3" />
+        app:layout_constraintTop_toBottomOf="@id/ar_line3">
 
-    <ImageView
-        android:id="@+id/ar_line4"
-        android:layout_width="0dp"
-        android:layout_height="1px"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
-        app:layout_constraintStart_toStartOf="@id/ar_guideline"
-        app:layout_constraintTop_toBottomOf="@id/ar_et_confirm_password"
-        app:srcCompat="@color/color_login_line" />
+
+        <CheckBox
+            android:id="@+id/ar_cb_term"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"
+            app:layout_constraintBottom_toBottomOf="@id/ar_tv_term1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ar_tv_term1" />
+
+        <TextView
+            android:id="@+id/ar_tv_term1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/login_term1"
+            android:textColor="@color/color_text"
+            app:layout_constraintStart_toEndOf="@+id/ar_cb_term" />
+
+        <TextView
+            android:id="@+id/ar_tv_term2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/login_term2"
+            android:textColor="@color/color_splash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ar_tv_term1" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <!--<EditText-->
+        <!--android:id="@+id/ar_et_confirm_password"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:background="@null"-->
+        <!--android:hint="@string/login_confirm_password"-->
+        <!--android:inputType="textPassword"-->
+        <!--android:maxLines="1"-->
+        <!--android:textColor="@color/color_login_line"-->
+        <!--android:textColorHint="@color/color_login_line"-->
+        <!--android:textSize="14sp"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/ar_guideline2"-->
+        <!--app:layout_constraintStart_toStartOf="@id/ar_guideline"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/ar_line3" />-->
+
+    <!--<ImageView-->
+        <!--android:id="@+id/ar_line4"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="1px"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/ar_guideline2"-->
+        <!--app:layout_constraintStart_toStartOf="@id/ar_guideline"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/ar_et_confirm_password"-->
+        <!--app:srcCompat="@color/color_login_line" />-->
 
     <Button
         android:id="@+id/ar_btn_save"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/color_main"
+        android:background="@drawable/shape_cycrect_blue_fill"
         android:text="@string/login_btn_register"
+        android:textSize="18sp"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@id/ar_guideline6"
         app:layout_constraintEnd_toStartOf="@id/ar_guideline2"
         app:layout_constraintStart_toStartOf="@id/ar_guideline"
         app:layout_constraintTop_toTopOf="@id/ar_guideline5" />
+
 
 </android.support.constraint.ConstraintLayout>

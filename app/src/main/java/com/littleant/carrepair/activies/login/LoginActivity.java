@@ -8,14 +8,17 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.main.MainActivity;
 import com.littleant.carrepair.request.bean.LoginBean;
+import com.littleant.carrepair.request.bean.TermUrlBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.login.LoginCmd;
+import com.littleant.carrepair.request.excute.system.ServiceUserAgreementCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -38,6 +41,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final int REQUEST_RESET = 1001;
     private String phone, password;
     private Context mContext;
+    private CheckBox al_cb_term;
+    private View al_term_view;
+    private String termUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +85,39 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 LoginActivity.this.startActivityForResult(intent, REQUEST_REGISTER);
             }
         });
+
+        al_cb_term = findViewById(R.id.al_cb_term);
+
+        al_term_view = findViewById(R.id.al_term_view);
+        al_term_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(TextUtils.isEmpty(termUrl)) {
+                    requestTerm();
+                } else {
+
+                }
+            }
+        });
+    }
+
+    private void requestTerm() {
+        ServiceUserAgreementCmd serviceUserAgreementCmd = new ServiceUserAgreementCmd(mContext);
+        serviceUserAgreementCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    TermUrlBean termUrlBean = ProjectUtil.getBaseResponseBean(command.getResponse(), TermUrlBean.class);
+                    if(termUrlBean != null) {
+                        termUrl = termUrlBean.getData().getUrl();
+                    }
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, serviceUserAgreementCmd);
+    }
+
+    private void showTerm() {
 
     }
 

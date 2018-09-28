@@ -23,7 +23,7 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
 public class ForgetPasswordActivity extends BaseActivity {
-    private EditText afp_et_phone, afp_et_auth, afp_et_new_password, afp_et_confirm_password;
+    private EditText afp_et_phone, afp_et_auth, afp_et_new_password;// afp_et_confirm_password;
     private TextView afp_auth;
     private Button afp_btn_save;
     private String authCode, phone, password;
@@ -61,7 +61,7 @@ public class ForgetPasswordActivity extends BaseActivity {
 
         afp_et_new_password = findViewById(R.id.afp_et_new_password);
 
-        afp_et_confirm_password = findViewById(R.id.afp_et_confirm_password);
+//        afp_et_confirm_password = findViewById(R.id.afp_et_confirm_password);
 
         afp_auth = findViewById(R.id.afp_auth);
         afp_auth.setOnClickListener(this);
@@ -127,11 +127,11 @@ public class ForgetPasswordActivity extends BaseActivity {
                     MHToast.showS(mContext, R.string.phone_wrong);
                     return;
                 }
-                String confirmPassword = afp_et_confirm_password.getText().toString();
-                if (!password.equals(confirmPassword)) {
-                    MHToast.showS(mContext, R.string.password_different);
-                    return;
-                }
+//                String confirmPassword = afp_et_confirm_password.getText().toString();
+//                if (!password.equals(confirmPassword)) {
+//                    MHToast.showS(mContext, R.string.password_different);
+//                    return;
+//                }
                 if (!ProjectUtil.checkPassword(mContext, password)) {
                     MHToast.showS(mContext, R.string.password_wrong);
                     return;

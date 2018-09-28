@@ -181,4 +181,8 @@ public class InterfaceConstant {
      * get:年检首页图片信息<br>
      */
     public static final String SYSTEM_SURVEYIMG = "api/system/surveyimg/";
+    /**
+     * get:年检首页图片信息<br>
+     */
+    public static final String SYSTEM_USERAGREEMENT = "api/system/useragreement/";
 }

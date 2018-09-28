@@ -37,7 +37,7 @@
     <!--搜索背景-->
     <color name="color_search_bg">#DEDEDE</color>
     <!--登录页横线-->
-    <color name="color_login_line">##0093DD</color>
+    <color name="color_login_line">#0093DD</color>
 
     <!--已通过-->
     <color name="color_survey_success">#5FFF54</color>
@@ -50,5 +50,14 @@
 
     <!--启动页字体颜色-->
     <color name="color_splash">#0093DD</color>
+
+    <!--启动页字体颜色-->
+    <color name="color_register_hello">#191919</color>
+
+    <!--启动页字体颜色-->
+    <color name="color_register_hello2">#4A4A4A</color>
+
+    <!--启动页字体颜色-->
+    <color name="color_login_hint">#AAD5D7</color>
 
 </resources>

@@ -46,7 +46,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/header_back"
+        android:src="@drawable/login_back"
         app:layout_constraintBottom_toTopOf="@+id/lh_guideline2"
         app:layout_constraintDimensionRatio="w,26:48"
         app:layout_constraintStart_toStartOf="parent"

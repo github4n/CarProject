@@ -40,14 +40,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <android.support.constraint.Guideline
         android:id="@+id/al_guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.66" />
+        app:layout_constraintGuide_percent="0.76" />
 
     <android.support.constraint.Guideline
         android:id="@+id/al_guideline7"
@@ -56,12 +56,12 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.15" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/al_guideline8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2" />
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/al_guideline8"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintGuide_percent="0.2" />-->
 
     <ImageView
         android:id="@+id/logoImg"
@@ -80,10 +80,10 @@
         android:id="@+id/phoneImg"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@id/al_guideline8"
-        app:layout_constraintStart_toStartOf="@id/al_guideline7"
+        app:layout_constraintEnd_toStartOf="@id/al_guideline7"
+        app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toBottomOf="@id/logoImg"
         app:srcCompat="@drawable/login_phone" />
 
@@ -94,9 +94,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@id/phoneImg"
-        app:layout_constraintStart_toStartOf="@id/al_guideline8"
+        app:layout_constraintStart_toStartOf="@id/al_guideline7"
         app:layout_constraintTop_toTopOf="@id/phoneImg"
-        app:srcCompat="@color/color_login_line" />
+        app:srcCompat="@color/color_login_hint" />
 
     <EditText
         android:id="@+id/phoneEdt"
@@ -110,9 +110,9 @@
         android:hint="@string/login_account"
         android:background="@null"
         android:inputType="phone"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:maxLines="1"
-        android:textColorHint="@color/color_main"
+        android:textColorHint="@color/color_login_hint"
         android:textColor="@color/color_login_line"
         app:layout_constraintBottom_toBottomOf="@id/phoneImg"
         app:layout_constraintEnd_toStartOf="@id/al_guideline2"
@@ -124,7 +124,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/color_login_line"
+        android:background="@color/color_login_hint"
         app:layout_constraintEnd_toStartOf="@id/al_guideline2"
         app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toBottomOf="@id/phoneEdt" />
@@ -135,8 +135,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/al_guideline8"
-        app:layout_constraintStart_toStartOf="@+id/al_guideline7"
+        app:layout_constraintEnd_toStartOf="@+id/al_guideline7"
+        app:layout_constraintStart_toStartOf="@+id/al_guideline"
         app:layout_constraintTop_toBottomOf="@id/al_line1"
         app:srcCompat="@drawable/login_password" />
 
@@ -147,9 +147,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@id/pswImg"
-        app:layout_constraintStart_toStartOf="@id/al_guideline8"
+        app:layout_constraintStart_toStartOf="@id/al_guideline7"
         app:layout_constraintTop_toTopOf="@id/pswImg"
-        app:srcCompat="@color/color_login_line" />
+        app:srcCompat="@color/color_login_hint" />
 
     <EditText
         android:id="@+id/pswEdt"
@@ -163,8 +163,8 @@
         android:hint="@string/login_password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:textColorHint="@color/color_main"
-        android:textSize="14sp"
+        android:textColorHint="@color/color_login_hint"
+        android:textSize="16sp"
         android:textColor="@color/color_login_line"
         app:layout_constraintBottom_toBottomOf="@+id/pswImg"
         app:layout_constraintEnd_toStartOf="@+id/al_guideline4"
@@ -192,7 +192,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="@color/color_login_line"
+        android:background="@color/color_login_hint"
         app:layout_constraintEnd_toStartOf="@id/al_guideline2"
         app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toBottomOf="@id/pswEdt" />
@@ -202,9 +202,10 @@
         android:id="@+id/al_forget_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/login_forget_password"
         android:textColor="@color/color_splash"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toBottomOf="@id/al_line2" />
 
@@ -212,7 +213,7 @@
         android:id="@+id/al_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/login_register"
         android:textColor="@color/color_splash"
         app:layout_constraintEnd_toStartOf="@id/al_guideline2"
@@ -225,12 +226,14 @@
         android:background="@drawable/shape_cycrect_blue_fill"
         android:text="@string/login_login"
         android:textColor="@android:color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/al_guideline6"
         app:layout_constraintEnd_toStartOf="@id/al_guideline2"
         app:layout_constraintStart_toStartOf="@id/al_guideline"
         app:layout_constraintTop_toTopOf="@id/al_guideline5" />
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/al_term_view"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
@@ -245,12 +248,12 @@
 
         <CheckBox
             android:id="@+id/al_cb_term"
-            style="@null"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:background="@null"
+            android:background="@drawable/checkbox_selector"
+            android:button="@null"
             app:layout_constraintBottom_toBottomOf="@id/al_tv_term1"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
