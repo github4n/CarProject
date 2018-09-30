@@ -166,6 +166,17 @@
 
     </RadioGroup>
 
+    <ImageView
+        android:id="@+id/main_iv_my_location"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@color/white"
+        app:srcCompat="@drawable/main_my_location"
+        android:scaleType="centerInside"
+        android:padding="4dp"
+        app:layout_constraintStart_toStartOf="@id/lfm_guideline2"
+        app:layout_constraintBottom_toBottomOf="@id/lfm_guideline4"/>
+
     <include
         android:id="@+id/main_include"
         layout="@layout/layout_main_factory_detail"

@@ -1,19 +1,28 @@
 package com.littleant.carrepair.activies.login;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.constraint.Constraints;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.TermUrlBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.login.MessageCmd;
 import com.littleant.carrepair.request.excute.login.RegisterCmd;
+import com.littleant.carrepair.request.excute.system.ServiceUserAgreementCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -32,6 +41,9 @@ public class RegisterActivity extends BaseActivity {
      */
     private Button ar_btn_save;
     private String authCode, phone, password;
+    private String termUrl;
+    private View ar_term_view;
+    private CheckBox ar_cb_term;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +62,21 @@ public class RegisterActivity extends BaseActivity {
 
         ar_btn_save = findViewById(R.id.ar_btn_save);
         ar_btn_save.setOnClickListener(this);
+
+        ar_term_view = findViewById(R.id.ar_term_view);
+        ar_term_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(TextUtils.isEmpty(termUrl)) {
+                    requestTerm();
+                } else {
+                    showTermDialog(RegisterActivity.this, termUrl);
+                }
+            }
+        });
+
+        ar_cb_term = findViewById(R.id.ar_cb_term);
+        ar_cb_term.setChecked(ProjectUtil.getTermRead(this));
     }
 
     @Override
@@ -85,6 +112,10 @@ public class RegisterActivity extends BaseActivity {
 //                }
                 if (!ProjectUtil.checkPassword(mContext, password)) {
                     MHToast.showS(mContext, R.string.password_wrong);
+                    return;
+                }
+                if(!ar_cb_term.isChecked()) {
+                    MHToast.showS(mContext, R.string.agree_term_first);
                     return;
                 }
                 RegisterCmd registerCmd = new RegisterCmd(mContext, phone, password, authCode);
@@ -155,5 +186,48 @@ public class RegisterActivity extends BaseActivity {
                 timer.start();
                 break;
         }
+    }
+
+    private void requestTerm() {
+        ServiceUserAgreementCmd serviceUserAgreementCmd = new ServiceUserAgreementCmd(mContext);
+        serviceUserAgreementCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    TermUrlBean termUrlBean = ProjectUtil.getBaseResponseBean(command.getResponse(), TermUrlBean.class);
+                    if(termUrlBean != null) {
+                        termUrl = termUrlBean.getData().getUrl();
+                        showTermDialog(RegisterActivity.this, termUrl);
+                    }
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, serviceUserAgreementCmd);
+    }
+
+    private void showTermDialog(Activity activity, String url) {
+        final Dialog d = new Dialog(activity, R.style.MyTransparentDialog);
+        View contentView = View.inflate(activity, R.layout.layout_term, null);
+        DisplayMetrics dm = activity.getApplicationContext().getResources().getDisplayMetrics();
+        int dialogWidth = (int) (dm.widthPixels * 0.7);
+        int dialogHeight = (int) (dm.heightPixels * 0.7);
+        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+        WebView webView = contentView.findViewById(R.id.lt_webview);
+        webView.loadUrl(url);
+        contentView.findViewById(R.id.lt_btn_no).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ar_cb_term.setChecked(true);
+                d.dismiss();
+            }
+        });
+        contentView.findViewById(R.id.lt_btn_yes).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ar_cb_term.setChecked(true);
+                d.dismiss();
+            }
+        });
+        d.show();
     }
 }

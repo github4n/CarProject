@@ -18,6 +18,10 @@
     <string name="login_term2">《8号养车用户协议》</string>
     <string name="register_welcome">您好，</string>
     <string name="register_welcome2">欢迎来到8号养车！</string>
+    <string name="login_user_term">用户协议</string>
+    <string name="login_user_term_deny">不同意</string>
+    <string name="login_user_term_agree">同意并继续</string>
+    <string name="login_user_term_title">用户协议</string>
 
     <!--重置密码-->
     <string name="login_reset_password">重置密码</string>
@@ -32,7 +36,7 @@
     <!--首页-->
     <string name="text_main">首页</string>
     <string name="text_main_title">汽车维修</string>
-    <string name="text_search_des">搜索维修地点</string>
+    <string name="text_search_des">搜索维修、保养地点等等</string>
     <string name="text_shop_classify">商品分类</string>
     <string name="text_main_more">详情</string>
     <string name="text_main_book">预约</string>

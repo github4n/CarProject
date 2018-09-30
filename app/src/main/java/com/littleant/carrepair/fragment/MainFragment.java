@@ -95,6 +95,8 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     private View main_include;
     //导航按钮
     private ImageView lmfd_iv_navi;
+    //回到我的位置
+    private ImageView main_iv_my_location;
     public static final String GARAGE_LIST = "garage_list";
     public static final String MY_LATITUDE = "my_latitude";
     public static final String MY_LONGITUDE = "my_longitude";
@@ -173,6 +175,9 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
         //城市名
         m_location = view.findViewById(R.id.m_location);
+
+        main_iv_my_location = view.findViewById(R.id.main_iv_my_location);
+        main_iv_my_location.setOnClickListener(this);
 
         lmfd_iv_navi = view.findViewById(R.id.lmfd_iv_navi);
         lmfd_iv_navi.setOnClickListener(this);
@@ -269,7 +274,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 myLatitude = location.getLatitude();
                 myLongitude = location.getLongitude();
                 LatLng myLatLng = new LatLng(myLatitude, myLongitude);
-                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 12f, 0, 0));
+                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 14f, 0, 0));
                 aMap.moveCamera(mCameraUpdate);
                 requestGarageList();
             } else { //只刷新当前位置
@@ -364,6 +369,15 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 LatLng startLocation = new LatLng(myLatitude, myLongitude);
                 LatLng endLocation = new LatLng(selectedInfo.getLatitude(), selectedInfo.getLongitude());
                 DataHelper.prepareNavi(getContext(), startLocation, endLocation, this);
+                break;
+
+            case R.id.main_iv_my_location:
+                if(myLatitude == 0 || myLongitude == 0) {
+                    return;
+                }
+                LatLng myLatLng = new LatLng(myLatitude, myLongitude);
+                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 14f, 0, 0));
+                aMap.moveCamera(mCameraUpdate);
                 break;
         }
     }

@@ -58,6 +58,6 @@
     <color name="color_register_hello2">#4A4A4A</color>
 
     <!--启动页字体颜色-->
-    <color name="color_login_hint">#AAD5D7</color>
+    <color name="color_login_hint">#99D4F1</color>
 
 </resources>

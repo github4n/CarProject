@@ -1,14 +1,20 @@
 package com.littleant.carrepair.activies.login;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.constraint.Constraints;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -87,6 +93,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
         al_cb_term = findViewById(R.id.al_cb_term);
+        al_cb_term.setChecked(ProjectUtil.getTermRead(this));
+        al_cb_term.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    ProjectUtil.saveTermRead(mContext);
+                }
+            }
+        });
 
         al_term_view = findViewById(R.id.al_term_view);
         al_term_view.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(TextUtils.isEmpty(termUrl)) {
                     requestTerm();
                 } else {
-
+                    showTermDialog(LoginActivity.this, termUrl);
                 }
             }
         });
@@ -110,15 +125,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     TermUrlBean termUrlBean = ProjectUtil.getBaseResponseBean(command.getResponse(), TermUrlBean.class);
                     if(termUrlBean != null) {
                         termUrl = termUrlBean.getData().getUrl();
+                        showTermDialog(LoginActivity.this, termUrl);
                     }
                 }
             }
         });
         MHCommandExecute.getInstance().asynExecute(mContext, serviceUserAgreementCmd);
-    }
-
-    private void showTerm() {
-
     }
 
     @Override
@@ -137,6 +149,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 if (!ProjectUtil.checkPassword(mContext, password)) {
                     MHToast.showS(mContext, R.string.password_wrong);
+                    return;
+                }
+                if(!al_cb_term.isChecked()) {
+                    MHToast.showS(mContext, R.string.agree_term_first);
                     return;
                 }
                 LoginCmd loginCmd = new LoginCmd(this, phone, password);
@@ -190,5 +206,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             phoneEdt.setText(phone);
             pswEdt.setText(password);
         }
+    }
+
+    private void showTermDialog(Activity activity, String url) {
+        final Dialog d = new Dialog(activity, R.style.MyTransparentDialog);
+        View contentView = View.inflate(activity, R.layout.layout_term, null);
+        DisplayMetrics dm = activity.getApplicationContext().getResources().getDisplayMetrics();
+        int dialogWidth = (int) (dm.widthPixels * 0.7);
+        int dialogHeight = (int) (dm.heightPixels * 0.7);
+        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+        WebView webView = contentView.findViewById(R.id.lt_webview);
+        webView.loadUrl(url);
+        contentView.findViewById(R.id.lt_btn_no).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                al_cb_term.setChecked(true);
+                d.dismiss();
+            }
+        });
+        contentView.findViewById(R.id.lt_btn_yes).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                al_cb_term.setChecked(true);
+                d.dismiss();
+            }
+        });
+        d.show();
     }
 }
