@@ -15,13 +15,28 @@ public class ViolationBean  extends BaseResponseBean {
     }
 
     public class ViolationInfo {
-        int id;
-        int amount;
-        int score;
-        float price;
-        String create_time = "";
-        String update_time = "";
-        String car_brand = "";
+        private int id;
+        private int amount;
+        private int score;
+        private float price;
+        private String create_time = "";
+        private String update_time = "";
+        private String car_brand = "";
+        private String car_code = "";
+
+        @Override
+        public String toString() {
+            return "ViolationInfo{" +
+                    "id=" + id +
+                    ", amount=" + amount +
+                    ", score=" + score +
+                    ", price=" + price +
+                    ", create_time='" + create_time + '\'' +
+                    ", update_time='" + update_time + '\'' +
+                    ", car_brand='" + car_brand + '\'' +
+                    ", car_code='" + car_code + '\'' +
+                    '}';
+        }
 
         public int getId() {
             return id;
@@ -79,17 +94,12 @@ public class ViolationBean  extends BaseResponseBean {
             this.car_brand = car_brand;
         }
 
-        @Override
-        public String toString() {
-            return "ViolationInfo{" +
-                    "id=" + id +
-                    ", amount=" + amount +
-                    ", score=" + score +
-                    ", price=" + price +
-                    ", create_time='" + create_time + '\'' +
-                    ", update_time='" + update_time + '\'' +
-                    ", car_brand='" + car_brand + '\'' +
-                    '}';
+        public String getCar_code() {
+            return car_code;
+        }
+
+        public void setCar_code(String car_code) {
+            this.car_code = car_code;
         }
     }
 }

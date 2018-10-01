@@ -65,7 +65,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class MainFragment extends Fragment implements AMap.OnMyLocationChangeListener, AMapLocationListener,
-        AMap.OnMarkerClickListener, AMap.OnMapClickListener, View.OnClickListener, INaviInfoCallback {
+        AMap.OnMarkerClickListener, AMap.OnMapClickListener, View.OnClickListener, INaviInfoCallback, AMap.OnMapLoadedListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -80,7 +80,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     //单选项
     private RadioButton mRepair, mMaintain;
     //主页汽修厂地图指引部分
-    private TextView lmfd_tv_more, lmfd_tv_book, lmfd_tv_phone;
+    private TextView lmfd_tv_book, lmfd_tv_phone;
     //主页汽修厂信息部分
     private TextView lmfd_tv_title, lmfd_tv_address;
     //主页汽修厂评分控件
@@ -156,8 +156,8 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         m_input_search = view.findViewById(R.id.m_input_search);
         m_input_search.setOnClickListener(this);
 
-        lmfd_tv_more = view.findViewById(R.id.lmfd_tv_more);
-        lmfd_tv_more.setOnClickListener(this);
+//        lmfd_tv_more = view.findViewById(R.id.lmfd_tv_more);
+//        lmfd_tv_more.setOnClickListener(this);
 
         lmfd_tv_book = view.findViewById(R.id.lmfd_tv_book);
         lmfd_tv_book.setOnClickListener(this);
@@ -172,6 +172,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         lmfd_ratingBar = view.findViewById(R.id.lmfd_ratingBar);
 
         main_include = view.findViewById(R.id.main_include);
+        main_include.setOnClickListener(this);
 
         //城市名
         m_location = view.findViewById(R.id.m_location);
@@ -199,6 +200,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         aMap.setOnMyLocationChangeListener(this);
         aMap.setOnMarkerClickListener(this);
         aMap.setOnMapClickListener(this);
+        aMap.setOnMapLoadedListener(this);
 
         UiSettings uiSettings = aMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(false);
@@ -338,7 +340,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 getActivity().startActivity(intent);
                 break;
 
-            case R.id.lmfd_tv_more:
+            case R.id.main_include:
                 intent = new Intent(getContext(), RepairStationActivity.class);
                 intent.putExtra(GARAGE_INFO, selectedInfo);
                 intent.putExtra(MY_LATITUDE, myLatitude);
@@ -461,6 +463,11 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
+
+    }
+
+    @Override
+    public void onMapLoaded() {
 
     }
 

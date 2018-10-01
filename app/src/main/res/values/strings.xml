@@ -39,10 +39,12 @@
     <string name="text_search_des">搜索维修、保养地点等等</string>
     <string name="text_shop_classify">商品分类</string>
     <string name="text_main_more">详情</string>
-    <string name="text_main_book">预约</string>
     <string name="text_main_phone">电话</string>
+    <string name="text_main_contract">联系店家</string>
+    <string name="text_main_book">预约服务</string>
     <string name="text_main_garage_location">距你%s公里  %s</string>
     <string name="text_main_garage_des">汽车维修</string>
+    <string name="text_main_ok">确认</string>
 
     <!--搜索-->
     <string name="text_search_contant">联系人：</string>

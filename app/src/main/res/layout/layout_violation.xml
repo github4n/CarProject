@@ -14,6 +14,34 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.18" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/lv_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.22" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lv_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.42" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lv_guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lv_guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
     <!--<android.support.constraint.Guideline-->
         <!--android:id="@+id/lv_guideline2"-->
         <!--android:layout_width="wrap_content"-->
@@ -77,20 +105,105 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/lv_list"
+    <ImageView
+        android:id="@+id/lv_iv_pic"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/lv_guideline5"
+        app:layout_constraintDimensionRatio="23:16"
+        app:layout_constraintStart_toStartOf="@id/lv_guideline6"
+        app:layout_constraintTop_toTopOf="@id/lv_guideline4"
+        app:srcCompat="@color/color_sub_line" />
+
+    <TextView
+        android:id="@+id/lv_tv_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_uc_text"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/lv_iv_pic"
+        app:layout_constraintTop_toTopOf="@id/lv_guideline4" />
+
+    <TextView
+        android:id="@+id/lv_tv_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_voi_code"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/lv_iv_pic"
+        app:layout_constraintBottom_toBottomOf="@id/lv_guideline5" />
+
+    <TextView
+        android:id="@+id/lv_tv_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_violation_sum"
+        android:textColor="@color/color_text"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintTop_toTopOf="@id/lv_guideline5"
+        app:layout_constraintStart_toStartOf="@id/lv_guideline6" />
+
+    <TextView
+        android:id="@+id/lv_tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_violation_score"
+        android:textColor="@color/color_text"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/lv_tv_sum"
+        app:layout_constraintStart_toEndOf="@id/lv_tv_sum"
+        app:layout_constraintEnd_toStartOf="@id/lv_tv_fine"
+        app:layout_constraintTop_toTopOf="@id/lv_tv_sum" />
+
+    <TextView
+        android:id="@+id/lv_tv_fine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_violation_fine"
+        android:textColor="@color/color_text"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintBottom_toBottomOf="@id/lv_tv_sum"
+        app:layout_constraintEnd_toEndOf="@id/lv_guideline7"
+        app:layout_constraintTop_toTopOf="@id/lv_tv_sum" />
+
+    <TextView
+        android:id="@+id/lv_tv_ok"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/shape_cycrect_blue_fill2"
+        android:gravity="center"
+        android:text="@string/text_main_ok"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/lv_guideline" />
+        app:layout_constraintEnd_toStartOf="@id/lv_guideline7"
+        app:layout_constraintStart_toStartOf="@id/lv_guideline6"
+        app:layout_constraintTop_toBottomOf="@id/lv_tv_sum" />
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/lv_list"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@id/lv_guideline" />-->
 
 
 </android.support.constraint.ConstraintLayout>

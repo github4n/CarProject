@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lmfd_cl_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
@@ -43,7 +44,7 @@
         app:layout_constraintGuide_percent="0.95" />
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/lmfd_cl_content2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/shape_white_top_con_fill_rect"
@@ -122,19 +123,41 @@
         app:layout_constraintTop_toBottomOf="@id/lmfd_tv_des"
         app:srcCompat="@color/color_sub_line" />
 
+    <!--<TextView-->
+        <!--android:id="@+id/lmfd_tv_more"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:drawableLeft="@drawable/mf_more"-->
+        <!--android:drawablePadding="4dp"-->
+        <!--android:text="@string/text_main_more"-->
+        <!--android:textSize="14sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/lmfd_cl_content2"-->
+        <!--app:layout_constraintStart_toStartOf="@id/lmfd_guideline4"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/lmfd_iv_line" />-->
+
     <TextView
-        android:id="@+id/lmfd_tv_more"
+        android:id="@+id/lmfd_tv_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:drawableLeft="@drawable/mf_more"
+        android:background="@drawable/shape_cycrect_blue"
         android:drawablePadding="4dp"
-        android:text="@string/text_main_more"
+        android:drawableLeft="@drawable/mf_phone"
+        android:drawableStart="@drawable/mf_phone"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/text_main_contract"
+        android:textColor="@color/color_main"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/constraintLayout2"
+        app:layout_constraintBottom_toBottomOf="@id/lmfd_cl_content2"
+        app:layout_constraintEnd_toStartOf="@id/lmfd_tv_book"
         app:layout_constraintStart_toStartOf="@id/lmfd_guideline4"
         app:layout_constraintTop_toBottomOf="@id/lmfd_iv_line" />
 
@@ -143,26 +166,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/mf_book"
+        android:drawableStart="@drawable/mf_book"
         android:drawablePadding="4dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="@string/text_main_book"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@id/lmfd_tv_phone"
-        app:layout_constraintStart_toEndOf="@id/lmfd_tv_more"
-        app:layout_constraintTop_toTopOf="@id/lmfd_tv_more" />
-
-    <TextView
-        android:id="@+id/lmfd_tv_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:drawableLeft="@drawable/mf_phone"
-        android:drawablePadding="4dp"
-        android:text="@string/text_main_phone"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@id/lmfd_guideline5"
-        app:layout_constraintLeft_toRightOf="@id/lmfd_tv_book"
-        app:layout_constraintTop_toTopOf="@id/lmfd_tv_more" />
-
+        android:textColor="@color/white"
+        android:background="@drawable/shape_cycrect_blue_fill"
+        app:layout_constraintEnd_toEndOf="@id/lmfd_guideline5"
+        app:layout_constraintStart_toEndOf="@id/lmfd_tv_phone"
+        app:layout_constraintTop_toTopOf="@id/lmfd_tv_phone" />
 
 </android.support.constraint.ConstraintLayout>
