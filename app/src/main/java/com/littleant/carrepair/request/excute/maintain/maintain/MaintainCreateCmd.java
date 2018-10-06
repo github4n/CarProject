@@ -10,12 +10,12 @@ import com.mh.core.tools.MHLogUtil;
 import com.squareup.picasso.Picasso;
 
 public class MaintainCreateCmd extends BaseMaintainCmd {
-    public MaintainCreateCmd(Context context, int garage_id, String name, String phone,
+    public MaintainCreateCmd(Context context, int garage_id, int car_id, String name, String phone,
                                 String subscribe_time, String longitude, String latitude, String address,
                                 String content, Bitmap[] pics) {
         super(context);
         params.put(ParamsConstant.GARAGE_ID, garage_id + "");
-//        params.put(ParamsConstant.CAR_ID, car_id + "");
+        params.put(ParamsConstant.CAR_ID, car_id + "");
         params.put(ParamsConstant.NAME, name);
         params.put(ParamsConstant.PHONE, phone);
         params.put(ParamsConstant.SUBSCRIBE_TIME, subscribe_time);

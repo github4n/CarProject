@@ -207,6 +207,7 @@
     <string name="text_repair_location">位置:</string>
     <string name="text_repair_time">时间:</string>
     <string name="text_repair_publish">立即发布</string>
+    <string name="text_repair_add_pic">请添加项目图片（最多3张）</string>
 
     <!--预约保养-->
     <string name="text_maintain">预约保养</string>
@@ -433,5 +434,16 @@
     <!--弹窗选择-->
     <string name="text_dialog_ok">确认</string>
     <string name="text_dialog_cancel">取消</string>
+
+    <!--提交预约-->
+    <string name="text_book_submit">提交预约</string>
+    <string name="text_book_name">门店：</string>
+    <string name="text_book_address">地址：</string>
+    <string name="text_book_confirm">确认预约</string>
+
+    <!--预约提示-->
+    <string name="book_success">您已预约成功，请及时查看！</string>
+    <string name="book_fail">很抱歉，您的预约失败了。</string>
+    <string name="book_again">重新预约</string>
 
 </resources>

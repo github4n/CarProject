@@ -12,11 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.MyCarListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -29,6 +27,8 @@ import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.littleant.carrepair.activies.BookSubmitActivity.PICK_CAR;
 
 /**
  * 我的汽车
@@ -47,7 +47,7 @@ public class MyCarActivity extends BaseActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            isPick = extras.getBoolean(BookMaintainActivity.PICK_CAR);
+            isPick = extras.getBoolean(PICK_CAR);
         }
 
         requestMyCarList();

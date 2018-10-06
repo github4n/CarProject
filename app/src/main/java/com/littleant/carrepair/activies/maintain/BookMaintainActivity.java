@@ -16,10 +16,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.BookSubmitActivity;
 import com.littleant.carrepair.activies.address.MyAddressActivity;
 import com.littleant.carrepair.activies.car.MyCarActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
@@ -44,6 +47,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.littleant.carrepair.activies.BookSubmitActivity.FROM;
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
 
 public class BookMaintainActivity extends BaseActivity {
@@ -52,12 +56,10 @@ public class BookMaintainActivity extends BaseActivity {
     private GarageInfo garageInfo;
     private MyAdapter myAdapter;
     private List<OilInfo> oilList;
-    private TextView bm_tv_total_money, bm_tv_title, bm_tv_des;
-    private ImageView bm_iv_icon;
-    private ConstraintLayout constraintLayout;
-    public static final int REQUEST_CODE_CAR = 100;
-    public static final String PICK_CAR = "pick_car";
-    private MyCarListBean.CarInfo carInfo;
+    private TextView bm_tv_total_money;
+    public static final String OIL_ID = "oil_id";
+    public static final String OIL_AMOUNT = "oil_amount";
+    private int oilId, oilAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +82,6 @@ public class BookMaintainActivity extends BaseActivity {
             public void cmdCallBack(MHCommand command) {
                 if (command != null) {
                     Log.i("response", command.getResponse());
-                    requestDefaultCar();
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
                         OilListBean listBean = ProjectUtil.getBaseResponseBean(command.getResponse(), OilListBean.class);
@@ -98,31 +99,6 @@ public class BookMaintainActivity extends BaseActivity {
         MHCommandExecute.getInstance().asynExecute(mContext, oilQueryAllCmd);
     }
 
-    private void requestDefaultCar() {
-        CarQueryAllCmd carQueryAllCmd = new CarQueryAllCmd(mContext, ParamsConstant.QueryType.DEFAULT);
-        carQueryAllCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if (command != null) {
-                    Log.i("response", command.getResponse());
-                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        MyCarListBean carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
-                        if(carListBean != null) {
-                            carInfo = carListBean.getData().get(0);
-                            setCarInfo(carInfo);
-                        }
-                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
-                        MHToast.showS(mContext, responseBean.getMsg());
-                    }
-                } else {
-                    MHToast.showS(mContext, R.string.request_fail);
-                }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(mContext, carQueryAllCmd);
-    }
-
     @Override
     protected void init() {
         super.init();
@@ -131,12 +107,6 @@ public class BookMaintainActivity extends BaseActivity {
 //        mList.setAdapter(new MyAdapter());
 
         bm_tv_total_money = findViewById(R.id.bm_tv_total_money);
-        bm_tv_title = findViewById(R.id.bm_tv_title);
-        bm_tv_des = findViewById(R.id.bm_tv_des);
-        bm_iv_icon = findViewById(R.id.bm_iv_icon);
-
-        constraintLayout = findViewById(R.id.constraintLayout);
-        constraintLayout.setOnClickListener(this);
 
         bm_submit = findViewById(R.id.bm_submit);
         bm_submit.setOnClickListener(this);
@@ -156,33 +126,23 @@ public class BookMaintainActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bm_submit:
-                Intent intent = new Intent(BookMaintainActivity.this, PaymentActivity.class);
+                if(oilAmount < 1) {
+                    MHToast.showS(mContext, R.string.no_select_item);
+                    return;
+                }
+                Intent intent = new Intent(BookMaintainActivity.this, BookSubmitActivity.class);
+                intent.putExtra(GARAGE_INFO, garageInfo);
+                intent.putExtra(FROM, BookMaintainActivity.class.getSimpleName());
+                intent.putExtra(OIL_ID, oilId);
+                intent.putExtra(OIL_AMOUNT, oilAmount);
                 BookMaintainActivity.this.startActivity(intent);
                 break;
-
-            case R.id.constraintLayout:
-                Intent i = new Intent(BookMaintainActivity.this, MyCarActivity.class);
-                i.putExtra(PICK_CAR, true);
-                BookMaintainActivity.this.startActivityForResult(i, REQUEST_CODE_CAR);
-                break;
-        }
-    }
-
-    private void setCarInfo(MyCarListBean.CarInfo carInfo) {
-        if(carInfo != null) {
-            bm_tv_title.setText(carInfo.getCode());
-            bm_tv_des.setText(carInfo.getBrand_name());
-            Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(bm_iv_icon);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_CAR && resultCode == RESULT_OK) {
-            carInfo = (MyCarListBean.CarInfo) data.getSerializableExtra(MyCarActivity.CAR_INFO);
-            setCarInfo(carInfo);
-        }
     }
 
     private void setListItem(List<OilInfo> listItem) {
@@ -241,6 +201,8 @@ public class BookMaintainActivity extends BaseActivity {
                             float price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
                             if(isChecked) {
                                 price += oilInfo.getNew_price();
+                                oilId = oilInfo.getId();
+                                oilAmount = oilInfo.getL();
                             } else {
                                 price -= oilInfo.getNew_price();
                             }
@@ -263,7 +225,7 @@ public class BookMaintainActivity extends BaseActivity {
             //一般子项
             private TextView lmi_item_name, lmi_gas_amount, lmi_tv_new_price, lmi_tv_old_price;
             private ImageView lmi_iv_itemImg;
-            private CheckBox lmi_select;
+            private RadioButton lmi_select;
 
             //底项
             private TextView bmei_time_price;
@@ -294,5 +256,6 @@ public class BookMaintainActivity extends BaseActivity {
             }
             return TYPE_NORMAL;
         }
+
     }
 }
