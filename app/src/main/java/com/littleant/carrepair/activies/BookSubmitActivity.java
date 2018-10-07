@@ -252,12 +252,9 @@ public class BookSubmitActivity extends BaseActivity {
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
-                        showSuccessDialog();
-//                        Intent intent = new Intent(mContext, RepairRecordActivity.class);
-//                        startActivity(intent);
-//                        finish();
-                    } else {
-                        showFailDialog();
+                        Intent intent = new Intent(mContext, RepairRecordActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);
@@ -295,12 +292,9 @@ public class BookSubmitActivity extends BaseActivity {
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
-                        showSuccessDialog();
-//                        Intent intent = new Intent(mContext, RepairRecordActivity.class);
-//                        startActivity(intent);
-//                        finish();
-                    } else {
-                        showFailDialog();
+                        Intent intent = new Intent(mContext, RepairRecordActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);

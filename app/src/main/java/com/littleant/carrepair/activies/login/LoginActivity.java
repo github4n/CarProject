@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -32,6 +33,8 @@ import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHLogUtil;
 import com.mh.core.tools.MHToast;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 登入页面
@@ -173,6 +176,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 DataHelper.saveExpire(mContext, expire);
                                 DataHelper.savePhone(mContext, phone);
                                 DataHelper.savePassword(mContext, password);
+                                JPushInterface.setAlias(getApplicationContext(), 1, phone);
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(intent);
                                 LoginActivity.this.finish();
