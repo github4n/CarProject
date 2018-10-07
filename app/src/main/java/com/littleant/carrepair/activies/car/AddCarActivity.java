@@ -28,17 +28,10 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.activies.annualcheck.BaseFillInfoActivity;
-import com.littleant.carrepair.activies.datetime.DateActivity;
-import com.littleant.carrepair.activies.repair.RepairActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.MyCarListBean;
-import com.littleant.carrepair.request.bean.SurveyInfo;
-import com.littleant.carrepair.request.bean.SurveyStationInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.car.CarAddCmd;
-import com.littleant.carrepair.request.excute.user.caraddress.CarAddressCmd;
-import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.lljjcoder.Constant;
 import com.lljjcoder.Interface.OnCityItemClickListener;
@@ -58,9 +51,9 @@ import com.zhihu.matisse.engine.impl.PicassoEngine;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.io.IOException;
-import java.util.List;
 
-import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;
+import static com.littleant.carrepair.activies.car.CarBrandActivity.BRAND_CODE;
+import static com.littleant.carrepair.activies.car.CarBrandActivity.BRAND_NAME;
 import static com.littleant.carrepair.activies.car.MyCarActivity.CAR_INFO;
 
 /**
@@ -69,12 +62,13 @@ import static com.littleant.carrepair.activies.car.MyCarActivity.CAR_INFO;
 public class AddCarActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_CHOOSE = 10;//定义请求码常量
+    private static final int REQUEST_CODE_BRAND = 11;
     private ImageView aac_iv_pic;
-    private TextView aac_tv_time, aac_tv_plate_type, aac_tv_car_address;
-    private EditText aac_et_brand, aac_et_plate, aac_et_engine, aac_et_frame;
+    private TextView aac_tv_brand, aac_tv_plate_type, aac_tv_car_address;
+    private EditText aac_et_plate, aac_et_engine, aac_et_frame;
     private Button ac_btn_save;
     private Bitmap pic;
-    private String brand, code, engine, buyTime, mile, classno;
+    private String brand, code, engine, classno;
     private boolean isDefault;
     private CheckBox aac_cb_default;
     private String hpzl = "";
@@ -85,6 +79,7 @@ public class AddCarActivity extends BaseActivity {
     private CityPickerView mPicker = new CityPickerView();
 
     int selectPostition = -1;
+    private int car_style;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,16 +104,15 @@ public class AddCarActivity extends BaseActivity {
         aac_iv_pic = findViewById(R.id.aac_iv_pic);
         aac_iv_pic.setOnClickListener(this);
 
-        aac_tv_time = findViewById(R.id.aac_tv_time);
-        aac_tv_time.setOnClickListener(this);
-
         aac_tv_plate_type = findViewById(R.id.aac_tv_plate_type);
         aac_tv_plate_type.setOnClickListener(this);
 
         aac_tv_car_address = findViewById(R.id.aac_tv_car_address);
         aac_tv_car_address.setOnClickListener(this);
 
-        aac_et_brand = findViewById(R.id.aac_et_brand);
+        aac_tv_brand = findViewById(R.id.aac_tv_brand);
+        aac_tv_brand.setOnClickListener(this);
+
         aac_et_plate = findViewById(R.id.aac_et_plate);
         aac_et_engine = findViewById(R.id.aac_et_engine);
         aac_et_frame = findViewById(R.id.aac_et_frame);
@@ -134,8 +128,6 @@ public class AddCarActivity extends BaseActivity {
         if(carInfo != null) {
             Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(aac_iv_pic);
 
-            aac_tv_time.setText(carInfo.getCreate_time());
-            aac_et_brand.setText(carInfo.getBrand_name());
             aac_et_engine.setText(carInfo.getEngine());
             aac_et_plate.setText(carInfo.getCode());
             aac_et_frame.setText(carInfo.getClasssno());
@@ -176,21 +168,20 @@ public class AddCarActivity extends BaseActivity {
 //                startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_GET_SINGLE_FILE);
                 break;
 
-            case R.id.aac_tv_time:
-                DateActivity dateActivity = new DateActivity();
-                dateActivity.setCallback(new DateActivity.SelectDateCallback() {
-                    @Override
-                    public void onSelectDate(int year, int month, int day) {
-                        Log.i("aac_tv_time", "year -- " + year);
-                        Log.i("aac_tv_time", "month -- " + month);
-                        Log.i("aac_tv_time", "day -- " + day);
-                        //格式示例2018-03-20
-                        String date = DataHelper.parseDate(year, month, day);
-                        aac_tv_time.setText(date);
-                    }
-                });
-                dateActivity.show(getFragmentManager(), DateActivity.class.getSimpleName());
-                break;
+//            case R.id.aac_tv_time:
+//                DateActivity dateActivity = new DateActivity();
+//                dateActivity.setCallback(new DateActivity.SelectDateCallback() {
+//                    @Override
+//                    public void onSelectDate(int year, int month, int day) {
+//                        Log.i("aac_tv_time", "year -- " + year);
+//                        Log.i("aac_tv_time", "month -- " + month);
+//                        Log.i("aac_tv_time", "day -- " + day);
+//                        //格式示例2018-03-20
+//                        String date = DataHelper.parseDate(year, month, day);
+//                    }
+//                });
+//                dateActivity.show(getFragmentManager(), DateActivity.class.getSimpleName());
+//                break;
 
             case R.id.ac_btn_save:
                 requestAddCar();
@@ -202,6 +193,11 @@ public class AddCarActivity extends BaseActivity {
 
             case R.id.aac_tv_plate_type:
                 showList();
+                break;
+
+            case R.id.aac_tv_brand:
+                Intent intent = new Intent(mContext, CarBrandActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_BRAND);
                 break;
         }
     }
@@ -246,10 +242,10 @@ public class AddCarActivity extends BaseActivity {
     }
 
     private void requestAddCar() {
-        brand = aac_et_brand.getText().toString();
+//        brand = aac_tv_brand.getText().toString();
         code = aac_et_plate.getText().toString();
         engine = aac_et_engine.getText().toString();
-        buyTime = aac_tv_time.getText().toString();
+//        buyTime = aac_tv_time.getText().toString();
         classno = aac_et_frame.getText().toString();
 //        mile = aac_et_mile.getText().toString();
         if(TextUtils.isEmpty(code) || TextUtils.isEmpty(engine) || TextUtils.isEmpty(city_code)
@@ -261,7 +257,7 @@ public class AddCarActivity extends BaseActivity {
             MHToast.showS(mContext, R.string.need_finish_info);
             return;
         }
-        CarAddCmd carAddCmd = new CarAddCmd(mContext, code, 1, engine, city_code, classno, hpzl, aac_cb_default.isChecked(), pic);
+        CarAddCmd carAddCmd = new CarAddCmd(mContext, code, car_style, engine, city_code, classno, hpzl, aac_cb_default.isChecked(), pic);
         carAddCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
@@ -296,6 +292,10 @@ public class AddCarActivity extends BaseActivity {
                 e.printStackTrace();
             }
 
+        } else if(requestCode == REQUEST_CODE_BRAND && resultCode == RESULT_OK) {
+            String brandName = data.getStringExtra(BRAND_NAME);
+            car_style = data.getIntExtra(BRAND_CODE, 0);
+            aac_tv_brand.setText(brandName);
         }
 //        if(requestCode == REQUEST_GET_SINGLE_FILE && resultCode == RESULT_OK) {
 //            Uri uri_data = data.getData();

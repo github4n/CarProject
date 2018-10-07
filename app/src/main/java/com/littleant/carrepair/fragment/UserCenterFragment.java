@@ -32,6 +32,8 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
+import static com.littleant.carrepair.activies.order.MyOrderActivity.SELECT_TYPE;
+
 public class UserCenterFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -198,21 +200,25 @@ public class UserCenterFragment extends BaseFragment {
 
             case R.id.iv_all_order://全部
                 intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra(SELECT_TYPE, MyOrderActivity.ALL);
                 getActivity().startActivity(intent);
                 break;
 
             case R.id.iv_wait_pay://待支付
                 intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra(SELECT_TYPE, MyOrderActivity.WAIT_PAY);
                 getActivity().startActivity(intent);
                 break;
 
             case R.id.iv_wait_service: //待服务
                 intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra(SELECT_TYPE, MyOrderActivity.WAIT_SERVICE);
                 getActivity().startActivity(intent);
                 break;
 
             case R.id.iv_wait_rate://待评价
                 intent = new Intent(getContext(), MyOrderActivity.class);
+                intent.putExtra(SELECT_TYPE, MyOrderActivity.WAIT_RATE);
                 getActivity().startActivity(intent);
                 break;
         }

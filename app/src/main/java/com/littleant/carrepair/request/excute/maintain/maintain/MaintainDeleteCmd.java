@@ -10,9 +10,9 @@ import com.mh.core.tools.MHLogUtil;
 
 public class MaintainDeleteCmd extends BaseRequestCmd {
 
-    public MaintainDeleteCmd(Context context, String id) {
+    public MaintainDeleteCmd(Context context, int id) {
         super(context);
-        params.put(ParamsConstant.ID, id);
+        params.put(ParamsConstant.ID, id + "");
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 

@@ -60,7 +60,19 @@
     <!--启动页字体颜色-->
     <color name="color_login_hint">#99D4F1</color>
 
-    <!--启动页字体颜色-->
+    <!--违章字体-->
     <color name="color_voi_code">#9B9B9B</color>
+
+    <!--未支付-->
+    <color name="color_not_pay">#FF3C3C</color>
+
+    <!--等待服务-->
+    <color name="color_wait_service">#63BDFF</color>
+
+    <!--服务完成-->
+    <color name="color_service_done">#5FFF54</color>
+
+    <!--服务中-->
+    <color name="color_service_ing">#FF8A4E</color>
 
 </resources>

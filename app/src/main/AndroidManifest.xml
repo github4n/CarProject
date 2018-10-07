@@ -211,9 +211,11 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activies.PushDialogActivity"
+        <activity
+            android:name=".activies.PushDialogActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/PushDialogTheme"/>
+            android:theme="@style/PushDialogTheme" />
+        <activity android:name=".activies.car.CarBrandActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.littleant.carrepair.request.excute.maintain.upkeep;
+package com.littleant.carrepair.request.excute.user.car;
 
 import android.content.Context;
 
@@ -7,12 +7,16 @@ import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
-public class UpkeepDeleteCmd extends BaseUpkeepCmd {
+public class CarBrandQueryCmd extends BaseRequestCmd {
 
-    public UpkeepDeleteCmd(Context context, int id) {
+    public CarBrandQueryCmd(Context context) {
         super(context);
-        params.put(ParamsConstant.ID, id + "");
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
+    }
+
+    @Override
+    protected String getInterfaceName() {
+        return InterfaceConstant.USER_CARBRAND;
     }
 
     @Override

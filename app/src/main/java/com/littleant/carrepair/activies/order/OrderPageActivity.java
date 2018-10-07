@@ -19,12 +19,13 @@ import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 
 /**
- * 订单页面
+ * 确认订单
  */
 public class OrderPageActivity extends BaseActivity {
 
     private RecyclerView mList;
     private Button mSubmit;
+    private TextView op_tv_total_money, btn_add_receive_address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +35,12 @@ public class OrderPageActivity extends BaseActivity {
         mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mList.setAdapter(new MyAdapter());
 
+        op_tv_total_money = findViewById(R.id.op_tv_total_money);
+        btn_add_receive_address = findViewById(R.id.btn_add_receive_address);
+
+
         mSubmit = findViewById(R.id.op_submit);
-        mSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(OrderPageActivity.this, PaymentActivity.class);
-                OrderPageActivity.this.startActivity(intent);
-            }
-        });
+        mSubmit.setOnClickListener(this);
     }
 
     @Override
@@ -56,7 +55,16 @@ public class OrderPageActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.op_submit:
+                Intent intent = new Intent(OrderPageActivity.this, PaymentActivity.class);
+                OrderPageActivity.this.startActivity(intent);
+                break;
 
+                case R.id.btn_add_receive_address:
+
+                break;
+        }
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {

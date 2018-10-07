@@ -97,7 +97,7 @@
     <string name="text_allorder_wait_reach">待收货</string>
     <string name="text_allorder_wait_rate">待评价</string>
     <string name="text_allorder_wait_service">待服务</string>
-    <string name="btn_delete_order">删除订单</string>
+    <string name="btn_delete_order">取消订单</string>
     <string name="btn_order_rate">&#160;&#160;评价&#160;&#160;</string>
     <string name="btn_order_pay">&#160;去付款&#160;</string>
     <string name="btn_order_detail">详情</string>
@@ -105,14 +105,19 @@
     <!---->
     <string name="text_add_car">添加车辆</string>
     <string name="text_car_mile">请输入里程</string>
-    <string name="text_car_pic">请添加车辆照片</string>
-    <string name="text_brand">请输入汽车品牌</string>
+    <string name="text_car_pic">车辆照片</string>
+    <!--<string name="text_brand">请输入汽车品牌</string>-->
     <string name="text_car_plate">请输入车牌号码</string>
+    <string name="text_car_plate2">车牌号码</string>
     <string name="text_car_engine">请输入发动机号</string>
-    <string name="text_car_frame">请输入车架号</string>
-    <string name="text_car_plate_type">请选择号牌类型</string>
-    <string name="text_car_address">请选择车辆地址</string>
+    <string name="text_car_engine2">发动机号</string>
+    <string name="text_car_frame">请输入车架号码</string>
+    <string name="text_car_frame2">车架号码</string>
+    <string name="text_car_plate_type">号牌类型</string>
+    <string name="text_car_address">车辆地址</string>
     <string name="text_buy_car_time">请选择购车时间</string>
+    <string name="text_brand">品牌型号</string>
+    <string name="hint_set_default_car">设为默认车辆</string>
 
     <!---->
     <string name="text_send_car_address">送车地址</string>
@@ -445,5 +450,12 @@
     <string name="book_success">您已预约成功，请及时查看！</string>
     <string name="book_fail">很抱歉，您的预约失败了。</string>
     <string name="book_again">重新预约</string>
+
+    <!--选择品牌-->
+    <string name="select_car_brand">选择品牌</string>
+
+    <!--删除订单-->
+    <string name="delete_order_think">再考虑下</string>
+    <string name="delete_order_des">确认要取消订单吗？</string>
 
 </resources>

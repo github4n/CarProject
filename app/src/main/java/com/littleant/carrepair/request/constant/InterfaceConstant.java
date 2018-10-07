@@ -56,6 +56,10 @@ public class InterfaceConstant {
      * get:删除地址信息<br>
      */
     public static final String USER_CARADDRESS = "api/user/caraddress/";
+    /**
+     * get:查询车辆品牌信息<br>
+     */
+    public static final String USER_CARBRAND = "api/user/carbrand/";
 
     //服务部分
     /**
