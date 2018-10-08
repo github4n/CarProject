@@ -108,13 +108,14 @@
                 android:text="@string/text_user_center_user_name"
                 android:gravity="center_vertical"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_user_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="14sp"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
@@ -196,6 +197,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:text="@string/text_allorder_all"
+            android:textSize="16sp"
             android:textColor="@color/color_uc_text"
             android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -205,12 +207,13 @@
 
         <TextView
             android:id="@+id/tv_uc_pay"
-            android:layout_width="42dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
             android:text="@string/text_allorder_wait_pay"
             android:textColor="@color/color_uc_text"
-            android:gravity="center_vertical"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/iv_wait_pay"
             app:layout_constraintStart_toStartOf="@id/iv_wait_pay"
@@ -222,6 +225,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:text="@string/text_user_center_wait_serivce"
+            android:textSize="14sp"
             android:textColor="@color/color_uc_text"
             android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -235,6 +239,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:text="@string/text_user_center_wait_rate"
+            android:textSize="14sp"
             android:textColor="@color/color_uc_text"
             android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -280,6 +285,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/text_user_center_my_garage"
+            android:textSize="14sp"
             android:textColor="@color/color_uc_text" />
 
         <ImageView
@@ -341,6 +347,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/text_check_record"
+            android:textSize="14sp"
             android:textColor="@color/color_uc_text" />
 
         <ImageView
@@ -402,6 +409,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/text_user_center_shop_credit"
+            android:textSize="14sp"
             android:textColor="@color/color_uc_text" />
 
         <ImageView
@@ -463,6 +471,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/text_user_center_address"
+            android:textSize="14sp"
             android:textColor="@color/color_uc_text" />
 
         <ImageView
@@ -524,6 +533,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/text_user_center_repaire_record"
+            android:textSize="14sp"
             android:textColor="@color/color_uc_text" />
 
         <ImageView
@@ -585,6 +595,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/text_user_center_service_phone"
+            android:textSize="14sp"
             android:textColor="@color/color_uc_text" />
 
         <ImageView
