@@ -215,7 +215,9 @@
             android:name=".activies.PushDialogActivity"
             android:screenOrientation="portrait"
             android:theme="@style/PushDialogTheme" />
-        <activity android:name=".activies.car.CarBrandActivity"></activity>
+        <activity android:name=".activies.car.CarBrandActivity" />
+        <activity android:name=".activies.FirstLaunchActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

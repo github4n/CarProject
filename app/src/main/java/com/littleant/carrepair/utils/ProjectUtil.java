@@ -2,7 +2,10 @@ package com.littleant.carrepair.utils;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.support.constraint.Constraints;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -23,7 +26,7 @@ public class ProjectUtil {
 
     public static boolean checkPhone(Context context, String phone) {
         boolean isCorrect = true;
-        if((TextUtils.isEmpty(phone) || !TextUtils.isDigitsOnly(phone) || phone.length() != 11)) {
+        if ((TextUtils.isEmpty(phone) || !TextUtils.isDigitsOnly(phone) || phone.length() != 11)) {
             isCorrect = false;
         }
         return isCorrect;
@@ -31,7 +34,7 @@ public class ProjectUtil {
 
     public static boolean checkPassword(Context context, String password) {
         boolean isCorrect = true;
-        if(!password.matches("\\w{6,20}")) {
+        if (!password.matches("\\w{6,20}")) {
             isCorrect = false;
         }
         return isCorrect;
@@ -39,16 +42,16 @@ public class ProjectUtil {
 
     public static BaseResponseBean getBaseResponseBean(String result) {
         BaseResponseBean t = new Gson().fromJson(result, BaseResponseBean.class);
-        if(t != null) {
+        if (t != null) {
             String msg = t.getMsg();
             t.setMsg(ProjectUtil.decodeUnicode(msg));
         }
         return t;
     }
 
-    public static<T> T getBaseResponseBean(String result, Class<T> tClass) {
+    public static <T> T getBaseResponseBean(String result, Class<T> tClass) {
         T t = new Gson().fromJson(result, tClass);
-        if(t != null) {
+        if (t != null) {
             String msg = ((BaseResponseBean) t).getMsg();
             ((BaseResponseBean) t).setMsg(ProjectUtil.decodeUnicode(msg));
         }
@@ -56,7 +59,7 @@ public class ProjectUtil {
     }
 
     public static String decodeUnicode(String theString) {
-        if(TextUtils.isEmpty(theString)) {
+        if (TextUtils.isEmpty(theString)) {
             MHLogUtil.logW("转换的string为空");
             return null;
         }
@@ -125,11 +128,48 @@ public class ProjectUtil {
         return outBuffer.toString();
     }
 
-    public static final String TERM_READ = "term_read";
+    private static final String TERM_READ = "term_read";
+
     public static void saveTermRead(Context context) {
         MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, TERM_READ, true);
     }
+
     public static boolean getTermRead(Context context) {
         return MHDatabase.getSimpleBoolean(context, MHDatabase.MH_FILE, TERM_READ);
     }
+
+    private static final String LAUNCHED = "launched";
+
+    public static void saveLaunched(Context context) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, LAUNCHED, true);
+    }
+
+    public static boolean getLaunched(Context context) {
+        return MHDatabase.getSimpleBoolean(context, MHDatabase.MH_FILE, LAUNCHED);
+    }
+
+    /**
+     * 得到资源文件中图片的Uri
+     *
+     * @param context 上下文对象
+     * @param id      资源id
+     * @return Uri
+     */
+    public static String getUriFromDrawableRes(Context context, int id) {
+        Resources resources = context.getResources();
+        String path = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                + resources.getResourcePackageName(id) + "/"
+                + resources.getResourceTypeName(id) + "/"
+                + resources.getResourceEntryName(id);
+        return path;
+//        return Uri.parse(path);
+    }
+
+    public static final String ANDROID_RESOURCE = "android.resource://";
+    public static final String FOREWARD_SLASH = "/";
+
+    public static Uri resourceIdToUri(Context context, int resourceId) {
+        return Uri.parse(ANDROID_RESOURCE + context.getPackageName() + FOREWARD_SLASH + resourceId);
+    }
+
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.login.LoginActivity;
+import com.littleant.carrepair.utils.ProjectUtil;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -28,7 +29,12 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                Intent intent;
+                if(ProjectUtil.getLaunched(SplashActivity.this)) {
+                     intent = new Intent(SplashActivity.this, LoginActivity.class);
+                } else {
+                    intent = new Intent(SplashActivity.this, FirstLaunchActivity.class);
+                }
                 startActivity(intent);
                 finish();
             }

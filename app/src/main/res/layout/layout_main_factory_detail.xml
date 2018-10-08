@@ -43,6 +43,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/lmfd_guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.78" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/lmfd_guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/lmfd_cl_content2"
         android:layout_width="0dp"
@@ -73,7 +87,7 @@
         android:layout_marginStart="8dp"
         android:textStyle="bold"
         android:textColor="@color/color_uc_text"
-        android:textSize="14sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@id/lmfd_iv_navi"
         app:layout_constraintStart_toStartOf="@id/lmfd_guideline4" />
 
@@ -143,23 +157,21 @@
         android:id="@+id/lmfd_tv_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/shape_cycrect_blue"
-        android:drawablePadding="4dp"
         android:drawableLeft="@drawable/mf_phone"
+        android:drawablePadding="4dp"
         android:drawableStart="@drawable/mf_phone"
-        android:paddingTop="4dp"
         android:paddingBottom="4dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        android:paddingTop="4dp"
         android:text="@string/text_main_contract"
         android:textColor="@color/color_main"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@id/lmfd_cl_content2"
+        app:layout_constraintBottom_toTopOf="@id/lmfd_guideline7"
         app:layout_constraintEnd_toStartOf="@id/lmfd_tv_book"
         app:layout_constraintStart_toStartOf="@id/lmfd_guideline4"
-        app:layout_constraintTop_toBottomOf="@id/lmfd_iv_line" />
+        app:layout_constraintTop_toTopOf="@id/lmfd_guideline6" />
 
     <TextView
         android:id="@+id/lmfd_tv_book"
