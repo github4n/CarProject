@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <android.support.constraint.Guideline
         android:id="@+id/r_guideline3"
@@ -45,19 +45,19 @@
         app:layout_constraintGuide_percent="0.7" />
 
 
-    <android.support.constraint.Guideline
-        android:id="@+id/r_guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52" />
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/r_guideline5"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.52" />-->
 
-    <android.support.constraint.Guideline
-        android:id="@+id/r_guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/r_guideline7"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.85" />-->
 
     <android.support.constraint.Guideline
         android:id="@+id/r_guideline8"
@@ -89,7 +89,6 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toTopOf="@id/r_guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,13 +102,20 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.05" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/r_pic_list"
+        <android.support.constraint.Guideline
+            android:id="@+id/r_cl_guideline2"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/r_btn_add_pic"
-            app:layout_constraintStart_toStartOf="@id/r_cl_guideline"
-            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/r_pic_list"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="0dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/r_btn_add_pic"-->
+        <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline"-->
+        <!--app:layout_constraintTop_toTopOf="@id/r_btn_add_pic" />-->
 
         <TextView
             android:id="@+id/r_tv_pic"
@@ -125,15 +131,68 @@
             android:id="@+id/r_btn_add_pic"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/r_btn_add_pic2"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@id/r_cl_guideline"
+            app:layout_constraintTop_toBottomOf="@id/r_tv_pic"
+            app:srcCompat="@drawable/r_add_pic" />
+
+        <ImageView
+            android:id="@+id/r_btn_del1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic"
+            app:layout_constraintEnd_toEndOf="@id/r_btn_add_pic"
+            app:srcCompat="@drawable/repair_del"/>
+
+        <ImageView
+            android:id="@+id/r_btn_add_pic2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toEndOf="@id/r_pic_list"
+            app:layout_constraintEnd_toStartOf="@id/r_btn_add_pic3"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/r_btn_add_pic"
             app:layout_constraintTop_toBottomOf="@id/r_tv_pic"
             app:srcCompat="@drawable/r_add_pic" />
+
+        <ImageView
+            android:id="@+id/r_btn_del2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic2"
+            app:layout_constraintEnd_toEndOf="@id/r_btn_add_pic2"
+            app:srcCompat="@drawable/repair_del"/>
+
+        <ImageView
+            android:id="@+id/r_btn_add_pic3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/r_cl_guideline2"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/r_btn_add_pic2"
+            app:layout_constraintTop_toBottomOf="@id/r_tv_pic"
+            app:srcCompat="@drawable/r_add_pic" />
+
+        <ImageView
+            android:id="@+id/r_btn_del3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic3"
+            app:layout_constraintEnd_toEndOf="@id/r_btn_add_pic3"
+            app:srcCompat="@drawable/repair_del"/>
 
     </android.support.constraint.ConstraintLayout>
 

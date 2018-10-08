@@ -55,15 +55,19 @@ public class RepairActivity extends BaseActivity {
 
     private Button r_btn_confrm;
     private EditText r_et_description;
-    private ImageView r_btn_add_pic;
-    private RecyclerView r_pic_list;
-    private static final int REQUEST_CODE_CHOOSE = 10;//定义请求码常量
+    private ImageView r_btn_add_pic, r_btn_add_pic2, r_btn_add_pic3;
+    private ImageView r_btn_del1, r_btn_del2, r_btn_del3;
+//    private RecyclerView r_pic_list;
+    private static final int REQUEST_CODE_CHOOSE1 = 100;//定义请求码常量
+    private static final int REQUEST_CODE_CHOOSE2 = 101;//定义请求码常量
+    private static final int REQUEST_CODE_CHOOSE3 = 102;//定义请求码常量
     private static final int REQUEST_CODE_SELECT_PLACE = 11;//定义请求码常量
-    private List<Uri> mSelected;
+    private Uri[] mSelected = new Uri[3];
+//    private List<Uri> mSelected = new ArrayList<>(3);
     private double selectLat, selectLon;
     private String selectAddress;
     private GarageInfo garageInfo;
-    private MyAdapter myAdapter;
+//    private MyAdapter myAdapter;
     public static final String CONTENT = "content";
     public static final String PIC_LIST = "pic_list";
 
@@ -100,10 +104,25 @@ public class RepairActivity extends BaseActivity {
         r_btn_add_pic = findViewById(R.id.r_btn_add_pic);
         r_btn_add_pic.setOnClickListener(this);
 
+        r_btn_add_pic2 = findViewById(R.id.r_btn_add_pic2);
+        r_btn_add_pic2.setOnClickListener(this);
+
+        r_btn_add_pic3 = findViewById(R.id.r_btn_add_pic3);
+        r_btn_add_pic3.setOnClickListener(this);
+
+        r_btn_del1 = findViewById(R.id.r_btn_del1);
+        r_btn_del1.setOnClickListener(this);
+
+        r_btn_del2 = findViewById(R.id.r_btn_del2);
+        r_btn_del2.setOnClickListener(this);
+
+        r_btn_del3 = findViewById(R.id.r_btn_del3);
+        r_btn_del3.setOnClickListener(this);
+
         r_et_description = findViewById(R.id.r_et_description);
 
-        r_pic_list = findViewById(R.id.r_pic_list);
-        r_pic_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//        r_pic_list = findViewById(R.id.r_pic_list);
+//        r_pic_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override
@@ -129,9 +148,9 @@ public class RepairActivity extends BaseActivity {
                 intent.putExtra(GARAGE_INFO, garageInfo);
                 intent.putExtra(CONTENT, content);
                 intent.putExtra(FROM, RepairActivity.class.getSimpleName());
-                if(myAdapter != null && myAdapter.getCurrentList() != null && myAdapter.getCurrentList().size() > 0) {
+                /*if(myAdapter != null && myAdapter.getCurrentList() != null && myAdapter.getCurrentList().size() > 0) {
                     intent.putParcelableArrayListExtra(PIC_LIST, (ArrayList<Uri>) myAdapter.getCurrentList());
-                }
+                }*/
                 startActivity(intent);
 //                requestMaintainCreate();
                 break;
@@ -154,15 +173,57 @@ public class RepairActivity extends BaseActivity {
                 Matisse.from(RepairActivity.this)
                         .choose(MimeType.ofImage())
                         .countable(true)
-                        .maxSelectable(3)
-//                        .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-//                        .gridExpectedSize(120)
+                        .maxSelectable(1)
                         .capture(true) //是否提供拍照功能
                         .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
                         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                         .thumbnailScale(0.85f)
                         .imageEngine(new PicassoEngine())
-                        .forResult(REQUEST_CODE_CHOOSE);
+                        .forResult(REQUEST_CODE_CHOOSE1);
+                break;
+
+            case R.id.r_btn_add_pic2:
+                Matisse.from(RepairActivity.this)
+                        .choose(MimeType.ofImage())
+                        .countable(true)
+                        .maxSelectable(1)
+                        .capture(true) //是否提供拍照功能
+                        .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                        .thumbnailScale(0.85f)
+                        .imageEngine(new PicassoEngine())
+                        .forResult(REQUEST_CODE_CHOOSE2);
+                break;
+
+            case R.id.r_btn_add_pic3:
+                Matisse.from(RepairActivity.this)
+                        .choose(MimeType.ofImage())
+                        .countable(true)
+                        .maxSelectable(1)
+                        .capture(true) //是否提供拍照功能
+                        .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                        .thumbnailScale(0.85f)
+                        .imageEngine(new PicassoEngine())
+                        .forResult(REQUEST_CODE_CHOOSE3);
+                break;
+
+            case R.id.r_btn_del1:
+                mSelected[0] = null;
+                r_btn_del1.setVisibility(View.INVISIBLE);
+                r_btn_add_pic.setImageResource(R.drawable.r_add_pic);
+                break;
+
+            case R.id.r_btn_del2:
+                mSelected[1] = null;
+                r_btn_del2.setVisibility(View.INVISIBLE);
+                r_btn_add_pic2.setImageResource(R.drawable.r_add_pic);
+                break;
+
+            case R.id.r_btn_del3:
+                mSelected[2] = null;
+                r_btn_del3.setVisibility(View.INVISIBLE);
+                r_btn_add_pic3.setImageResource(R.drawable.r_add_pic);
                 break;
 
         }
@@ -214,13 +275,35 @@ public class RepairActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+        if(requestCode == REQUEST_CODE_CHOOSE1 && resultCode == RESULT_OK) {
+            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
+                Uri uri = Matisse.obtainResult(data).get(0);
+                mSelected[0] = uri;;
+                Picasso.with(mContext).load(uri).into(r_btn_add_pic);
+                r_btn_del1.setVisibility(View.VISIBLE);
+            }
+        } else if(requestCode == REQUEST_CODE_CHOOSE2 && resultCode == RESULT_OK) {
+            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
+                Uri uri = Matisse.obtainResult(data).get(0);
+                mSelected[1] = uri;
+                Picasso.with(mContext).load(uri).into(r_btn_add_pic2);
+                 r_btn_del2.setVisibility(View.VISIBLE);
+            }
+        } else if(requestCode == REQUEST_CODE_CHOOSE3 && resultCode == RESULT_OK) {
+            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
+                Uri uri = Matisse.obtainResult(data).get(0);
+                mSelected[2] = uri;
+                Picasso.with(mContext).load(uri).into(r_btn_add_pic3);
+                r_btn_del3.setVisibility(View.VISIBLE);
+            }
+        }
+/*        if(requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
             mSelected = Matisse.obtainResult(data);
             if(mSelected != null && mSelected.size() > 0) {
                 myAdapter = new MyAdapter(mSelected);
                 r_pic_list.setAdapter(myAdapter);
             }
-        }
+        }*/
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
