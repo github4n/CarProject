@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                         View contentView = View.inflate(mContext, R.layout.layout_violation, null);
                         DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
                         int dialogWidth = (int) (dm.widthPixels * 0.8);
-                        int dialogHeight = (int) (dm.heightPixels * 0.3);
+                        int dialogHeight = (int) (dm.heightPixels * 0.35);
                         d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
                         contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
                             @Override

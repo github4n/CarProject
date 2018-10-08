@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.car;
 
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
 
 public class CarBrandSecondFragment extends Fragment {
 }

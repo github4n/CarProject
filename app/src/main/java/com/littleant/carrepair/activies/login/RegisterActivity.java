@@ -131,6 +131,10 @@ public class RegisterActivity extends BaseActivity {
                                 DataHelper.savePassword(mContext, password);
                                 RegisterActivity.this.setResult(ParamsConstant.REAPONSE_CODE_SUCCESS);
                                 RegisterActivity.this.finish();
+                            } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                                MHToast.showS(mContext, responseBean.getMsg());
+                            } else {
+                                MHToast.showS(mContext, R.string.register_fail);
                             }
                         } else {
                             MHToast.showS(mContext, R.string.request_fail);

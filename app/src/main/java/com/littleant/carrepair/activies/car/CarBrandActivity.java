@@ -1,11 +1,14 @@
 package com.littleant.carrepair.activies.car;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.fragment.MainFragment;
 import com.littleant.carrepair.request.bean.carbrand.CarBrandLetterList;
 import com.littleant.carrepair.request.bean.carbrand.CarBrandList;
 import com.littleant.carrepair.request.excute.user.car.CarBrandQueryCmd;
@@ -35,6 +38,12 @@ public class CarBrandActivity extends BaseActivity {
                     Log.i("response", command.getResponse());
                     CarBrandList carBrandList = ProjectUtil.getBaseResponseBean(command.getResponse(), CarBrandList.class);
                     CarBrandLetterList data = carBrandList.getData();
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.add(R.id.acb_fragment, CarBrandFirstFragment.newInstance(data), CarBrandFirstFragment.class.getSimpleName());
+                    transaction.commit();
+
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);
                 }

@@ -378,7 +378,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                     return;
                 }
                 LatLng myLatLng = new LatLng(myLatitude, myLongitude);
-                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 14f, 0, 0));
+                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 16f, 0, 0));
                 aMap.moveCamera(mCameraUpdate);
                 break;
         }

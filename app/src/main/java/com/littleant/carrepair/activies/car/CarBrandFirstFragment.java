@@ -1,6 +1,5 @@
 package com.littleant.carrepair.activies.car;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ import com.littleant.carrepair.request.bean.carbrand.CarTypeSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarBrandFirstFragment extends Fragment {
+public class CarBrandFirstFragment extends android.support.v4.app.Fragment {
     private static final String CARBRANDLIST = "CarBrandList";
     private ExpandableListView list;
     private CarBrandLetterList brandList;
