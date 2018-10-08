@@ -50,48 +50,58 @@ public class CarBrandFirstFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.layout_expandablelistview, container, false);
         list = view.findViewById(R.id.lelv_list);
         if(brandList != null) {
-            ArrayList<CarBrandLetterBean> carBrandLetterBeans = brandList.toArrayList();
-            int l = carBrandLetterBeans.size();
-            for(int i = 0; i < l; i++) {
-                CarBrandLetterBean letterBean = carBrandLetterBeans.get(i);
-                List<CarTypeSet> cartype_set = letterBean.getCartype_set();
-                for(int j = 0; j < cartype_set.size(); j++) {
-                    childString[i][j] = cartype_set.get(j).getName();
-                }
-            }
-            MyAdapter myAdapter = new MyAdapter(groupString, childString);
+            ArrayList<List<CarBrandLetterBean>> carBrandLetterBeans = brandList.toArrayList();
+//            int l = carBrandLetterBeans.size();
+//            for(int i = 0; i < l; i++) {
+//                List<CarBrandLetterBean> carBrandLetterBeans1 = carBrandLetterBeans.get(i);
+////                List<CarTypeSet> cartype_set = letterBean.getCartype_set();
+//                int size = carBrandLetterBeans1.size();
+//                if(size > 0) {
+//                    for (int j = 0; j < size; j++) {
+//                        childString[i][j] = carBrandLetterBeans1.get(j).getName();
+//                    }
+//                }
+//            }
+            MyAdapter myAdapter = new MyAdapter(carBrandLetterBeans);
+//            MyAdapter myAdapter = new MyAdapter(groupString, childString);
             list.setAdapter(myAdapter);
         }
         return view;
     }
 
     private class MyAdapter extends BaseExpandableListAdapter {
-        private String[] groups;
-        private String[][] childs;
+//        private String[] groups;
+//        private String[][] childs;
 
-        public MyAdapter(String[] groups, String[][] childs) {
-            this.groups = groups;
-            this.childs = childs;
+//        public MyAdapter(String[] groups, String[][] childs) {
+//            this.groups = groups;
+//            this.childs = childs;
+//        }
+
+        ArrayList<List<CarBrandLetterBean>> carBrandLetterBeans;
+
+        public MyAdapter(ArrayList<List<CarBrandLetterBean>> carBrandLetterBeans) {
+            this.carBrandLetterBeans = carBrandLetterBeans;
         }
 
         @Override
         public int getGroupCount() {
-            return groups.length;
+            return carBrandLetterBeans.size();
         }
 
         @Override
         public int getChildrenCount(int i) {
-            return childs[i].length;
+            return carBrandLetterBeans.get(i).size();
         }
 
         @Override
         public Object getGroup(int i) {
-            return groups[i];
+            return carBrandLetterBeans.get(i);
         }
 
         @Override
         public Object getChild(int i, int i1) {
-            return childs[i][i1];
+            return carBrandLetterBeans.get(i).get(i);
         }
 
         @Override
@@ -119,7 +129,7 @@ public class CarBrandFirstFragment extends android.support.v4.app.Fragment {
             } else {
                 groupViewHolder = (GroupViewHolder) convertView.getTag();
             }
-            groupViewHolder.mTextView.setText(groups[groupPosition]);
+            groupViewHolder.mTextView.setText(groupString[groupPosition]);
             return convertView;
         }
 
@@ -133,7 +143,7 @@ public class CarBrandFirstFragment extends android.support.v4.app.Fragment {
             } else {
                 childViewHolder = (ChildViewHolder) convertView.getTag();
             }
-            childViewHolder.mTextView.setText(childs[groupPosition][childPosition]);
+            childViewHolder.mTextView.setText(carBrandLetterBeans.get(groupPosition).get(childPosition).getName());
             return convertView;
         }
 

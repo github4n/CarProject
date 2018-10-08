@@ -2,6 +2,7 @@ package com.littleant.carrepair.request.bean.carbrand;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class CarBrandLetterList implements Serializable {
@@ -240,46 +241,72 @@ public class CarBrandLetterList implements Serializable {
         Z = z;
     }
 
-    public ArrayList<CarBrandLetterBean> getList() {
+    private ArrayList<List<CarBrandLetterBean>> list;
+    private LinkedHashMap<String, List<CarBrandLetterBean>> hashMap;
+
+    public ArrayList<List<CarBrandLetterBean>> toArrayList() {
+        if (list == null) {
+            list = new ArrayList<>();
+            list.add(A);
+            list.add(B);
+            list.add(C);
+            list.add(D);
+            list.add(E);
+            list.add(F);
+            list.add(G);
+            list.add(H);
+            list.add(I);
+            list.add(J);
+            list.add(K);
+            list.add(L);
+            list.add(M);
+            list.add(N);
+            list.add(O);
+            list.add(P);
+            list.add(Q);
+            list.add(R);
+            list.add(S);
+            list.add(T);
+            list.add(U);
+            list.add(V);
+            list.add(W);
+            list.add(X);
+            list.add(Y);
+            list.add(Z);
+        }
         return list;
     }
 
-    public void setList(ArrayList<CarBrandLetterBean> list) {
-        this.list = list;
+    public LinkedHashMap<String, List<CarBrandLetterBean>> toMap() {
+        if(hashMap == null) {
+            hashMap = new LinkedHashMap<String, List<CarBrandLetterBean>>();
+            hashMap.put("A", A);
+            hashMap.put("B", B);
+            hashMap.put("C", C);
+            hashMap.put("D", D);
+            hashMap.put("E", E);
+            hashMap.put("F", F);
+            hashMap.put("G", G);
+            hashMap.put("H", H);
+            hashMap.put("I", I);
+            hashMap.put("J", J);
+            hashMap.put("K", K);
+            hashMap.put("L", L);
+            hashMap.put("M", M);
+            hashMap.put("N", N);
+            hashMap.put("O", O);
+            hashMap.put("P", P);
+            hashMap.put("Q", Q);
+            hashMap.put("R", R);
+            hashMap.put("S", S);
+            hashMap.put("T", T);
+            hashMap.put("U", U);
+            hashMap.put("V", V);
+            hashMap.put("W", W);
+            hashMap.put("X", X);
+            hashMap.put("Y", Y);
+            hashMap.put("Z", Z);
+        }
+        return hashMap;
     }
-
-    private ArrayList<CarBrandLetterBean> list;
-
-//    public ArrayList<CarBrandLetterBean> toArrayList() {
-//        if (list == null) {
-//            list = new ArrayList<>();
-//            list.add(A);
-//            list.add(B);
-//            list.add(C);
-//            list.add(D);
-//            list.add(E);
-//            list.add(F);
-//            list.add(G);
-//            list.add(H);
-//            list.add(I);
-//            list.add(J);
-//            list.add(K);
-//            list.add(L);
-//            list.add(M);
-//            list.add(N);
-//            list.add(O);
-//            list.add(P);
-//            list.add(Q);
-//            list.add(R);
-//            list.add(S);
-//            list.add(T);
-//            list.add(U);
-//            list.add(V);
-//            list.add(W);
-//            list.add(X);
-//            list.add(Y);
-//            list.add(Z);
-//        }
-//        return list;
-//    }
 }
