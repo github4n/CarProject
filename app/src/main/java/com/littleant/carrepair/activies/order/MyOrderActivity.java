@@ -36,6 +36,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+/**
+ * 我的订单
+ */
 public class MyOrderActivity extends BaseActivity {
     public static final String SELECT_TYPE = "select_type";
     public static final String PAY_MONEY = "pay_money";
@@ -163,6 +166,10 @@ public class MyOrderActivity extends BaseActivity {
                 Picasso.with(mContext).load(Uri.parse(orderInfo.getOrder_pic_url())).into(holder.lmoi_img);
                 String holdText = "";
                 switch (orderInfo.getState()) {
+                    case 0: //等待接单
+                        holder.lmoi_btn_hold.setVisibility(View.GONE);
+                        break;
+
                     case 1:
                         holdText = "去付款";
                         holder.lmoi_money.setText("等待维修厂发布清算");

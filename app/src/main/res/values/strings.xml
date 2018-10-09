@@ -185,8 +185,8 @@
     <string name="text_total_money">总计：</string>
     <string name="text_sc_amount">&#160;&#160;%s&#160;&#160;</string>
     <string name="text_sc_delete">删除</string>
-    <string name="text_sc_increace">&#160;&#160;&#160;+&#160;&#160;&#160;</string>
-    <string name="text_sc_reduce">&#160;&#160;&#160;-&#160;&#160;&#160;</string>
+    <string name="text_sc_increace">+</string>
+    <string name="text_sc_reduce">-</string>
 
     <!---->
     <string name="text_shop">商城</string>
@@ -219,9 +219,9 @@
     <string name="text_maintain">预约保养</string>
     <string name="text_chose_gas">选择机油</string>
     <string name="text_gas_amount">机油用量：</string>
-    <string name="text_market_price">市场价格：</string>
+    <string name="text_market_price">价格：</string>
     <string name="text_time_price">工时费：</string>
-    <string name="text_filter">过滤格：</string>
+    <string name="text_filter">专用机油格：</string>
     <string name="text_select_car">请选择汽车</string>
 
     <!---->

@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 //                        mList.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
 //                        mList.setAdapter(new MyAdapter(data));
                         d.show();
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
                     }
                 }
             }

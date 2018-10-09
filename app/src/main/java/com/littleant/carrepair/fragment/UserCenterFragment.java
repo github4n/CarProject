@@ -38,7 +38,7 @@ public class UserCenterFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private RelativeLayout uc_rl_my_car, uc_rl_check_record, uc_rl_shop_order, uc_rl_address, uc_rl_repair_record, uc_rl_cs;
+    private RelativeLayout uc_rl_my_car, uc_rl_check_record, uc_rl_shop_order, uc_rl_address, uc_rl_cs;
     private ImageView iv_all_order, iv_wait_pay, iv_wait_service, iv_wait_rate;
     private TextView tv_user_name, tv_user_score;
     private CircleImageView iv_userImg;
@@ -102,8 +102,8 @@ public class UserCenterFragment extends BaseFragment {
         uc_rl_shop_order.setOnClickListener(this);
 
         //维修记录
-        uc_rl_repair_record = subView.findViewById(R.id.uc_rl_repair_record);
-        uc_rl_repair_record.setOnClickListener(this);
+//        uc_rl_repair_record = subView.findViewById(R.id.uc_rl_repair_record);
+//        uc_rl_repair_record.setOnClickListener(this);
 
         //收货地址
         uc_rl_address = subView.findViewById(R.id.uc_rl_address);
@@ -188,10 +188,10 @@ public class UserCenterFragment extends BaseFragment {
                 getActivity().startActivity(intent);
                 break;
 
-            case R.id.uc_rl_repair_record://维修记录
-                intent = new Intent(getContext(), RepairRecordActivity.class);
-                getActivity().startActivity(intent);
-                break;
+//            case R.id.uc_rl_repair_record://维修记录
+//                intent = new Intent(getContext(), RepairRecordActivity.class);
+//                getActivity().startActivity(intent);
+//                break;
 
             case R.id.uc_rl_address://收货地址
                 intent = new Intent(getContext(), MyAddressActivity.class);

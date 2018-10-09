@@ -506,67 +506,67 @@
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
         app:layout_constraintTop_toBottomOf="@id/uc_iv_address" />
 
-    <ImageView
-        android:id="@+id/uc_iv_repair_record"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@id/uc_guideline8"
-        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
-        app:layout_constraintTop_toBottomOf="@id/uc_line5"
-        app:srcCompat="@drawable/uc_record" />
+    <!--<ImageView-->
+        <!--android:id="@+id/uc_iv_repair_record"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--app:layout_constraintDimensionRatio="1:1"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/uc_guideline8"-->
+        <!--app:layout_constraintStart_toStartOf="@id/uc_guideline6"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/uc_line5"-->
+        <!--app:srcCompat="@drawable/uc_record" />-->
 
-    <RelativeLayout
-        android:id="@+id/uc_rl_repair_record"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/uc_iv_repair_record"
-        app:layout_constraintEnd_toStartOf="@id/uc_guideline7"
-        app:layout_constraintStart_toStartOf="@id/uc_guideline8"
-        app:layout_constraintTop_toTopOf="@id/uc_iv_repair_record">
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/uc_rl_repair_record"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/uc_iv_repair_record"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/uc_guideline7"-->
+        <!--app:layout_constraintStart_toStartOf="@id/uc_guideline8"-->
+        <!--app:layout_constraintTop_toTopOf="@id/uc_iv_repair_record">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="@string/text_user_center_repaire_record"
-            android:textSize="14sp"
-            android:textColor="@color/color_uc_text" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="@string/text_user_center_repaire_record"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textColor="@color/color_uc_text" />-->
 
-        <ImageView
-            android:id="@+id/iv_arrow5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/uc_arrow" />
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_arrow5"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:src="@drawable/uc_arrow" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@id/iv_arrow5"
-            android:layout_toStartOf="@id/iv_arrow5"
-            android:gravity="center_vertical"
-            android:textColor="@color/color_uc_text" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_toLeftOf="@id/iv_arrow5"-->
+            <!--android:layout_toStartOf="@id/iv_arrow5"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:textColor="@color/color_uc_text" />-->
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
-    <ImageView
-        android:id="@+id/uc_line6"
-        android:layout_width="0dp"
-        android:layout_height="1px"
-        android:layout_marginTop="8dp"
-        android:background="@color/color_sub_line"
-        app:layout_constraintEnd_toEndOf="@id/uc_guideline7"
-        app:layout_constraintStart_toStartOf="@id/uc_guideline6"
-        app:layout_constraintTop_toBottomOf="@id/uc_iv_repair_record" />
+    <!--<ImageView-->
+        <!--android:id="@+id/uc_line6"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="1px"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="@color/color_sub_line"-->
+        <!--app:layout_constraintEnd_toEndOf="@id/uc_guideline7"-->
+        <!--app:layout_constraintStart_toStartOf="@id/uc_guideline6"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/uc_iv_repair_record" />-->
 
     <ImageView
         android:id="@+id/uc_iv_service"
@@ -576,7 +576,7 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/uc_guideline8"
         app:layout_constraintStart_toStartOf="@id/uc_guideline6"
-        app:layout_constraintTop_toBottomOf="@id/uc_line6"
+        app:layout_constraintTop_toBottomOf="@id/uc_line5"
         app:srcCompat="@drawable/uc_service" />
 
     <RelativeLayout

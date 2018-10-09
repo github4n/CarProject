@@ -27,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="￥20.00"
         android:textColor="@color/color_text_shop_price"
         app:layout_constraintBottom_toBottomOf="@id/bmei_tv_time_price"
         app:layout_constraintEnd_toEndOf="parent"

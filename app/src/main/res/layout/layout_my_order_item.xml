@@ -173,8 +173,10 @@
             android:id="@+id/lmoi_btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/btn_cycrect_selector"
             android:clickable="true"
             android:focusable="true"
@@ -184,8 +186,9 @@
             android:paddingTop="5dp"
             android:text="@string/btn_delete_order"
             android:textColor="@drawable/btn_text_color_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/lmoi_btn_hold"
-            app:layout_constraintTop_toTopOf="@id/lmoi_btn_hold" />
+            app:layout_constraintTop_toBottomOf="@id/lmoi_line1" />
 
     </android.support.constraint.ConstraintLayout>
 
