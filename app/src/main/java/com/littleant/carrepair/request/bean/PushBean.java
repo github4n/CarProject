@@ -15,6 +15,27 @@ public class PushBean extends BaseResponseBean {
     }
 
     public class PushData implements Serializable {
+        private String type = "";
+        private PushInfo data;
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public PushInfo getData() {
+            return data;
+        }
+
+        public void setData(PushInfo data) {
+            this.data = data;
+        }
+    }
+
+    public class PushInfo implements Serializable {
         private int id;
         private boolean state;
         private String msg = "";

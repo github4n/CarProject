@@ -146,6 +146,11 @@ public class MyAddressActivity extends BaseActivity {
                         MyAddressActivity.this.startActivityForResult(intent, REQUEST_CODE_MODIFY_ADDRESS);
                     }
                 });
+                if(addressInfo.isIs_default()) {
+                    holder.lai_default.setVisibility(View.VISIBLE);
+                } else {
+                    holder.lai_default.setVisibility(View.INVISIBLE);
+                }
             }
         }
 
@@ -155,7 +160,7 @@ public class MyAddressActivity extends BaseActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            TextView lai_edit, lai_name, lai_phone, lai_address;
+            TextView lai_edit, lai_name, lai_phone, lai_address, lai_default;
 
             ViewHolder(View itemView) {
                 super(itemView);
@@ -163,6 +168,7 @@ public class MyAddressActivity extends BaseActivity {
                 lai_name = itemView.findViewById(R.id.lai_name);
                 lai_phone = itemView.findViewById(R.id.lai_phone);
                 lai_address = itemView.findViewById(R.id.lai_address);
+                lai_default = itemView.findViewById(R.id.lai_default);
             }
 
         }

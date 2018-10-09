@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activies.FirstLaunchActivity">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/afl_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.85"
+        android:orientation="horizontal" />
+
     <com.youth.banner.Banner
         android:id="@+id/afl_banner"
         android:layout_width="0dp"
@@ -14,5 +21,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/afl_auth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_blue"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:text="@string/text_launch_entry"
+        android:textSize="14sp"
+        android:textColor="@color/color_main"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/afl_guideline"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -223,10 +223,10 @@ public class ShoppingCarActivity extends BaseActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                         if(b) {
-                            selectProductIdSet.add(shoppingCarItemBean.getProduct().getId());
+                            selectProductIdSet.add(shoppingCarItemBean.getId());
                             price += shoppingCarItemBean.getProduct().getPrice() * shoppingCarItemBean.getAmount();
                         } else {
-                            selectProductIdSet.remove(shoppingCarItemBean.getProduct().getId());
+                            selectProductIdSet.remove(shoppingCarItemBean.getId());
                             price -= shoppingCarItemBean.getProduct().getPrice() * shoppingCarItemBean.getAmount();
                             sc_cb_select_all.setChecked(false);
                         }

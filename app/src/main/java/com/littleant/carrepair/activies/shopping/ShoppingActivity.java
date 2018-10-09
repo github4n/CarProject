@@ -67,6 +67,7 @@ public class ShoppingActivity extends BaseActivity {
     private int p_id = 0;
     protected PopupWindow popupWindow;
     private ListView list1, list2;
+    public static final String PRODUCT_INFO = "product_info";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -285,6 +286,14 @@ public class ShoppingActivity extends BaseActivity {
                     @Override
                     public void onClick(View view) {
                         requestAddProduct(productBean.getId());
+                    }
+                });
+                holder.si_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, ShoppingItemDetailActivity.class);
+                        intent.putExtra(PRODUCT_INFO, productBean);
+                        startActivity(intent);
                     }
                 });
             }

@@ -276,7 +276,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 myLatitude = location.getLatitude();
                 myLongitude = location.getLongitude();
                 LatLng myLatLng = new LatLng(myLatitude, myLongitude);
-                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 14f, 0, 0));
+                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 17f, 0, 0));
                 aMap.moveCamera(mCameraUpdate);
                 requestGarageList();
             } else { //只刷新当前位置
@@ -378,7 +378,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                     return;
                 }
                 LatLng myLatLng = new LatLng(myLatitude, myLongitude);
-                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 16f, 0, 0));
+                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 17f, 0, 0));
                 aMap.moveCamera(mCameraUpdate);
                 break;
         }

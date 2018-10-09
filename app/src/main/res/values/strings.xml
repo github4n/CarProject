@@ -7,6 +7,7 @@
 
     <!--启动页-->
     <string name="splash_des">开启汽车服务新体验</string>
+    <string name="text_launch_entry">立即体验</string>
 
     <!--登入页-->
     <string name="login_login">登录</string>

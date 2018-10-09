@@ -216,8 +216,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/PushDialogTheme" />
         <activity android:name=".activies.car.CarBrandActivity" />
-        <activity android:name=".activies.FirstLaunchActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activies.FirstLaunchActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activies.shopping.ShoppingItemDetailActivity"></activity>
     </application>
 
 </manifest>

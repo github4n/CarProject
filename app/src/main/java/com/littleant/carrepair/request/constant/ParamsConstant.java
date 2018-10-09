@@ -9,12 +9,13 @@ public class ParamsConstant {
     public static final String SYSTEM = "system";
     public static final String VERSION = "version";
     public static final String SYSTEM_ANDROID = "android";
-    public static final String API_VERSION = "1.0.0";
+    public static final String API_VERSION = "1.0001";
     public static final String PHONE = "phone";
     public static final String NAME = "name";
     public static final String PIC = "pic";
     public static final String IS_DEFAULT = "is_default";
     public static final String TYPE = "type";
+    public static final String APP_TYPE = "app_type";
 //    public static final String REAPONSE_CODE_SUCCESS = "100";
 //    public static final String REAPONSE_CODE_FAIL = "200";
 //    public static final String REAPONSE_CODE_AUTH_FAIL = "300";

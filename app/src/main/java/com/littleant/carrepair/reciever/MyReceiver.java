@@ -1,27 +1,23 @@
 package com.littleant.carrepair.reciever;
 
-import android.app.Dialog;
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.constraint.Constraints;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.view.WindowManager;
-import android.webkit.WebView;
+import android.util.Log;
 
-import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.PushDialogActivity;
-import com.littleant.carrepair.activies.SplashActivity;
-import com.littleant.carrepair.activies.repair.RepairRecordActivity;
 import com.littleant.carrepair.utils.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Iterator;
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -41,12 +37,10 @@ public class MyReceiver extends BroadcastReceiver {
 			Bundle bundle = intent.getExtras();
 			Logger.d(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
 
-			String msg = bundle.getString(JPushInterface.EXTRA_ALERT);
-			if(!TextUtils.isEmpty(msg)) {
-//			    bundle.putBoolean("is_success", true);
+			String msg = bundle.getString(JPushInterface.EXTRA_EXTRA);
+			if(!isAppIsInBackground(context) && !TextUtils.isEmpty(msg)) {
                 Intent i = new Intent(context, PushDialogActivity.class);
                 i.putExtras(bundle);
-                //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(i);
             }
@@ -93,6 +87,9 @@ public class MyReceiver extends BroadcastReceiver {
 
 	// 打印所有的 intent extra 数据
 	private static String printBundle(Bundle bundle) {
+		if(bundle == null) {
+			return "";
+		}
 		StringBuilder sb = new StringBuilder();
 		for (String key : bundle.keySet()) {
 			if (key.equals(JPushInterface.EXTRA_NOTIFICATION_ID)) {
@@ -147,4 +144,30 @@ public class MyReceiver extends BroadcastReceiver {
 //			LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
 //		}
 //	}
+
+	private boolean isAppIsInBackground(Context context) {
+		boolean isInBackground = true;
+		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
+			List<ActivityManager.RunningAppProcessInfo> runningProcesses = am.getRunningAppProcesses();
+			for (ActivityManager.RunningAppProcessInfo processInfo : runningProcesses) {
+				//前台程序
+				if (processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+					for (String activeProcess : processInfo.pkgList) {
+						if (activeProcess.equals(context.getPackageName())) {
+							isInBackground = false;
+						}
+					}
+				}
+			}
+		} else {
+			List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+			ComponentName componentInfo = taskInfo.get(0).topActivity;
+			if (componentInfo.getPackageName().equals(context.getPackageName())) {
+				isInBackground = false;
+			}
+		}
+
+		return isInBackground;
+	}
 }

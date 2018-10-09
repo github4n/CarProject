@@ -14,14 +14,6 @@ import cn.jpush.android.api.JPushInterface;
 
 public class PushDialogActivity extends AppCompatActivity {
 
-    /*{
-        'data':{
-        'id':0,
-                'state':false,
-                'msg':'失败'
-    }
-    }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +22,10 @@ public class PushDialogActivity extends AppCompatActivity {
         int id = 0;
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            String json = extras.getString(JPushInterface.EXTRA_ALERT, "");
+            String json = extras.getString(JPushInterface.EXTRA_EXTRA, "");
             PushBean pushBean = ProjectUtil.getBaseResponseBean(json, PushBean.class);
-            id = pushBean.getData().getId();
-            isSuccess = pushBean.getData().isState();
+            id = pushBean.getData().getData().getId();
+            isSuccess = pushBean.getData().getData().isState();
         } else {
             finish();
         }
@@ -52,5 +44,8 @@ public class PushDialogActivity extends AppCompatActivity {
         });
 
         dialogFragment.show(getFragmentManager(), PushDialogActivity.class.getSimpleName());
+
+
     }
+
 }

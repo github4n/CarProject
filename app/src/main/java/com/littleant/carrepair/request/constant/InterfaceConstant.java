@@ -189,4 +189,8 @@ public class InterfaceConstant {
      * get:年检首页图片信息<br>
      */
     public static final String SYSTEM_USERAGREEMENT = "api/system/useragreement/";
+    /**
+     * get:封面图片信息<br>
+     */
+    public static final String SYSTEM_COVER = "api/system/cover/";
 }

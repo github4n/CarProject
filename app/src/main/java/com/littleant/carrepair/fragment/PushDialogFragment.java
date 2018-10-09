@@ -42,6 +42,7 @@ public class PushDialogFragment extends DialogFragment {
         int dialogWidth = (int) (dm.widthPixels * 0.8);
         int dialogHeight = (int) (dm.heightPixels * 0.3);
         d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+        d.setCancelable(false);
         contentView.findViewById(R.id.lbs_btn_confrm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +65,7 @@ public class PushDialogFragment extends DialogFragment {
         int dialogWidth = (int) (dm.widthPixels * 0.8);
         int dialogHeight = (int) (dm.heightPixels * 0.3);
         d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+        d.setCancelable(false);
         contentView.findViewById(R.id.lbf_btn_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
