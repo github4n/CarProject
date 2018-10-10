@@ -192,6 +192,11 @@ public class MyOrderActivity extends BaseActivity {
                         holder.lmoi_tv_state.setText("服务中");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_service_ing));
                         holder.lmoi_btn_delete.setVisibility(View.INVISIBLE);
+                        if(!orderInfo.isIs_maintain() || !orderInfo.isIs_upkeep()) {
+                            holder.lmoi_btn_hold.setVisibility(View.GONE);
+                        } else {
+                            holder.lmoi_btn_hold.setVisibility(View.VISIBLE);
+                        }
                         break;
 
                     case 4:

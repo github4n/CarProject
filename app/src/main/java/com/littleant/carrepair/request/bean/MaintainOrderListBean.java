@@ -27,6 +27,9 @@ public class MaintainOrderListBean extends BaseResponseBean {
         private String type = "";
         private String subscribe_time = "";
         private boolean is_comment;
+        private boolean is_setting;
+        private boolean is_maintain;
+        private boolean is_upkeep;
 
         @Override
         public String toString() {
@@ -39,6 +42,9 @@ public class MaintainOrderListBean extends BaseResponseBean {
                     ", type='" + type + '\'' +
                     ", subscribe_time='" + subscribe_time + '\'' +
                     ", is_comment=" + is_comment +
+                    ", is_setting=" + is_setting +
+                    ", is_maintain=" + is_maintain +
+                    ", is_upkeep=" + is_upkeep +
                     '}';
         }
 
@@ -105,5 +111,30 @@ public class MaintainOrderListBean extends BaseResponseBean {
         public void setIs_comment(boolean is_comment) {
             this.is_comment = is_comment;
         }
+
+        public boolean isIs_setting() {
+            return is_setting;
+        }
+
+        public void setIs_setting(boolean is_setting) {
+            this.is_setting = is_setting;
+        }
+
+        public boolean isIs_maintain() {
+            return is_maintain;
+        }
+
+        public void setIs_maintain(boolean is_maintain) {
+            this.is_maintain = is_maintain;
+        }
+
+        public boolean isIs_upkeep() {
+            return is_upkeep;
+        }
+
+        public void setIs_upkeep(boolean is_upkeep) {
+            this.is_upkeep = is_upkeep;
+        }
+
     }
 }

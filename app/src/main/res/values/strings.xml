@@ -296,6 +296,7 @@
     <string name="text_fee_sum">费用统计</string>
     <string name="text_fee_total">总计费用：</string>
     <string name="text_confirm_pay">确认并支付</string>
+    <string name="text_know_confirm">确定</string>
     <!--填写信息页-->
     <string name="text_fill_info">填写信息</string>
     <string name="text_check_contact_name">联系人</string>

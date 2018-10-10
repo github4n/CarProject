@@ -11,13 +11,16 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -48,7 +51,8 @@ import java.util.List;
 
 public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
 
-    private ConstraintLayout acf_package_layout;
+//    private ConstraintLayout acf_package_layout;
+    private GridView acf_package_layout;
     //两个套餐
     private RadioButton acf_btn_package_a, acf_btn_package_b;
     //点击跳转或选择的参数
@@ -69,6 +73,8 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
     //四个价钱
     private TextView acf_et_fee_base, acf_et_fee_package, acf_et_fee_check, acf_et_fee_total;
     private List<ComboBean> comboList;
+
+    private float base_price = 200, combo_price, survey_price = 100, total_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +106,9 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         acf_tv_package_detail = findViewById(R.id.acf_tv_package_detail);
 
 
-        acf_tv_price1 = findViewById(R.id.acf_tv_price1);
-        acf_tv_price2 = findViewById(R.id.acf_tv_price2);
-        acf_tv_price3 = findViewById(R.id.acf_tv_price3);
+//        acf_tv_price1 = findViewById(R.id.acf_tv_price1);
+//        acf_tv_price2 = findViewById(R.id.acf_tv_price2);
+//        acf_tv_price3 = findViewById(R.id.acf_tv_price3);
 
         //输入框
         acf_et_contact_name = findViewById(R.id.acf_et_contact_name);
@@ -112,51 +118,51 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         acf_et_driver_plate = findViewById(R.id.acf_et_driver_plate);
 
         //checkbox
-        acf_rb_light = findViewById(R.id.acf_rb_light);
-        acf_rb_light.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
-                if(b) {
-                    price += 200;
-                } else {
-                    price -= 200;
-                }
-                acf_et_fee_package.setText("￥" + price);
-                int totlal = 200 + price;
-                acf_et_fee_total.setText("￥" + totlal);
-            }
-        });
-        acf_rb_gas = findViewById(R.id.acf_rb_gas);
-        acf_rb_gas.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
-                if(b) {
-                    price += 200;
-                } else {
-                    price -= 200;
-                }
-                acf_et_fee_package.setText("￥" + price);
-                int totlal = 200 + price;
-                acf_et_fee_total.setText("￥" + totlal);
-            }
-        });
-        acf_rb_sight = findViewById(R.id.acf_rb_sight);
-        acf_rb_sight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
-                if(b) {
-                    price += 200;
-                } else {
-                    price -= 200;
-                }
-                acf_et_fee_package.setText("￥" + price);
-                int totlal = 200 + price;
-                acf_et_fee_total.setText("￥" + totlal);
-            }
-        });
+//        acf_rb_light = findViewById(R.id.acf_rb_light);
+//        acf_rb_light.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
+//                if(b) {
+//                    price += 200;
+//                } else {
+//                    price -= 200;
+//                }
+//                acf_et_fee_package.setText("￥" + price);
+//                int totlal = 200 + price;
+//                acf_et_fee_total.setText("￥" + totlal);
+//            }
+//        });
+//        acf_rb_gas = findViewById(R.id.acf_rb_gas);
+//        acf_rb_gas.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
+//                if(b) {
+//                    price += 200;
+//                } else {
+//                    price -= 200;
+//                }
+//                acf_et_fee_package.setText("￥" + price);
+//                int totlal = 200 + price;
+//                acf_et_fee_total.setText("￥" + totlal);
+//            }
+//        });
+//        acf_rb_sight = findViewById(R.id.acf_rb_sight);
+//        acf_rb_sight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                int price = Integer.parseInt(acf_et_fee_package.getText().toString().split("￥")[1]);
+//                if(b) {
+//                    price += 200;
+//                } else {
+//                    price -= 200;
+//                }
+//                acf_et_fee_package.setText("￥" + price);
+//                int totlal = 200 + price;
+//                acf_et_fee_total.setText("￥" + totlal);
+//            }
+//        });
 
         //价钱
         acf_et_fee_base = findViewById(R.id.acf_et_fee_base);
@@ -175,12 +181,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                     acf_package_layout.setVisibility(View.GONE);
                     acf_package_detail.setVisibility(View.VISIBLE);
 
-                    //价钱
-                    acf_et_fee_base.setText("￥200");
-                    acf_et_fee_package.setText("￥0");
-                    acf_et_fee_check.setText("￥0");
-                    acf_et_fee_total.setText("￥200");
-
+                    setPrice();
                 }
             }
         });
@@ -207,6 +208,8 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
         acf_et_pick_location = findViewById(R.id.acf_et_pick_location);
         acf_et_pick_location.setOnClickListener(this);
+
+        lacf_tv_check_know.setOnClickListener(this);
     }
 
     private Dialog setDialog(Activity activity, View contentView) {
@@ -291,6 +294,13 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 });
                 break;
 
+            case R.id.lacf_tv_check_know:
+                if (TextUtils.isEmpty(knowUrl)) {
+                    requestKnowUrl();
+                } else {
+                    showKnowDialog();
+                }
+                break;
         }
     }
 
@@ -347,16 +357,94 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
             } else if (id == 2) {
                 acf_btn_package_b.setText(comboBean.getName());
                 List<ComboItemSet> comboitem_set = comboBean.getComboitem_set();
-                int itemSize = comboitem_set.size();
-                acf_rb_light.setText(comboitem_set.get(0).getName());
-                acf_tv_price1.setText(DataHelper.displayPrice(this, comboitem_set.get(0).getPrice()));
+                if(comboitem_set != null  && comboitem_set.size() > 0) {
+                    MyComboAdapter adapter = new MyComboAdapter(comboitem_set);
+                    acf_package_layout.setAdapter(adapter);
+                }
+//                int itemSize = comboitem_set.size();
+//                acf_rb_light.setText(comboitem_set.get(0).getName());
+//                acf_tv_price1.setText(DataHelper.displayPrice(this, comboitem_set.get(0).getPrice()));
+//
+//                acf_rb_gas.setText(comboitem_set.get(1).getName());
+//                acf_tv_price2.setText(DataHelper.displayPrice(this, comboitem_set.get(1).getPrice()));
+//
+//                acf_rb_sight.setText(comboitem_set.get(2).getName());
+//                acf_tv_price3.setText(DataHelper.displayPrice(this, comboitem_set.get(2).getPrice()));
 
-                acf_rb_gas.setText(comboitem_set.get(1).getName());
-                acf_tv_price2.setText(DataHelper.displayPrice(this, comboitem_set.get(1).getPrice()));
+            }
+        }
+    }
 
-                acf_rb_sight.setText(comboitem_set.get(2).getName());
-                acf_tv_price3.setText(DataHelper.displayPrice(this, comboitem_set.get(2).getPrice()));
+    private void setPrice() {
+        //价钱
+        acf_et_fee_base.setText("￥" + base_price);
+        acf_et_fee_package.setText("￥" + combo_price);
+        acf_et_fee_check.setText("￥" + survey_price);
+        total_price = base_price + combo_price + survey_price;
+        acf_et_fee_total.setText("￥" + total_price);
+    }
 
+    private class MyComboAdapter extends BaseAdapter {
+        private List<ComboItemSet> list;
+
+        public MyComboAdapter(List<ComboItemSet> list) {
+            this.list = list;
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return list.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View convertView, ViewGroup viewGroup) {
+            ViewHolder holder;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.layout_combo_item, null);
+                holder = new ViewHolder(convertView);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            final ComboItemSet comboItemSet = list.get(i);
+            if(comboItemSet != null) {
+                holder.lci_cb_light.setText(comboItemSet.getName());
+                holder.lci_cb_light.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        if(b) {
+                            combo_price += comboItemSet.getPrice();
+                        } else {
+                            combo_price -= comboItemSet.getPrice();
+                        }
+                        setPrice();
+                    }
+                });
+                holder.lci_tv_price1.setText("￥" + comboItemSet.getPrice() + "");
+            }
+
+            return convertView;
+        }
+
+        class ViewHolder {
+            //商品名、价格
+            private TextView lci_tv_price1;
+
+            private CheckBox lci_cb_light;
+
+            public ViewHolder(View convertView) {
+                lci_tv_price1 = convertView.findViewById(R.id.lci_tv_price1);
+                lci_cb_light = convertView.findViewById(R.id.lci_cb_light);
             }
         }
     }

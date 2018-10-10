@@ -26,6 +26,7 @@ import com.mh.core.tools.MHToast;
 import java.util.List;
 
 import static com.littleant.carrepair.activies.address.AddAddressActivity.RESULT_CODE_SUCCESS;
+import static com.littleant.carrepair.activies.order.OrderPageActivity.PICK_ADDRESS;
 
 /**
  * 我的地址
@@ -37,10 +38,16 @@ public class MyAddressActivity extends BaseActivity {
     private RecyclerView mList;
     private List<MyAddressListBean.AddressInfo> data;
     public static final String USER_ADDRESS_BEAN = "user_address_bean";
+    private boolean isPick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            isPick = extras.getBoolean(PICK_ADDRESS);
+        }
 
         requestAddressList();
     }
@@ -131,7 +138,7 @@ public class MyAddressActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(final MyAdapter.ViewHolder holder, final int position) {
-            MyAddressListBean.AddressInfo addressInfo = list.get(position);
+            final MyAddressListBean.AddressInfo addressInfo = list.get(position);
             if(addressInfo != null) {
                 holder.lai_address.setText(addressInfo.getAddress());
                 holder.lai_name.setText(addressInfo.getName());
@@ -151,6 +158,17 @@ public class MyAddressActivity extends BaseActivity {
                 } else {
                     holder.lai_default.setVisibility(View.INVISIBLE);
                 }
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(isPick) {
+                            Intent intent = new Intent();
+                            intent.putExtra(USER_ADDRESS_BEAN, addressInfo);
+                            MyAddressActivity.this.setResult(RESULT_OK, intent);
+                            MyAddressActivity.this.finish();
+                        }
+                    }
+                });
             }
         }
 

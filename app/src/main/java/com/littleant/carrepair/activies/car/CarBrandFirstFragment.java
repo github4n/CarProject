@@ -65,6 +65,9 @@ public class CarBrandFirstFragment extends android.support.v4.app.Fragment {
             MyAdapter myAdapter = new MyAdapter(carBrandLetterBeans);
 //            MyAdapter myAdapter = new MyAdapter(groupString, childString);
             list.setAdapter(myAdapter);
+            for(int i = 0; i < myAdapter.getGroupCount(); i++){
+                list.expandGroup(i);
+            }
         }
         return view;
     }

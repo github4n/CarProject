@@ -94,6 +94,8 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
         aocf_et_driver_name = findViewById(R.id.aocf_et_driver_name);
         aocf_et_driver_brand = findViewById(R.id.aocf_et_driver_brand);
         aocf_et_driver_plate = findViewById(R.id.aocf_et_driver_plate);
+
+        locf_tv_check_know.setOnClickListener(this);
     }
 
     @Override
@@ -147,6 +149,13 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                 });
                 break;
 
+            case R.id.locf_tv_check_know:
+                if (TextUtils.isEmpty(knowUrl)) {
+                    requestKnowUrl();
+                } else {
+                    showKnowDialog();
+                }
+                break;
         }
     }
 

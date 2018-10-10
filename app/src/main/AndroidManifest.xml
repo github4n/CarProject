@@ -122,6 +122,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.annualcheck.AnnualCheckFillInfoActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.annualcheck.PickCarActivity"
@@ -164,6 +165,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.annualcheck.OwnCheckFillInfoActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.annualcheck.OwnStartCheckActivity"

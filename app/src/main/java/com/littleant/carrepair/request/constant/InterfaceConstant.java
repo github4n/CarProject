@@ -175,6 +175,10 @@ public class InterfaceConstant {
      * post:代驾年检订单操作信息-取消、查询费用、支付、失败支付、确认还车
      */
     public static final String SURVEY_SURVEY_BEHALFMETHOD = "api/survey/survey_behalfmethod/";
+    /**
+     * post:年检须知
+     */
+    public static final String SURVEY_SURVEY_INFO = "api/survey/survey_info/";
 
     //系统部分
     /**

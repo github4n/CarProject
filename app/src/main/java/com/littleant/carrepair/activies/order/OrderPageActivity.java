@@ -16,7 +16,11 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.address.MyAddressActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
+import com.littleant.carrepair.request.bean.MyAddressListBean;
+
+import static com.littleant.carrepair.activies.address.MyAddressActivity.USER_ADDRESS_BEAN;
 
 /**
  * 确认订单
@@ -26,21 +30,37 @@ public class OrderPageActivity extends BaseActivity {
     private RecyclerView mList;
     private Button mSubmit;
     private TextView op_tv_total_money, btn_add_receive_address;
+    private TextView aop_address_name,aop_address_phone, aop_address;
+    private View aop_cl;
+    public static final String PICK_ADDRESS = "pic_address";
+    private static final int REQUEST_ADDRESS = 10;
+    private MyAddressListBean.AddressInfo addressInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+
         mList = findViewById(R.id.op_list);
         mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mList.setAdapter(new MyAdapter());
 
         op_tv_total_money = findViewById(R.id.op_tv_total_money);
         btn_add_receive_address = findViewById(R.id.btn_add_receive_address);
 
-
         mSubmit = findViewById(R.id.op_submit);
         mSubmit.setOnClickListener(this);
+
+        aop_address_name = findViewById(R.id.aop_address_name);
+        aop_address_phone = findViewById(R.id.aop_address_phone);
+        aop_address = findViewById(R.id.aop_address);
+        aop_cl = findViewById(R.id.aop_cl);
+        aop_cl.setOnClickListener(this);
     }
 
     @Override
@@ -57,14 +77,29 @@ public class OrderPageActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.op_submit:
-                Intent intent = new Intent(OrderPageActivity.this, PaymentActivity.class);
-                OrderPageActivity.this.startActivity(intent);
+                    Intent intent = new Intent(OrderPageActivity.this, PaymentActivity.class);
+                    OrderPageActivity.this.startActivity(intent);
                 break;
 
-                case R.id.btn_add_receive_address:
-
+                case R.id.aop_cl:
+                    Intent intent2 = new Intent(OrderPageActivity.this, MyAddressActivity.class);
+                    intent2.putExtra(PICK_ADDRESS, true);
+                    OrderPageActivity.this.startActivityForResult(intent2, REQUEST_ADDRESS);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_ADDRESS && resultCode == RESULT_OK) {
+            btn_add_receive_address.setVisibility(View.INVISIBLE);
+            addressInfo = (MyAddressListBean.AddressInfo) data.getSerializableExtra(USER_ADDRESS_BEAN);
+            aop_address_name.setText(addressInfo.getName());
+            aop_address_phone.setText(addressInfo.getPhone());
+            aop_address.setText(addressInfo.getAddress());
+        }
+
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {

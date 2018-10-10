@@ -37,6 +37,56 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/aop_cl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/op_guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include">
+
+        <TextView
+            android:id="@+id/aop_address_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/color_uc_text"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/aop_address_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/color_sub_line"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/aop_address_name"
+            app:layout_constraintStart_toEndOf="@id/aop_address_name"
+            app:layout_constraintTop_toTopOf="@id/aop_address_name" />
+
+        <TextView
+            android:id="@+id/aop_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:textColor="@color/color_insurance_text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/aop_address_name"
+            app:layout_constraintTop_toBottomOf="@id/aop_address_name" />
+
+    </android.support.constraint.ConstraintLayout>
+
     <TextView
         android:id="@+id/btn_add_receive_address"
         android:layout_width="wrap_content"
