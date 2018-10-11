@@ -20,8 +20,8 @@ import com.mh.core.tools.MHToast;
 
 public class CarBrandActivity extends BaseActivity {
 
-    public static final String BRAND_NAME = "brand_name";
-    public static final String BRAND_CODE = "brand_code";
+//    public static final String BRAND_NAME = "brand_name";
+//    public static final String BRAND_CODE = "brand_code";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

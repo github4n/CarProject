@@ -30,6 +30,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.MyCarListBean;
+import com.littleant.carrepair.request.bean.carbrand.CarStyleSet;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.car.CarAddCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -52,8 +53,7 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.io.IOException;
 
-import static com.littleant.carrepair.activies.car.CarBrandActivity.BRAND_CODE;
-import static com.littleant.carrepair.activies.car.CarBrandActivity.BRAND_NAME;
+import static com.littleant.carrepair.activies.car.CarBrandThirdFragment.CAR_STYLE_SET;
 import static com.littleant.carrepair.activies.car.MyCarActivity.CAR_INFO;
 
 /**
@@ -73,6 +73,7 @@ public class AddCarActivity extends BaseActivity {
     private CheckBox aac_cb_default;
     private String hpzl = "";
     private String city_code = "";
+    private CarStyleSet carStyleSet;
 
     private MyCarListBean.CarInfo carInfo;
 
@@ -249,7 +250,7 @@ public class AddCarActivity extends BaseActivity {
         classno = aac_et_frame.getText().toString();
 //        mile = aac_et_mile.getText().toString();
         if(TextUtils.isEmpty(code) || TextUtils.isEmpty(engine) || TextUtils.isEmpty(city_code)
-                || TextUtils.isEmpty(classno) || TextUtils.isEmpty(hpzl)) {
+                || TextUtils.isEmpty(classno) || TextUtils.isEmpty(hpzl) || car_style == 0) {
             MHToast.showS(mContext, R.string.need_finish_info);
             return;
         }
@@ -293,9 +294,11 @@ public class AddCarActivity extends BaseActivity {
             }
 
         } else if(requestCode == REQUEST_CODE_BRAND && resultCode == RESULT_OK) {
-            String brandName = data.getStringExtra(BRAND_NAME);
-            car_style = data.getIntExtra(BRAND_CODE, 0);
-            aac_tv_brand.setText(brandName);
+            carStyleSet = (CarStyleSet) data.getSerializableExtra(CAR_STYLE_SET);
+            if(carStyleSet != null) {
+                aac_tv_brand.setText(carStyleSet.getName());
+                car_style = carStyleSet.getId();
+            }
         }
 //        if(requestCode == REQUEST_GET_SINGLE_FILE && resultCode == RESULT_OK) {
 //            Uri uri_data = data.getData();
