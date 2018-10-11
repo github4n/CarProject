@@ -75,7 +75,9 @@ public class CarBrandThirdFragment extends Fragment {
             }
             final MyAdapter adapter = new MyAdapter(dataList);
             list.setAdapter(adapter);
-
+            for (int i = 0; i < adapter.getGroupCount(); i++) {
+                list.expandGroup(i);
+            }
             list.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                 @Override
                 public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
@@ -122,7 +124,7 @@ public class CarBrandThirdFragment extends Fragment {
 
         @Override
         public Object getChild(int i, int i1) {
-            return mDataList.get(i).get(i);
+            return mDataList.get(i).get(i1);
         }
 
         @Override
@@ -170,7 +172,7 @@ public class CarBrandThirdFragment extends Fragment {
 
         @Override
         public boolean isChildSelectable(int i, int i1) {
-            return false;
+            return true;
         }
 
         class GroupViewHolder {

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.request.bean.carbrand.CarBrandLetterBean;
 import com.littleant.carrepair.request.bean.carbrand.CarBrandLetterList;
 import com.littleant.carrepair.request.bean.carbrand.CarTypeSet;
+import com.mh.core.tools.MHToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,29 +55,36 @@ public class CarBrandFirstFragment extends android.support.v4.app.Fragment {
         list = view.findViewById(R.id.lelv_list);
         if(brandList != null) {
             ArrayList<List<CarBrandLetterBean>> carBrandLetterBeans = brandList.toArrayList();
-            final MyAdapter myAdapter = new MyAdapter(carBrandLetterBeans);
-//            MyAdapter myAdapter = new MyAdapter(groupString, childString);
-            list.setAdapter(myAdapter);
-            for(int i = 0; i < myAdapter.getGroupCount(); i++){
-                list.expandGroup(i);
+            if(carBrandLetterBeans != null && carBrandLetterBeans.size() > 0) {
+                final MyAdapter myAdapter = new MyAdapter(carBrandLetterBeans);
+                list.setAdapter(myAdapter);
+                for (int i = 0; i < myAdapter.getGroupCount(); i++) {
+                    list.expandGroup(i);
+                }
+                list.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                    @Override
+                    public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                        return true;
+                    }
+                });
+                list.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                    @Override
+                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                        Log.i("carbrand", "groupPosition - " + groupPosition + "  childPosition - " + childPosition);
+                        CarBrandLetterBean child = (CarBrandLetterBean) myAdapter.getChild(groupPosition, childPosition);
+                        if(child.getCartype_set() == null || child.getCartype_set().size() < 1) {
+                            MHToast.showS(getContext(), R.string.car_brand_empty);
+                            return true;
+                        }
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.acb_fragment, CarBrandSecondFragment.newInstance(child), CarBrandSecondFragment.class.getSimpleName());
+                        transaction.addToBackStack(null); //将当前的事务添加到了回退栈
+                        transaction.commit();
+                        return true;
+                    }
+                });
             }
-            list.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-                @Override
-                public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                    return true;
-                }
-            });
-            list.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-                @Override
-                public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                    CarBrandLetterBean child = (CarBrandLetterBean) myAdapter.getChild(groupPosition, childPosition);
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.add(R.id.acb_fragment, CarBrandSecondFragment.newInstance(child), CarBrandSecondFragment.class.getSimpleName());
-                    transaction.commit();
-                    return true;
-                }
-            });
         }
         return view;
     }
@@ -105,7 +114,7 @@ public class CarBrandFirstFragment extends android.support.v4.app.Fragment {
 
         @Override
         public Object getChild(int i, int i1) {
-            return carBrandLetterBeans.get(i).get(i);
+            return carBrandLetterBeans.get(i).get(i1);
         }
 
         @Override
@@ -153,7 +162,7 @@ public class CarBrandFirstFragment extends android.support.v4.app.Fragment {
 
         @Override
         public boolean isChildSelectable(int i, int i1) {
-            return false;
+            return true;
         }
 
         class GroupViewHolder {

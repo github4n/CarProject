@@ -22,11 +22,19 @@ public class CarBrandActivity extends BaseActivity {
 
 //    public static final String BRAND_NAME = "brand_name";
 //    public static final String BRAND_CODE = "brand_code";
+    private static CarBrandLetterList data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestCarBrand();
+        if(data == null) {
+            requestCarBrand();
+        } else {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.add(R.id.acb_fragment, CarBrandFirstFragment.newInstance(data), CarBrandFirstFragment.class.getSimpleName());
+            transaction.commit();
+        }
     }
 
     private void requestCarBrand() {
@@ -37,7 +45,7 @@ public class CarBrandActivity extends BaseActivity {
                 if (command != null) {
                     Log.i("response", command.getResponse());
                     CarBrandList carBrandList = ProjectUtil.getBaseResponseBean(command.getResponse(), CarBrandList.class);
-                    CarBrandLetterList data = carBrandList.getData();
+                    data = carBrandList.getData();
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -70,5 +78,15 @@ public class CarBrandActivity extends BaseActivity {
     @Override
     public void onClick(View view) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+        if(backStackEntryCount > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.request.bean.carbrand.CarBrandLetterBean;
 import com.littleant.carrepair.request.bean.carbrand.CarTypeSet;
+import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
@@ -59,10 +60,14 @@ public class CarBrandSecondFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         CarTypeSet carTypeSet = (CarTypeSet) adapter.getItem(position);
-
+                        if(carTypeSet.getCarstyle_set() == null && carTypeSet.getCarstyle_set().size() < 1) {
+                            MHToast.showS(getContext(), R.string.car_brand_empty);
+                            return;
+                        }
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.add(R.id.acb_fragment, CarBrandThirdFragment.newInstance(carTypeSet), CarBrandThirdFragment.class.getSimpleName());
+                        transaction.replace(R.id.acb_fragment, CarBrandThirdFragment.newInstance(carTypeSet), CarBrandThirdFragment.class.getSimpleName());
+                        transaction.addToBackStack(null); //将当前的事务添加到了回退栈
                         transaction.commit();
                     }
                 });
