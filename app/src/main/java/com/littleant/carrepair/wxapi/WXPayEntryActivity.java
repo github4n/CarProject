@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.littleant.carrepair.R;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -19,7 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
+public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     private static final int TIMELINE_SUPPORTED_VERSION = 0x21020001;
 
@@ -32,6 +30,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        api = WXAPIFactory.createWXAPI(this, null);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -40,17 +39,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
             finish();
         }
 
-        api = WXAPIFactory.createWXAPI(this, null);
         api.registerApp(WECHAT_APPID);
         startPay(params);
-        try {
-            boolean b = api.handleIntent(getIntent(), this);
-            if (!b) {
-                finish();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void startPay(String json) {
@@ -87,23 +77,10 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onResp(BaseResp resp) {
-        int result = 0;
         Log.i("onResp", "pay code : " + resp.errCode);
-        switch (resp.errCode) {
-            case BaseResp.ErrCode.ERR_OK:
-                setResult(RESULT_OK);
-                finish();
-                break;
-            case BaseResp.ErrCode.ERR_USER_CANCEL:
-                result = R.string.errcode_cancel;
-            case BaseResp.ErrCode.ERR_AUTH_DENIED:
-                result = R.string.errcode_deny;
-            case BaseResp.ErrCode.ERR_UNSUPPORT:
-                result = R.string.errcode_unsupported;
-            default:
-                result = R.string.errcode_unknown;
+        if (resp.errCode == BaseResp.ErrCode.ERR_OK) {
+            WXPayEntryActivity.this.setResult(RESULT_OK);
         }
-        Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-        finish();
+        WXPayEntryActivity.this.finish();
     }
 }

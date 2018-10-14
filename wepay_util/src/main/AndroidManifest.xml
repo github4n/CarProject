@@ -4,7 +4,7 @@
     <application>
 
         <activity
-            android:name="com.littleant.carrepair.wxapi.WXEntryActivity"
+            android:name="com.littleant.carrepair.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">

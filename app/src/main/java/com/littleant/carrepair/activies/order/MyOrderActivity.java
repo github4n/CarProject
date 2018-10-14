@@ -47,6 +47,7 @@ public class MyOrderActivity extends BaseActivity {
     public static final String TYPE_UPKEEP = "upkeep";
     public static final String PAY_MAINTAIN = "maintain";
     public static final String ORDER_INFO = "order_info";
+    private static final int REQUEST_PAY = 10;
     public static final int ALL = -1;
     public static final int WAIT_PAY = 1;
     public static final int WAIT_SERVICE = 2;
@@ -148,6 +149,14 @@ public class MyOrderActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_PAY && resultCode == RESULT_OK) {
+            requestOrder(state, status);
+        }
+    }
+
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public MyAdapter(List<MaintainOrderListBean.OrderInfo> list) {
             this.list = list;
@@ -226,7 +235,7 @@ public class MyOrderActivity extends BaseActivity {
                                     intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_MAINTAIN);
                                 }
                                 intent.putExtra(ORDER_INFO, orderInfo);
-                                startActivity(intent);
+                                startActivityForResult(intent, REQUEST_PAY);
                                 break;
 
                             case 2:

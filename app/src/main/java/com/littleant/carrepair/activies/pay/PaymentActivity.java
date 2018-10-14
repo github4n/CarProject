@@ -1,7 +1,10 @@
 package com.littleant.carrepair.activies.pay;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +14,8 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.activies.login.LoginActivity;
-import com.littleant.carrepair.activies.main.MainActivity;
-import com.littleant.carrepair.pay.wechat.WechatPay;
-import com.littleant.carrepair.request.bean.LoginBean;
+import com.littleant.carrepair.pay.ali.AliPay;
+import com.littleant.carrepair.pay.ali.PayResult;
 import com.littleant.carrepair.request.bean.MaintainOrderListBean;
 import com.littleant.carrepair.request.bean.pay.PayInfoBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -22,16 +23,17 @@ import com.littleant.carrepair.request.excute.maintain.maintain.MaintainMethodCm
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepMethodCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
-import com.littleant.carrepair.wxapi.WXEntryActivity;
+import com.littleant.carrepair.wxapi.WXPayEntryActivity;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
-import cn.jpush.android.api.JPushInterface;
+import java.util.Map;
 
 import static com.littleant.carrepair.activies.order.MyOrderActivity.ORDER_INFO;
-import static com.littleant.carrepair.wxapi.WXEntryActivity.PAY_PARAMS;
+import static com.littleant.carrepair.pay.ali.AliPay.SDK_PAY_FLAG;
+import static com.littleant.carrepair.wxapi.WXPayEntryActivity.PAY_PARAMS;
 
 public class PaymentActivity extends BaseActivity {
     private RadioButton ap_radioButton, ap_radioButton2;
@@ -48,6 +50,9 @@ public class PaymentActivity extends BaseActivity {
     private PayInfoBean.PayInfo payInfo;
     private MaintainOrderListBean.OrderInfo orderInfo;
     private static final int REQUEST_WECHAT_PAY = 10;
+
+    private static final int before_pay = 1;
+    private static final int after_pay = 2;
 
     /*
     支付流程
@@ -75,7 +80,7 @@ public class PaymentActivity extends BaseActivity {
 //                        MHToast.showS(mContext, "维修");
 //                        requestMaintainMethod(ParamsConstant.MethodStatus.ORDER_STATUS);
 //                    }
-                    requestMethod(ParamsConstant.MethodStatus.ORDER_STATUS);
+                    requestMethod(ParamsConstant.MethodStatus.ORDER_STATUS, before_pay);
                 }
             }
         }
@@ -91,7 +96,7 @@ public class PaymentActivity extends BaseActivity {
         return null;
     }
 
-    private void requestMethod(final ParamsConstant.MethodStatus methodStatus) {
+    private void requestMethod(final ParamsConstant.MethodStatus methodStatus, final int from) {
         id = orderInfo.getId();
         MHCommand cmd = getCmd(methodStatus);
         cmd.setCallback(new MHCommandCallBack() {
@@ -104,7 +109,15 @@ public class PaymentActivity extends BaseActivity {
                         payInfo = responseBean.getData();
                         switch (methodStatus) {
                             case ORDER_STATUS:
-                                showDetail(payInfo);
+                                if(from == before_pay) {
+                                    showDetail(payInfo);
+                                } else if(from == after_pay) {
+                                    if(2 == payInfo.getStatus()) {
+                                        MHToast.showS(mContext, R.string.pay_success);
+                                        setResult(RESULT_OK);
+                                        finish();
+                                    }
+                                }
                                 break;
 
                             case PAY:
@@ -122,51 +135,51 @@ public class PaymentActivity extends BaseActivity {
         MHCommandExecute.getInstance().asynExecute(mContext, cmd);
     }
 
-    private void requestMaintainMethod(ParamsConstant.MethodStatus methodStatus) {
-        id = orderInfo.getId();
-        MaintainMethodCmd maintainMethodCmd = new MaintainMethodCmd(mContext, id, methodStatus, score, payChannel, "");
-        maintainMethodCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if (command != null) {
-                    Log.i("response", command.getResponse());
-                    PayInfoBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), PayInfoBean.class);
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        payInfo = responseBean.getData();
-                        showDetail(payInfo);
-                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
-                        MHToast.showS(mContext, responseBean.getMsg());
-                    }
-                } else {
-                    MHToast.showS(mContext, R.string.request_fail);
-                }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(mContext, maintainMethodCmd);
-    }
-
-    private void requestUpkeepMethod(ParamsConstant.MethodStatus methodStatus) {
-        id = orderInfo.getId();
-        UpkeepMethodCmd upkeepMethodCmd = new UpkeepMethodCmd(mContext, id, methodStatus, score, payChannel);
-        upkeepMethodCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if (command != null) {
-                    Log.i("response", command.getResponse());
-                    PayInfoBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), PayInfoBean.class);
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        payInfo = responseBean.getData();
-                        showDetail(payInfo);
-                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
-                        MHToast.showS(mContext, responseBean.getMsg());
-                    }
-                } else {
-                    MHToast.showS(mContext, R.string.request_fail);
-                }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(mContext, upkeepMethodCmd);
-    }
+//    private void requestMaintainMethod(ParamsConstant.MethodStatus methodStatus) {
+//        id = orderInfo.getId();
+//        MaintainMethodCmd maintainMethodCmd = new MaintainMethodCmd(mContext, id, methodStatus, score, payChannel, "");
+//        maintainMethodCmd.setCallback(new MHCommandCallBack() {
+//            @Override
+//            public void cmdCallBack(MHCommand command) {
+//                if (command != null) {
+//                    Log.i("response", command.getResponse());
+//                    PayInfoBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), PayInfoBean.class);
+//                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+//                        payInfo = responseBean.getData();
+//                        showDetail(payInfo);
+//                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+//                        MHToast.showS(mContext, responseBean.getMsg());
+//                    }
+//                } else {
+//                    MHToast.showS(mContext, R.string.request_fail);
+//                }
+//            }
+//        });
+//        MHCommandExecute.getInstance().asynExecute(mContext, maintainMethodCmd);
+//    }
+//
+//    private void requestUpkeepMethod(ParamsConstant.MethodStatus methodStatus) {
+//        id = orderInfo.getId();
+//        UpkeepMethodCmd upkeepMethodCmd = new UpkeepMethodCmd(mContext, id, methodStatus, score, payChannel);
+//        upkeepMethodCmd.setCallback(new MHCommandCallBack() {
+//            @Override
+//            public void cmdCallBack(MHCommand command) {
+//                if (command != null) {
+//                    Log.i("response", command.getResponse());
+//                    PayInfoBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), PayInfoBean.class);
+//                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+//                        payInfo = responseBean.getData();
+//                        showDetail(payInfo);
+//                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+//                        MHToast.showS(mContext, responseBean.getMsg());
+//                    }
+//                } else {
+//                    MHToast.showS(mContext, R.string.request_fail);
+//                }
+//            }
+//        });
+//        MHCommandExecute.getInstance().asynExecute(mContext, upkeepMethodCmd);
+//    }
 
     private void showDetail(PayInfoBean.PayInfo payInfo) {
         if(payInfo != null) {
@@ -238,9 +251,9 @@ public class PaymentActivity extends BaseActivity {
                 }
 
                 if(ParamsConstant.ORDER_UPKEEP.equals(orderType)) {
-                    requestMethod(ParamsConstant.MethodStatus.PAY);
+                    requestMethod(ParamsConstant.MethodStatus.PAY, before_pay);
                 } else if(ParamsConstant.ORDER_MAINTAIN.equals(orderType)) {
-                    requestMethod(ParamsConstant.MethodStatus.PAY);
+                    requestMethod(ParamsConstant.MethodStatus.PAY, before_pay);
                 }
 
                 break;
@@ -259,17 +272,47 @@ public class PaymentActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_WECHAT_PAY && resultCode == RESULT_OK) {
-
+            requestMethod(ParamsConstant.MethodStatus.ORDER_STATUS, after_pay);
         }
     }
 
     private void aliPay(String params) {
-
+        AliPay.startPay(this, params, mHandler);
     }
 
     private void wePay(String params) {
-        Intent intent = new Intent(mContext, WXEntryActivity.class);
+        Intent intent = new Intent(mContext, WXPayEntryActivity.class);
         intent.putExtra(PAY_PARAMS, params);
         startActivityForResult(intent, REQUEST_WECHAT_PAY);
     }
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SDK_PAY_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                    /**
+                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        requestMethod(ParamsConstant.MethodStatus.ORDER_STATUS, after_pay);
+//                        MHToast.showS(mContext, R.string.pay_success);
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+//                        MHToast.showS(mContext, R.string.pay_fail);
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        };
+    };
 }
