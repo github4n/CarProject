@@ -23,6 +23,7 @@ public class ViolationBean  extends BaseResponseBean {
         private String update_time = "";
         private String car_brand = "";
         private String car_code = "";
+        private String car_pic_url = "";
 
         @Override
         public String toString() {
@@ -35,7 +36,16 @@ public class ViolationBean  extends BaseResponseBean {
                     ", update_time='" + update_time + '\'' +
                     ", car_brand='" + car_brand + '\'' +
                     ", car_code='" + car_code + '\'' +
+                    ", car_pic_url='" + car_pic_url + '\'' +
                     '}';
+        }
+
+        public String getCar_pic_url() {
+            return car_pic_url;
+        }
+
+        public void setCar_pic_url(String car_pic_url) {
+            this.car_pic_url = car_pic_url;
         }
 
         public int getId() {

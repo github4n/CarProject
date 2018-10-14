@@ -36,12 +36,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
+
 /**
  * 我的订单
  */
 public class MyOrderActivity extends BaseActivity {
     public static final String SELECT_TYPE = "select_type";
     public static final String PAY_MONEY = "pay_money";
+    public static final String TYPE_UPKEEP = "upkeep";
+    public static final String PAY_MAINTAIN = "maintain";
+    public static final String ORDER_INFO = "order_info";
     public static final int ALL = -1;
     public static final int WAIT_PAY = 1;
     public static final int WAIT_SERVICE = 2;
@@ -215,7 +220,12 @@ public class MyOrderActivity extends BaseActivity {
                         switch (orderInfo.getState()) {
                             case 1:
                                 intent = new Intent(mContext, PaymentActivity.class);
-                                intent.putExtra(PAY_MONEY, orderInfo.getNow_price());
+                                if(TYPE_UPKEEP.equals(orderInfo.getType())) {
+                                    intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_UPKEEP);
+                                } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
+                                    intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_MAINTAIN);
+                                }
+                                intent.putExtra(ORDER_INFO, orderInfo);
                                 startActivity(intent);
                                 break;
 
@@ -257,9 +267,9 @@ public class MyOrderActivity extends BaseActivity {
                             @Override
                             public void onClick(View view) {
                                 d.dismiss();
-                                if("upkeep".equals(orderInfo.getType())) {
+                                if(TYPE_UPKEEP.equals(orderInfo.getType())) {
                                     requestDeleteUpkeepOrder(orderInfo.getId());
-                                } else {
+                                } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
                                     requestDeleteMaintainOrder(orderInfo.getId());
                                 }
                             }

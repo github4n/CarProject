@@ -118,6 +118,7 @@ public class ParamsConstant {
     public static final int SERVICE_ORDER_STATUS_FINISH = 3;
     public static final String ADDRESS_ID = "address_id";
     public static final String ORDER_CAR_LIST = "order_car_list";
+    public static final String ORDER_METHOD = "order_method";
     /**
      * 订单状态
      */
@@ -134,8 +135,10 @@ public class ParamsConstant {
      * 订单状态
      */
     public enum MethodStatus {
+        ORDER_STATUS("order_status"),
         PAY("pay"),
         COMMENT("comment"),
+        ITEM_LIST("item_list"),
         FINISH("finish");
 
         String des;
@@ -148,6 +151,33 @@ public class ParamsConstant {
             return des;
         }
     }
+
+    /**
+     * 支付订单种类
+     */
+    public static final String ORDER_UPKEEP = "order_upkeep";
+    public static final String ORDER_MAINTAIN = "order_maintain";
+    public static final String ORDER_SHOP = "order_shop";
+
+    /**
+     * 支付方式
+     */
+    public enum PayChannel {
+        WECHAT("weixin"),
+        ALI("alipay");
+
+        String des;
+
+        PayChannel(String s) {
+            this.des = s;
+        }
+
+        public String getDes() {
+            return des;
+        }
+    }
+
+
 
     //服务（资讯）部分
     public static final String NEWS_CATALOG_ID =  "news_catalog_id";

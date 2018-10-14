@@ -222,7 +222,20 @@
         <activity
             android:name=".activies.FirstLaunchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.shopping.ShoppingItemDetailActivity"></activity>
+        <activity android:name=".activies.shopping.ShoppingItemDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.littleant.carrepair.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="wx43bdade617c80760" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -41,6 +41,7 @@ import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -146,9 +147,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                         final TextView lv_tv_sum = contentView.findViewById(R.id.lv_tv_sum);
                         final TextView lv_tv_score = contentView.findViewById(R.id.lv_tv_score);
                         final TextView lv_tv_fine = contentView.findViewById(R.id.lv_tv_fine);
+                        ImageView lv_iv_pic = contentView.findViewById(R.id.lv_iv_pic);
                         TextView lv_tv_ok = contentView.findViewById(R.id.lv_tv_ok);
 
                         ViolationBean.ViolationInfo info = data.remove(0);
+                        Picasso.with(mContext).load(Uri.parse(info.getCar_pic_url())).into(lv_iv_pic);
                         lv_tv_brand.setText(info.getCar_brand());
                         lv_tv_code.setText(info.getCar_code());
                         lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info.getAmount() + ""));
@@ -169,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                                 }
                             }
                         });
+
 
 //                        RecyclerView mList = contentView.findViewById(R.id.lv_list);
 //                        mList.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));

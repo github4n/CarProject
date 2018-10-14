@@ -15,12 +15,15 @@ public class UpkeepMethodCmd extends BaseRequestCmd {
      * @param type 只有付款或评论
      * @param score
      */
-    public UpkeepMethodCmd(Context context, String id, ParamsConstant.MethodStatus type, int score) {
+    public UpkeepMethodCmd(Context context, int id, ParamsConstant.MethodStatus type, int score, ParamsConstant.PayChannel payChannel) {
         super(context);
-        params.put(ParamsConstant.ID, id);
+        params.put(ParamsConstant.ID, id + "");
         params.put(ParamsConstant.METHOD, type.getDes());
         if(type == ParamsConstant.MethodStatus.COMMENT) {
             params.put(ParamsConstant.ORDER_CAR_LIST, score + "");
+        }
+        if(type == ParamsConstant.MethodStatus.PAY) {
+            params.put(ParamsConstant.ORDER_METHOD, payChannel.getDes());
         }
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }

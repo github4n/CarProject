@@ -84,7 +84,6 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="￥200.00"
             android:textSize="18sp"
             android:textColor="@color/color_text_shop_price"
             app:layout_constraintEnd_toEndOf="parent"

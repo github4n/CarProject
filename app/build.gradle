@@ -91,11 +91,13 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'cn.jiguang.sdk:jpush:3.1.6'
     implementation 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 //    implementation 'liji.library.dev:citypickerview:3.1.12'
     implementation(name: 'CircleImageView-release', ext: 'aar')
     implementation(name: 'citypickerview-release', ext: 'aar')
     implementation project(':SelectPlace')
     implementation project(':UtilsCore')
+//    implementation project(':wepay_util')
 }
 
 def getReleaseTime() {

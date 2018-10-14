@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.littleant.wepay_util">
+
+    <application>
+
+        <activity
+            android:name="com.littleant.carrepair.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="${wechat_appid}" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
+
+

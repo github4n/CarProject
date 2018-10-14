@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void cmdCallBack(MHCommand command) {
                         if (command != null) {
-                            Log.i("login response", command.getResponse());
+                            Log.i("response", command.getResponse());
                             LoginBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), LoginBean.class);
                             if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
 //                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
