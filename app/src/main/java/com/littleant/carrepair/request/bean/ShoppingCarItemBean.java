@@ -1,6 +1,8 @@
 
 package com.littleant.carrepair.request.bean;
 
+import com.littleant.carrepair.request.bean.shop.ProductBean;
+
 import java.io.Serializable;
 
 public class ShoppingCarItemBean implements Serializable {

@@ -14,8 +14,8 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
-import com.littleant.carrepair.request.bean.carbrand.CarStyleSet;
-import com.littleant.carrepair.request.bean.carbrand.CarTypeSet;
+import com.littleant.carrepair.request.bean.car.carbrand.CarStyleSet;
+import com.littleant.carrepair.request.bean.car.carbrand.CarTypeSet;
 
 import java.util.ArrayList;
 import java.util.List;

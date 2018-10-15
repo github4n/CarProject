@@ -10,14 +10,11 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
-import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.MyCarListBean;
-import com.littleant.carrepair.request.bean.SurveyFeeBean;
-import com.littleant.carrepair.request.bean.SurveyStationInfo;
-import com.littleant.carrepair.request.bean.SurveyStationListBean;
+import com.littleant.carrepair.request.bean.car.MyCarListBean;
+import com.littleant.carrepair.request.bean.survey.SurveyFeeBean;
+import com.littleant.carrepair.request.bean.survey.SurveyStationInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
-import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;

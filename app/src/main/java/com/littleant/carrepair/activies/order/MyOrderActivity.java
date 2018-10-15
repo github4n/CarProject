@@ -22,7 +22,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.MaintainOrderListBean;
+import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.list.ListQueryAllCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainDeleteCmd;
@@ -48,6 +48,7 @@ public class MyOrderActivity extends BaseActivity {
     public static final String PAY_MAINTAIN = "maintain";
     public static final String ORDER_INFO = "order_info";
     private static final int REQUEST_PAY = 10;
+    private static final int REQUEST_DETAIL = 11;
     public static final int ALL = -1;
     public static final int WAIT_PAY = 1;
     public static final int WAIT_SERVICE = 2;
@@ -154,6 +155,8 @@ public class MyOrderActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_PAY && resultCode == RESULT_OK) {
             requestOrder(state, status);
+        } else if(requestCode == REQUEST_DETAIL && resultCode == RESULT_OK) {
+
         }
     }
 
@@ -290,6 +293,15 @@ public class MyOrderActivity extends BaseActivity {
                             }
                         });
                         d.show();
+                    }
+                });
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //进入详情页
+                        Intent intent = new Intent(mContext, ServiceOrderDetailActivity.class);
+                        intent.putExtra(ORDER_INFO, orderInfo);
+                        startActivityForResult(intent, REQUEST_DETAIL);
                     }
                 });
             }

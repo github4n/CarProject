@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,8 +20,8 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.main.MainActivity;
-import com.littleant.carrepair.request.bean.LoginBean;
-import com.littleant.carrepair.request.bean.TermUrlBean;
+import com.littleant.carrepair.request.bean.login.LoginBean;
+import com.littleant.carrepair.request.bean.login.TermUrlBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.login.LoginCmd;
 import com.littleant.carrepair.request.excute.system.ServiceUserAgreementCmd;
@@ -31,7 +30,6 @@ import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
-import com.mh.core.tools.MHLogUtil;
 import com.mh.core.tools.MHToast;
 
 import cn.jpush.android.api.JPushInterface;

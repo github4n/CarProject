@@ -1,40 +1,22 @@
 package com.littleant.carrepair.activies.repair;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.amap.searchdemo.SelectPlaceActivity;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.BookSubmitActivity;
-import com.littleant.carrepair.activies.datetime.DateActivity;
-import com.littleant.carrepair.activies.datetime.TimeActivity;
-import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
-import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.GarageInfo;
-import com.littleant.carrepair.request.constant.ParamsConstant;
-import com.littleant.carrepair.request.excute.maintain.maintain.MaintainCreateCmd;
-import com.littleant.carrepair.request.utils.DataHelper;
-import com.littleant.carrepair.utils.ProjectUtil;
-import com.mh.core.task.MHCommandCallBack;
-import com.mh.core.task.MHCommandExecute;
-import com.mh.core.task.command.abstracts.MHCommand;
+import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 import com.zhihu.matisse.Matisse;
@@ -42,7 +24,6 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.PicassoEngine;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.littleant.carrepair.activies.BookSubmitActivity.FROM;

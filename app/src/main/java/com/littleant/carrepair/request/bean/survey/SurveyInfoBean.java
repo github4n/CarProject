@@ -4,6 +4,9 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 
 import java.io.Serializable;
 
+/**
+ * 年检须知
+ */
 public class SurveyInfoBean extends BaseResponseBean {
     private SurveyKnowUrl data;
 

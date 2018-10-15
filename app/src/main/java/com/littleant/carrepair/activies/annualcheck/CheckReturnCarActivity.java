@@ -6,8 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
-import com.littleant.carrepair.activies.annualcheck.BaseFlowActivity;
-import com.littleant.carrepair.request.bean.SurveyInfo;
+import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.squareup.picasso.Picasso;
 
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;

@@ -5,6 +5,9 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 启动图片
+ */
 public class SystemCoverBean extends BaseResponseBean {
     private CoverList data;
 

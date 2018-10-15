@@ -2,6 +2,7 @@ package com.littleant.carrepair.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.amap.api.maps.CameraUpdate;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
@@ -43,8 +45,8 @@ import com.littleant.carrepair.activies.repair.RepairActivity;
 import com.littleant.carrepair.activies.repair.RepairStationActivity;
 import com.littleant.carrepair.activies.main.SearchActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.GarageInfo;
-import com.littleant.carrepair.request.bean.GarageListBean;
+import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
+import com.littleant.carrepair.request.bean.maintain.garage.GarageListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.garage.GarageQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
@@ -222,7 +224,8 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                             for(int index = 0; index < data.size(); index++) {
                                 GarageInfo info = data.get(index);
                                 LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
-                                aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + ""));
+                                aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + "")
+                                        .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
                             }
                             selectedInfo = data.get(0);
                             lmfd_tv_title.setText(selectedInfo.getName());

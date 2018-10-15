@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.TermUrlBean;
+import com.littleant.carrepair.request.bean.login.TermUrlBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.login.MessageCmd;
 import com.littleant.carrepair.request.excute.login.RegisterCmd;

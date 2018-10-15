@@ -5,18 +5,14 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.login.LoginActivity;
-import com.littleant.carrepair.activies.main.MainActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.LoginBean;
 import com.littleant.carrepair.request.bean.system.SystemCoverBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.system.SystemCoverCmd;
-import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;

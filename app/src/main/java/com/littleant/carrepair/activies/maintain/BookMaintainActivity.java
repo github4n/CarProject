@@ -19,7 +19,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.BookSubmitActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.GarageInfo;
+import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.bean.OilInfo;
 import com.littleant.carrepair.request.bean.OilListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;

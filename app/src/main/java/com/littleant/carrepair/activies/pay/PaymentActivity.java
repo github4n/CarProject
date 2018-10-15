@@ -16,7 +16,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.pay.ali.AliPay;
 import com.littleant.carrepair.pay.ali.PayResult;
-import com.littleant.carrepair.request.bean.MaintainOrderListBean;
+import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
 import com.littleant.carrepair.request.bean.pay.PayInfoBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainMethodCmd;

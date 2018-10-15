@@ -9,7 +9,7 @@ import android.webkit.WebViewClient;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.request.bean.ProductBean;
+import com.littleant.carrepair.request.bean.shop.ProductBean;
 
 import static com.littleant.carrepair.activies.shopping.ShoppingActivity.PRODUCT_INFO;
 

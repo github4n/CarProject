@@ -4,11 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.littleant.carrepair.fragment.PushDialogFragment;
-import com.littleant.carrepair.request.bean.PushBean;
+import com.littleant.carrepair.request.bean.push.PushBean;
 import com.littleant.carrepair.utils.ProjectUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import cn.jpush.android.api.JPushInterface;
 

@@ -2,7 +2,6 @@ package com.littleant.carrepair.activies.annualcheck;
 
 import android.location.Location;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -20,14 +19,9 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.navi.INaviInfoCallback;
 import com.amap.api.navi.model.AMapNaviLocation;
-import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.geocoder.GeocodeResult;
-import com.amap.api.services.geocoder.GeocodeSearch;
-import com.amap.api.services.geocoder.RegeocodeQuery;
-import com.amap.api.services.geocoder.RegeocodeResult;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.request.bean.SurveyInfo;
+import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.littleant.carrepair.request.utils.DataHelper;
 
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;

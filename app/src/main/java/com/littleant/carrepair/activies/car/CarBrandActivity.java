@@ -8,9 +8,8 @@ import android.view.View;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.fragment.MainFragment;
-import com.littleant.carrepair.request.bean.carbrand.CarBrandLetterList;
-import com.littleant.carrepair.request.bean.carbrand.CarBrandList;
+import com.littleant.carrepair.request.bean.car.carbrand.CarBrandLetterList;
+import com.littleant.carrepair.request.bean.car.carbrand.CarBrandList;
 import com.littleant.carrepair.request.excute.user.car.CarBrandQueryCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;

@@ -14,8 +14,7 @@ import android.widget.TextView;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.GarageInfo;
-import com.littleant.carrepair.request.bean.MaintainListBean;
+import com.littleant.carrepair.request.bean.maintain.MaintainListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainQueryAllCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -24,7 +23,6 @@ import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

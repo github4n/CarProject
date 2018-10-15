@@ -13,7 +13,7 @@ import com.amap.api.navi.INaviInfoCallback;
 import com.amap.api.navi.model.AMapNaviLocation;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.fragment.MainFragment;
-import com.littleant.carrepair.request.bean.GarageInfo;
+import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.squareup.picasso.Picasso;
 

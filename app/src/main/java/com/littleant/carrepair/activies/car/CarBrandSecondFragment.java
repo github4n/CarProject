@@ -15,8 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
-import com.littleant.carrepair.request.bean.carbrand.CarBrandLetterBean;
-import com.littleant.carrepair.request.bean.carbrand.CarTypeSet;
+import com.littleant.carrepair.request.bean.car.carbrand.CarBrandLetterBean;
+import com.littleant.carrepair.request.bean.car.carbrand.CarTypeSet;
 import com.mh.core.tools.MHToast;
 
 import java.util.List;

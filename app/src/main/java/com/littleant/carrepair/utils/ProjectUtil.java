@@ -1,24 +1,13 @@
 package com.littleant.carrepair.utils;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.support.constraint.Constraints;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.webkit.WebView;
 
 import com.google.gson.Gson;
-import com.littleant.carrepair.R;
-import com.littleant.carrepair.activies.order.OrderPageActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.LoginBean;
-import com.littleant.carrepair.request.constant.ParamsConstant;
-import com.mh.core.cipher.MHCipher;
 import com.mh.core.db.MHDatabase;
 import com.mh.core.tools.MHLogUtil;
 
