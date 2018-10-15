@@ -1,4 +1,6 @@
-package com.littleant.carrepair.request.bean;
+package com.littleant.carrepair.request.bean.upkeep;
+
+import com.littleant.carrepair.request.bean.BaseResponseBean;
 
 import java.util.List;
 

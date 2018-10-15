@@ -90,6 +90,8 @@
     <string name="text_order_detail_part">拆卸零件</string>
     <string name="text_order_detail_process">维修过程</string>
     <string name="text_order_detail_fee">费用明细</string>
+    <string name="text_order_detail_modify">修改</string>
+    <string name="text_order_detail_pic">照片信息</string>
 
     <!--商城订单-->
     <string name="text_all_order">商城订单</string>
@@ -100,8 +102,8 @@
     <string name="text_allorder_wait_rate">待评价</string>
     <string name="text_allorder_wait_service">待服务</string>
     <string name="btn_delete_order">取消订单</string>
-    <string name="btn_order_rate">&#160;&#160;评价&#160;&#160;</string>
-    <string name="btn_order_pay">&#160;去付款&#160;</string>
+    <string name="btn_order_rate">评价</string>
+    <string name="btn_order_pay">去付款</string>
     <string name="btn_order_detail">详情</string>
 
     <!---->

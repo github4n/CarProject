@@ -1,4 +1,4 @@
-package com.littleant.carrepair.request.bean;
+package com.littleant.carrepair.request.bean.upkeep;
 
 import java.io.Serializable;
 

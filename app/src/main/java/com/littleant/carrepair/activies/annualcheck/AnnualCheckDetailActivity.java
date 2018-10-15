@@ -17,6 +17,7 @@ import com.littleant.carrepair.request.bean.survey.SurveyPicList;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyBehalfMethodCmd;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
@@ -89,7 +90,7 @@ public class AnnualCheckDetailActivity extends BaseActivity {
             // TODO: 2018/9/14 缺少订单号
             lcd_oid.setText(new Random().nextInt() + "");
 
-            aacd_price.setText(info.getTotal_price() + "");
+            aacd_price.setText(DataHelper.displayPrice(mContext, info.getTotal_price()));
 
             if(state == STATE_FINISH) {
                 SurveyPicList get_confirm = info.getGet_confirm();

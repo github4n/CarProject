@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,87 +7,308 @@
     android:background="@color/color_sub_background"
     tools:context=".activies.order.ServiceOrderDetailActivity">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/layout_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/asod_cl_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/asod_iv_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <include
+            android:id="@+id/include"
+            layout="@layout/layout_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/asod_icon" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/asod_cl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include">
+
+            <ImageView
+                android:id="@+id/asod_iv_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/asod_icon" />
+
+            <TextView
+                android:id="@+id/asod_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/color_uc_text"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/asod_iv_icon"
+                app:layout_constraintEnd_toStartOf="@id/asod_tv_state"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/asod_iv_icon" />
+
+            <TextView
+                android:id="@+id/asod_tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/asod_tv_title"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <include
+            android:id="@+id/include2"
+            layout="@layout/layout_order_detail_base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/asod_cl_title" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/asod_cl_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include2">
+
+            <TextView
+                android:id="@+id/asod_tv_detial_fee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/color_sub_background"
+                android:text="@string/text_order_detail_fee"
+                android:textColor="@color/color_text"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/asod_tv_modify"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/color_sub_background"
+                android:text="@string/text_order_detail_modify"
+                android:textColor="@color/color_main"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/asod_ll_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/asod_cl_modify">
+
+        </LinearLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/asod_cl_buttons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1px"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/asod_ll_detail">
+
+            <TextView
+                android:id="@+id/asod_btn_pay"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_cycrect_selector"
+                android:gravity="center_horizontal"
+                android:paddingBottom="4dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="4dp"
+                android:text="@string/btn_order_pay"
+                android:textColor="@drawable/btn_text_color_selector"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/asod_btn_delete"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_cycrect_selector"
+                android:gravity="center_horizontal"
+                android:paddingBottom="4dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="4dp"
+                android:text="@string/btn_delete_order"
+                android:textColor="@drawable/btn_text_color_selector"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/asod_btn_pay"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
 
         <TextView
-            android:id="@+id/asod_tv_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/asod_tv_detial_order"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:textColor="@color/color_uc_text"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@id/asod_iv_icon"
-            app:layout_constraintEnd_toStartOf="@id/asod_tv_state"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/asod_iv_icon" />
+            android:background="@color/color_sub_background"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:text="@string/text_order_info"
+            android:textColor="@color/color_text"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/asod_cl_buttons" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/asod_cl_order_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/asod_tv_detial_order">
+
+            <TextView
+                android:id="@+id/asod_tv_order_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/text_order_detail_time"
+                android:textColor="@color/color_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/asod_order_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/color_text"
+                app:layout_constraintBottom_toBottomOf="@id/asod_tv_order_type"
+                app:layout_constraintStart_toEndOf="@id/asod_tv_order_type"
+                app:layout_constraintTop_toTopOf="@id/asod_tv_order_type" />
+
+            <TextView
+                android:id="@+id/asod_tv_exchange_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/text_order_detail_type"
+                android:textColor="@color/color_text"
+                app:layout_constraintStart_toStartOf="@id/asod_tv_order_type"
+                app:layout_constraintTop_toBottomOf="@id/asod_tv_order_type" />
+
+            <TextView
+                android:id="@+id/asod_exchange_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/color_text"
+                app:layout_constraintBottom_toBottomOf="@id/asod_tv_exchange_id"
+                app:layout_constraintStart_toEndOf="@id/asod_tv_exchange_id"
+                app:layout_constraintTop_toTopOf="@id/asod_tv_exchange_id" />
+
+            <TextView
+                android:id="@+id/asod_tv_order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/text_order_detail_code"
+                android:textColor="@color/color_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/asod_tv_exchange_id"
+                app:layout_constraintTop_toBottomOf="@id/asod_tv_exchange_id" />
+
+            <TextView
+                android:id="@+id/asod_order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/color_text"
+                app:layout_constraintBottom_toBottomOf="@id/asod_tv_order_id"
+                app:layout_constraintStart_toEndOf="@id/asod_tv_order_id"
+                app:layout_constraintTop_toTopOf="@id/asod_tv_order_id" />
+
+        </android.support.constraint.ConstraintLayout>
 
         <TextView
-            android:id="@+id/asod_tv_state"
-            android:layout_width="wrap_content"
+            android:id="@+id/asod_tv_detial_pic"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:layout_constraintBottom_toBottomOf="@id/asod_tv_title"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:background="@color/color_sub_background"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:text="@string/text_order_detail_pic"
+            android:textColor="@color/color_text"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/asod_cl_order_info" />
+
+        <LinearLayout
+            android:id="@+id/asod_ll_pic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/asod_tv_detial_pic">
+
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/layout_order_detail_base"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/asod_cl_title" />
-
-    <TextView
-        android:id="@+id/asod_tv_detial_fee"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="8dp"
-        android:background="@color/color_sub_background"
-        android:textColor="@color/color_text"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        android:text="@string/text_order_detail_fee"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include2"/>
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
