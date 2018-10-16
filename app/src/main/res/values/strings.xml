@@ -92,6 +92,7 @@
     <string name="text_order_detail_fee">费用明细</string>
     <string name="text_order_detail_modify">修改</string>
     <string name="text_order_detail_pic">照片信息</string>
+    <string name="text_order_type">订单类型</string>
 
     <!--商城订单-->
     <string name="text_all_order">商城订单</string>

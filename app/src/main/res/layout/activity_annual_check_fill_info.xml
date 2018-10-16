@@ -205,20 +205,20 @@
             app:layout_constraintStart_toStartOf="@id/acf_guideline2"
             app:layout_constraintTop_toTopOf="@id/acf_tv_plus_insurance" />
 
-        <TextView
-            android:id="@+id/acf_tv_insurance_must"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:text="@string/text_insurance_order"
-            android:background="@drawable/shape_blue_fill_rect"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/acf_tv_id_card"
-            app:layout_constraintStart_toStartOf="@id/acf_tv_id_card"
-            app:layout_constraintTop_toBottomOf="@id/acf_tv_id_card" />
+        <!--<TextView-->
+            <!--android:id="@+id/acf_tv_insurance_must"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:paddingLeft="4dp"-->
+            <!--android:paddingRight="4dp"-->
+            <!--android:text="@string/text_insurance_order"-->
+            <!--android:background="@drawable/shape_blue_fill_rect"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="12sp"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/acf_tv_id_card"-->
+            <!--app:layout_constraintStart_toStartOf="@id/acf_tv_id_card"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/acf_tv_id_card" />-->
 
         <ImageView
             android:id="@+id/acf_line2"
@@ -232,7 +232,7 @@
             android:background="@color/color_sub_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/acf_tv_insurance_must" />
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_id_card" />
 
         <TextView
             android:id="@+id/acf_tv_driver_name"
@@ -626,17 +626,17 @@
             app:layout_constraintStart_toEndOf="@id/acf_tv_package_detail"
             app:layout_constraintTop_toTopOf="@id/acf_tv_package_detail" />
 
-        <GridView
-            android:id="@+id/acf_package_layout"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:numColumns="3"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/acf_tv_package_detail"
-            app:layout_constraintTop_toTopOf="@id/acf_tv_package_detail" />
+        <!--<GridView-->
+            <!--android:id="@+id/acf_package_layout"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:numColumns="3"-->
+            <!--android:visibility="gone"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toEndOf="@id/acf_tv_package_detail"-->
+            <!--app:layout_constraintTop_toTopOf="@id/acf_tv_package_detail" />-->
 
         <!--<android.support.constraint.ConstraintLayout-->
             <!--android:id="@+id/acf_package_layout"-->
@@ -760,7 +760,7 @@
             android:background="@color/color_sub_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/acf_package_layout"
+            app:layout_constraintTop_toBottomOf="@id/acf_tv_package_detail"
             app:layout_goneMarginTop="40dp"/>
 
         <TextView

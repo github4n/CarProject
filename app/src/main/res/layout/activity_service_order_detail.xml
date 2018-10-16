@@ -219,7 +219,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/text_order_detail_time"
+                android:text="@string/text_order_type"
+                android:textSize="13sp"
                 android:textColor="@color/color_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -231,6 +232,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:textColor="@color/color_text"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@id/asod_tv_order_type"
                 app:layout_constraintStart_toEndOf="@id/asod_tv_order_type"
                 app:layout_constraintTop_toTopOf="@id/asod_tv_order_type" />
@@ -240,8 +242,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/text_order_detail_type"
+                android:text="@string/text_order_detail_exid"
                 android:textColor="@color/color_text"
+                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/asod_tv_order_type"
                 app:layout_constraintTop_toBottomOf="@id/asod_tv_order_type" />
 
@@ -252,6 +255,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:textColor="@color/color_text"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@id/asod_tv_exchange_id"
                 app:layout_constraintStart_toEndOf="@id/asod_tv_exchange_id"
                 app:layout_constraintTop_toTopOf="@id/asod_tv_exchange_id" />
@@ -262,8 +266,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/text_order_detail_code"
+                android:text="@string/text_order_detail_oid"
                 android:textColor="@color/color_text"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/asod_tv_exchange_id"
                 app:layout_constraintTop_toBottomOf="@id/asod_tv_exchange_id" />
@@ -275,6 +280,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:textColor="@color/color_text"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@id/asod_tv_order_id"
                 app:layout_constraintStart_toEndOf="@id/asod_tv_order_id"
                 app:layout_constraintTop_toTopOf="@id/asod_tv_order_id" />

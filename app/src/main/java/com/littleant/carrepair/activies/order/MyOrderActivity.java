@@ -63,7 +63,6 @@ public class MyOrderActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         requestOrder(state, status);
     }
 
@@ -299,9 +298,13 @@ public class MyOrderActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         //进入详情页
-                        Intent intent = new Intent(mContext, ServiceOrderDetailActivity.class);
-                        intent.putExtra(ORDER_INFO, orderInfo);
-                        startActivityForResult(intent, REQUEST_DETAIL);
+                        if(TYPE_UPKEEP.equals(orderInfo.getType())) {
+
+                        } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
+                            Intent intent = new Intent(mContext, ServiceOrderDetailActivity.class);
+                            intent.putExtra(ORDER_INFO, orderInfo);
+                            startActivityForResult(intent, REQUEST_DETAIL);
+                        }
                     }
                 });
             }
