@@ -197,19 +197,19 @@ public class BookMaintainActivity extends BaseActivity {
                     holder.lmi_reduce.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            int i = Integer.parseInt(holder.lmi_amount.getText().toString());
-                            if (i > 0) {
-                                i--;
-                                holder.lmi_amount.setText(i + "");
+                            oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
+                            if (oilAmount > 0) {
+                                oilAmount--;
+                                holder.lmi_amount.setText(oilAmount + "");
                             }
                         }
                     });
                     holder.lmi_plus.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            int i = Integer.parseInt(holder.lmi_amount.getText().toString());
-                            i++;
-                            holder.lmi_amount.setText(i + "");
+                            oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
+                            oilAmount++;
+                            holder.lmi_amount.setText(oilAmount + "");
                         }
                     });
                 } else {

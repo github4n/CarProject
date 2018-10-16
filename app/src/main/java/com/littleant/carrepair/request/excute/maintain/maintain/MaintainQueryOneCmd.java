@@ -8,9 +8,9 @@ import com.mh.core.tools.MHLogUtil;
 
 public class MaintainQueryOneCmd extends BaseMaintainCmd {
 
-    public MaintainQueryOneCmd(Context context, String id) {
+    public MaintainQueryOneCmd(Context context, int id) {
         super(context);
-        params.put(ParamsConstant.ID, id);
+        params.put(ParamsConstant.ID, id + "");
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 

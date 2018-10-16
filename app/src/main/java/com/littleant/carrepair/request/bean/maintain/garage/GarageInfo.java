@@ -18,6 +18,7 @@ public class GarageInfo implements Serializable {
     private String mobile_phone = "";
     private String phone = "";
     private String pic_url = "";
+    private int type;
 
     @Override
     public String toString() {
@@ -37,15 +38,8 @@ public class GarageInfo implements Serializable {
                 ", mobile_phone='" + mobile_phone + '\'' +
                 ", phone='" + phone + '\'' +
                 ", pic_url='" + pic_url + '\'' +
+                ", type=" + type +
                 '}';
-    }
-
-    public float getScore() {
-        return score;
-    }
-
-    public void setScore(float score) {
-        this.score = score;
     }
 
     public int getId() {
@@ -62,6 +56,14 @@ public class GarageInfo implements Serializable {
 
     public void setPopular(int popular) {
         this.popular = popular;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
     }
 
     public float getFilter_price() {
@@ -158,5 +160,13 @@ public class GarageInfo implements Serializable {
 
     public void setPic_url(String pic_url) {
         this.pic_url = pic_url;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }
