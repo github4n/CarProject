@@ -86,21 +86,25 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                 String tag = "";
                 switch (i) {
                     case R.id.mainBtn:
+                        //首页
                         fragment = new MainFragment();
                         tag = MainFragment.class.getSimpleName();
                         break;
 
                     case R.id.annualBtn:
+                        //年检
                         fragment = new AnnualCheckFragment();
                         tag = AnnualCheckFragment.class.getSimpleName();
                         break;
 
                     case R.id.serviceBtn:
+                        //服务
                         fragment = new ServiceFragment();
                         tag = ServiceFragment.class.getSimpleName();
                         break;
 
                     case R.id.mineBtn:
+                        //个人中心
                         fragment = new UserCenterFragment();
                         tag = UserCenterFragment.class.getSimpleName();
                         break;

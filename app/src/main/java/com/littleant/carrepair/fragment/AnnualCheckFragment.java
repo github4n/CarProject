@@ -163,6 +163,7 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
                 break;
 
             case R.id.ac_cl_my_reservation:
+                //我的年检记录
                 Intent intent = new Intent(getContext(), AnnualCheckRecordActivity.class);
                 getActivity().startActivity(intent);
                 break;

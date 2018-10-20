@@ -93,7 +93,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         //套餐A明细布局
         acf_package_detail = findViewById(R.id.acf_package_detail);
         //套餐B明细布局
-        acf_package_layout = findViewById(R.id.acf_package_layout);
+       // acf_package_layout = findViewById(R.id.acf_package_layout);
         //详细说明
         acf_tv_package_detail = findViewById(R.id.acf_tv_package_detail);
 
@@ -170,7 +170,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
                     acf_tv_package_detail.setVisibility(View.VISIBLE);
-                    acf_package_layout.setVisibility(View.GONE);
+                    //acf_package_layout.setVisibility(View.GONE);
                     acf_package_detail.setVisibility(View.VISIBLE);
 
                     setPrice();
@@ -184,7 +184,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 if(b) {
                     acf_tv_package_detail.setVisibility(View.VISIBLE);
                     acf_package_detail.setVisibility(View.GONE);
-                    acf_package_layout.setVisibility(View.VISIBLE);
+                    //acf_package_layout.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -351,7 +351,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 List<ComboItemSet> comboitem_set = comboBean.getComboitem_set();
                 if(comboitem_set != null  && comboitem_set.size() > 0) {
                     MyComboAdapter adapter = new MyComboAdapter(comboitem_set);
-                    acf_package_layout.setAdapter(adapter);
+                    //acf_package_layout.setAdapter(adapter);
                 }
 //                int itemSize = comboitem_set.size();
 //                acf_rb_light.setText(comboitem_set.get(0).getName());

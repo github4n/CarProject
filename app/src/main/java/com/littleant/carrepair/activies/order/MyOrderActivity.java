@@ -67,6 +67,7 @@ public class MyOrderActivity extends BaseActivity {
     }
 
     private void requestOrder(int state, ParamsConstant.CommentStatus status) {
+        //查询全部订单列表信息
         ListQueryAllCmd listQueryAllCmd = new ListQueryAllCmd(mContext, state, status);
         listQueryAllCmd.setCallback(new MHCommandCallBack() {
             @Override

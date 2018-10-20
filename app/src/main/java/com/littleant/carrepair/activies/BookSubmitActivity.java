@@ -21,6 +21,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.car.MyCarActivity;
 import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
 import com.littleant.carrepair.activies.order.MyOrderActivity;
+import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
 import com.littleant.carrepair.activies.repair.RepairRecordActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
@@ -233,7 +234,7 @@ public class BookSubmitActivity extends BaseActivity {
         String longitude = selectLon + "";
         String latitude = selectLat + "";
         String address = abs_tv_location_display.getText().toString();
-        if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(name) || TextUtils.isEmpty(subscribe_time)
+        if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(name)
                 || TextUtils.isEmpty(longitude) || TextUtils.isEmpty(latitude) || TextUtils.isEmpty(address)
                 || oilAmount == 0) {
             MHToast.showS(mContext, R.string.need_finish_info);
@@ -251,8 +252,8 @@ public class BookSubmitActivity extends BaseActivity {
                 if (command != null) {
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
-                        Intent intent = new Intent(mContext, MyOrderActivity.class);
+                    if (responseBean != null && responseBean.getCode() == 100) {
+                        Intent intent = new Intent(mContext, PaymentActivity.class);
                         startActivity(intent);
                         finish();
                     }

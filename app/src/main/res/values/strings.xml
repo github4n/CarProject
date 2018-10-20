@@ -12,6 +12,7 @@
     <!--登入页-->
     <string name="login_login">登录</string>
     <string name="login_account">请输入手机号</string>
+    <string name="login_name">请输入姓名</string>
     <string name="login_password">请输入密码</string>
     <string name="login_forget_password">忘记密码？</string>
     <string name="login_register">新用户注册</string>
@@ -178,7 +179,7 @@
     <string name="text_user_center_shop_credit">商城订单</string>
     <string name="text_user_center_door_serivce">上门维修服务</string>
     <string name="text_user_center_address">收货地址</string>
-    <string name="text_user_center_repaire_record">维修记录</string>
+    <string name="text_user_center_aftersale_record">售后服务</string>
     <string name="text_user_center_service_phone">客服</string>
     <string name="text_user_center_user_name">用户名</string>
 
@@ -427,6 +428,11 @@
     <string name="text_annual_check_record_location">地点:</string>
     <string name="text_annual_check_record_driver">服务司机:</string>
     <string name="text_annual_check_type">年检类型:</string>
+
+    <!--售后服务-->
+    <string name="text_after_sale_doing">未完成的售后服务</string>
+    <string name="text_after_sale_finish">已完成的售后服务</string>
+    <string name="text_after_sale"></string>
 
     <!--支付订单-->
     <string name="text_payment">支付订单</string>
