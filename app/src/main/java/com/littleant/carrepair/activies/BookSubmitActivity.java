@@ -61,8 +61,8 @@ public class BookSubmitActivity extends BaseActivity {
     private EditText abs_et_contact, abs_et_phone;
     //确认按钮
     private Button abs_btn_confrm;
-    //汽车信息
-    private View constraintLayout;
+    //汽车信息\订单金额
+    private View constraintLayout, abs_constraintLayout3;
     private TextView bm_tv_title, bm_tv_des;
     private ImageView bm_iv_icon;
     private GarageInfo garageInfo;
@@ -96,6 +96,7 @@ public class BookSubmitActivity extends BaseActivity {
             if(RepairActivity.class.getSimpleName().equals(from)) {
                 content = extras.getString(CONTENT);
                 picList = extras.getParcelableArrayList(PIC_LIST);
+                abs_constraintLayout3.setVisibility(View.INVISIBLE);  //维修不显示金额
             } else if(BookMaintainActivity.class.getSimpleName().equals(from)) {
                 oilId = extras.getInt(OIL_ID);
                 oilAmount = extras.getInt(OIL_AMOUNT);
@@ -125,14 +126,19 @@ public class BookSubmitActivity extends BaseActivity {
         abs_price = findViewById(R.id.abs_price);
 
         abs_et_contact = findViewById(R.id.abs_et_contact);
+        abs_et_contact.setText(DataHelper.getContractName(this));
 
         abs_et_phone = findViewById(R.id.abs_et_phone);
+        abs_et_phone.setText(DataHelper.getContractPhone(this));
 
         abs_btn_confrm = findViewById(R.id.abs_btn_confrm);
         abs_btn_confrm.setOnClickListener(this);
 
         constraintLayout = findViewById(R.id.include2);
         constraintLayout.setOnClickListener(this);
+
+        //订单金额界面
+        abs_constraintLayout3 = findViewById(R.id.abs_constraintLayout3);
 
         bm_tv_title = findViewById(R.id.bm_tv_title);
         bm_tv_des = findViewById(R.id.bm_tv_des);
@@ -250,6 +256,8 @@ public class BookSubmitActivity extends BaseActivity {
             MHToast.showS(mContext, R.string.phone_wrong);
             return;
         }
+        DataHelper.saveContractName(this, name);
+        DataHelper.saveContractPhone(this, phone);
         UpkeepCreateCmd upkeepCreateCmd = new UpkeepCreateCmd(mContext, garage_id, car_id, name, phone,
                 subscribe_time, longitude, latitude, address, oilId, oilAmount);
         upkeepCreateCmd.setCallback(new MHCommandCallBack() {
@@ -270,7 +278,6 @@ public class BookSubmitActivity extends BaseActivity {
         });
         MHCommandExecute.getInstance().asynExecute(mContext, upkeepCreateCmd);
     }
-
     private void requestRepair() {
         int garage_id = garageInfo.getId();
         int car_id = carInfo.getId();
@@ -292,6 +299,8 @@ public class BookSubmitActivity extends BaseActivity {
             MHToast.showS(mContext, R.string.phone_wrong);
             return;
         }
+        DataHelper.saveContractName(this, name);
+        DataHelper.saveContractPhone(this, phone);
         Bitmap[] pics = DataHelper.parseUriList2BitmapArray(this, picList);
         MaintainCreateCmd maintainCreateCmd = new MaintainCreateCmd(mContext, garage_id, car_id, name, phone,
                 subscribe_time, longitude, latitude, address, content, pics);
