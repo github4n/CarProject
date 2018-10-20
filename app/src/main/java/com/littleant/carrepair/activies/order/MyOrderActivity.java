@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.repair.RepairOrderDetailActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
@@ -27,6 +28,7 @@ import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.list.ListQueryAllCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainDeleteCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepDeleteCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
@@ -205,7 +207,7 @@ public class MyOrderActivity extends BaseActivity {
 
                     case 3: //服务中
                         holdText = "确认取车";
-                        holder.lmoi_money.setText("￥" + orderInfo.getNow_price() + "");
+                        holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
                         holder.lmoi_tv_state.setText("服务中");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_service_ing));
                         holder.lmoi_btn_delete.setVisibility(View.INVISIBLE);
@@ -218,7 +220,7 @@ public class MyOrderActivity extends BaseActivity {
 
                     case 4: //服务完成
                         holdText = "评价";
-                        holder.lmoi_money.setText("￥" + orderInfo.getNow_price() + "");
+                        holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
                         holder.lmoi_tv_state.setText("服务完成");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_service_done));
                         holder.lmoi_btn_delete.setVisibility(View.INVISIBLE);
@@ -302,7 +304,7 @@ public class MyOrderActivity extends BaseActivity {
                         if(TYPE_UPKEEP.equals(orderInfo.getType())) {
 
                         } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
-                            Intent intent = new Intent(mContext, ServiceOrderDetailActivity.class);
+                            Intent intent = new Intent(mContext, RepairOrderDetailActivity.class);
                             intent.putExtra(ORDER_INFO, orderInfo);
                             startActivityForResult(intent, REQUEST_DETAIL);
                         }

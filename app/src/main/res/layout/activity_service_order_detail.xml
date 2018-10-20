@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_sub_background"
-    tools:context=".activies.order.ServiceOrderDetailActivity">
+    tools:context=".activies.repair.RepairOrderDetailActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/asod_icon" />
+                app:srcCompat="@drawable/detail_icon_repair" />
 
             <TextView
                 android:id="@+id/asod_tv_title"
@@ -55,7 +55,8 @@
                 app:layout_constraintBottom_toBottomOf="@id/asod_iv_icon"
                 app:layout_constraintEnd_toStartOf="@id/asod_tv_state"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@id/asod_iv_icon" />
+                app:layout_constraintStart_toEndOf="@id/asod_iv_icon"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/asod_tv_state"
@@ -111,6 +112,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@color/color_sub_background"
                 android:text="@string/text_order_detail_modify"
+                android:visibility="invisible"
                 android:textColor="@color/color_main"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -138,8 +140,9 @@
             android:id="@+id/asod_cl_buttons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1px"
+            android:layout_marginTop="1dp"
             android:background="@color/white"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/asod_ll_detail">

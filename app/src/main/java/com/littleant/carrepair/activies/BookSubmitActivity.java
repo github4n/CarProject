@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.amap.searchdemo.SelectPlaceActivity;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.car.MyCarActivity;
-import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
+import com.littleant.carrepair.activies.upkeep.BookUpkeepActivity;
 import com.littleant.carrepair.activies.order.MyOrderActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
@@ -41,8 +41,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import static com.littleant.carrepair.activies.maintain.BookMaintainActivity.OIL_AMOUNT;
-import static com.littleant.carrepair.activies.maintain.BookMaintainActivity.OIL_ID;
+import static com.littleant.carrepair.activies.upkeep.BookUpkeepActivity.OIL_AMOUNT;
+import static com.littleant.carrepair.activies.upkeep.BookUpkeepActivity.OIL_ID;
 import static com.littleant.carrepair.activies.repair.RepairActivity.CONTENT;
 import static com.littleant.carrepair.activies.repair.RepairActivity.PIC_LIST;
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
@@ -97,7 +97,7 @@ public class BookSubmitActivity extends BaseActivity {
                 content = extras.getString(CONTENT);
                 picList = extras.getParcelableArrayList(PIC_LIST);
                 abs_constraintLayout3.setVisibility(View.INVISIBLE);  //维修不显示金额
-            } else if(BookMaintainActivity.class.getSimpleName().equals(from)) {
+            } else if(BookUpkeepActivity.class.getSimpleName().equals(from)) {
                 oilId = extras.getInt(OIL_ID);
                 oilAmount = extras.getInt(OIL_AMOUNT);
             }
@@ -161,7 +161,7 @@ public class BookSubmitActivity extends BaseActivity {
             case R.id.abs_btn_confrm:
                 if(RepairActivity.class.getSimpleName().equals(from)) {
                     requestRepair();
-                } else if(BookMaintainActivity.class.getSimpleName().equals(from)) {
+                } else if(BookUpkeepActivity.class.getSimpleName().equals(from)) {
                     requestMaintain();
                 }
                 break;
@@ -226,7 +226,7 @@ public class BookSubmitActivity extends BaseActivity {
                 d.dismiss();
                 if(RepairActivity.class.getSimpleName().equals(from)) {
                     requestRepair();
-                } else if(BookMaintainActivity.class.getSimpleName().equals(from)) {
+                } else if(BookUpkeepActivity.class.getSimpleName().equals(from)) {
                     requestMaintain();
                 }
             }

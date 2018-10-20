@@ -147,7 +147,7 @@
             android:name=".activies.annualcheck.AnnualCheckRecordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.maintain.BookMaintainActivity"
+            android:name=".activies.upkeep.BookUpkeepActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.main.SearchActivity"
@@ -181,7 +181,7 @@
             android:name=".activies.annualcheck.AnnualCheckDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.order.ServiceOrderDetailActivity"
+            android:name=".activies.repair.RepairOrderDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.amap.api.navi.AmapRouteActivity"
