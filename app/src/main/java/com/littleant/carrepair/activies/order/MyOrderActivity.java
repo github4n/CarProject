@@ -187,7 +187,7 @@ public class MyOrderActivity extends BaseActivity {
                         holder.lmoi_btn_hold.setVisibility(View.GONE);
                         break;
 
-                    case 1:
+                    case 1: //未支付
                         holdText = "去付款";
                         holder.lmoi_money.setText("等待维修厂发布清算");
                         holder.lmoi_tv_state.setText("未支付");
@@ -203,7 +203,7 @@ public class MyOrderActivity extends BaseActivity {
                         holder.lmoi_btn_delete.setVisibility(View.VISIBLE);
                         break;
 
-                    case 3:
+                    case 3: //服务中
                         holdText = "确认取车";
                         holder.lmoi_money.setText("￥" + orderInfo.getNow_price() + "");
                         holder.lmoi_tv_state.setText("服务中");
@@ -216,7 +216,7 @@ public class MyOrderActivity extends BaseActivity {
                         }
                         break;
 
-                    case 4:
+                    case 4: //服务完成
                         holdText = "评价";
                         holder.lmoi_money.setText("￥" + orderInfo.getNow_price() + "");
                         holder.lmoi_tv_state.setText("服务完成");

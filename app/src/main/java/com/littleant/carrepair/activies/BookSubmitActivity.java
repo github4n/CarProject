@@ -47,6 +47,9 @@ import static com.littleant.carrepair.activies.repair.RepairActivity.CONTENT;
 import static com.littleant.carrepair.activies.repair.RepairActivity.PIC_LIST;
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
 
+/**
+ * 提交预约
+ */
 public class BookSubmitActivity extends BaseActivity {
     //时间、地点
     private TextView abs_tv_time_display, abs_tv_location_display;
@@ -230,7 +233,10 @@ public class BookSubmitActivity extends BaseActivity {
         int car_id = carInfo.getId();
         String name = abs_et_contact.getText().toString();
         String phone = abs_et_phone.getText().toString();
-        String subscribe_time = abs_tv_time_display.getText().toString();
+//        String subscribe_time = abs_tv_time_display.getText().toString();
+        String date = DataHelper.parseDate(2018, 10, 31);
+        String time = DataHelper.parseTime(20, 15);
+        String subscribe_time = date + " " + time;
         String longitude = selectLon + "";
         String latitude = selectLat + "";
         String address = abs_tv_location_display.getText().toString();
@@ -270,7 +276,10 @@ public class BookSubmitActivity extends BaseActivity {
         int car_id = carInfo.getId();
         String name = abs_et_contact.getText().toString();
         String phone = abs_et_phone.getText().toString();
-        String subscribe_time = abs_tv_time_display.getText().toString();
+//        String subscribe_time = abs_tv_time_display.getText().toString();
+        String date = DataHelper.parseDate(2018, 10, 31);
+        String time = DataHelper.parseTime(20, 15);
+        String subscribe_time = date + " " + time;
         String longitude = selectLon + "";
         String latitude = selectLat + "";
         String address = abs_tv_location_display.getText().toString();

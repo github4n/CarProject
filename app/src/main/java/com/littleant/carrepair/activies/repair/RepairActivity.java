@@ -24,6 +24,7 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.PicassoEngine;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.littleant.carrepair.activies.BookSubmitActivity.FROM;
@@ -125,9 +126,18 @@ public class RepairActivity extends BaseActivity {
                     MHToast.showS(mContext, R.string.need_finish_info);
                     return;
                 }
+                ArrayList<Uri> picList = new ArrayList<>();
+                for (Uri uri : mSelected) {
+                    if(uri != null) {
+                        picList.add(uri);
+                    }
+                }
                 Intent intent = new Intent(mContext, BookSubmitActivity.class);
                 intent.putExtra(GARAGE_INFO, garageInfo);
                 intent.putExtra(CONTENT, content);
+                if(picList.size() > 0) {
+                    intent.putExtra(PIC_LIST, picList);
+                }
                 intent.putExtra(FROM, RepairActivity.class.getSimpleName());
                 /*if(myAdapter != null && myAdapter.getCurrentList() != null && myAdapter.getCurrentList().size() > 0) {
                     intent.putParcelableArrayListExtra(PIC_LIST, (ArrayList<Uri>) myAdapter.getCurrentList());
@@ -259,7 +269,7 @@ public class RepairActivity extends BaseActivity {
         if(requestCode == REQUEST_CODE_CHOOSE1 && resultCode == RESULT_OK) {
             if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
                 Uri uri = Matisse.obtainResult(data).get(0);
-                mSelected[0] = uri;;
+                mSelected[0] = uri;
                 Picasso.with(mContext).load(uri).into(r_btn_add_pic);
                 r_btn_del1.setVisibility(View.VISIBLE);
             }

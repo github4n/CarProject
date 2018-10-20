@@ -131,7 +131,10 @@
             android:id="@+id/r_btn_add_pic"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/r_btn_add_pic2"
             app:layout_constraintHorizontal_weight="1"
@@ -154,12 +157,13 @@
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@id/r_btn_add_pic"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/r_btn_add_pic3"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/r_btn_add_pic"
-            app:layout_constraintTop_toBottomOf="@id/r_tv_pic"
+            app:layout_constraintTop_toTopOf="@+id/r_btn_add_pic"
             app:srcCompat="@drawable/r_add_pic" />
 
         <ImageView
@@ -177,12 +181,13 @@
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@+id/r_btn_add_pic2"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toStartOf="@id/r_cl_guideline2"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/r_btn_add_pic2"
-            app:layout_constraintTop_toBottomOf="@id/r_tv_pic"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic2"
             app:srcCompat="@drawable/r_add_pic" />
 
         <ImageView

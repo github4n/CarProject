@@ -63,12 +63,15 @@
 
         <TextView
             android:id="@+id/lmoi_product_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:textColor="@color/color_uc_text"
             android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/lmoi_guideline2"
             app:layout_constraintStart_toStartOf="@id/lmoi_guideline"
             app:layout_constraintTop_toTopOf="@+id/lmoi_img" />
 

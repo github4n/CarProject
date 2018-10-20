@@ -29,6 +29,9 @@ import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
+/**
+ * 年检记录
+ */
 public class AnnualCheckRecordActivity extends BaseActivity {
 
     private RecyclerView mList;
@@ -221,7 +224,10 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                         intent = new Intent(mContext, CheckReturnCarActivity.class);
                         break;
 
-                    case STATE_WAIT_PAY:
+                    case STATE_WAIT_PAY: //等待支付直接进入支付界面
+
+                        break;
+
                     case STATE_WAIT_GET:
                     case STATE_FINISH:
                         requestCode = REQUEST_CODE_CHECK_DETAIL;
