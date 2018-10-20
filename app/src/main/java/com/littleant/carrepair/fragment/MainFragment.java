@@ -355,6 +355,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 if(mRepair.isChecked()) {
                     intent = new Intent(getContext(), RepairActivity.class);
                 } else if(mMaintain.isChecked()) {
+                    //保养
                     intent = new Intent(getContext(), BookMaintainActivity.class);
                 } else {
                     return;

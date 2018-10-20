@@ -90,8 +90,10 @@ public class BookSubmitActivity extends BaseActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             garageInfo = (GarageInfo) extras.getSerializable(GARAGE_INFO);
+            float price=extras.getFloat("oil_price");
             abs_name.setText(garageInfo.getName());
             abs_address.setText(garageInfo.getAddress());
+            abs_price.setText(price+"");
             from = extras.getString(FROM);
             if(RepairActivity.class.getSimpleName().equals(from)) {
                 content = extras.getString(CONTENT);
@@ -125,8 +127,11 @@ public class BookSubmitActivity extends BaseActivity {
         abs_price = findViewById(R.id.abs_price);
 
         abs_et_contact = findViewById(R.id.abs_et_contact);
-
+        //光标放到最右边
+        abs_et_contact.setSelection(abs_et_contact.getText().length());
         abs_et_phone = findViewById(R.id.abs_et_phone);
+        //光标放到最右边
+        abs_et_phone.setSelection(abs_et_phone.getText().length());
 
         abs_btn_confrm = findViewById(R.id.abs_btn_confrm);
         abs_btn_confrm.setOnClickListener(this);
@@ -232,6 +237,7 @@ public class BookSubmitActivity extends BaseActivity {
         int garage_id = garageInfo.getId();
         int car_id = carInfo.getId();
         String name = abs_et_contact.getText().toString();
+
         String phone = abs_et_phone.getText().toString();
 //        String subscribe_time = abs_tv_time_display.getText().toString();
         String date = DataHelper.parseDate(2018, 10, 31);
