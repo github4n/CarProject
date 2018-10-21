@@ -2,6 +2,7 @@ package com.littleant.carrepair.activies.repair;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.view.RepairItemView;
 import com.littleant.carrepair.activies.repair.view.RepairPicView;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
@@ -30,6 +32,7 @@ import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
 import com.littleant.carrepair.request.bean.pay.PayInfoBean;
 import com.littleant.carrepair.request.bean.survey.ObjList;
 import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.maintain.maintain.MaintainDeleteCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainMethodCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainQueryOneCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
@@ -43,6 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.littleant.carrepair.activies.order.MyOrderActivity.ORDER_INFO;
+import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
 
 /**
  * 待服务、服务中：没有照片信息，没有支付、删除按钮
@@ -55,7 +59,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
     public static final String TYPE_UPKEEP = "upkeep";
     public static final String PAY_MAINTAIN = "maintain";
     private MaintainOrderDetailBean.MaintainOrderDetail data;
-
+    //订单列表的bean
     private MaintainOrderListBean.OrderInfo orderInfo;
     private TextView asod_tv_title, asod_tv_state, asod_tv_modify;
     //维修修改的项目部分,维修照片部分
@@ -72,6 +76,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
     private static final int FLAG_NORMAL = 0;
     private static final int FLAG_UPDATE = 1;
+    private static final int REQUEST_PAY = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +89,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
                 finish();
                 return;
             } else {
-                if(TYPE_UPKEEP.equals(orderInfo.getType())) {
-
-                } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
+                if(PAY_MAINTAIN.equals(orderInfo.getType())) {
                     requestMaintainOrderDetail(FLAG_NORMAL);
                 }
             }
@@ -176,9 +179,6 @@ public class RepairOrderDetailActivity extends BaseActivity {
                 showPic(data);
                 break;
         }
-        asod_ll_detail = findViewById(R.id.asod_ll_detail); //显示维修项目
-        asod_ll_pic = findViewById(R.id.asod_ll_pic);
-        asod_cl_buttons = findViewById(R.id.asod_cl_buttons);
 
         //大标题
         asod_tv_title.setText(data.getOrder_name());
@@ -214,16 +214,27 @@ public class RepairOrderDetailActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.asod_btn_delete:
-
+                requestDeleteMaintainOrder(orderInfo.getId());
                 break;
 
             case R.id.asod_btn_pay:
-
+                Intent intent = new Intent(mContext, PaymentActivity.class);
+                intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_MAINTAIN);
+                intent.putExtra(ORDER_INFO, orderInfo);
+                startActivityForResult(intent, REQUEST_PAY);
                 break;
 
             case R.id.asod_tv_modify:
                 showList();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_PAY && resultCode == RESULT_OK) { //支付成功，返回并刷新订单页面
+            finishAndResult();
         }
     }
 
@@ -243,7 +254,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
     private void showPic(MaintainOrderDetailBean.MaintainOrderDetail data) {
         List<ObjList> maintainpic_set = data.getMaintainpic_set();
-        if(maintainpic_set != null) {
+        if(maintainpic_set != null && maintainpic_set.size() > 0) {
             asod_ll_pic.removeAllViews();
             for(ObjList obj : maintainpic_set) {
                 RepairPicView picView = new RepairPicView(mContext, obj);
@@ -412,5 +423,32 @@ public class RepairOrderDetailActivity extends BaseActivity {
             notifyItemRemoved(position);
             notifyDataSetChanged();
         }
+    }
+
+    private void requestDeleteMaintainOrder(int id) {
+        MaintainDeleteCmd maintainDeleteCmd = new MaintainDeleteCmd(mContext, id);
+        maintainDeleteCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        MHToast.showS(mContext, R.string.delete_success);
+                        finishAndResult();
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, maintainDeleteCmd);
+    }
+
+    private void finishAndResult() {
+        RepairOrderDetailActivity.this.setResult(RESULT_OK);
+        RepairOrderDetailActivity.this.finish();
     }
 }

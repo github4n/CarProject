@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textColor="@color/color_uc_text"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_order_detail_code"
+        android:textSize="12sp"
         android:textColor="@color/color_text"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
         app:layout_constraintTop_toBottomOf="@id/lod_tv_title" />
@@ -49,6 +50,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lod_tv_code"
         app:layout_constraintStart_toEndOf="@id/lod_tv_code"
         app:layout_constraintTop_toTopOf="@id/lod_tv_code" />
@@ -60,6 +62,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_order_detail_type"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
         app:layout_constraintTop_toBottomOf="@id/lod_tv_code" />
 
@@ -70,6 +73,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lod_tv_type"
         app:layout_constraintStart_toEndOf="@id/lod_tv_type"
         app:layout_constraintTop_toTopOf="@id/lod_tv_type" />
@@ -80,7 +84,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_order_detail_time"
+        android:visibility="gone"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
         app:layout_constraintTop_toBottomOf="@id/lod_tv_type" />
 
@@ -91,6 +97,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lod_tv_time"
         app:layout_constraintStart_toEndOf="@id/lod_tv_time"
         app:layout_constraintTop_toTopOf="@id/lod_tv_time" />
@@ -102,6 +109,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_order_detail_item"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
         app:layout_constraintTop_toBottomOf="@id/lod_tv_time" />
 
@@ -112,6 +120,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lod_tv_item"
         app:layout_constraintStart_toEndOf="@id/lod_tv_item"
         app:layout_constraintTop_toTopOf="@id/lod_tv_item" />
@@ -123,6 +132,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_order_detail_material"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
         app:layout_constraintTop_toBottomOf="@id/lod_tv_item" />
 
@@ -133,6 +143,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lod_tv_material"
         app:layout_constraintStart_toEndOf="@id/lod_tv_material"
         app:layout_constraintTop_toTopOf="@id/lod_tv_material" />
@@ -144,6 +155,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_order_detail_exid"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
         app:layout_constraintTop_toBottomOf="@id/lod_tv_material" />
 
@@ -154,6 +166,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lod_tv_exid"
         app:layout_constraintStart_toEndOf="@id/lod_tv_exid"
         app:layout_constraintTop_toTopOf="@id/lod_tv_exid" />
@@ -165,6 +178,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_order_detail_oid"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
         app:layout_constraintTop_toBottomOf="@id/lod_tv_exid" />
 
@@ -175,9 +189,20 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/color_text"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lod_tv_oid"
         app:layout_constraintStart_toEndOf="@id/lod_tv_oid"
         app:layout_constraintTop_toTopOf="@id/lod_tv_oid" />
+
+    <ImageView
+        android:id="@+id/lod_line"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lod_tv_oid"
+        app:srcCompat="@color/color_sub_background" />
 
     <TextView
         android:id="@+id/lod_tv_price"
@@ -187,19 +212,21 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_order_detail_price"
         android:textColor="@color/color_text"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/lod_guideline"
-        app:layout_constraintTop_toBottomOf="@id/lod_tv_oid" />
+        app:layout_constraintTop_toBottomOf="@id/lod_line" />
 
     <TextView
         android:id="@+id/lod_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/color_text"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/color_text_shop_price"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@id/lod_tv_price"
-        app:layout_constraintStart_toEndOf="@id/lod_tv_price"
+        app:layout_constraintEnd_toStartOf="@+id/lod_guideline2"
         app:layout_constraintTop_toTopOf="@id/lod_tv_price" />
 
 </android.support.constraint.ConstraintLayout>

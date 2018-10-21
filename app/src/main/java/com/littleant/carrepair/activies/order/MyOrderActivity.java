@@ -18,16 +18,21 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.repair.RepairOrderDetailActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
+import com.littleant.carrepair.activies.upkeep.UpkeepDetailActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
+import com.littleant.carrepair.request.bean.upkeep.UpkeepOrderDetailBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.list.ListQueryAllCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainDeleteCmd;
+import com.littleant.carrepair.request.excute.maintain.maintain.MaintainMethodCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepDeleteCmd;
+import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepMethodCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -158,7 +163,7 @@ public class MyOrderActivity extends BaseActivity {
         if(requestCode == REQUEST_PAY && resultCode == RESULT_OK) {
             requestOrder(state, status);
         } else if(requestCode == REQUEST_DETAIL && resultCode == RESULT_OK) {
-
+            requestOrder(state, status);
         }
     }
 
@@ -219,7 +224,11 @@ public class MyOrderActivity extends BaseActivity {
                         break;
 
                     case 4: //服务完成
-                        holdText = "评价";
+                        if(orderInfo.isIs_comment()) {
+                            holder.lmoi_btn_hold.setVisibility(View.GONE);
+                        } else {
+                            holdText = "评价";
+                        }
                         holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
                         holder.lmoi_tv_state.setText("服务完成");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_service_done));
@@ -256,9 +265,16 @@ public class MyOrderActivity extends BaseActivity {
                                 int dialogWidth = (int) (dm.widthPixels * 0.6);
                                 int dialogHeight = (int) (dm.heightPixels * 0.3);
                                 d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+                                final XLHRatingBar ratingBar = contentView.findViewById(R.id.lr_rating);
                                 contentView.findViewById(R.id.lr_rating_ok).setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        int score = ratingBar.getCountSelected();
+                                        if(TYPE_UPKEEP.equals(orderInfo.getType())) {
+                                            requestRateUpkeep(orderInfo.getId(), score);
+                                        } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
+                                            requestRateMaintain(orderInfo.getId(), score);
+                                        }
                                         d.dismiss();
                                     }
                                 });
@@ -302,7 +318,9 @@ public class MyOrderActivity extends BaseActivity {
                     public void onClick(View v) {
                         //进入详情页
                         if(TYPE_UPKEEP.equals(orderInfo.getType())) {
-
+                            Intent intent = new Intent(mContext, UpkeepDetailActivity.class);
+                            intent.putExtra(ORDER_INFO, orderInfo);
+                            startActivityForResult(intent, REQUEST_DETAIL);
                         } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
                             Intent intent = new Intent(mContext, RepairOrderDetailActivity.class);
                             intent.putExtra(ORDER_INFO, orderInfo);
@@ -378,5 +396,49 @@ public class MyOrderActivity extends BaseActivity {
             }
         });
         MHCommandExecute.getInstance().asynExecute(mContext, maintainDeleteCmd);
+    }
+
+    private void requestRateMaintain(int id, int score) {
+        MaintainMethodCmd methodCmd = new MaintainMethodCmd(mContext, id, ParamsConstant.MethodStatus.COMMENT, score, null, "");
+        methodCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        MHToast.showS(mContext, R.string.rating_success);
+                        requestOrder(state, status);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, methodCmd);
+    }
+
+    private void requestRateUpkeep(int id, int score) {
+        UpkeepMethodCmd methodCmd = new UpkeepMethodCmd(mContext, id, ParamsConstant.MethodStatus.COMMENT, score, null);
+        methodCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        MHToast.showS(mContext, R.string.rating_success);
+                        requestOrder(state, status);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, methodCmd);
     }
 }

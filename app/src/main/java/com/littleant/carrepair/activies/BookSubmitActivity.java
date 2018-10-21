@@ -127,9 +127,13 @@ public class BookSubmitActivity extends BaseActivity {
 
         abs_et_contact = findViewById(R.id.abs_et_contact);
         abs_et_contact.setText(DataHelper.getContractName(this));
+        abs_et_contact.setSelection(abs_et_contact.getText().length());
+
 
         abs_et_phone = findViewById(R.id.abs_et_phone);
         abs_et_phone.setText(DataHelper.getContractPhone(this));
+        abs_et_phone.setSelection(abs_et_phone.getText().length());
+
 
         abs_btn_confrm = findViewById(R.id.abs_btn_confrm);
         abs_btn_confrm.setOnClickListener(this);
