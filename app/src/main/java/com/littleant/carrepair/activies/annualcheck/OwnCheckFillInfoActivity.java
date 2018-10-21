@@ -87,7 +87,11 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
 
         //EditText输入框
         aocf_et_contact_name = findViewById(R.id.aocf_et_contact_name);
+        aocf_et_contact_name.setText(DataHelper.getContractName(this));
+
         aocf_et_contact_phone = findViewById(R.id.aocf_et_contact_phone);
+        aocf_et_contact_phone.setText(DataHelper.getContractPhone(this));
+
         aocf_et_driver_name = findViewById(R.id.aocf_et_driver_name);
         aocf_et_driver_brand = findViewById(R.id.aocf_et_driver_brand);
         aocf_et_driver_plate = findViewById(R.id.aocf_et_driver_plate);
