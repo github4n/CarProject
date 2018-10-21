@@ -48,12 +48,12 @@
         <TextView
             android:id="@+id/lodd_tv_modify"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/text_order_detail_list_modify"
             android:textColor="@color/color_main"
-            android:textSize="12sp"
+            android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="@id/lodd_tv_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/lodd_tv_list" />
@@ -71,7 +71,6 @@
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@id/lodd_guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lodd_layout" />
 
@@ -84,7 +83,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/shape_blue_fill"
-        android:text="@string/text_book_confirm"
+        android:text="@string/text_order_detail_list_ok"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/lodd_guideline2"

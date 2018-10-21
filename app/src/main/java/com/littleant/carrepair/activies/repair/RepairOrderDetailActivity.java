@@ -3,6 +3,8 @@ package com.littleant.carrepair.activies.repair;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -10,31 +12,34 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.activies.annualcheck.BaseFillInfoActivity;
 import com.littleant.carrepair.activies.repair.view.RepairItemView;
 import com.littleant.carrepair.activies.repair.view.RepairPicView;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.car.MyCarListBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderDetailBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
+import com.littleant.carrepair.request.bean.pay.PayInfoBean;
 import com.littleant.carrepair.request.bean.survey.ObjList;
-import com.littleant.carrepair.request.bean.survey.SurveyStationInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.maintain.maintain.MaintainMethodCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainQueryOneCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.littleant.carrepair.activies.order.MyOrderActivity.ORDER_INFO;
@@ -63,8 +68,10 @@ public class RepairOrderDetailActivity extends BaseActivity {
     private TextView asod_order_type, asod_exchange_id, asod_order_id;
     //头部基础信息
     private TextView lodb_item, lodb_time, lodb_type, lodb_code;
+    private MyAdapter myAdapter;
 
-
+    private static final int FLAG_NORMAL = 0;
+    private static final int FLAG_UPDATE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +87,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
                 if(TYPE_UPKEEP.equals(orderInfo.getType())) {
 
                 } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
-                    requestMaintainOrderDetail();
+                    requestMaintainOrderDetail(FLAG_NORMAL);
                 }
             }
 
@@ -114,7 +121,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
         asod_tv_modify.setOnClickListener(this);
     }
 
-    private void requestMaintainOrderDetail() {
+    private void requestMaintainOrderDetail(final int flag) {
         MaintainQueryOneCmd queryOneCmd = new MaintainQueryOneCmd(mContext, orderInfo.getId());
         queryOneCmd.setCallback(new MHCommandCallBack() {
             @Override
@@ -126,7 +133,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
                         MaintainOrderDetailBean orderDetailBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MaintainOrderDetailBean.class);
                         if(orderDetailBean != null) {
                             data = orderDetailBean.getData();
-                            showInfo(data);
+                            showInfo(flag, data);
                         }
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
@@ -139,7 +146,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
         MHCommandExecute.getInstance().asynExecute(mContext, queryOneCmd);
     }
 
-    private void showInfo(MaintainOrderDetailBean.MaintainOrderDetail data) {
+    private void showInfo(int flag, MaintainOrderDetailBean.MaintainOrderDetail data) {
         switch (orderInfo.getState()) {
             case 0: //等待接单
                 asod_tv_state.setText("等待接单");
@@ -166,7 +173,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
             case 4:
                 asod_tv_state.setText("服务完成");
                 asod_tv_state.setTextColor(getResources().getColor(R.color.color_service_done));
-                showPic();
+                showPic(data);
                 break;
         }
         asod_ll_detail = findViewById(R.id.asod_ll_detail); //显示维修项目
@@ -186,8 +193,11 @@ public class RepairOrderDetailActivity extends BaseActivity {
         asod_order_type.setText(data.getOrder_type());
         asod_exchange_id.setText(data.getDeal_id());
         asod_order_id.setText(data.getOrder_id());
-
-        showItemDetail();
+        if(flag == FLAG_NORMAL) {
+            showItemDetail(data.getMaintainitem_set());
+        } else if(flag == FLAG_UPDATE) {
+            showItemDetail(data.getMaintainitem_set_now());
+        }
     }
 
     @Override
@@ -217,8 +227,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
         }
     }
 
-    private void showItemDetail() {
-        List<MaintainOrderDetailBean.MaintainSet> maintainitem_set = data.getMaintainitem_set();
+    private void showItemDetail(List<MaintainOrderDetailBean.MaintainSet> maintainitem_set) {
         if(maintainitem_set != null) {
             asod_ll_detail.removeAllViews();
             float total = 0;
@@ -232,7 +241,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
         }
     }
 
-    private void showPic() {
+    private void showPic(MaintainOrderDetailBean.MaintainOrderDetail data) {
         List<ObjList> maintainpic_set = data.getMaintainpic_set();
         if(maintainpic_set != null) {
             asod_ll_pic.removeAllViews();
@@ -246,33 +255,68 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
     protected void showList() {
         View contentView2 = LayoutInflater.from(mContext).inflate(R.layout.layout_order_detail_dialog, null);
-//                View contentView = View.inflate(OwnCheckFillInfoActivity.this, R.layout.layout_select_dialog, null);
         final Dialog d2 = setDialog(mContext, contentView2);
         d2.setContentView(contentView2);
-        contentView2.findViewById(R.id.lodd_tv_list).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                d2.dismiss();
-            }
-        });
-
-        contentView2.findViewById(R.id.lodd_tv_modify).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                d2.dismiss();
-            }
-        });
 
         RecyclerView listView2 = contentView2.findViewById(R.id.lodd_list);
-//        final MyAdapter myAdapter = new MyAdapter(infos, list);
-//        listView2.setAdapter(myAdapter);
-//        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Log.i("listview", "onItemClick = " + position);
-//            }
-//        });
+        listView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        myAdapter = new MyAdapter(data.getMaintainitem_set());
+        listView2.setAdapter(myAdapter);
+
+        final TextView hold = contentView2.findViewById(R.id.lodd_tv_modify);
+        hold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(myAdapter.getEditMode()) { //编辑状态中
+                    myAdapter.setEditMode(false);
+                    ((TextView) view).setText(R.string.text_order_detail_list_modify);
+                } else {
+                    myAdapter.setEditMode(true);
+                    ((TextView) view).setText(R.string.text_order_detail_list_finish);
+                }
+            }
+        });
+        contentView2.findViewById(R.id.lodd_btn_confrm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(myAdapter.getEditMode()) { //编辑状态中
+                    myAdapter.setEditMode(false);
+                    hold.setText(R.string.text_order_detail_list_modify);
+                } else {
+                    d2.dismiss();
+                    requestModify();
+                }
+            }
+        });
+
         d2.show();
+    }
+
+    private void requestModify() {
+        StringBuilder itemList = new StringBuilder();
+        List<MaintainOrderDetailBean.MaintainSet> currentList = myAdapter.getCurrentList();
+        for (MaintainOrderDetailBean.MaintainSet temp : currentList) {
+            itemList.append(temp.getId()).append(",");
+        }
+        itemList.deleteCharAt(itemList.length() - 1);
+        MaintainMethodCmd methodCmd = new MaintainMethodCmd(mContext, orderInfo.getId(), ParamsConstant.MethodStatus.ITEM_LIST, 0, null, itemList.toString());
+        methodCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        requestMaintainOrderDetail(FLAG_UPDATE);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, methodCmd);
     }
 
     protected Dialog setDialog(Context activity, View contentView) {
@@ -292,5 +336,81 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
         d.setCanceledOnTouchOutside(false);
         return d;
+    }
+
+    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+
+        private List<MaintainOrderDetailBean.MaintainSet> maintainitem_set;
+        private boolean editMode = false;
+
+        public MyAdapter(List<MaintainOrderDetailBean.MaintainSet> item_set) {
+            this.maintainitem_set = new ArrayList<>();
+            maintainitem_set.addAll(item_set);
+        }
+
+        @NonNull
+        @Override
+        public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_order_detail_item, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(MyAdapter.ViewHolder holder, final int position) {
+            MaintainOrderDetailBean.MaintainSet maintainSet = maintainitem_set.get(position);
+            if(maintainSet != null) {
+                if(editMode) {
+                    holder.lodi_iv_delete.setVisibility(View.VISIBLE);
+                    holder.lodi_iv_delete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            removeData(position);
+                        }
+                    });
+                } else {
+                    holder.lodi_iv_delete.setVisibility(View.GONE);
+                }
+                holder.lodi_tv_name.setText(maintainSet.getName());
+                holder.lodi_tv_price.setText(DataHelper.displayPrice(mContext, maintainSet.getPrice()));
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return maintainitem_set.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            TextView lodi_tv_name, lodi_tv_price;
+            ImageView lodi_iv_delete;
+
+            ViewHolder(View itemView) {
+                super(itemView);
+                lodi_tv_name = itemView.findViewById(R.id.lodi_tv_name);
+                lodi_tv_price = itemView.findViewById(R.id.lodi_tv_price);
+                lodi_iv_delete = itemView.findViewById(R.id.lodi_iv_delete);
+            }
+        }
+
+        public void setEditMode(boolean editMode) {
+            this.editMode = editMode;
+            notifyDataSetChanged();
+        }
+
+        public boolean getEditMode() {
+            return editMode;
+        }
+
+        public List<MaintainOrderDetailBean.MaintainSet> getCurrentList() {
+            return maintainitem_set;
+        }
+
+        // 删除数据
+        private void removeData(int position) {
+            maintainitem_set.remove(position);
+            //删除动画
+            notifyItemRemoved(position);
+            notifyDataSetChanged();
+        }
     }
 }

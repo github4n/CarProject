@@ -96,6 +96,8 @@
     <string name="text_order_type">订单类型：</string>
     <string name="text_order_detail_list">维修清单</string>
     <string name="text_order_detail_list_modify">修改</string>
+    <string name="text_order_detail_list_ok">确认</string>
+    <string name="text_order_detail_list_finish">完成</string>
 
     <!--商城订单-->
     <string name="text_all_order">商城订单</string>
