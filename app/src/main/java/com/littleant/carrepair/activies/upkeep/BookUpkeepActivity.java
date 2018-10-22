@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 package com.littleant.carrepair.activies.upkeep;
-=======
-package com.littleant.carrepair.activies.maintain;
->>>>>>> 2018-10-20更新代码
+
 
 import android.content.Intent;
 import android.net.Uri;
@@ -41,11 +39,8 @@ import java.util.List;
 import static com.littleant.carrepair.activies.BookSubmitActivity.FROM;
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
 
-<<<<<<< HEAD
+
 public class BookUpkeepActivity extends BaseActivity {
-=======
-public class BookMaintainActivity extends BaseActivity {
->>>>>>> 2018-10-20更新代码
     private RecyclerView mList;
     private Button bm_submit;
     private GarageInfo garageInfo;
@@ -125,21 +120,17 @@ public class BookMaintainActivity extends BaseActivity {
                     MHToast.showS(mContext, R.string.no_select_item);
                     return;
                 }
-<<<<<<< HEAD
+
                 Intent intent = new Intent(BookUpkeepActivity.this, BookSubmitActivity.class);
+
+
                 intent.putExtra(GARAGE_INFO, garageInfo);
                 intent.putExtra(FROM, BookUpkeepActivity.class.getSimpleName());
                 intent.putExtra(OIL_ID, oilId);
                 intent.putExtra(OIL_AMOUNT, oilAmount);
+
                 BookUpkeepActivity.this.startActivity(intent);
-=======
-                Intent intent = new Intent(BookMaintainActivity.this, BookSubmitActivity.class);
-                intent.putExtra(GARAGE_INFO, garageInfo);
-                intent.putExtra(FROM, BookMaintainActivity.class.getSimpleName());
-                intent.putExtra(OIL_ID, oilId);
-                intent.putExtra(OIL_AMOUNT, oilAmount);
-                BookMaintainActivity.this.startActivity(intent);
->>>>>>> 2018-10-20更新代码
+
                 break;
         }
     }
