@@ -1,3 +1,4 @@
+
 package com.littleant.carrepair.activies.upkeep;
 
 
@@ -38,6 +39,7 @@ import java.util.List;
 import static com.littleant.carrepair.activies.BookSubmitActivity.FROM;
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
 
+
 public class BookUpkeepActivity extends BaseActivity {
     private RecyclerView mList;
     private Button bm_submit;
@@ -47,7 +49,10 @@ public class BookUpkeepActivity extends BaseActivity {
     private TextView bm_tv_total_money;
     public static final String OIL_ID = "oil_id";
     public static final String OIL_AMOUNT = "oil_amount";
+    public static final String OIL_PRICE = "oil_price";
+
     private int oilId, oilAmount;
+    private float price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,14 +123,20 @@ public class BookUpkeepActivity extends BaseActivity {
                     MHToast.showS(mContext, R.string.no_select_item);
                     return;
                 }
+                if(price==0.00){
+                    MHToast.showS(mContext, R.string.no_select_item);
+                    return;
+                }
 
                 Intent intent = new Intent(BookUpkeepActivity.this, BookSubmitActivity.class);
+
+
                 intent.putExtra(GARAGE_INFO, garageInfo);
                 intent.putExtra(FROM, BookUpkeepActivity.class.getSimpleName());
                 intent.putExtra(OIL_ID, oilId);
                 intent.putExtra(OIL_AMOUNT, oilAmount);
+                intent.putExtra(OIL_PRICE, price);
                 BookUpkeepActivity.this.startActivity(intent);
-
                 break;
         }
     }
@@ -186,7 +197,7 @@ public class BookUpkeepActivity extends BaseActivity {
                     holder.lmi_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            float price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
+                            price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
                             if (isChecked) {
                                 price += oilInfo.getNew_price();
                                 oilId = oilInfo.getId();

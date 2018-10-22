@@ -779,7 +779,7 @@
             android:background="@color/color_sub_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/acf_tv_package_detail"
+            app:layout_constraintTop_toBottomOf="@id/acf_package_detail"
             app:layout_goneMarginTop="40dp"/>
 
         <TextView

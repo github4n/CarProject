@@ -66,8 +66,10 @@ public class SettingActivity extends BaseActivity {
         setting_logout.setOnClickListener(this);
 
         setting_name = findViewById(R.id.setting_name);
+        setting_name.setSelection(setting_name.getText().length());
 
         setting_phone = findViewById(R.id.setting_phone);
+        setting_phone.setSelection(setting_phone.getText().length());
 
         setting_iv_icon = findViewById(R.id.setting_iv_icon);
         setting_iv_icon.setOnClickListener(this);

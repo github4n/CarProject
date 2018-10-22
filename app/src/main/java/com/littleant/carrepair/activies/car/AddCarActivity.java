@@ -115,8 +115,11 @@ public class AddCarActivity extends BaseActivity {
         aac_tv_brand.setOnClickListener(this);
 
         aac_et_plate = findViewById(R.id.aac_et_plate);
+
         aac_et_engine = findViewById(R.id.aac_et_engine);
+
         aac_et_frame = findViewById(R.id.aac_et_frame);
+
         aac_cb_default = findViewById(R.id.aac_cb_default);
 
         ac_btn_save = findViewById(R.id.ac_btn_save);

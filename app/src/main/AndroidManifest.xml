@@ -32,9 +32,9 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
+        android:resizeableActivity="false"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
-        android:resizeableActivity="false"
         android:theme="@style/MyTheme_Light"
         tools:replace="android:theme">
         <activity
@@ -126,8 +126,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.annualcheck.AnnualCheckFillInfoActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".activies.annualcheck.PickCarActivity"
             android:screenOrientation="portrait" />
@@ -147,7 +147,7 @@
             android:name=".activies.annualcheck.AnnualCheckRecordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.maintain.BookMaintainActivity"
+            android:name=".activies.upkeep.BookUpkeepActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.main.SearchActivity"
@@ -169,8 +169,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.annualcheck.OwnCheckFillInfoActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".activies.annualcheck.OwnStartCheckActivity"
             android:screenOrientation="portrait" />
@@ -181,7 +181,7 @@
             android:name=".activies.annualcheck.AnnualCheckDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activies.order.ServiceOrderDetailActivity"
+            android:name=".activies.repair.RepairOrderDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.amap.api.navi.AmapRouteActivity"
@@ -225,30 +225,29 @@
         <activity
             android:name=".activies.FirstLaunchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activies.shopping.ShoppingItemDetailActivity"
+        <activity
+            android:name=".activies.shopping.ShoppingItemDetailActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
-        <!--alipay-->
+        <!-- alipay -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
             android:name="com.alipay.sdk.app.H5AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
-        <!--alipay-->
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <!-- alipay -->
+        <activity android:name=".activies.upkeep.UpkeepDetailActivity"></activity>
     </application>
 
 </manifest>

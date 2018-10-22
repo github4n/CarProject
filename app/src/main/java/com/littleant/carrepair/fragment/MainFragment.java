@@ -40,7 +40,7 @@ import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
-import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
+import com.littleant.carrepair.activies.upkeep.BookUpkeepActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
 import com.littleant.carrepair.activies.repair.RepairStationActivity;
 import com.littleant.carrepair.activies.main.SearchActivity;
@@ -356,7 +356,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                     intent = new Intent(getContext(), RepairActivity.class);
                 } else if(mMaintain.isChecked()) {
                     //保养
-                    intent = new Intent(getContext(), BookMaintainActivity.class);
+                    intent = new Intent(getContext(), BookUpkeepActivity.class);
                 } else {
                     return;
                 }

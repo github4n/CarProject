@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.amap.searchdemo.SelectPlaceActivity;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.car.MyCarActivity;
-import com.littleant.carrepair.activies.maintain.BookMaintainActivity;
+import com.littleant.carrepair.activies.upkeep.BookUpkeepActivity;
 import com.littleant.carrepair.activies.order.MyOrderActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
@@ -41,8 +41,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import static com.littleant.carrepair.activies.maintain.BookMaintainActivity.OIL_AMOUNT;
-import static com.littleant.carrepair.activies.maintain.BookMaintainActivity.OIL_ID;
+import static com.littleant.carrepair.activies.upkeep.BookUpkeepActivity.OIL_AMOUNT;
+import static com.littleant.carrepair.activies.upkeep.BookUpkeepActivity.OIL_ID;
 import static com.littleant.carrepair.activies.repair.RepairActivity.CONTENT;
 import static com.littleant.carrepair.activies.repair.RepairActivity.PIC_LIST;
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
@@ -61,8 +61,8 @@ public class BookSubmitActivity extends BaseActivity {
     private EditText abs_et_contact, abs_et_phone;
     //确认按钮
     private Button abs_btn_confrm;
-    //汽车信息
-    private View constraintLayout;
+    //汽车信息\订单金额
+    private View constraintLayout, abs_constraintLayout3;
     private TextView bm_tv_title, bm_tv_des;
     private ImageView bm_iv_icon;
     private GarageInfo garageInfo;
@@ -98,7 +98,8 @@ public class BookSubmitActivity extends BaseActivity {
             if(RepairActivity.class.getSimpleName().equals(from)) {
                 content = extras.getString(CONTENT);
                 picList = extras.getParcelableArrayList(PIC_LIST);
-            } else if(BookMaintainActivity.class.getSimpleName().equals(from)) {
+                abs_constraintLayout3.setVisibility(View.INVISIBLE);  //维修不显示金额
+            } else if(BookUpkeepActivity.class.getSimpleName().equals(from)) {
                 oilId = extras.getInt(OIL_ID);
                 oilAmount = extras.getInt(OIL_AMOUNT);
             }
@@ -132,12 +133,23 @@ public class BookSubmitActivity extends BaseActivity {
         abs_et_phone = findViewById(R.id.abs_et_phone);
         //光标放到最右边
         abs_et_phone.setSelection(abs_et_phone.getText().length());
+        abs_et_contact.setText(DataHelper.getContractName(this));
+        abs_et_contact.setSelection(abs_et_contact.getText().length());
+
+
+        abs_et_phone = findViewById(R.id.abs_et_phone);
+        abs_et_phone.setText(DataHelper.getContractPhone(this));
+        abs_et_phone.setSelection(abs_et_phone.getText().length());
+
 
         abs_btn_confrm = findViewById(R.id.abs_btn_confrm);
         abs_btn_confrm.setOnClickListener(this);
 
         constraintLayout = findViewById(R.id.include2);
         constraintLayout.setOnClickListener(this);
+
+        //订单金额界面
+        abs_constraintLayout3 = findViewById(R.id.abs_constraintLayout3);
 
         bm_tv_title = findViewById(R.id.bm_tv_title);
         bm_tv_des = findViewById(R.id.bm_tv_des);
@@ -160,7 +172,7 @@ public class BookSubmitActivity extends BaseActivity {
             case R.id.abs_btn_confrm:
                 if(RepairActivity.class.getSimpleName().equals(from)) {
                     requestRepair();
-                } else if(BookMaintainActivity.class.getSimpleName().equals(from)) {
+                } else if(BookUpkeepActivity.class.getSimpleName().equals(from)) {
                     requestMaintain();
                 }
                 break;
@@ -225,7 +237,7 @@ public class BookSubmitActivity extends BaseActivity {
                 d.dismiss();
                 if(RepairActivity.class.getSimpleName().equals(from)) {
                     requestRepair();
-                } else if(BookMaintainActivity.class.getSimpleName().equals(from)) {
+                } else if(BookUpkeepActivity.class.getSimpleName().equals(from)) {
                     requestMaintain();
                 }
             }
@@ -256,6 +268,8 @@ public class BookSubmitActivity extends BaseActivity {
             MHToast.showS(mContext, R.string.phone_wrong);
             return;
         }
+        DataHelper.saveContractName(this, name);
+        DataHelper.saveContractPhone(this, phone);
         UpkeepCreateCmd upkeepCreateCmd = new UpkeepCreateCmd(mContext, garage_id, car_id, name, phone,
                 subscribe_time, longitude, latitude, address, oilId, oilAmount);
         upkeepCreateCmd.setCallback(new MHCommandCallBack() {
@@ -276,7 +290,6 @@ public class BookSubmitActivity extends BaseActivity {
         });
         MHCommandExecute.getInstance().asynExecute(mContext, upkeepCreateCmd);
     }
-
     private void requestRepair() {
         int garage_id = garageInfo.getId();
         int car_id = carInfo.getId();
@@ -298,6 +311,8 @@ public class BookSubmitActivity extends BaseActivity {
             MHToast.showS(mContext, R.string.phone_wrong);
             return;
         }
+        DataHelper.saveContractName(this, name);
+        DataHelper.saveContractPhone(this, phone);
         Bitmap[] pics = DataHelper.parseUriList2BitmapArray(this, picList);
         MaintainCreateCmd maintainCreateCmd = new MaintainCreateCmd(mContext, garage_id, car_id, name, phone,
                 subscribe_time, longitude, latitude, address, content, pics);

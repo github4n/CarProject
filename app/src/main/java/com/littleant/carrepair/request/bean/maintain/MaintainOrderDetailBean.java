@@ -59,9 +59,9 @@ public class MaintainOrderDetailBean extends BaseResponseBean {
         private String order_name = "";
         private String service_item = "";
         private String order_type = "";
-        private ObjList maintainpic_set;
-        private MaintainSet maintainitem_set;
-        private MaintainSet maintainitem_set_now;
+        private List<ObjList> maintainpic_set;
+        private List<MaintainSet> maintainitem_set;
+        private List<MaintainSet> maintainitem_set_now;
 
         public int getId() {
             return id;
@@ -351,27 +351,27 @@ public class MaintainOrderDetailBean extends BaseResponseBean {
             this.order_type = order_type;
         }
 
-        public ObjList getMaintainpic_set() {
+        public List<ObjList> getMaintainpic_set() {
             return maintainpic_set;
         }
 
-        public void setMaintainpic_set(ObjList maintainpic_set) {
+        public void setMaintainpic_set(List<ObjList> maintainpic_set) {
             this.maintainpic_set = maintainpic_set;
         }
 
-        public MaintainSet getMaintainitem_set() {
+        public List<MaintainSet> getMaintainitem_set() {
             return maintainitem_set;
         }
 
-        public void setMaintainitem_set(MaintainSet maintainitem_set) {
+        public void setMaintainitem_set(List<MaintainSet> maintainitem_set) {
             this.maintainitem_set = maintainitem_set;
         }
 
-        public MaintainSet getMaintainitem_set_now() {
+        public List<MaintainSet> getMaintainitem_set_now() {
             return maintainitem_set_now;
         }
 
-        public void setMaintainitem_set_now(MaintainSet maintainitem_set_now) {
+        public void setMaintainitem_set_now(List<MaintainSet> maintainitem_set_now) {
             this.maintainitem_set_now = maintainitem_set_now;
         }
     }

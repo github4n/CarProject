@@ -20,7 +20,7 @@ public class MaintainMethodCmd extends BaseRequestCmd {
         params.put(ParamsConstant.ID, id + "");
         params.put(ParamsConstant.METHOD, type.getDes());
         if(type == ParamsConstant.MethodStatus.COMMENT) {
-            params.put(ParamsConstant.ORDER_CAR_LIST, score + "");
+            params.put(ParamsConstant.SCORE, score + "");
         }
         if(type == ParamsConstant.MethodStatus.PAY) {
             params.put(ParamsConstant.ORDER_METHOD, payChannel.getDes());

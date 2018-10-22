@@ -193,4 +193,23 @@ public class DataHelper {
         }
         return Float.parseFloat(display);
     }
+
+    private static final String CONTRACT_NAME = "CONTRACT_NAME";
+    private static final String CONTRACT_PHONE = "CONTRACT_PHONE";
+
+    public static void saveContractName(Context context, String name) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, CONTRACT_NAME, name);
+    }
+
+    public static String getContractName(Context context) {
+        return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, CONTRACT_NAME);
+    }
+
+    public static void saveContractPhone(Context context, String phone) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, CONTRACT_PHONE, phone);
+    }
+
+    public static String getContractPhone(Context context) {
+        return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, CONTRACT_PHONE);
+    }
 }

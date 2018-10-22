@@ -104,7 +104,9 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
         //输入框
         acf_et_contact_name = findViewById(R.id.acf_et_contact_name);
+        acf_et_contact_name.setText(DataHelper.getContractName(this));
         acf_et_contact_phone = findViewById(R.id.acf_et_contact_phone);
+        acf_et_contact_phone.setText(DataHelper.getContractPhone(this));
         acf_et_driver_name = findViewById(R.id.acf_et_driver_name);
         acf_et_driver_brand = findViewById(R.id.acf_et_driver_brand);
         acf_et_driver_plate = findViewById(R.id.acf_et_driver_plate);

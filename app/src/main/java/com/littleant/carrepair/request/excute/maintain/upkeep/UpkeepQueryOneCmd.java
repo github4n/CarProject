@@ -9,9 +9,9 @@ import com.mh.core.tools.MHLogUtil;
 
 public class UpkeepQueryOneCmd extends BaseUpkeepCmd {
 
-    public UpkeepQueryOneCmd(Context context, String id) {
+    public UpkeepQueryOneCmd(Context context, int id) {
         super(context);
-        params.put(ParamsConstant.ID, id);
+        params.put(ParamsConstant.ID, id + "");
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 
