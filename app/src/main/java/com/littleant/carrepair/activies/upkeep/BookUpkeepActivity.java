@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.upkeep;
 
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,10 +47,7 @@ public class BookUpkeepActivity extends BaseActivity {
     private TextView bm_tv_total_money;
     public static final String OIL_ID = "oil_id";
     public static final String OIL_AMOUNT = "oil_amount";
-    public static final String OIL_PRICE = "oil_price";
-
     private int oilId, oilAmount;
-    private float price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,25 +118,14 @@ public class BookUpkeepActivity extends BaseActivity {
                     MHToast.showS(mContext, R.string.no_select_item);
                     return;
                 }
-<<<<<<< HEAD:app/src/main/java/com/littleant/carrepair/activies/maintain/BookMaintainActivity.java
-                if(price==0.00){
-                    MHToast.showS(mContext, R.string.no_select_item);
-                    return;
-                }
-                Intent intent = new Intent(BookMaintainActivity.this, BookSubmitActivity.class);
-=======
+
                 Intent intent = new Intent(BookUpkeepActivity.this, BookSubmitActivity.class);
->>>>>>> 98b20c5823a96f1a302cafc8d7af58aba6ebb4c7:app/src/main/java/com/littleant/carrepair/activies/upkeep/BookUpkeepActivity.java
                 intent.putExtra(GARAGE_INFO, garageInfo);
                 intent.putExtra(FROM, BookUpkeepActivity.class.getSimpleName());
                 intent.putExtra(OIL_ID, oilId);
                 intent.putExtra(OIL_AMOUNT, oilAmount);
-<<<<<<< HEAD:app/src/main/java/com/littleant/carrepair/activies/maintain/BookMaintainActivity.java
-                intent.putExtra(OIL_PRICE, price);
-                BookMaintainActivity.this.startActivity(intent);
-=======
                 BookUpkeepActivity.this.startActivity(intent);
->>>>>>> 98b20c5823a96f1a302cafc8d7af58aba6ebb4c7:app/src/main/java/com/littleant/carrepair/activies/upkeep/BookUpkeepActivity.java
+
                 break;
         }
     }
@@ -199,7 +186,7 @@ public class BookUpkeepActivity extends BaseActivity {
                     holder.lmi_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
+                            float price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
                             if (isChecked) {
                                 price += oilInfo.getNew_price();
                                 oilId = oilInfo.getId();
