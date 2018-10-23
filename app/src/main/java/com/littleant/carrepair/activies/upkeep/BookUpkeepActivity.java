@@ -160,6 +160,8 @@ public class BookUpkeepActivity extends BaseActivity {
         public static final int TYPE_NORMAL = 2;  //说明是不带有header和footer的
         private View mFooterView;
         private List<OilInfo> mOilList;
+        private boolean isFlag=false;
+
 
         public MyAdapter(List<OilInfo> oilList) {
             this.mOilList = oilList;
@@ -194,42 +196,88 @@ public class BookUpkeepActivity extends BaseActivity {
                     holder.lmi_amount.setText(1 + "");
                     holder.lmi_tv_new_price.setText(DataHelper.displayPrice(mContext, oilInfo.getNew_price()));
                     Picasso.with(mContext).load(Uri.parse(oilInfo.getPic_url())).into(holder.lmi_iv_itemImg);
+                    final GlobalValue globalValue = new GlobalValue();
+                    holder.lmi_select.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            boolean isCheck = globalValue.isCheck();
+                            if(isCheck)
+                            {
+                                if(v== holder.lmi_select) holder.lmi_select.setChecked(false);
+                            }
+                            else
+                            {
+                                if(v== holder.lmi_select) holder.lmi_select.setChecked(true);
+                            }
+                            globalValue.setCheck(!isCheck);
+                        }
+                    });
+
                     holder.lmi_select.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
+
                             if (isChecked) {
-                                price += oilInfo.getNew_price();
+                                isFlag=true;
                                 oilId = oilInfo.getId();
+                                holder.lmi_reduce.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                       // price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
+
+                                        oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
+                                        if (oilAmount > 0) {
+                                            oilAmount--;
+                                            if(oilAmount==0){
+                                                oilAmount=1;
+                                            }
+                                            holder.lmi_amount.setText(oilAmount + "");
+                                            price =price- oilInfo.getNew_price()*(oilAmount-1);
+                                            bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
+                                        }
+
+
+                                    }
+                                });
+                                holder.lmi_plus.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                       // price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
+                                        oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
+                                        oilAmount++;
+
+                                        holder.lmi_amount.setText(oilAmount + "");
+                                        price =price+ oilInfo.getNew_price()*(oilAmount-1);
+                                        bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
+
+                                    }
+                                });
                                 oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
+                                price += oilInfo.getNew_price()*oilAmount;
                             } else {
-                                price -= oilInfo.getNew_price();
+                                price -= oilInfo.getNew_price()*oilAmount;
                             }
+
                             bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
                         }
                     });
-                    holder.lmi_reduce.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
-                            if (oilAmount > 0) {
-                                oilAmount--;
-                                holder.lmi_amount.setText(oilAmount + "");
-                            }
-                        }
-                    });
-                    holder.lmi_plus.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
-                            oilAmount++;
-                            holder.lmi_amount.setText(oilAmount + "");
-                        }
-                    });
+
                 } else {
                     holder.bmei_time_price.setText(DataHelper.displayPrice(mContext, garageInfo.getFilter_price()));
                 }
             }
+        }
+        public class GlobalValue {
+            public boolean isCheck() {
+                return isCheck;
+            }
+
+            public void setCheck(boolean check) {
+                isCheck = check;
+            }
+
+            private boolean isCheck;
         }
 
         @Override
