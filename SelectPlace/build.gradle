@@ -40,7 +40,7 @@ dependencies {
 //    })
     compileOnly 'com.android.support:appcompat-v7:27.0.0+'
     compileOnly 'com.amap.api:location:latest.integration'
-    compileOnly 'com.amap.api:search:latest.integration'
-    compileOnly 'com.amap.api:3dmap:latest.integration'
+    compileOnly 'com.amap.api:navi-3dmap:latest.integration'
+    compileOnly 'com.amap.api:search:6.1.0'
 //    testCompile 'junit:junit:4.12'
 }

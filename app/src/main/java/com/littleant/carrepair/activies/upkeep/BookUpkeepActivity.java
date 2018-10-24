@@ -161,6 +161,7 @@ public class BookUpkeepActivity extends BaseActivity {
         private View mFooterView;
         private List<OilInfo> mOilList;
         private boolean isFlag=false;
+        private float sum=0.0f;
 
 
         public MyAdapter(List<OilInfo> oilList) {
@@ -192,6 +193,7 @@ public class BookUpkeepActivity extends BaseActivity {
             final OilInfo oilInfo = mOilList.get(position);
             if (oilInfo != null) {
                 if (getItemViewType(position) == TYPE_NORMAL) {
+
                     holder.lmi_item_name.setText(oilInfo.getName());
                     holder.lmi_amount.setText(1 + "");
                     holder.lmi_tv_new_price.setText(DataHelper.displayPrice(mContext, oilInfo.getNew_price()));
@@ -217,52 +219,62 @@ public class BookUpkeepActivity extends BaseActivity {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
-
+                            sum=oilInfo.getNew_price();
                             if (isChecked) {
                                 isFlag=true;
                                 oilId = oilInfo.getId();
-                                holder.lmi_reduce.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                       // price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
-
-                                        oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
-                                        if (oilAmount > 0) {
-                                            oilAmount--;
-                                            if(oilAmount==0){
-                                                oilAmount=1;
-                                            }
-                                            holder.lmi_amount.setText(oilAmount + "");
-                                            price =price- oilInfo.getNew_price()*(oilAmount-1);
-                                            bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
-                                        }
-
-
-                                    }
-                                });
-                                holder.lmi_plus.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                       // price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
-                                        oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
-                                        oilAmount++;
-
-                                        holder.lmi_amount.setText(oilAmount + "");
-                                        price =price+ oilInfo.getNew_price()*(oilAmount-1);
-                                        bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
-
-                                    }
-                                });
                                 oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
-                                price += oilInfo.getNew_price()*oilAmount;
+                                price += oilInfo.getNew_price();
                             } else {
-                                price -= oilInfo.getNew_price()*oilAmount;
+                                holder.lmi_amount.setText("1");
+                                price -= sum;
+                               // sum=oilInfo.getNew_price();
                             }
-
                             bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
                         }
                     });
+                    holder.lmi_plus.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(globalValue.isCheck()){
+                                sum=0;
+                                // price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
+                                oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
+                                oilAmount++;
+                                holder.lmi_reduce.setEnabled(true);
+                                holder.lmi_amount.setText(oilAmount + "");
+                                sum=(oilAmount)*oilInfo.getNew_price();
+                                price += oilInfo.getNew_price();
+                                bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
+                            }
 
+                        }
+                    });
+                    holder.lmi_reduce.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
+                            if(globalValue.isCheck()){
+                               sum=0;
+                                oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
+                                if (oilAmount > 0) {
+                                    oilAmount--;
+//                                    if(oilAmount==0){
+//                                        oilAmount=1;
+//                                        holder.lmi_reduce.setEnabled(false);
+//                                    }
+
+                                    sum=(oilAmount)*oilInfo.getNew_price();
+                                    holder.lmi_amount.setText(oilAmount + "");
+                                    price -= oilInfo.getNew_price();
+                                    bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
+                                }
+                            }
+
+
+
+                        }
+                    });
                 } else {
                     holder.bmei_time_price.setText(DataHelper.displayPrice(mContext, garageInfo.getFilter_price()));
                 }
