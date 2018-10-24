@@ -200,6 +200,12 @@ public class MyOrderActivity extends BaseActivity {
                         holder.lmoi_tv_state.setText("未支付");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_not_pay));
                         holder.lmoi_btn_delete.setVisibility(View.VISIBLE);
+                        //维修厂未设定维修项目时不显示支付按钮
+                        if(PAY_MAINTAIN.equals(orderInfo.getType()) && !orderInfo.isIs_setting()) {
+                            holder.lmoi_btn_hold.setVisibility(View.GONE);
+                        } else {
+                            holder.lmoi_btn_hold.setVisibility(View.VISIBLE);
+                        }
                         break;
 
                     case 2:

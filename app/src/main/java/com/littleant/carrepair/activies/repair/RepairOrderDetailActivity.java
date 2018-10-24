@@ -159,8 +159,13 @@ public class RepairOrderDetailActivity extends BaseActivity {
             case 1:
                 asod_tv_state.setText("未支付");
                 asod_tv_state.setTextColor(getResources().getColor(R.color.color_not_pay));
-                asod_tv_modify.setVisibility(View.VISIBLE);
-                asod_cl_buttons.setVisibility(View.VISIBLE);
+                if(orderInfo.isIs_setting()) { //维修厂未设定维修项目时不显示支付按钮
+                    asod_tv_modify.setVisibility(View.VISIBLE);
+                    asod_cl_buttons.setVisibility(View.VISIBLE);
+                } else {
+                    asod_tv_modify.setVisibility(View.GONE);
+                    asod_cl_buttons.setVisibility(View.GONE);
+                }
                 break;
 
             case 2:
