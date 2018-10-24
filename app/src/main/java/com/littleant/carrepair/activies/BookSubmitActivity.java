@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.searchdemo.SelectPlaceActivity;
 import com.littleant.carrepair.R;
@@ -171,8 +172,16 @@ public class BookSubmitActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.abs_btn_confrm:
                 if(RepairActivity.class.getSimpleName().equals(from)) {
+                    if(garageInfo.getType()==2){
+                        MHToast.showS(mContext, R.string.request_fail_repair);
+                        return;
+                    }
                     requestRepair();
                 } else if(BookUpkeepActivity.class.getSimpleName().equals(from)) {
+                    if(garageInfo.getType()==1){
+                        MHToast.showS(mContext, R.string.request_fail_maintain);
+                        return;
+                    }
                     requestMaintain();
                 }
                 break;
@@ -236,8 +245,10 @@ public class BookSubmitActivity extends BaseActivity {
             public void onClick(View view) {
                 d.dismiss();
                 if(RepairActivity.class.getSimpleName().equals(from)) {
+                   //维修
                     requestRepair();
                 } else if(BookUpkeepActivity.class.getSimpleName().equals(from)) {
+                   //保养
                     requestMaintain();
                 }
             }
@@ -245,6 +256,7 @@ public class BookSubmitActivity extends BaseActivity {
         d.show();
     }
 
+    //保养
     private void requestMaintain() {
         int garage_id = garageInfo.getId();
         int car_id = carInfo.getId();
@@ -254,7 +266,7 @@ public class BookSubmitActivity extends BaseActivity {
 //        String subscribe_time = abs_tv_time_display.getText().toString();
         String date = DataHelper.parseDate(2018, 10, 31);
         String time = DataHelper.parseTime(20, 15);
-        String subscribe_time = date + " " + time;
+       // String subscribe_time = date + " " + time;
         String longitude = selectLon + "";
         String latitude = selectLat + "";
         String address = abs_tv_location_display.getText().toString();
@@ -271,7 +283,7 @@ public class BookSubmitActivity extends BaseActivity {
         DataHelper.saveContractName(this, name);
         DataHelper.saveContractPhone(this, phone);
         UpkeepCreateCmd upkeepCreateCmd = new UpkeepCreateCmd(mContext, garage_id, car_id, name, phone,
-                subscribe_time, longitude, latitude, address, oilId, oilAmount);
+                 longitude, latitude, address, oilId, oilAmount);
         upkeepCreateCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
@@ -279,7 +291,7 @@ public class BookSubmitActivity extends BaseActivity {
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if (responseBean != null && responseBean.getCode() == 100) {
-                        Intent intent = new Intent(mContext, PaymentActivity.class);
+                        Intent intent = new Intent(mContext, MyOrderActivity.class);
                         startActivity(intent);
                         finish();
                     }

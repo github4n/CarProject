@@ -186,7 +186,7 @@ public class MyOrderActivity extends BaseActivity {
             final MaintainOrderListBean.OrderInfo orderInfo = list.get(position);
             if(orderInfo != null) {
                 holder.lmoi_product_title.setText(orderInfo.getOrder_name());
-                holder.lmoi_time.setText(orderInfo.getSubscribe_time());
+                holder.lmoi_time.setText(orderInfo.getCreate_time());
                 Picasso.with(mContext).load(Uri.parse(orderInfo.getOrder_pic_url())).into(holder.lmoi_img);
                 String holdText = "";
                 switch (orderInfo.getState()) {
@@ -216,7 +216,7 @@ public class MyOrderActivity extends BaseActivity {
                         holder.lmoi_tv_state.setText("服务中");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_service_ing));
                         holder.lmoi_btn_delete.setVisibility(View.INVISIBLE);
-                        if(!orderInfo.isIs_maintain() || !orderInfo.isIs_upkeep()) {
+                        if(!orderInfo.isIs_maintain() && !orderInfo.isIs_upkeep()) {
                             holder.lmoi_btn_hold.setVisibility(View.GONE);
                         } else {
                             holder.lmoi_btn_hold.setVisibility(View.VISIBLE);
@@ -256,6 +256,8 @@ public class MyOrderActivity extends BaseActivity {
                                 break;
 
                             case 3:
+                                requestRateUpkeep(orderInfo.getId(),ParamsConstant.MethodStatus.FINISH, 0);
+
                                 break;
 
                             case 4:
@@ -271,7 +273,7 @@ public class MyOrderActivity extends BaseActivity {
                                     public void onClick(View view) {
                                         int score = ratingBar.getCountSelected();
                                         if(TYPE_UPKEEP.equals(orderInfo.getType())) {
-                                            requestRateUpkeep(orderInfo.getId(), score);
+                                            requestRateUpkeep(orderInfo.getId(),ParamsConstant.MethodStatus.COMMENT, score);
                                         } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
                                             requestRateMaintain(orderInfo.getId(), score);
                                         }
@@ -398,6 +400,7 @@ public class MyOrderActivity extends BaseActivity {
         MHCommandExecute.getInstance().asynExecute(mContext, maintainDeleteCmd);
     }
 
+    //维修
     private void requestRateMaintain(int id, int score) {
         MaintainMethodCmd methodCmd = new MaintainMethodCmd(mContext, id, ParamsConstant.MethodStatus.COMMENT, score, null, "");
         methodCmd.setCallback(new MHCommandCallBack() {
@@ -419,9 +422,9 @@ public class MyOrderActivity extends BaseActivity {
         });
         MHCommandExecute.getInstance().asynExecute(mContext, methodCmd);
     }
-
-    private void requestRateUpkeep(int id, int score) {
-        UpkeepMethodCmd methodCmd = new UpkeepMethodCmd(mContext, id, ParamsConstant.MethodStatus.COMMENT, score, null);
+    //保养
+    private void requestRateUpkeep(int id, ParamsConstant.MethodStatus methodStatus, int score) {
+        UpkeepMethodCmd methodCmd = new UpkeepMethodCmd(mContext, id, methodStatus, score, null);
         methodCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {

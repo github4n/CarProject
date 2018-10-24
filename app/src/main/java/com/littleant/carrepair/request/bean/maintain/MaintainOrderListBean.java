@@ -28,6 +28,7 @@ public class MaintainOrderListBean extends BaseResponseBean {
         private String order_pic_url = "";
         private String type = "";
         private String subscribe_time = "";
+        private String create_time;
         private boolean is_comment;
         private boolean is_setting;
         private boolean is_maintain;
@@ -42,6 +43,7 @@ public class MaintainOrderListBean extends BaseResponseBean {
                     ", order_name='" + order_name + '\'' +
                     ", order_pic_url='" + order_pic_url + '\'' +
                     ", type='" + type + '\'' +
+                    ", create_time='" + create_time + '\'' +
                     ", subscribe_time='" + subscribe_time + '\'' +
                     ", is_comment=" + is_comment +
                     ", is_setting=" + is_setting +
@@ -104,6 +106,14 @@ public class MaintainOrderListBean extends BaseResponseBean {
 
         public void setSubscribe_time(String subscribe_time) {
             this.subscribe_time = subscribe_time;
+        }
+
+        public String getCreate_time() {
+            return create_time;
+        }
+
+        public void setCreate_time(String create_time) {
+            this.create_time = create_time;
         }
 
         public boolean isIs_comment() {

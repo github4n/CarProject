@@ -9,8 +9,9 @@ import com.mh.core.tools.MHLogUtil;
 
 public class RegisterCmd extends BaseRequestCmd {
 
-    public RegisterCmd(Context context, String phone, String password, String message) {
+    public RegisterCmd(Context context,String name, String phone, String password, String message) {
         super(context);
+        params.put(ParamsConstant.NAME, name);
         params.put(ParamsConstant.PHONE, phone);
         params.put(ParamsConstant.PASSWORD, password);
         params.put(ParamsConstant.MESSAGE, message);

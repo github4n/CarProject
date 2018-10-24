@@ -13,6 +13,14 @@ import com.mh.core.tools.MHLogUtil;
 
 public class ProjectUtil {
 
+    public static boolean checkName(Context context, String name) {
+        boolean isCorrect = true;
+        if ((TextUtils.isEmpty(name) )) {
+            isCorrect = false;
+        }
+        return isCorrect;
+    }
+
     public static boolean checkPhone(Context context, String phone) {
         boolean isCorrect = true;
         if ((TextUtils.isEmpty(phone) || !TextUtils.isDigitsOnly(phone) || phone.length() != 11)) {

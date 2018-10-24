@@ -353,6 +353,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
             case R.id.lmfd_tv_book:
                 if(mRepair.isChecked()) {
+                    //维修
                     intent = new Intent(getContext(), RepairActivity.class);
                 } else if(mMaintain.isChecked()) {
                     //保养

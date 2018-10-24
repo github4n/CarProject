@@ -31,7 +31,7 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
 public class RegisterActivity extends BaseActivity {
-    private EditText ar_et_phone, ar_et_auth, ar_et_new_password;// ar_et_confirm_password;
+    private EditText ar_et_name,ar_et_phone, ar_et_auth, ar_et_new_password;// ar_et_confirm_password;
     /**
      * 获取验证码
      */
@@ -40,7 +40,7 @@ public class RegisterActivity extends BaseActivity {
      * 注册按钮
      */
     private Button ar_btn_save;
-    private String authCode, phone, password;
+    private String name,authCode, phone, password;
     private String termUrl;
     private View ar_term_view;
     private CheckBox ar_cb_term;
@@ -52,6 +52,7 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        ar_et_name=findViewById(R.id.ar_et_name);
         ar_et_phone = findViewById(R.id.ar_et_phone);
         ar_et_auth = findViewById(R.id.ar_et_auth);
         ar_et_new_password = findViewById(R.id.ar_et_new_password);
@@ -96,10 +97,17 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        name=ar_et_name.getText().toString().trim();
         phone = ar_et_phone.getText().toString();
         password = ar_et_new_password.getText().toString();
         authCode = ar_et_auth.getText().toString();
         switch (v.getId()) {
+            case R.id.ar_et_name:
+                if (!ProjectUtil.checkPhone(mContext, name)) {
+                    MHToast.showS(mContext, R.string.name_wrong);
+                    return;
+                }
+                break;
             case R.id.ar_btn_save:
                 if (!ProjectUtil.checkPhone(mContext, phone)) {
                     MHToast.showS(mContext, R.string.phone_wrong);
@@ -118,7 +126,7 @@ public class RegisterActivity extends BaseActivity {
                     MHToast.showS(mContext, R.string.agree_term_first);
                     return;
                 }
-                RegisterCmd registerCmd = new RegisterCmd(mContext, phone, password, authCode);
+                RegisterCmd registerCmd = new RegisterCmd(mContext,name, phone, password, authCode);
                 registerCmd.setCallback(new MHCommandCallBack() {
                     @Override
                     public void cmdCallBack(MHCommand command) {
@@ -127,6 +135,7 @@ public class RegisterActivity extends BaseActivity {
                             BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                             if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
 //                            if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
+                                DataHelper.saveContractName(mContext, name);
                                 DataHelper.savePhone(mContext, phone);
                                 DataHelper.savePassword(mContext, password);
                                 RegisterActivity.this.setResult(ParamsConstant.REAPONSE_CODE_SUCCESS);

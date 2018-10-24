@@ -3,6 +3,7 @@
     <string name="permission_deny_location" translatable="false">定位权限已拒绝</string>
     <string name="hint_waiting" translatable="false">请稍后...</string>
 
+    <string name="name_wrong" translatable="false">姓名不能为空</string>
     <string name="phone_wrong" translatable="false">手机号格式错误</string>
     <string name="password_different" translatable="false">两次输入的密码不一样</string>
     <string name="password_wrong" translatable="false">密码格式错误</string>
@@ -12,6 +13,9 @@
     <string name="add_car_fail" translatable="false">添加车辆失败，请稍后再试</string>
     <string name="request_fail" translatable="false">访问网络失败，请稍后再试</string>
     <string name="need_finish_info" translatable="false">请完善信息</string>
+    <string name="request_fail_maintain" translatable="false">维修厂不能保养</string>
+    <string name="request_fail_repair" translatable="false">门店不能维修</string>
+
     <string name="info_not_modify" translatable="false">您的资料没有变更</string>
     <string name="need_select_station_and_address" translatable="false">请先选择年检站及交车地点</string>
     <string name="add_to_shoppingcar_success" translatable="false">已添加到购物车</string>
