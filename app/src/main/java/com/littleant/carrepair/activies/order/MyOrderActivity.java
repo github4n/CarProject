@@ -37,7 +37,9 @@ import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHLogUtil;
 import com.mh.core.tools.MHToast;
+import com.mh.core.tools.log.MHLog;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -214,6 +216,7 @@ public class MyOrderActivity extends BaseActivity {
                         }
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_not_pay));
                         holder.lmoi_btn_delete.setVisibility(View.VISIBLE);
+                        holder.lmoi_btn_hold.setClickable(true);
                         break;
 
                     case 2: //等待服务，不分保养、维修统一显示
@@ -222,6 +225,7 @@ public class MyOrderActivity extends BaseActivity {
                         holder.lmoi_tv_state.setText("等待服务");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_wait_service));
                         holder.lmoi_btn_delete.setVisibility(View.VISIBLE);
+                        holder.lmoi_btn_hold.setClickable(true);
                         break;
 
                     case 3: //服务中
@@ -242,14 +246,18 @@ public class MyOrderActivity extends BaseActivity {
                         holder.lmoi_tv_state.setText("服务中");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_service_ing));
                         holder.lmoi_btn_delete.setVisibility(View.INVISIBLE);
+                        holder.lmoi_btn_hold.setClickable(true);
                         break;
 
                     case 4: //服务完成
                         if(orderInfo.isIs_comment()) { //已评价隐藏评价按钮
-                            holder.lmoi_btn_hold.setVisibility(View.GONE);
+                            holdText = "已评价";
+                            holder.lmoi_btn_hold.setVisibility(View.VISIBLE);
+                            holder.lmoi_btn_hold.setClickable(false);
                         } else { //未评价
                             holdText = "评价";
                             holder.lmoi_btn_hold.setVisibility(View.VISIBLE);
+                            holder.lmoi_btn_hold.setClickable(true);
                         }
                         holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
                         holder.lmoi_tv_state.setText("服务完成");
@@ -258,73 +266,77 @@ public class MyOrderActivity extends BaseActivity {
                         break;
                 }
                 holder.lmoi_btn_hold.setText(holdText);
-                holder.lmoi_btn_hold.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = null;
-                        switch (orderInfo.getState()) {
-                            case 1:
-                                if (TYPE_UPKEEP.equals(orderInfo.getType())) { //保养只有去支付一种状态
-                                    intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_UPKEEP);
-                                    intent.putExtra(ORDER_INFO, orderInfo);
-                                    startActivityForResult(intent, REQUEST_PAY);
-                                } else if (PAY_MAINTAIN.equals(orderInfo.getType())) { //维修分是否设置维修项
-                                    if(orderInfo.isIs_setting()) { //已设定维修项，此时为去支付按钮
-                                        intent = new Intent(mContext, PaymentActivity.class);
-                                        intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_MAINTAIN);
+                if(holder.lmoi_btn_hold.isClickable()) {
+                    holder.lmoi_btn_hold.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = null;
+                            switch (orderInfo.getState()) {
+                                case 1:
+                                    if (TYPE_UPKEEP.equals(orderInfo.getType())) { //保养只有去支付一种状态
+                                        intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_UPKEEP);
                                         intent.putExtra(ORDER_INFO, orderInfo);
                                         startActivityForResult(intent, REQUEST_PAY);
-                                    } else { //未设定维修项，此时为导航按钮
-                                        navi(orderInfo);
-                                    }
-                                }
-                                break;
-
-                            case 2: //导航
-                                navi(orderInfo);
-                                break;
-
-                            case 3:
-                                if (TYPE_UPKEEP.equals(orderInfo.getType())) {
-                                    if(orderInfo.isIs_upkeep()) { //已完成保养，确认取车
-                                        requestUpkeepMethod(orderInfo.getId(),ParamsConstant.MethodStatus.FINISH, 0);
-                                    } else { //未完成保养，导航
-                                        navi(orderInfo);
-                                    }
-                                } else if (PAY_MAINTAIN.equals(orderInfo.getType())) {
-                                    if(orderInfo.isIs_maintain()) { //已完成维修，确认取车
-                                        requestMaintainMethod(orderInfo.getId(),ParamsConstant.MethodStatus.FINISH, 0);
-                                    } else { //未完成维修， 导航
-                                        navi(orderInfo);
-                                    }
-                                }
-                                break;
-
-                            case 4:
-                                final Dialog d = new Dialog(mContext, R.style.MyTransparentDialog);
-                                View contentView = View.inflate(mContext, R.layout.layout_rating, null);
-                                DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
-                                int dialogWidth = (int) (dm.widthPixels * 0.6);
-                                int dialogHeight = (int) (dm.heightPixels * 0.3);
-                                d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
-                                final XLHRatingBar ratingBar = contentView.findViewById(R.id.lr_rating);
-                                contentView.findViewById(R.id.lr_rating_ok).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        int score = ratingBar.getCountSelected();
-                                        if(TYPE_UPKEEP.equals(orderInfo.getType())) {
-                                            requestUpkeepMethod(orderInfo.getId(),ParamsConstant.MethodStatus.COMMENT, score);
-                                        } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
-                                            requestMaintainMethod(orderInfo.getId(), ParamsConstant.MethodStatus.COMMENT, score);
+                                    } else if (PAY_MAINTAIN.equals(orderInfo.getType())) { //维修分是否设置维修项
+                                        if (orderInfo.isIs_setting()) { //已设定维修项，此时为去支付按钮
+                                            intent = new Intent(mContext, PaymentActivity.class);
+                                            intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_MAINTAIN);
+                                            intent.putExtra(ORDER_INFO, orderInfo);
+                                            startActivityForResult(intent, REQUEST_PAY);
+                                        } else { //未设定维修项，此时为导航按钮
+                                            navi(orderInfo);
                                         }
-                                        d.dismiss();
                                     }
-                                });
-                                d.show();
-                                break;
+                                    break;
+
+                                case 2: //导航
+                                    navi(orderInfo);
+                                    break;
+
+                                case 3:
+                                    if (TYPE_UPKEEP.equals(orderInfo.getType())) {
+                                        if (orderInfo.isIs_upkeep()) { //已完成保养，确认取车
+                                            requestUpkeepMethod(orderInfo.getId(), ParamsConstant.MethodStatus.FINISH, 0);
+                                        } else { //未完成保养，导航
+                                            navi(orderInfo);
+                                        }
+                                    } else if (PAY_MAINTAIN.equals(orderInfo.getType())) {
+                                        if (orderInfo.isIs_maintain()) { //已完成维修，确认取车
+                                            requestMaintainMethod(orderInfo.getId(), ParamsConstant.MethodStatus.FINISH, 0);
+                                        } else { //未完成维修， 导航
+                                            navi(orderInfo);
+                                        }
+                                    }
+                                    break;
+
+                                case 4:
+                                    final Dialog d = new Dialog(mContext, R.style.MyTransparentDialog);
+                                    View contentView = View.inflate(mContext, R.layout.layout_rating, null);
+                                    DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
+                                    int dialogWidth = (int) (dm.widthPixels * 0.6);
+                                    int dialogHeight = (int) (dm.heightPixels * 0.3);
+                                    d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+                                    final XLHRatingBar ratingBar = contentView.findViewById(R.id.lr_rating);
+                                    contentView.findViewById(R.id.lr_rating_ok).setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            int score = ratingBar.getCountSelected();
+                                            if (TYPE_UPKEEP.equals(orderInfo.getType())) {
+                                                requestUpkeepMethod(orderInfo.getId(), ParamsConstant.MethodStatus.COMMENT, score);
+                                            } else if (PAY_MAINTAIN.equals(orderInfo.getType())) {
+                                                requestMaintainMethod(orderInfo.getId(), ParamsConstant.MethodStatus.COMMENT, score);
+                                            }
+                                            d.dismiss();
+                                        }
+                                    });
+                                    d.show();
+                                    break;
+                            }
                         }
-                    }
-                });
+                    });
+                } else {
+                    MHLogUtil.logI("不可点击");
+                }
 
                 holder.lmoi_btn_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
