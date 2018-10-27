@@ -26,7 +26,6 @@ import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.upkeep.UpkeepDetailActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
-import com.littleant.carrepair.request.bean.upkeep.UpkeepOrderDetailBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.list.ListQueryAllCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainDeleteCmd;
@@ -190,51 +189,67 @@ public class MyOrderActivity extends BaseActivity {
                 Picasso.with(mContext).load(Uri.parse(orderInfo.getOrder_pic_url())).into(holder.lmoi_img);
                 String holdText = "";
                 switch (orderInfo.getState()) {
-                    case 0: //等待接单
+                    case 0: //等待接单，不分保养、维修统一显示
+                        holder.lmoi_btn_delete.setVisibility(View.VISIBLE);
                         holder.lmoi_btn_hold.setVisibility(View.GONE);
                         holder.lmoi_tv_state.setText("等待接单");
+                        holder.lmoi_money.setText(DataHelper.displayPrice(mContext, 0));
                         break;
 
                     case 1: //未支付
-                        holdText = "导航";
-                        holder.lmoi_money.setText("等待维修厂发布清算");
-                        holder.lmoi_tv_state.setText("已接单");
+                        if (TYPE_UPKEEP.equals(orderInfo.getType())) { //保养只有去支付一种状态
+                            holder.lmoi_tv_state.setText("未支付");
+                            holdText = "去付款";
+                            holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
+                        } else if (PAY_MAINTAIN.equals(orderInfo.getType())) { //维修分是否设置维修项
+                            if(orderInfo.isIs_setting()) { //已设置维修项
+                                holder.lmoi_tv_state.setText("未支付");
+                                holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
+                                holdText = "去付款";
+                            } else { //未设置维修项
+                                holder.lmoi_tv_state.setText("已接单");
+                                holder.lmoi_money.setText("等待维修厂发布清算");
+                                holdText = "导航";
+                            }
+                        }
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_not_pay));
                         holder.lmoi_btn_delete.setVisibility(View.VISIBLE);
-                        //维修厂未设定维修项目时不显示支付按钮
-                        if(PAY_MAINTAIN.equals(orderInfo.getType()) && !orderInfo.isIs_setting()) {
-                            holder.lmoi_btn_hold.setVisibility(View.GONE);
-                        } else {
-                            holder.lmoi_btn_hold.setVisibility(View.VISIBLE);
-                        }
                         break;
 
-                    case 2:
+                    case 2: //等待服务，不分保养、维修统一显示
                         holdText = "导航";
-                        holder.lmoi_money.setText("等待维修厂发布清算");
+                        holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
                         holder.lmoi_tv_state.setText("等待服务");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_wait_service));
                         holder.lmoi_btn_delete.setVisibility(View.VISIBLE);
                         break;
 
                     case 3: //服务中
-                        holdText = "确认取车";
+                        if (TYPE_UPKEEP.equals(orderInfo.getType())) {
+                            if(orderInfo.isIs_upkeep()) { //已完成保养
+                                holdText = "确认取车";
+                            } else { //未完成保养
+                                holdText = "导航";
+                            }
+                        } else if (PAY_MAINTAIN.equals(orderInfo.getType())) {
+                            if(orderInfo.isIs_maintain()) { //已完成维修
+                                holdText = "确认取车";
+                            } else { //未完成维修
+                                holdText = "导航";
+                            }
+                        }
                         holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
                         holder.lmoi_tv_state.setText("服务中");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_service_ing));
                         holder.lmoi_btn_delete.setVisibility(View.INVISIBLE);
-                        if(!orderInfo.isIs_maintain() && !orderInfo.isIs_upkeep()) {
-                            holder.lmoi_btn_hold.setVisibility(View.GONE);
-                        } else {
-                            holder.lmoi_btn_hold.setVisibility(View.VISIBLE);
-                        }
                         break;
 
                     case 4: //服务完成
-                        if(orderInfo.isIs_comment()) {
+                        if(orderInfo.isIs_comment()) { //已评价隐藏评价按钮
                             holder.lmoi_btn_hold.setVisibility(View.GONE);
-                        } else {
+                        } else { //未评价
                             holdText = "评价";
+                            holder.lmoi_btn_hold.setVisibility(View.VISIBLE);
                         }
                         holder.lmoi_money.setText(DataHelper.displayPrice(mContext, orderInfo.getNow_price()));
                         holder.lmoi_tv_state.setText("服务完成");
@@ -246,25 +261,43 @@ public class MyOrderActivity extends BaseActivity {
                 holder.lmoi_btn_hold.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent;
+                        Intent intent = null;
                         switch (orderInfo.getState()) {
                             case 1:
-                                intent = new Intent(mContext, PaymentActivity.class);
-                                if(TYPE_UPKEEP.equals(orderInfo.getType())) {
+                                if (TYPE_UPKEEP.equals(orderInfo.getType())) { //保养只有去支付一种状态
                                     intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_UPKEEP);
-                                } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
-                                    intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_MAINTAIN);
+                                    intent.putExtra(ORDER_INFO, orderInfo);
+                                    startActivityForResult(intent, REQUEST_PAY);
+                                } else if (PAY_MAINTAIN.equals(orderInfo.getType())) { //维修分是否设置维修项
+                                    if(orderInfo.isIs_setting()) { //已设定维修项，此时为去支付按钮
+                                        intent = new Intent(mContext, PaymentActivity.class);
+                                        intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_MAINTAIN);
+                                        intent.putExtra(ORDER_INFO, orderInfo);
+                                        startActivityForResult(intent, REQUEST_PAY);
+                                    } else { //未设定维修项，此时为导航按钮
+                                        navi(orderInfo);
+                                    }
                                 }
-                                intent.putExtra(ORDER_INFO, orderInfo);
-                                startActivityForResult(intent, REQUEST_PAY);
                                 break;
 
-                            case 2:
+                            case 2: //导航
+                                navi(orderInfo);
                                 break;
 
                             case 3:
-                                requestRateUpkeep(orderInfo.getId(),ParamsConstant.MethodStatus.FINISH, 0);
-
+                                if (TYPE_UPKEEP.equals(orderInfo.getType())) {
+                                    if(orderInfo.isIs_upkeep()) { //已完成保养，确认取车
+                                        requestUpkeepMethod(orderInfo.getId(),ParamsConstant.MethodStatus.FINISH, 0);
+                                    } else { //未完成保养，导航
+                                        navi(orderInfo);
+                                    }
+                                } else if (PAY_MAINTAIN.equals(orderInfo.getType())) {
+                                    if(orderInfo.isIs_maintain()) { //已完成维修，确认取车
+                                        requestMaintainMethod(orderInfo.getId(),ParamsConstant.MethodStatus.FINISH, 0);
+                                    } else { //未完成维修， 导航
+                                        navi(orderInfo);
+                                    }
+                                }
                                 break;
 
                             case 4:
@@ -280,9 +313,9 @@ public class MyOrderActivity extends BaseActivity {
                                     public void onClick(View view) {
                                         int score = ratingBar.getCountSelected();
                                         if(TYPE_UPKEEP.equals(orderInfo.getType())) {
-                                            requestRateUpkeep(orderInfo.getId(),ParamsConstant.MethodStatus.COMMENT, score);
+                                            requestUpkeepMethod(orderInfo.getId(),ParamsConstant.MethodStatus.COMMENT, score);
                                         } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
-                                            requestRateMaintain(orderInfo.getId(), score);
+                                            requestMaintainMethod(orderInfo.getId(), ParamsConstant.MethodStatus.COMMENT, score);
                                         }
                                         d.dismiss();
                                     }
@@ -363,6 +396,10 @@ public class MyOrderActivity extends BaseActivity {
         }
     }
 
+    private void navi(MaintainOrderListBean.OrderInfo orderInfo) {
+        MHToast.showS(mContext, "进行导航");
+    }
+
     private void requestDeleteUpkeepOrder(int id) {
         UpkeepDeleteCmd upkeepDeleteCmd = new UpkeepDeleteCmd(mContext, id);
         upkeepDeleteCmd.setCallback(new MHCommandCallBack() {
@@ -408,8 +445,8 @@ public class MyOrderActivity extends BaseActivity {
     }
 
     //维修
-    private void requestRateMaintain(int id, int score) {
-        MaintainMethodCmd methodCmd = new MaintainMethodCmd(mContext, id, ParamsConstant.MethodStatus.COMMENT, score, null, "");
+    private void requestMaintainMethod(int id, ParamsConstant.MethodStatus methodStatus, int score) {
+        MaintainMethodCmd methodCmd = new MaintainMethodCmd(mContext, id, methodStatus, score, null, "");
         methodCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
@@ -430,7 +467,7 @@ public class MyOrderActivity extends BaseActivity {
         MHCommandExecute.getInstance().asynExecute(mContext, methodCmd);
     }
     //保养
-    private void requestRateUpkeep(int id, ParamsConstant.MethodStatus methodStatus, int score) {
+    private void requestUpkeepMethod(int id, ParamsConstant.MethodStatus methodStatus, int score) {
         UpkeepMethodCmd methodCmd = new UpkeepMethodCmd(mContext, id, methodStatus, score, null);
         methodCmd.setCallback(new MHCommandCallBack() {
             @Override
