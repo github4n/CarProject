@@ -143,6 +143,7 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
                         d.dismiss();
                     }
                 });
+                //自驾年检
                 contentView.findViewById(R.id.lct_tv_own).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -151,6 +152,7 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
                         d.dismiss();
                     }
                 });
+                //代驾年检
                 contentView.findViewById(R.id.lct_tv_other).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

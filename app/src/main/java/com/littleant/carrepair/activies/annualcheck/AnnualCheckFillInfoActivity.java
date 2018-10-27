@@ -2,6 +2,7 @@ package com.littleant.carrepair.activies.annualcheck;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -32,6 +33,7 @@ import com.littleant.carrepair.request.bean.car.MyCarListBean;
 import com.littleant.carrepair.request.bean.survey.SurveyStationInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.combo.ComboQueryAllCmd;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyCreateCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -67,6 +69,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
     private List<ComboBean> comboList;
 
     private float base_price = 200, combo_price, survey_price = 100, total_price;
+    private int id,combo_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +108,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         //输入框
         acf_et_contact_name = findViewById(R.id.acf_et_contact_name);
         acf_et_contact_name.setText(DataHelper.getContractName(this));
+        acf_et_contact_name.setSelection(acf_et_contact_name.getText().length());
         acf_et_contact_phone = findViewById(R.id.acf_et_contact_phone);
         acf_et_contact_phone.setText(DataHelper.getContractPhone(this));
         acf_et_driver_name = findViewById(R.id.acf_et_driver_name);
@@ -174,7 +178,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                     acf_tv_package_detail.setVisibility(View.VISIBLE);
                     //acf_package_layout.setVisibility(View.GONE);
                     acf_package_detail.setVisibility(View.VISIBLE);
-
+                    combo_id=1;
                     setPrice();
                 }
             }
@@ -184,6 +188,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
+                    combo_id=2;
                     acf_tv_package_detail.setVisibility(View.VISIBLE);
                     acf_package_detail.setVisibility(View.GONE);
                     //acf_package_layout.setVisibility(View.VISIBLE);
@@ -257,9 +262,26 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 if(selectLat == 0 || selectLon == 0) {
                     return;
                 }
+//                    public SurveyCreateCmd(Context context, String name, String phone, String car_name, String car_brand, String car_code,
+//                    String car_type, int surveystation_id, String order_longitude, String order_latitude,
+//                    String order_address, String subscribe_time, String is_self, int combo_id, String comboitem_list)
+                SurveyCreateCmd surveyCreateCmd=new SurveyCreateCmd(mContext,contactName,contactPhone,driverName,brand,plate,type,surveystation_id,selectLat+"",
+                        selectLat+"",selectAddress,date,"0",combo_id,"");
+                surveyCreateCmd.setCallback(new MHCommandCallBack() {
+                    @Override
+                    public void cmdCallBack(MHCommand command) {
+                        Log.i("response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
+                            AnnualCheckFillInfoActivity.this.startActivity(intent);
+                        }
 
-                Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
-                AnnualCheckFillInfoActivity.this.startActivity(intent);
+                    }
+                });
+                MHCommandExecute.getInstance().asynExecute(mContext, surveyCreateCmd);
+
+
                 break;
 
             case R.id.acf_et_car_type:
@@ -267,6 +289,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 break;
 
             case R.id.acf_et_pick_station:
+                isFlag=true;
                 if(stations == null) {
                     requestStation(this);
                 } else {
@@ -344,7 +367,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
     private void showCombo(List<ComboBean> combos) {
         for(ComboBean comboBean : combos) {
-            int id = comboBean.getId();
+             id = comboBean.getId();
             if(id == 1) {
                 acf_btn_package_a.setText(comboBean.getName());
                 acf_package_detail.setText(comboBean.getDetail());

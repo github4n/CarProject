@@ -39,6 +39,9 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
     protected String[] carType;
     protected List<SurveyStationInfo> stations;
     protected boolean showCarType = true;
+    protected double latitude,longitude;
+    protected int surveystation_id;
+    protected boolean isFlag=false;
 
     @Override
     protected void init() {
@@ -166,6 +169,13 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
 
             if (currentItem == position) {
                 //如果被点击，设置当前TextView被选中
+//                latitude=infos.get(position).getLatitude();
+//                longitude=infos.get(position).getLongitude();
+                if(isFlag){
+                    surveystation_id=infos.get(position).getId();
+
+                    isFlag=false;
+                }
                 holder.mTextView.setTextColor(getResources().getColor(R.color.color_main));
             } else {
                 //如果没有被点击，设置当前TextView未被选中

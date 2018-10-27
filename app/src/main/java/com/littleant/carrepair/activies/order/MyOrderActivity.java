@@ -192,12 +192,13 @@ public class MyOrderActivity extends BaseActivity {
                 switch (orderInfo.getState()) {
                     case 0: //等待接单
                         holder.lmoi_btn_hold.setVisibility(View.GONE);
+                        holder.lmoi_tv_state.setText("等待接单");
                         break;
 
                     case 1: //未支付
-                        holdText = "去付款";
+                        holdText = "导航";
                         holder.lmoi_money.setText("等待维修厂发布清算");
-                        holder.lmoi_tv_state.setText("未支付");
+                        holder.lmoi_tv_state.setText("已接单");
                         holder.lmoi_tv_state.setTextColor(getResources().getColor(R.color.color_not_pay));
                         holder.lmoi_btn_delete.setVisibility(View.VISIBLE);
                         //维修厂未设定维修项目时不显示支付按钮
