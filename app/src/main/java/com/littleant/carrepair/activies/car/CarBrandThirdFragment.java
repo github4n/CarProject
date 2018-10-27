@@ -14,8 +14,9 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.request.bean.car.carbrand.CarBaseBean;
 import com.littleant.carrepair.request.bean.car.carbrand.CarStyleSet;
-import com.littleant.carrepair.request.bean.car.carbrand.CarTypeSet;
+import com.littleant.carrepair.request.bean.car.carbrand.CarTypeList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,20 +26,20 @@ public class CarBrandThirdFragment extends Fragment {
     private ExpandableListView list;
     private String[] groupString;
     private String[][] childString;
-    private CarTypeSet carTypeSet;
+    private ArrayList<CarBaseBean> styleList;
     private static final String CAR_TYPE_SET = "car_type_set";
     public static final String CAR_STYLE_SET = "car_style_set";
     private List<Integer> groupList = new ArrayList<>();
-    private List<CarStyleSet> childList = new ArrayList<>();
-    private List<List<CarStyleSet>> dataList = new ArrayList<>();
+    private List<CarBaseBean> childList = new ArrayList<>();
+    private List<List<CarBaseBean>> dataList = new ArrayList<>();
 
     public CarBrandThirdFragment() {
     }
 
-    public static CarBrandThirdFragment newInstance(CarTypeSet carTypeSet) {
+    public static CarBrandThirdFragment newInstance(ArrayList<CarBaseBean> styleList) {
         CarBrandThirdFragment fragment = new CarBrandThirdFragment();
         Bundle args = new Bundle();
-        args.putSerializable(CAR_TYPE_SET, carTypeSet);
+        args.putParcelableArrayList(CAR_TYPE_SET, styleList);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,7 +48,7 @@ public class CarBrandThirdFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            carTypeSet = (CarTypeSet) getArguments().getSerializable(CAR_TYPE_SET);
+            styleList = getArguments().getParcelableArrayList(CAR_TYPE_SET);
         }
     }
 
@@ -56,11 +57,11 @@ public class CarBrandThirdFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_expandablelistview, container, false);
         list = view.findViewById(R.id.lelv_list);
-        if (carTypeSet != null) {
-            for (CarStyleSet styleSet : carTypeSet.getCarstyle_set()) {
+        if (styleList != null && styleList.size() > 0) {
+            for (CarBaseBean styleSet : styleList) {
                 int year = styleSet.getYear();
                 boolean out = false; //对象是否已被接收
-                for (List<CarStyleSet> temp : dataList) {
+                for (List<CarBaseBean> temp : dataList) {
                     if (year == temp.get(0).getYear()) {
                         out = true; //表示当前对象已有匹配
                         temp.add(styleSet);
@@ -68,7 +69,7 @@ public class CarBrandThirdFragment extends Fragment {
                     }
                 }
                 if(!out) { //对象没有匹配，新建一列
-                    ArrayList<CarStyleSet> tempList = new ArrayList<>();
+                    ArrayList<CarBaseBean> tempList = new ArrayList<>();
                     tempList.add(styleSet);
                     dataList.add(tempList);
                 }
@@ -101,9 +102,9 @@ public class CarBrandThirdFragment extends Fragment {
 
     private class MyAdapter extends BaseExpandableListAdapter {
 
-        List<List<CarStyleSet>> mDataList;
+        List<List<CarBaseBean>> mDataList;
 
-        public MyAdapter(List<List<CarStyleSet>> mDataList) {
+        public MyAdapter(List<List<CarBaseBean>> mDataList) {
             this.mDataList = mDataList;
         }
 

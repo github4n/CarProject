@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,25 +17,34 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.car.carbrand.CarBaseBean;
 import com.littleant.carrepair.request.bean.car.carbrand.CarBrandLetterBean;
-import com.littleant.carrepair.request.bean.car.carbrand.CarTypeSet;
+import com.littleant.carrepair.request.bean.car.carbrand.CarTypeList;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.user.car.CarStyleQueryCmd;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarBrandSecondFragment extends Fragment {
 
-    private CarBrandLetterBean letterBean;
+    private ArrayList<CarBaseBean> letterBean;
     public static final String  CAR_BRAND_LETTER_BEAN = "car_brand_letter_bean";
     private ListView list;
 
     public CarBrandSecondFragment() {
     }
 
-    public static CarBrandSecondFragment newInstance(CarBrandLetterBean letterBean) {
+    public static CarBrandSecondFragment newInstance(ArrayList<CarBaseBean> letterBean) {
         CarBrandSecondFragment fragment = new CarBrandSecondFragment();
         Bundle args = new Bundle();
-        args.putSerializable(CAR_BRAND_LETTER_BEAN, letterBean);
+        args.putParcelableArrayList(CAR_BRAND_LETTER_BEAN, letterBean);
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,7 +53,7 @@ public class CarBrandSecondFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null) {
-            letterBean = (CarBrandLetterBean) getArguments().getSerializable(CAR_BRAND_LETTER_BEAN);
+            letterBean = getArguments().getParcelableArrayList(CAR_BRAND_LETTER_BEAN);
         }
     }
 
@@ -51,35 +62,61 @@ public class CarBrandSecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_listview, container, false);
         list = view.findViewById(R.id.llv_list);
-        if(letterBean != null) {
-            List<CarTypeSet> cartype_set = letterBean.getCartype_set();
-            if(cartype_set != null && cartype_set.size() > 0) {
-                final MyAdapter adapter = new MyAdapter(cartype_set);
+        if(letterBean != null && letterBean.size() > 0) {
+//            List<CarTypeList> cartype_set = letterBean.getCartype_set();
+//            if(cartype_set != null && cartype_set.size() > 0) {
+                final MyAdapter adapter = new MyAdapter(letterBean);
                 list.setAdapter(adapter);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        CarTypeSet carTypeSet = (CarTypeSet) adapter.getItem(position);
-                        if(carTypeSet.getCarstyle_set() == null && carTypeSet.getCarstyle_set().size() < 1) {
-                            MHToast.showS(getContext(), R.string.car_brand_empty);
-                            return;
-                        }
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.replace(R.id.acb_fragment, CarBrandThirdFragment.newInstance(carTypeSet), CarBrandThirdFragment.class.getSimpleName());
-                        transaction.addToBackStack(null); //将当前的事务添加到了回退栈
-                        transaction.commit();
+                        CarBaseBean carTypeList = (CarBaseBean) adapter.getItem(position);
+//                        if(carTypeList.getCarstyle_set() == null && carTypeList.getCarstyle_set().size() < 1) {
+//                            MHToast.showS(getContext(), R.string.car_brand_empty);
+//                            return;
+//                        }
+                        requestCarStyle(carTypeList);
                     }
                 });
-            }
+//            }
         }
         return view;
     }
 
-    private class MyAdapter extends BaseAdapter {
-        List<CarTypeSet> mCartype_set;
+    private void requestCarStyle(CarBaseBean carTypeList) {
+        CarStyleQueryCmd queryCmd = new CarStyleQueryCmd(getContext(), carTypeList.getId());
+        queryCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        CarTypeList list = ProjectUtil.getBaseResponseBean(command.getResponse(), CarTypeList.class);
+                        if(list == null || list.getData() == null || list.getData().size() < 1) {
+                            MHToast.showS(getContext(), R.string.car_brand_empty);
+                        } else {
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction transaction = fragmentManager.beginTransaction();
+                            transaction.replace(R.id.acb_fragment, CarBrandThirdFragment.newInstance((ArrayList) list.getData()), CarBrandThirdFragment.class.getSimpleName());
+                            transaction.addToBackStack(null); //将当前的事务添加到了回退栈
+                            transaction.commit();
+                        }
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(getContext(), responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(getContext(), R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(getContext(), queryCmd);
+    }
 
-        public MyAdapter(List<CarTypeSet> cartype_set) {
+    private class MyAdapter extends BaseAdapter {
+        ArrayList<CarBaseBean> mCartype_set;
+
+        public MyAdapter(ArrayList<CarBaseBean> cartype_set) {
             this.mCartype_set = cartype_set;
         }
 
@@ -109,10 +146,10 @@ public class CarBrandSecondFragment extends Fragment {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            CarTypeSet carTypeSet = mCartype_set.get(position);
-            if(carTypeSet != null) {
-                viewHolder.mTextView.setText(carTypeSet.getName());
-            }
+//            CarTypeList carTypeList = mCartype_set.get(position);
+//            if(carTypeList != null) {
+                viewHolder.mTextView.setText(mCartype_set.get(position).getName());
+//            }
 
             return convertView;
         }

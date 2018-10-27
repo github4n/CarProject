@@ -203,6 +203,9 @@ public class RepairOrderDetailActivity extends BaseActivity {
         } else if(flag == FLAG_UPDATE) {
             showItemDetail(data.getMaintainitem_set_now());
         }
+        if(!DataHelper.getRepairConfirm(this, orderInfo.getId())) { //未确认过维修项，默认弹出来
+            asod_tv_modify.performClick();
+        }
     }
 
     @Override
@@ -230,6 +233,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
                 break;
 
             case R.id.asod_tv_modify:
+                DataHelper.saveRepairConfirm(this, orderInfo.getId());  //弹出确认维修项并保存已确认状态
                 showList();
                 break;
         }

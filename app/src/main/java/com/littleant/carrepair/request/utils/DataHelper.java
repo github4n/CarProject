@@ -212,4 +212,13 @@ public class DataHelper {
     public static String getContractPhone(Context context) {
         return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, CONTRACT_PHONE);
     }
+
+    //维修项是否已确认
+    public static void saveRepairConfirm(Context context, int id) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, id + "", true);
+    }
+
+    public static boolean getRepairConfirm(Context context, int id) {
+        return MHDatabase.getSimpleBoolean(context, MHDatabase.MH_FILE, id + "");
+    }
 }

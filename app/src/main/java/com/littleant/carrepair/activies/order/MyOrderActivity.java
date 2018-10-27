@@ -274,15 +274,15 @@ public class MyOrderActivity extends BaseActivity {
                             switch (orderInfo.getState()) {
                                 case 1:
                                     if (TYPE_UPKEEP.equals(orderInfo.getType())) { //保养只有去支付一种状态
+                                        intent = new Intent(mContext, PaymentActivity.class);
                                         intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_UPKEEP);
                                         intent.putExtra(ORDER_INFO, orderInfo);
                                         startActivityForResult(intent, REQUEST_PAY);
                                     } else if (PAY_MAINTAIN.equals(orderInfo.getType())) { //维修分是否设置维修项
                                         if (orderInfo.isIs_setting()) { //已设定维修项，此时为去支付按钮
-                                            intent = new Intent(mContext, PaymentActivity.class);
-                                            intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_MAINTAIN);
+                                            intent = new Intent(mContext, RepairOrderDetailActivity.class);
                                             intent.putExtra(ORDER_INFO, orderInfo);
-                                            startActivityForResult(intent, REQUEST_PAY);
+                                            startActivityForResult(intent, REQUEST_DETAIL);
                                         } else { //未设定维修项，此时为导航按钮
                                             navi(orderInfo);
                                         }

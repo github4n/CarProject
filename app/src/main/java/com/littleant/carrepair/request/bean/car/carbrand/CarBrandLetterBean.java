@@ -9,14 +9,14 @@ import java.util.List;
 public class CarBrandLetterBean implements Serializable {
     private int id;
     private String name = "";
-    private List<CarTypeSet> cartype_set;
+//    private List<CarTypeList> cartype_set;
 
     @Override
     public String toString() {
         return "CarBrandLetterBean{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", cartype_set=" + cartype_set +
+//                ", cartype_set=" + cartype_set +
                 '}';
     }
 
@@ -36,11 +36,11 @@ public class CarBrandLetterBean implements Serializable {
         this.name = name;
     }
 
-    public List<CarTypeSet> getCartype_set() {
-        return cartype_set;
-    }
-
-    public void setCartype_set(List<CarTypeSet> cartype_set) {
-        this.cartype_set = cartype_set;
-    }
+//    public List<CarTypeList> getCartype_set() {
+//        return cartype_set;
+//    }
+//
+//    public void setCartype_set(List<CarTypeList> cartype_set) {
+//        this.cartype_set = cartype_set;
+//    }
 }

@@ -9,245 +9,245 @@ import java.util.List;
  * 汽车品牌按字母排序
  */
 public class CarBrandLetterList implements Serializable {
-    private List<CarBrandLetterBean> A;
-    private List<CarBrandLetterBean> B;
-    private List<CarBrandLetterBean> C;
-    private List<CarBrandLetterBean> D;
-    private List<CarBrandLetterBean> E;
-    private List<CarBrandLetterBean> F;
-    private List<CarBrandLetterBean> G;
-    private List<CarBrandLetterBean> H;
-    private List<CarBrandLetterBean> I;
-    private List<CarBrandLetterBean> J;
-    private List<CarBrandLetterBean> K;
-    private List<CarBrandLetterBean> L;
-    private List<CarBrandLetterBean> M;
-    private List<CarBrandLetterBean> N;
-    private List<CarBrandLetterBean> O;
-    private List<CarBrandLetterBean> P;
-    private List<CarBrandLetterBean> Q;
-    private List<CarBrandLetterBean> R;
-    private List<CarBrandLetterBean> S;
-    private List<CarBrandLetterBean> T;
-    private List<CarBrandLetterBean> U;
-    private List<CarBrandLetterBean> V;
-    private List<CarBrandLetterBean> W;
-    private List<CarBrandLetterBean> X;
-    private List<CarBrandLetterBean> Y;
-    private List<CarBrandLetterBean> Z;
+    private List<CarBaseBean> A;
+    private List<CarBaseBean> B;
+    private List<CarBaseBean> C;
+    private List<CarBaseBean> D;
+    private List<CarBaseBean> E;
+    private List<CarBaseBean> F;
+    private List<CarBaseBean> G;
+    private List<CarBaseBean> H;
+    private List<CarBaseBean> I;
+    private List<CarBaseBean> J;
+    private List<CarBaseBean> K;
+    private List<CarBaseBean> L;
+    private List<CarBaseBean> M;
+    private List<CarBaseBean> N;
+    private List<CarBaseBean> O;
+    private List<CarBaseBean> P;
+    private List<CarBaseBean> Q;
+    private List<CarBaseBean> R;
+    private List<CarBaseBean> S;
+    private List<CarBaseBean> T;
+    private List<CarBaseBean> U;
+    private List<CarBaseBean> V;
+    private List<CarBaseBean> W;
+    private List<CarBaseBean> X;
+    private List<CarBaseBean> Y;
+    private List<CarBaseBean> Z;
 
-    public List<CarBrandLetterBean> getA() {
+    public List<CarBaseBean> getA() {
         return A;
     }
 
-    public void setA(List<CarBrandLetterBean> a) {
+    public void setA(List<CarBaseBean> a) {
         A = a;
     }
 
-    public List<CarBrandLetterBean> getB() {
+    public List<CarBaseBean> getB() {
         return B;
     }
 
-    public void setB(List<CarBrandLetterBean> b) {
+    public void setB(List<CarBaseBean> b) {
         B = b;
     }
 
-    public List<CarBrandLetterBean> getC() {
+    public List<CarBaseBean> getC() {
         return C;
     }
 
-    public void setC(List<CarBrandLetterBean> c) {
+    public void setC(List<CarBaseBean> c) {
         C = c;
     }
 
-    public List<CarBrandLetterBean> getD() {
+    public List<CarBaseBean> getD() {
         return D;
     }
 
-    public void setD(List<CarBrandLetterBean> d) {
+    public void setD(List<CarBaseBean> d) {
         D = d;
     }
 
-    public List<CarBrandLetterBean> getE() {
+    public List<CarBaseBean> getE() {
         return E;
     }
 
-    public void setE(List<CarBrandLetterBean> e) {
+    public void setE(List<CarBaseBean> e) {
         E = e;
     }
 
-    public List<CarBrandLetterBean> getF() {
+    public List<CarBaseBean> getF() {
         return F;
     }
 
-    public void setF(List<CarBrandLetterBean> f) {
+    public void setF(List<CarBaseBean> f) {
         F = f;
     }
 
-    public List<CarBrandLetterBean> getG() {
+    public List<CarBaseBean> getG() {
         return G;
     }
 
-    public void setG(List<CarBrandLetterBean> g) {
+    public void setG(List<CarBaseBean> g) {
         G = g;
     }
 
-    public List<CarBrandLetterBean> getH() {
+    public List<CarBaseBean> getH() {
         return H;
     }
 
-    public void setH(List<CarBrandLetterBean> h) {
+    public void setH(List<CarBaseBean> h) {
         H = h;
     }
 
-    public List<CarBrandLetterBean> getI() {
+    public List<CarBaseBean> getI() {
         return I;
     }
 
-    public void setI(List<CarBrandLetterBean> i) {
+    public void setI(List<CarBaseBean> i) {
         I = i;
     }
 
-    public List<CarBrandLetterBean> getJ() {
+    public List<CarBaseBean> getJ() {
         return J;
     }
 
-    public void setJ(List<CarBrandLetterBean> j) {
+    public void setJ(List<CarBaseBean> j) {
         J = j;
     }
 
-    public List<CarBrandLetterBean> getK() {
+    public List<CarBaseBean> getK() {
         return K;
     }
 
-    public void setK(List<CarBrandLetterBean> k) {
+    public void setK(List<CarBaseBean> k) {
         K = k;
     }
 
-    public List<CarBrandLetterBean> getL() {
+    public List<CarBaseBean> getL() {
         return L;
     }
 
-    public void setL(List<CarBrandLetterBean> l) {
+    public void setL(List<CarBaseBean> l) {
         L = l;
     }
 
-    public List<CarBrandLetterBean> getM() {
+    public List<CarBaseBean> getM() {
         return M;
     }
 
-    public void setM(List<CarBrandLetterBean> m) {
+    public void setM(List<CarBaseBean> m) {
         M = m;
     }
 
-    public List<CarBrandLetterBean> getN() {
+    public List<CarBaseBean> getN() {
         return N;
     }
 
-    public void setN(List<CarBrandLetterBean> n) {
+    public void setN(List<CarBaseBean> n) {
         N = n;
     }
 
-    public List<CarBrandLetterBean> getO() {
+    public List<CarBaseBean> getO() {
         return O;
     }
 
-    public void setO(List<CarBrandLetterBean> o) {
+    public void setO(List<CarBaseBean> o) {
         O = o;
     }
 
-    public List<CarBrandLetterBean> getP() {
+    public List<CarBaseBean> getP() {
         return P;
     }
 
-    public void setP(List<CarBrandLetterBean> p) {
+    public void setP(List<CarBaseBean> p) {
         P = p;
     }
 
-    public List<CarBrandLetterBean> getQ() {
+    public List<CarBaseBean> getQ() {
         return Q;
     }
 
-    public void setQ(List<CarBrandLetterBean> q) {
+    public void setQ(List<CarBaseBean> q) {
         Q = q;
     }
 
-    public List<CarBrandLetterBean> getR() {
+    public List<CarBaseBean> getR() {
         return R;
     }
 
-    public void setR(List<CarBrandLetterBean> r) {
+    public void setR(List<CarBaseBean> r) {
         R = r;
     }
 
-    public List<CarBrandLetterBean> getS() {
+    public List<CarBaseBean> getS() {
         return S;
     }
 
-    public void setS(List<CarBrandLetterBean> s) {
+    public void setS(List<CarBaseBean> s) {
         S = s;
     }
 
-    public List<CarBrandLetterBean> getT() {
+    public List<CarBaseBean> getT() {
         return T;
     }
 
-    public void setT(List<CarBrandLetterBean> t) {
+    public void setT(List<CarBaseBean> t) {
         T = t;
     }
 
-    public List<CarBrandLetterBean> getU() {
+    public List<CarBaseBean> getU() {
         return U;
     }
 
-    public void setU(List<CarBrandLetterBean> u) {
+    public void setU(List<CarBaseBean> u) {
         U = u;
     }
 
-    public List<CarBrandLetterBean> getV() {
+    public List<CarBaseBean> getV() {
         return V;
     }
 
-    public void setV(List<CarBrandLetterBean> v) {
+    public void setV(List<CarBaseBean> v) {
         V = v;
     }
 
-    public List<CarBrandLetterBean> getW() {
+    public List<CarBaseBean> getW() {
         return W;
     }
 
-    public void setW(List<CarBrandLetterBean> w) {
+    public void setW(List<CarBaseBean> w) {
         W = w;
     }
 
-    public List<CarBrandLetterBean> getX() {
+    public List<CarBaseBean> getX() {
         return X;
     }
 
-    public void setX(List<CarBrandLetterBean> x) {
+    public void setX(List<CarBaseBean> x) {
         X = x;
     }
 
-    public List<CarBrandLetterBean> getY() {
+    public List<CarBaseBean> getY() {
         return Y;
     }
 
-    public void setY(List<CarBrandLetterBean> y) {
+    public void setY(List<CarBaseBean> y) {
         Y = y;
     }
 
-    public List<CarBrandLetterBean> getZ() {
+    public List<CarBaseBean> getZ() {
         return Z;
     }
 
-    public void setZ(List<CarBrandLetterBean> z) {
+    public void setZ(List<CarBaseBean> z) {
         Z = z;
     }
 
-    private ArrayList<List<CarBrandLetterBean>> list;
-    private LinkedHashMap<String, List<CarBrandLetterBean>> hashMap;
+    private ArrayList<List<CarBaseBean>> list;
+    private LinkedHashMap<String, List<CarBaseBean>> hashMap;
 
-    public ArrayList<List<CarBrandLetterBean>> toArrayList() {
+    public ArrayList<List<CarBaseBean>> toArrayList() {
         if (list == null) {
             list = new ArrayList<>();
             list.add(A);
@@ -280,9 +280,9 @@ public class CarBrandLetterList implements Serializable {
         return list;
     }
 
-    public LinkedHashMap<String, List<CarBrandLetterBean>> toMap() {
+    public LinkedHashMap<String, List<CarBaseBean>> toMap() {
         if(hashMap == null) {
-            hashMap = new LinkedHashMap<String, List<CarBrandLetterBean>>();
+            hashMap = new LinkedHashMap<String, List<CarBaseBean>>();
             hashMap.put("A", A);
             hashMap.put("B", B);
             hashMap.put("C", C);

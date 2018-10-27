@@ -60,6 +60,14 @@ public class InterfaceConstant {
      * get:查询车辆品牌信息<br>
      */
     public static final String USER_CARBRAND = "api/user/carbrand/";
+    /**
+     * get:查询车辆车型信息<br>
+     */
+    public static final String USER_CARTYPE = "api/user/cartype/";
+    /**
+     * get:查询车辆款式信息<br>
+     */
+    public static final String USER_CARSTYLE = "api/user/carstyle/";
 
     //服务部分
     /**
