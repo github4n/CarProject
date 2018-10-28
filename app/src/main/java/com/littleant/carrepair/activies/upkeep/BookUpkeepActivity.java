@@ -253,7 +253,7 @@ public class BookUpkeepActivity extends BaseActivity {
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
                             oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
-                            sum=oilInfo.getNew_price();
+                            sum=oilInfo.getNew_price()*oilAmount;
                             if (isChecked) {
                                 oilIdList.add(oilInfo.getId()+"");
                                 isFlag=true;
@@ -321,7 +321,7 @@ public class BookUpkeepActivity extends BaseActivity {
 //                                        oilAmount=1;
 //                                        holder.lmi_reduce.setEnabled(false);
 //                                    }
-                                 oilAmounMap.put(oilInfo.getId()+"",oilAmount+"");
+                                    oilAmounMap.put(oilInfo.getId()+"",oilAmount+"");
                                     sum=(oilAmount)*oilInfo.getNew_price();
                                     holder.lmi_amount.setText(oilAmount + "");
                                     price -= oilInfo.getNew_price();
