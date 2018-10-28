@@ -133,6 +133,8 @@ public class AnnualCheckDetailActivity extends BaseActivity {
     protected int getOptionStringId() {
         if(state == STATE_WAIT_GET) {
             return R.string.text_check_cancel_order;
+        } else if(state == STATE_FINISH) {
+            return R.string.text_evaluate;
         }
         return 0;
     }

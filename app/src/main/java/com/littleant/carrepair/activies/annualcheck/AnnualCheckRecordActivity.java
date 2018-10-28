@@ -53,6 +53,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
 
     public static final int REQUEST_CODE_CHECK_DETAIL = 100;
     public static final int REQUEST_CODE_RETURN = 101;
+    public static final int REQUEST_CODE_PAY = 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +115,6 @@ public class AnnualCheckRecordActivity extends BaseActivity {
 
                     case R.id.acr_finish:
                         queryType = ParamsConstant.SURVEY_FINISH;
-                        queryType = ParamsConstant.MAINTAIN_FINISH;
                         if(dataFinish == null) {
                             requestCheckRecord();
                         } else {
@@ -225,7 +225,6 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                         break;
 
                     case STATE_WAIT_CHECK: //等待年检
-                    case STATE_CHECK_FINISH:  //年检完成
                         if(surveyInfo.isIs_self()) {
                             intent = new Intent(mContext, OwnStartCheckActivity.class);
                         } else {
@@ -233,6 +232,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                         }
                         break;
 
+                    case STATE_CHECK_FINISH:  //年检成功
                     case STATE_ARRIVE_CAR: //到达还车
                     case STATE_RETURN_CAR: //已还车
                         requestCode = REQUEST_CODE_RETURN;
