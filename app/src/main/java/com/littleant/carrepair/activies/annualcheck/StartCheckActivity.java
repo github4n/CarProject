@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.squareup.picasso.Picasso;
@@ -18,6 +19,7 @@ public class StartCheckActivity extends BaseFlowActivity {
     private SurveyInfo info;
     private ImageView asc_iv_driver_icon;
     private TextView asc_et_check_contact, asc_et_check_time, asc_et_check_state;
+    private XLHRatingBar asc_rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class StartCheckActivity extends BaseFlowActivity {
                     break;
             }
             asc_et_check_state.setText(stateText);
+            asc_rating.setCountSelected(info.getDrive_user_score());
         } else {
             finish();
         }
@@ -57,6 +60,7 @@ public class StartCheckActivity extends BaseFlowActivity {
         asc_et_check_contact = findViewById(R.id.asc_et_check_contact);
         asc_et_check_time = findViewById(R.id.asc_et_check_time);
         asc_et_check_state = findViewById(R.id.asc_et_check_state);
+        asc_rating = findViewById(R.id.asc_rating);
     }
 
     @Override

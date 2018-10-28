@@ -10,10 +10,10 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class SurveyBehalfMethodCmd extends BaseRequestCmd {
-    public SurveyBehalfMethodCmd(Context context, String id, ParamsConstant.SurveyMethodType method, String longitude, String latitude,
+    public SurveyBehalfMethodCmd(Context context, int id, ParamsConstant.SurveyMethodType method, String longitude, String latitude,
                                  int surveystation_id, int combo_id, String comboitem_list) {
         super(context);
-        params.put(ParamsConstant.ID, id);
+        params.put(ParamsConstant.ID, id + "");
         params.put(ParamsConstant.METHOD, method.getDes());
         if(!TextUtils.isEmpty(latitude) && !TextUtils.isEmpty(longitude)) {
             params.put(ParamsConstant.LONGITUDE, longitude);

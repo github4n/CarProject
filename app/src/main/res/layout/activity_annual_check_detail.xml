@@ -68,73 +68,84 @@
                 app:layout_constraintTop_toTopOf="@id/aacd_tv_price" />
         </android.support.constraint.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/aacd_cl_pic"
+        <LinearLayout
+            android:id="@+id/aacd_ll_pic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:background="@color/white"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/aacd_cl_price">
+            app:layout_constraintTop_toBottomOf="@id/aacd_cl_price"/>
 
-            <TextView
-                android:id="@+id/aacd_tv_pic_title1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/color_text"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/aacd_iv_pic1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
-                app:layout_constraintDimensionRatio="113:56"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/aacd_tv_pic_title1" />
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/aacd_cl_pic"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:background="@color/white"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/aacd_cl_price">-->
 
-            <TextView
-                android:id="@+id/aacd_tv_pic_title2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/color_text"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/aacd_iv_pic1" />
+            <!--<TextView-->
+                <!--android:id="@+id/aacd_tv_pic_title1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginStart="16dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:textColor="@color/color_text"-->
+                <!--android:textStyle="bold"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-            <ImageView
-                android:id="@+id/aacd_iv_pic2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:scaleType="fitXY"
-                app:layout_constraintDimensionRatio="113:56"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/aacd_tv_pic_title2"
-                app:layout_constraintBottom_toBottomOf="parent" />
+            <!--<ImageView-->
+                <!--android:id="@+id/aacd_iv_pic1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_marginEnd="16dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--android:layout_marginStart="16dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:scaleType="fitXY"-->
+                <!--app:layout_constraintDimensionRatio="113:56"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/aacd_tv_pic_title1" />-->
 
-        </android.support.constraint.ConstraintLayout>
+            <!--<TextView-->
+                <!--android:id="@+id/aacd_tv_pic_title2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginStart="16dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:textColor="@color/color_text"-->
+                <!--android:textStyle="bold"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/aacd_iv_pic1" />-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/aacd_iv_pic2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_marginEnd="16dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--android:layout_marginStart="16dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:layout_marginBottom="16dp"-->
+                <!--android:scaleType="fitXY"-->
+                <!--app:layout_constraintDimensionRatio="113:56"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@id/aacd_tv_pic_title2"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
 
     </android.support.constraint.ConstraintLayout>
 

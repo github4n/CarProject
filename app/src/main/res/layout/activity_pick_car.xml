@@ -11,14 +11,14 @@
         android:id="@+id/apc_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.3"
+        app:layout_constraintGuide_percent="0.35"
         android:orientation="vertical" />
 
     <android.support.constraint.Guideline
         android:id="@+id/apc_guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.7"
+        app:layout_constraintGuide_percent="0.65"
         android:orientation="vertical" />
 
     <include
@@ -71,9 +71,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textColor="@color/color_text"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@id/apc_iv_driver_icon"
         app:layout_constraintStart_toStartOf="@id/apc_iv_driver_icon"
         app:layout_constraintTop_toBottomOf="@id/apc_iv_driver_icon" />
+
+    <com.example.xlhratingbar_lib.XLHRatingBar xmlns:xlhRatingBar="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/apc_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@id/apc_guideline2"
+        app:layout_constraintStart_toStartOf="@id/apc_guideline"
+        app:layout_constraintTop_toBottomOf="@id/apc_tv_driver_name"
+        xlhRatingBar:canEdit="false"
+        xlhRatingBar:countSelected="0"
+        xlhRatingBar:differentSize="false"
+        xlhRatingBar:dividerWidth="5dp"
+        xlhRatingBar:starCount="5"
+        xlhRatingBar:stateResId="@drawable/rating_dialog_selector"
+        xlhRatingBar:widthAndHeight="12dp" />
 
     <ImageView
         android:id="@+id/apc_line"
@@ -82,7 +99,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/apc_tv_driver_name"
+        app:layout_constraintTop_toBottomOf="@id/apc_rating"
         app:srcCompat="@color/color_sub_background" />
 
     <TextView
@@ -93,6 +110,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_check_contact"
+        android:textSize="14sp"
         android:textColor="@color/color_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/apc_line" />
@@ -106,6 +124,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
         android:gravity="end"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/apc_tv_check_contact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/apc_tv_check_contact"
@@ -127,6 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/text_driving_pick_car_time"
+        android:textSize="14sp"
         android:textColor="@color/color_text"
         app:layout_constraintStart_toStartOf="@id/apc_tv_check_contact"
         app:layout_constraintTop_toBottomOf="@id/apc_line2" />
@@ -138,6 +158,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:gravity="end"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/apc_tv_pick_time"
         app:layout_constraintEnd_toEndOf="@id/apc_et_check_contact"
         app:layout_constraintStart_toEndOf="@id/apc_tv_pick_time"

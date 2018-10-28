@@ -9,6 +9,7 @@ public class SurveyInfo  implements Serializable {
     private int id;
     private String create_time = "";
     private String update_time = "";
+    private String order_code = "";
     private String name = "";
     private String phone = "";
     private String car_name = "";
@@ -28,10 +29,12 @@ public class SurveyInfo  implements Serializable {
     private float total_price;
     private int state;
     private int survey_state;
+    private boolean is_comment;
     private int driver_user_id;
     private String driver_user_pic_url = "";
     private String driver_user_name = "";
     private String drive_user_phone = "";
+    private int drive_user_score;
     private String order_time = "";
     private String receive_time = "";
     private String get_time = "";
@@ -41,67 +44,14 @@ public class SurveyInfo  implements Serializable {
     private String return_time = "";
     private String confirm_time = "";
     private String cancel_time = "";
+    private String comment_time = "";
     private SurveyPicList get_confirm;
     private SurveyPicList get_car;
     private SurveyPicList survey_upload;
+    private SurveyPicList survey_fail_upload;
     private SurveyPicList return_confirm;
     private SurveyPicList return_car;
     private List<FailureListBean> failure_list;
-
-    @Override
-    public String toString() {
-        return "SurveyInfo{" +
-                "id=" + id +
-                ", create_time='" + create_time + '\'' +
-                ", update_time='" + update_time + '\'' +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", car_name='" + car_name + '\'' +
-                ", car_brand='" + car_brand + '\'' +
-                ", car_code='" + car_code + '\'' +
-                ", car_type='" + car_type + '\'' +
-                ", surveystation=" + surveystation +
-                ", order_longitude=" + order_longitude +
-                ", order_latitude=" + order_latitude +
-                ", order_address='" + order_address + '\'' +
-                ", subscribe_time='" + subscribe_time + '\'' +
-                ", is_self=" + is_self +
-                ", combo=" + combo +
-                ", base_price=" + base_price +
-                ", combo_price=" + combo_price +
-                ", survey_price=" + survey_price +
-                ", total_price=" + total_price +
-                ", state=" + state +
-                ", survey_state=" + survey_state +
-                ", driver_user_id=" + driver_user_id +
-                ", driver_user_pic_url='" + driver_user_pic_url + '\'' +
-                ", driver_user_name='" + driver_user_name + '\'' +
-                ", drive_user_phone='" + drive_user_phone + '\'' +
-                ", order_time='" + order_time + '\'' +
-                ", receive_time='" + receive_time + '\'' +
-                ", get_time='" + get_time + '\'' +
-                ", arrive_survey_time='" + arrive_survey_time + '\'' +
-                ", survey_time='" + survey_time + '\'' +
-                ", arrive_return_time='" + arrive_return_time + '\'' +
-                ", return_time='" + return_time + '\'' +
-                ", confirm_time='" + confirm_time + '\'' +
-                ", cancel_time='" + cancel_time + '\'' +
-                ", get_confirm=" + get_confirm +
-                ", get_car=" + get_car +
-                ", survey_upload=" + survey_upload +
-                ", return_confirm=" + return_confirm +
-                ", return_car=" + return_car +
-                ", failure_list=" + failure_list +
-                '}';
-    }
-
-    public String getCancel_time() {
-        return cancel_time;
-    }
-
-    public void setCancel_time(String cancel_time) {
-        this.cancel_time = cancel_time;
-    }
 
     public int getId() {
         return id;
@@ -125,6 +75,14 @@ public class SurveyInfo  implements Serializable {
 
     public void setUpdate_time(String update_time) {
         this.update_time = update_time;
+    }
+
+    public String getOrder_code() {
+        return order_code;
+    }
+
+    public void setOrder_code(String order_code) {
+        this.order_code = order_code;
     }
 
     public String getName() {
@@ -279,6 +237,14 @@ public class SurveyInfo  implements Serializable {
         this.survey_state = survey_state;
     }
 
+    public boolean isIs_comment() {
+        return is_comment;
+    }
+
+    public void setIs_comment(boolean is_comment) {
+        this.is_comment = is_comment;
+    }
+
     public int getDriver_user_id() {
         return driver_user_id;
     }
@@ -309,6 +275,14 @@ public class SurveyInfo  implements Serializable {
 
     public void setDrive_user_phone(String drive_user_phone) {
         this.drive_user_phone = drive_user_phone;
+    }
+
+    public int getDrive_user_score() {
+        return drive_user_score;
+    }
+
+    public void setDrive_user_score(int drive_user_score) {
+        this.drive_user_score = drive_user_score;
     }
 
     public String getOrder_time() {
@@ -375,6 +349,22 @@ public class SurveyInfo  implements Serializable {
         this.confirm_time = confirm_time;
     }
 
+    public String getCancel_time() {
+        return cancel_time;
+    }
+
+    public void setCancel_time(String cancel_time) {
+        this.cancel_time = cancel_time;
+    }
+
+    public String getComment_time() {
+        return comment_time;
+    }
+
+    public void setComment_time(String comment_time) {
+        this.comment_time = comment_time;
+    }
+
     public SurveyPicList getGet_confirm() {
         return get_confirm;
     }
@@ -397,6 +387,14 @@ public class SurveyInfo  implements Serializable {
 
     public void setSurvey_upload(SurveyPicList survey_upload) {
         this.survey_upload = survey_upload;
+    }
+
+    public SurveyPicList getSurvey_fail_upload() {
+        return survey_fail_upload;
+    }
+
+    public void setSurvey_fail_upload(SurveyPicList survey_fail_upload) {
+        this.survey_fail_upload = survey_fail_upload;
     }
 
     public SurveyPicList getReturn_confirm() {
