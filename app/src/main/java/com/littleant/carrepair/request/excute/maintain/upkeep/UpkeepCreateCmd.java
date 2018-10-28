@@ -10,7 +10,7 @@ import com.mh.core.tools.MHLogUtil;
 public class UpkeepCreateCmd extends BaseUpkeepCmd {
     public UpkeepCreateCmd(Context context, int garage_id, int car_id, String name, String phone
                            , String longitude, String latitude, String address,
-                           int oil_id, int oil_amount) {
+                           String number, String oil_id_list,String oil_amount_list) {
         super(context);
         params.put(ParamsConstant.GARAGE_ID, garage_id + "");
         params.put(ParamsConstant.CAR_ID, car_id + "");
@@ -20,8 +20,10 @@ public class UpkeepCreateCmd extends BaseUpkeepCmd {
         params.put(ParamsConstant.LONGITUDE, longitude);
         params.put(ParamsConstant.LATITUDE, latitude);
         params.put(ParamsConstant.ADDRESS, address);
-        params.put(ParamsConstant.OIL_ID, oil_id + "");
-        params.put(ParamsConstant.OIL_AMOUNT, oil_amount + "");
+        params.put(ParamsConstant.NUMBER, number);
+        params.put(ParamsConstant.OIL_ID_LIST, oil_id_list);
+        params.put(ParamsConstant.OIL_AMOUNT, oil_amount_list);
+
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
 

@@ -34,7 +34,11 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import static com.littleant.carrepair.activies.BookSubmitActivity.FROM;
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
@@ -50,7 +54,13 @@ public class BookUpkeepActivity extends BaseActivity {
     public static final String OIL_ID = "oil_id";
     public static final String OIL_AMOUNT = "oil_amount";
     public static final String OIL_PRICE = "oil_price";
+    public static final String OIL_NUMBER = "number";
+    public static final String OIL_ID_LIST = "oil_id_list";
+    public static final String OIL_AMOUNT_LIST = "oil_amount_list";
 
+
+    List<String> oilIdList=new ArrayList<>();
+    Map<String,String> oilAmounMap=new HashMap<>();
     private int oilId, oilAmount;
     private float price;
 
@@ -136,6 +146,28 @@ public class BookUpkeepActivity extends BaseActivity {
                 intent.putExtra(OIL_ID, oilId);
                 intent.putExtra(OIL_AMOUNT, oilAmount);
                 intent.putExtra(OIL_PRICE, price);
+                intent.putExtra(OIL_NUMBER, oilIdList.size()+"");
+                StringBuffer oil_id_listStr=new StringBuffer();
+                StringBuffer oil_amount_listStr=new StringBuffer();
+
+                //机油id集合
+                for(int i=0;i<oilIdList.size();i++){
+                        oil_id_listStr.append(oilIdList.get(i)+",");
+
+
+                }
+                //数量集合
+
+                for (Map.Entry<String, String> entry : oilAmounMap.entrySet()) {
+                    oil_amount_listStr.append(entry.getValue()+",") ;
+                }
+                String amountData= oil_id_listStr.substring(0, oil_id_listStr.lastIndexOf(","));
+                String listStrData= oil_amount_listStr.substring(0, oil_amount_listStr.lastIndexOf(","));
+
+
+                intent.putExtra(OIL_ID_LIST, listStrData);
+                intent.putExtra(OIL_AMOUNT_LIST, amountData);
+
                 BookUpkeepActivity.this.startActivity(intent);
                 break;
         }
@@ -162,6 +194,7 @@ public class BookUpkeepActivity extends BaseActivity {
         private List<OilInfo> mOilList;
         private boolean isFlag=false;
         private float sum=0.0f;
+
 
 
         public MyAdapter(List<OilInfo> oilList) {
@@ -219,16 +252,40 @@ public class BookUpkeepActivity extends BaseActivity {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
+                            oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
                             sum=oilInfo.getNew_price();
                             if (isChecked) {
+                                oilIdList.add(oilInfo.getId()+"");
                                 isFlag=true;
                                 oilId = oilInfo.getId();
-                                oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
                                 price += oilInfo.getNew_price();
+                                oilAmounMap.put(oilInfo.getId()+"",oilAmount+"");
+
                             } else {
                                 holder.lmi_amount.setText("1");
                                 price -= sum;
-                               // sum=oilInfo.getNew_price();
+//                                for(String x:oilIdList){
+//                                    if(x.equals(oilInfo.getId()+""))
+//
+//                                }
+                                oilIdList.remove(oilInfo.getId()+"");
+                                oilAmounMap.remove(oilInfo.getId()+"");
+
+                                //当选中后去掉选中时候计算机油的数量
+//                                Iterator<Map.Entry<String, String>> iter = oilAmounMap.entrySet().iterator();
+//
+//                                //Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+//                                while(iter.hasNext())
+//                                {
+//                                    Map.Entry<String, String> entry= iter.next();
+//                                    String key= entry.getKey();
+//                                    if(key.equals(oilInfo.getId()+""))
+//                                    {
+//                                        iter.remove();
+//                                    }
+//                                }
+
+                                sum=oilInfo.getNew_price();
                             }
                             bm_tv_total_money.setText(DataHelper.displayPrice(mContext, price));
                         }
@@ -241,6 +298,7 @@ public class BookUpkeepActivity extends BaseActivity {
                                 // price = DataHelper.getDisplayPrice(mContext, bm_tv_total_money.getText().toString());
                                 oilAmount = Integer.parseInt(holder.lmi_amount.getText().toString());
                                 oilAmount++;
+                              oilAmounMap.put(oilInfo.getId()+"",oilAmount+"");
                                 holder.lmi_reduce.setEnabled(true);
                                 holder.lmi_amount.setText(oilAmount + "");
                                 sum=(oilAmount)*oilInfo.getNew_price();
@@ -263,7 +321,7 @@ public class BookUpkeepActivity extends BaseActivity {
 //                                        oilAmount=1;
 //                                        holder.lmi_reduce.setEnabled(false);
 //                                    }
-
+                                 oilAmounMap.put(oilInfo.getId()+"",oilAmount+"");
                                     sum=(oilAmount)*oilInfo.getNew_price();
                                     holder.lmi_amount.setText(oilAmount + "");
                                     price -= oilInfo.getNew_price();

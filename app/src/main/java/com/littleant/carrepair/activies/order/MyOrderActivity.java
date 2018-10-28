@@ -466,7 +466,7 @@ public class MyOrderActivity extends BaseActivity {
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        MHToast.showS(mContext, R.string.rating_success);
+                        //MHToast.showS(mContext, R.string.rating_success);
                         requestOrder(state, status);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());

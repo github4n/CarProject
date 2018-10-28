@@ -83,6 +83,7 @@ public class BookSubmitActivity extends BaseActivity {
     private ArrayList<Uri> picList;
     //从维护进来
     private int oilId, oilAmount;
+    private  String numner,oil_id_list,oil_amount_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,13 @@ public class BookSubmitActivity extends BaseActivity {
         if(extras != null) {
             garageInfo = (GarageInfo) extras.getSerializable(GARAGE_INFO);
             float price=extras.getFloat("oil_price");
+             numner=extras.getString("number");
+             oil_id_list=extras.getString("oil_id_list");
+             oil_amount_list=extras.getString("oil_amount_list");
+
+//            public static final String OIL_ID_LIST = "oil_id_list";
+//            public static final String OIL_AMOUNT_LIST = "oil_amount_list";
+
             abs_name.setText(garageInfo.getName());
             abs_address.setText(garageInfo.getAddress());
             abs_price.setText(price+"");
@@ -283,7 +291,7 @@ public class BookSubmitActivity extends BaseActivity {
         DataHelper.saveContractName(this, name);
         DataHelper.saveContractPhone(this, phone);
         UpkeepCreateCmd upkeepCreateCmd = new UpkeepCreateCmd(mContext, garage_id, car_id, name, phone,
-                 longitude, latitude, address, oilId, oilAmount);
+                 longitude, latitude, address, numner, oil_id_list,oil_amount_list);
         upkeepCreateCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {

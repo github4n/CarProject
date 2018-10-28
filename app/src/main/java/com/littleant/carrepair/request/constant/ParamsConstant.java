@@ -213,8 +213,8 @@ public class ParamsConstant {
     public static final int MAINTAIN_FINISH = 2;
     public static final String CAR_ID =  "car_id";
     public static final String SUBSCRIBE_TIME =  "subscribe_time";
-    public static final String OIL_ID =  "oil_id";
-    public static final String OIL_AMOUNT =  "oil_amount";
+    public static final String OIL_ID_LIST =  "oil_id_list";
+    public static final String OIL_AMOUNT =  "oil_amount_list";
 
     //维修（维修）部分
     public static final String CONTENT =  "content";
