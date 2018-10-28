@@ -20,8 +20,8 @@
         <item name="state_wait_check">等待年检</item>
         <item name="state_checking">正在年检</item>
         <item name="state_check_success">已通过</item>
-        <item name="state_arrive_car">到达还车</item>
-        <item name="state_return_car">已还车</item>
+        <item name="state_arrive_car">已通过</item>
+        <item name="state_return_car">已通过</item>
         <item name="state_finish">已完成</item>
         <item name="state_fail">未通过</item>
     </string-array>
