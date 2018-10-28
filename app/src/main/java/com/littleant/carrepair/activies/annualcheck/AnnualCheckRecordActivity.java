@@ -52,6 +52,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
     public static final int STATE_FINISH = 8;
 
     public static final int REQUEST_CODE_CHECK_DETAIL = 100;
+    public static final int REQUEST_CODE_RETURN = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +151,6 @@ public class AnnualCheckRecordActivity extends BaseActivity {
         @Override
         public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_annual_record_item, parent, false);
-            view.setOnClickListener(this);
             final MyAdapter.ViewHolder viewHolder = new MyAdapter.ViewHolder(view);
             return viewHolder;
         }
@@ -187,7 +187,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                 }
                 holder.air_state.setText(text);
                 holder.air_state.setTextColor(color);
-
+                holder.itemView.setOnClickListener(this);
             }
         }
 
@@ -205,13 +205,27 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                 Intent intent = null;
                 int requestCode = 0;
                 switch (state) {
-                    case STATE_WAIT_PICK_CAR:
+                    case STATE_WAIT_PICK_CAR: //等待取车
                         intent = new Intent(mContext, PickCarActivity.class);
                         break;
 
-                    case STATE_WAIT_CHECK:
-                    case STATE_CHECKING:
-                    case STATE_CHECK_FINISH:
+                    case STATE_CHECKING: //4.正在年检
+                        if(surveyInfo.isIs_self()) {
+                            intent = new Intent(mContext, OwnStartCheckActivity.class);
+                        } else {
+                            int survey_state = surveyInfo.getSurvey_state();
+                            if(survey_state == 2) { //未通过，跳未通过详情页
+                                intent = new Intent(mContext, AnnualCheckFailActivity.class);
+                            } else if(survey_state == 1) { //正在年检下的年检已通过
+                                intent = new Intent(mContext, CheckReturnCarActivity.class);
+                            } else {
+                                intent = new Intent(mContext, StartCheckActivity.class);
+                            }
+                        }
+                        break;
+
+                    case STATE_WAIT_CHECK: //等待年检
+                    case STATE_CHECK_FINISH:  //年检完成
                         if(surveyInfo.isIs_self()) {
                             intent = new Intent(mContext, OwnStartCheckActivity.class);
                         } else {
@@ -219,8 +233,9 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                         }
                         break;
 
-                    case STATE_ARRIVE_CAR:
-                    case STATE_RETURN_CAR:
+                    case STATE_ARRIVE_CAR: //到达还车
+                    case STATE_RETURN_CAR: //已还车
+                        requestCode = REQUEST_CODE_RETURN;
                         intent = new Intent(mContext, CheckReturnCarActivity.class);
                         break;
 
@@ -228,8 +243,8 @@ public class AnnualCheckRecordActivity extends BaseActivity {
 
                         break;
 
-                    case STATE_WAIT_GET:
-                    case STATE_FINISH:
+                    case STATE_WAIT_GET:  //等待接单
+                    case STATE_FINISH: //已完成
                         requestCode = REQUEST_CODE_CHECK_DETAIL;
                         intent = new Intent(mContext, AnnualCheckDetailActivity.class);
                         break;
@@ -270,6 +285,8 @@ public class AnnualCheckRecordActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE_CHECK_DETAIL && resultCode == Activity.RESULT_OK) {
+            requestCheckRecord();
+        } else if(requestCode == REQUEST_CODE_RETURN && resultCode == Activity.RESULT_OK) {
             requestCheckRecord();
         }
     }

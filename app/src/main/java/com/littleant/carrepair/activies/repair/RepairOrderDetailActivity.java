@@ -277,7 +277,8 @@ public class RepairOrderDetailActivity extends BaseActivity {
         View contentView2 = LayoutInflater.from(mContext).inflate(R.layout.layout_order_detail_dialog, null);
         final Dialog d2 = setDialog(mContext, contentView2);
         d2.setContentView(contentView2);
-
+        d2.setCancelable(false);
+        d2.setCanceledOnTouchOutside(false);
         RecyclerView listView2 = contentView2.findViewById(R.id.lodd_list);
         listView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         myAdapter = new MyAdapter(data.getMaintainitem_set());

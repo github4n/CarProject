@@ -7,11 +7,14 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.repair.view.RepairPicView;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.survey.ObjList;
 import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.littleant.carrepair.request.bean.survey.SurveyPicList;
 import com.littleant.carrepair.request.constant.ParamsConstant;
@@ -25,6 +28,7 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
 import java.util.Random;
 
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.STATE_FINISH;
@@ -36,8 +40,9 @@ public class AnnualCheckDetailActivity extends BaseActivity {
             lcd_station, lcd_oid, aacd_price;
     private SurveyInfo info;
     private int state;
-    private TextView aacd_tv_pic_title1, aacd_tv_pic_title2;
-    private ImageView aacd_iv_pic1, aacd_iv_pic2;
+//    private TextView aacd_tv_pic_title1, aacd_tv_pic_title2;
+//    private ImageView aacd_iv_pic1, aacd_iv_pic2;
+    private LinearLayout aacd_ll_pic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +61,12 @@ public class AnnualCheckDetailActivity extends BaseActivity {
         lcd_check_type = findViewById(R.id.lcd_check_type);
         lcd_station = findViewById(R.id.lcd_station);
         lcd_oid = findViewById(R.id.lcd_oid);
+        aacd_ll_pic = findViewById(R.id.aacd_ll_pic);
 
-        aacd_tv_pic_title1 = findViewById(R.id.aacd_tv_pic_title1);
-        aacd_tv_pic_title2 = findViewById(R.id.aacd_tv_pic_title2);
-        aacd_iv_pic1 = findViewById(R.id.aacd_iv_pic1);
-        aacd_iv_pic2 = findViewById(R.id.aacd_iv_pic2);
+//        aacd_tv_pic_title1 = findViewById(R.id.aacd_tv_pic_title1);
+//        aacd_tv_pic_title2 = findViewById(R.id.aacd_tv_pic_title2);
+//        aacd_iv_pic1 = findViewById(R.id.aacd_iv_pic1);
+//        aacd_iv_pic2 = findViewById(R.id.aacd_iv_pic2);
 
         aacd_price = findViewById(R.id.aacd_price);
 
@@ -87,21 +93,30 @@ public class AnnualCheckDetailActivity extends BaseActivity {
                 lcd_check_type.setText("代驾年检");
             }
             lcd_station.setText(info.getSurveystation().getName());
-            // TODO: 2018/9/14 缺少订单号
-            lcd_oid.setText(new Random().nextInt() + "");
+            lcd_oid.setText(info.getOrder_code());
 
             aacd_price.setText(DataHelper.displayPrice(mContext, info.getTotal_price()));
 
             if(state == STATE_FINISH) {
-                SurveyPicList get_confirm = info.getGet_confirm();
+                SurveyPicList get_confirm = info.getSurvey_upload();
                 if(get_confirm != null) {
-                    aacd_tv_pic_title1.setText(get_confirm.getName());
-                    Picasso.with(mContext).load(Uri.parse(get_confirm.getObj_list().get(0).getPic_url())).into(aacd_iv_pic1);
+                    showPic(get_confirm.getObj_list());
                 }
             }
         } else {
             finish();
         }
+    }
+
+    private void showPic(List<ObjList> obj_list) {
+        if(obj_list != null && obj_list.size() > 0) {
+            aacd_ll_pic.removeAllViews();
+            for(ObjList obj : obj_list) {
+                RepairPicView picView = new RepairPicView(mContext, obj);
+                aacd_ll_pic.addView(picView, -1, -2);
+            }
+        }
+
     }
 
     @Override
@@ -153,7 +168,7 @@ public class AnnualCheckDetailActivity extends BaseActivity {
             });
             MHCommandExecute.getInstance().asynExecute(mContext, surveyMethodCmd);
         } else {
-            SurveyBehalfMethodCmd behalfMethodCmd = new SurveyBehalfMethodCmd(mContext, info.getId() + "", ParamsConstant.SurveyMethodType.CANCEL,
+            SurveyBehalfMethodCmd behalfMethodCmd = new SurveyBehalfMethodCmd(mContext, info.getId(), ParamsConstant.SurveyMethodType.CANCEL,
                     "", "", -1, -1, "");
             behalfMethodCmd.setCallback(new MHCommandCallBack() {
                 @Override

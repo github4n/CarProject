@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.squareup.picasso.Picasso;
@@ -15,6 +16,7 @@ public class PickCarActivity extends BaseFlowActivity {
     private SurveyInfo info;
     private ImageView apc_iv_driver_icon;
     private TextView apc_tv_driver_name, apc_et_check_contact, apc_et_pick_time;
+    private XLHRatingBar apc_rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class PickCarActivity extends BaseFlowActivity {
             apc_tv_driver_name.setText(info.getDriver_user_name());
             apc_et_check_contact.setText(info.getDrive_user_phone());
             apc_et_pick_time.setText(info.getGet_time());
+            apc_rating.setCountSelected(info.getDrive_user_score());
         } else {
             finish();
         }
@@ -46,6 +49,8 @@ public class PickCarActivity extends BaseFlowActivity {
         apc_et_check_contact = findViewById(R.id.apc_et_check_contact);
 
         apc_et_pick_time = findViewById(R.id.apc_et_pick_time);
+
+        apc_rating = findViewById(R.id.apc_rating);
     }
 
     @Override

@@ -924,7 +924,7 @@
             android:paddingTop="4dp"
             android:text="@string/text_check_feedback_confirm"
             android:textColor="@color/color_text"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/acf_et_fee_total" />

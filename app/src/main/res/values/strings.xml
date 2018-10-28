@@ -375,6 +375,9 @@
     <string name="text_check_feedback_look">外观</string>
     <string name="text_check_feedback_supplement">补充项：</string>
     <string name="text_check_feedback_confirm">注：请确认以上信息是否正确</string>
+    <string name="text_check_feedback_evidence">年检单据</string>
+    <string name="text_check_feedback_fail_item">年检未过项</string>
+
     <!-- 检完还车 -->
     <string name="text_check_return_car">检完还车</string>
     <string name="text_return_car_time">还车时间</string>
