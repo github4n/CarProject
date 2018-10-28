@@ -10,15 +10,15 @@ import java.util.List;
  */
 public class FailureListBean implements Serializable {
     private String name = "";
-    private String price;
-    private List<FailureItemList> failureitem_list;
+    private float price;
+//    private List<FailureItemList> failureitem_list;
 
     @Override
     public String toString() {
         return "FailureListBean{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
-                ", failureitem_list=" + failureitem_list +
+//                ", failureitem_list=" + failureitem_list +
                 '}';
     }
 
@@ -30,21 +30,21 @@ public class FailureListBean implements Serializable {
         this.name = name;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
-    public List<FailureItemList> getFailureitem_list() {
-        return failureitem_list;
-    }
-
-    public void setFailureitem_list(List<FailureItemList> failureitem_list) {
-        this.failureitem_list = failureitem_list;
-    }
+//    public List<FailureItemList> getFailureitem_list() {
+//        return failureitem_list;
+//    }
+//
+//    public void setFailureitem_list(List<FailureItemList> failureitem_list) {
+//        this.failureitem_list = failureitem_list;
+//    }
 
     public class FailureItemList implements Serializable {
         private String name = "";

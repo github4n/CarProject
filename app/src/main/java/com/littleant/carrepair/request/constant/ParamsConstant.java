@@ -247,18 +247,18 @@ public class ParamsConstant {
      * 订单状态
      */
     public enum SurveyMethodType {
+        //查询交易状态
+        ORDER_STATUS("order_status"),
         //取消
         CANCEL("cancel"),
         //查询费用
         GET("get"),
-        //完成订单
-        FINISH("finish"),
         //支付（自驾代驾）
         PAY("pay"),
         //确认还车（代驾）
         RETURN("return"),
-        //确认到达
-        SURVEY("survey");
+        //評論
+        COMMENT("comment");
 
         String des;
 
