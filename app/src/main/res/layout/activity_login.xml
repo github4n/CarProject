@@ -283,10 +283,10 @@
     </android.support.constraint.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/al_tv_guest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="随便看看"
+        android:text="@string/login_guest"
         android:textColor="@color/color_splash"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/al_term_view"

@@ -18,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.amap.api.col.n3.on;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.main.MainActivity;
 import com.littleant.carrepair.request.bean.login.LoginBean;
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //手机号、密码
     private EditText phoneEdt, pswEdt;
     //获取验证码
-    private TextView al_forget_pw, al_register;
+    private TextView al_forget_pw, al_register, al_tv_guest;
     private static final int REQUEST_REGISTER = 1000;
     private static final int REQUEST_RESET = 1001;
     private String phone, password;
@@ -113,6 +114,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         });
+
+        al_tv_guest = findViewById(R.id.al_tv_guest);
+        al_tv_guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DataHelper.saveGuestLogin(LoginActivity.this, true);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                LoginActivity.this.startActivity(intent);
+            }
+        });
     }
 
     private void requestTerm() {
@@ -173,6 +184,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 DataHelper.savePhone(mContext, phone);
                                 DataHelper.savePassword(mContext, password);
                                 JPushInterface.setAlias(getApplicationContext(), 1, phone);
+                                DataHelper.saveGuestLogin(LoginActivity.this, false);
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(intent);
                                 LoginActivity.this.finish();

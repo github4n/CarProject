@@ -25,6 +25,7 @@
     <string name="car_brand_empty" translatable="false">该品牌下没有更多车型</string>
     <string name="need_pay_channel" translatable="false">请选择支付方式</string>
     <string name="rating_success" translatable="false">评论成功</string>
+    <string name="pay_over_time" translatable="false">支付超时，请重新下单</string>
 
     <!--微信支付提示-->
     <string name="errcode_success">发送成功</string>

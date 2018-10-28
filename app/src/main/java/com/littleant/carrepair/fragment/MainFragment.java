@@ -333,6 +333,10 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
     @Override
     public void onClick(View v) {
+        if(DataHelper.getGuestLogin(getContext())) {
+            getActivity().finish();
+            return;
+        }
         Intent intent;
         switch (v.getId()) {
             case R.id.m_input_search:

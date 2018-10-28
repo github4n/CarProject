@@ -18,6 +18,7 @@ import com.littleant.carrepair.activies.shopping.ShoppingActivity;
 import com.littleant.carrepair.request.bean.system.PictureListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.system.ServiceImgCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.GlideImageLoader;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -131,25 +132,32 @@ public class ServiceFragment extends BaseFragment {
 
     @Override
     public void onClick(View view) {
+        if(DataHelper.getGuestLogin(getContext())) {
+            getActivity().finish();
+            return;
+        }
         Intent intent;
         switch (view.getId()) {
             case R.id.sm_cl_mall:
-                intent = new Intent(getContext(), ShoppingActivity.class);
-                getActivity().startActivity(intent);
+//                intent = new Intent(getContext(), ShoppingActivity.class);
+//                getActivity().startActivity(intent);
+                MHToast.showS(getContext(), "商城敬请期待");
                 break;
 
             case R.id.sm_cl_insurance:
-                intent = new Intent(getContext(), InsuranceProxyActivity.class);
-                getActivity().startActivity(intent);
+//                intent = new Intent(getContext(), InsuranceProxyActivity.class);
+//                getActivity().startActivity(intent);
+                MHToast.showS(getContext(), "代办保险敬请期待");
                 break;
 
             case R.id.sm_cl_info:
-                intent = new Intent(getContext(), InformationActivity.class);
-                getActivity().startActivity(intent);
+//                intent = new Intent(getContext(), InformationActivity.class);
+//                getActivity().startActivity(intent);
+                MHToast.showS(getContext(), "行业资讯敬请期待");
                 break;
 
             case R.id.sm_cl_more:
-                Toast.makeText(getContext(), "更多服务", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "更多服务敬请期待", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.sm_banner:

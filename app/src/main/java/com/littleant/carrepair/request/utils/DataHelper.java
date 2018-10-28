@@ -221,4 +221,14 @@ public class DataHelper {
     public static boolean getRepairConfirm(Context context, int id) {
         return MHDatabase.getSimpleBoolean(context, MHDatabase.MH_FILE, id + "");
     }
+
+    //游客登录
+    private static final String GUEST_LOGIN = "GUEST_LOGIN";
+    public static void saveGuestLogin(Context context, boolean isGuest) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, GUEST_LOGIN, isGuest);
+    }
+
+    public static boolean getGuestLogin(Context context) {
+        return MHDatabase.getSimpleBoolean(context, MHDatabase.MH_FILE, GUEST_LOGIN);
+    }
 }

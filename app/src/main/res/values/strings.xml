@@ -24,6 +24,7 @@
     <string name="login_user_term_deny">不同意</string>
     <string name="login_user_term_agree">同意并继续</string>
     <string name="login_user_term_title">用户协议</string>
+    <string name="login_guest">随便看看</string>
 
     <!--重置密码-->
     <string name="login_reset_password">重置密码</string>
@@ -453,7 +454,7 @@
 
     <!--支付订单-->
     <string name="text_payment">支付订单</string>
-    <string name="text_payment_rest_time">支付剩余时间</string>
+    <string name="text_payment_rest_time">支付剩余时间:</string>
     <string name="text_pryment_order_id">订单编号：</string>
     <string name="text_payment_wechat">微信支付</string>
     <string name="text_payment_ali">支付宝支付</string>

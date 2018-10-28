@@ -20,6 +20,7 @@ import com.littleant.carrepair.activies.annualcheck.OwnCheckFillInfoActivity;
 import com.littleant.carrepair.request.bean.system.PictureListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.system.SurveyImgCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.GlideImageLoader;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -128,6 +129,10 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        if(DataHelper.getGuestLogin(getContext())) {
+            getActivity().finish();
+            return;
+        }
         switch (view.getId()) {
             case R.id.ac_cl_reservation:
                 final Dialog d = new Dialog(getActivity(), R.style.MyTransparentDialog);
