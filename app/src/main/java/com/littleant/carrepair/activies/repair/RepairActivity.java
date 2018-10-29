@@ -270,21 +270,21 @@ public class RepairActivity extends BaseActivity {
             if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
                 Uri uri = Matisse.obtainResult(data).get(0);
                 mSelected[0] = uri;
-                Picasso.with(mContext).load(uri).into(r_btn_add_pic);
+                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic);
                 r_btn_del1.setVisibility(View.VISIBLE);
             }
         } else if(requestCode == REQUEST_CODE_CHOOSE2 && resultCode == RESULT_OK) {
             if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
                 Uri uri = Matisse.obtainResult(data).get(0);
                 mSelected[1] = uri;
-                Picasso.with(mContext).load(uri).into(r_btn_add_pic2);
+                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic2);
                  r_btn_del2.setVisibility(View.VISIBLE);
             }
         } else if(requestCode == REQUEST_CODE_CHOOSE3 && resultCode == RESULT_OK) {
             if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
                 Uri uri = Matisse.obtainResult(data).get(0);
                 mSelected[2] = uri;
-                Picasso.with(mContext).load(uri).into(r_btn_add_pic3);
+                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic3);
                 r_btn_del3.setVisibility(View.VISIBLE);
             }
         }
