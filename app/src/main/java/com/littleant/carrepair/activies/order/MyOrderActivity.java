@@ -18,6 +18,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.navi.INaviInfoCallback;
+import com.amap.api.navi.model.AMapNaviLocation;
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
@@ -25,11 +28,14 @@ import com.littleant.carrepair.activies.repair.RepairOrderDetailActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.upkeep.UpkeepDetailActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.maintain.MaintainOrderDetailBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
+import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.list.ListQueryAllCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainDeleteCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainMethodCmd;
+import com.littleant.carrepair.request.excute.maintain.maintain.MaintainQueryOneCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepDeleteCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepMethodCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
@@ -410,6 +416,12 @@ public class MyOrderActivity extends BaseActivity {
 
     private void navi(MaintainOrderListBean.OrderInfo orderInfo) {
         MHToast.showS(mContext, "进行导航");
+        double[] latLon = DataHelper.getMyLocation(mContext);
+        if(latLon[0] != 0 && latLon[1] != 0) {
+            requestMaintainOrderDetail(orderInfo, latLon);
+        } else {
+            Log.i("navi", "定位失败");
+        }
     }
 
     private void requestDeleteUpkeepOrder(int id) {
@@ -499,5 +511,106 @@ public class MyOrderActivity extends BaseActivity {
             }
         });
         MHCommandExecute.getInstance().asynExecute(mContext, methodCmd);
+    }
+
+    private void requestMaintainOrderDetail(MaintainOrderListBean.OrderInfo orderInfo, final double[] latLon) {
+        final MaintainQueryOneCmd queryOneCmd = new MaintainQueryOneCmd(mContext, orderInfo.getId());
+        queryOneCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        MaintainOrderDetailBean orderDetailBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MaintainOrderDetailBean.class);
+                        if(orderDetailBean != null && orderDetailBean.getData() != null) {
+                            GarageInfo garage = orderDetailBean.getData().getGarage();
+                            if(garage != null) {
+                                if(garage.getLatitude() != 0 && garage.getLongitude() != 0) {
+                                    LatLng disLL = new LatLng(garage.getLatitude(), garage.getLongitude());
+                                    LatLng myLatLon = new LatLng(latLon[0], latLon[1]);
+                                    DataHelper.prepareNavi(mContext, myLatLon, disLL, new INaviInfoCallback() {
+                                        @Override
+                                        public void onInitNaviFailure() {
+
+                                        }
+
+                                        @Override
+                                        public void onGetNavigationText(String s) {
+
+                                        }
+
+                                        @Override
+                                        public void onLocationChange(AMapNaviLocation aMapNaviLocation) {
+
+                                        }
+
+                                        @Override
+                                        public void onArriveDestination(boolean b) {
+
+                                        }
+
+                                        @Override
+                                        public void onStartNavi(int i) {
+
+                                        }
+
+                                        @Override
+                                        public void onCalculateRouteSuccess(int[] ints) {
+
+                                        }
+
+                                        @Override
+                                        public void onCalculateRouteFailure(int i) {
+
+                                        }
+
+                                        @Override
+                                        public void onStopSpeaking() {
+
+                                        }
+
+                                        @Override
+                                        public void onReCalculateRoute(int i) {
+
+                                        }
+
+                                        @Override
+                                        public void onExitPage(int i) {
+
+                                        }
+
+                                        @Override
+                                        public void onStrategyChanged(int i) {
+
+                                        }
+
+                                        @Override
+                                        public View getCustomNaviBottomView() {
+                                            return null;
+                                        }
+
+                                        @Override
+                                        public View getCustomNaviView() {
+                                            return null;
+                                        }
+
+                                        @Override
+                                        public void onArrivedWayPoint(int i) {
+
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, queryOneCmd);
     }
 }

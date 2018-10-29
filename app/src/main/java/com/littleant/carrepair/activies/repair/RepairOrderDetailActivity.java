@@ -203,7 +203,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
         } else if(flag == FLAG_UPDATE) {
             showItemDetail(data.getMaintainitem_set_now());
         }
-        if(!DataHelper.getRepairConfirm(this, orderInfo.getId())) { //未确认过维修项，默认弹出来
+        if(orderInfo.getState() == 1 && !DataHelper.getRepairConfirm(this, orderInfo.getId())) { //未支付且未确认过维修项，默认弹出来
             asod_tv_modify.performClick();
         }
     }
@@ -274,6 +274,10 @@ public class RepairOrderDetailActivity extends BaseActivity {
     }
 
     protected void showList() {
+        if(data.getMaintainitem_set() == null || data.getMaintainitem_set().size() < 1) {
+            MHToast.showS(mContext, R.string.no_repair_item);
+            return;
+        }
         View contentView2 = LayoutInflater.from(mContext).inflate(R.layout.layout_order_detail_dialog, null);
         final Dialog d2 = setDialog(mContext, contentView2);
         d2.setContentView(contentView2);
@@ -319,7 +323,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
         for (MaintainOrderDetailBean.MaintainSet temp : currentList) {
             itemList.append(temp.getId()).append(",");
         }
-        itemList.deleteCharAt(itemList.length() - 1);
+//        itemList.deleteCharAt(itemList.length() - 1);
         MaintainMethodCmd methodCmd = new MaintainMethodCmd(mContext, orderInfo.getId(), ParamsConstant.MethodStatus.ITEM_LIST, 0, null, itemList.toString());
         methodCmd.setCallback(new MHCommandCallBack() {
             @Override

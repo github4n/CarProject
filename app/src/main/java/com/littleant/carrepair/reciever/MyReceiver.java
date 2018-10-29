@@ -11,7 +11,9 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.littleant.carrepair.activies.PushDialogActivity;
+import com.littleant.carrepair.request.bean.push.PushBean;
 import com.littleant.carrepair.utils.Logger;
+import com.littleant.carrepair.utils.ProjectUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +32,9 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class MyReceiver extends BroadcastReceiver {
 	private static final String TAG = "JIGUANG-Example";
+	private static final String MAINTAIN_ORDER = "maintain_order";
+	private static final String MAINTAIN_ITEM = "maintain_item";
+	private static final String MAINTAIN_FINISH = "maintain_finish";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -38,12 +43,29 @@ public class MyReceiver extends BroadcastReceiver {
 			Logger.d(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
 
 			String msg = bundle.getString(JPushInterface.EXTRA_EXTRA);
-			if(!isAppIsInBackground(context) && !TextUtils.isEmpty(msg)) {
-                Intent i = new Intent(context, PushDialogActivity.class);
-                i.putExtras(bundle);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(i);
-            }
+
+			PushBean pushBean = ProjectUtil.getBaseResponseBean(msg, PushBean.class);
+			PushBean.PushData data = pushBean.getData();
+			if(data == null) {
+				return;
+			}
+			String type = data.getType();
+			PushBean.PushInfo pushInfo = data.getData();
+			if(pushInfo == null) {
+				return;
+			}
+
+			if(MAINTAIN_ORDER.equals(type)) {  //接单
+				if(!isAppIsInBackground(context) && !TextUtils.isEmpty(msg)) {
+					Intent i = new Intent(context, PushDialogActivity.class);
+					i.putExtras(bundle);
+					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					context.startActivity(i);
+				}
+			} else { //非接单，该干嘛干嘛
+
+			}
+
 
 //			if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
 //				String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
