@@ -16,6 +16,7 @@
     <string name="request_fail_maintain" translatable="false">维修厂不能保养</string>
     <string name="request_fail_repair" translatable="false">门店不能维修</string>
     <string name="no_repair_item" translatable="false">没有维修项</string>
+    <string name="need_annual_info" translatable="false">请先选择年检站和交车地点</string>
 
     <string name="info_not_modify" translatable="false">您的资料没有变更</string>
     <string name="need_select_station_and_address" translatable="false">请先选择年检站及交车地点</string>

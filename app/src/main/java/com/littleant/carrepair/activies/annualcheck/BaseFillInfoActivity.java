@@ -72,7 +72,7 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
     }
 
     protected void showList(final String[] list, final List<SurveyStationInfo> infos, final TextView showView) {
-        showCarType = infos == null;
+        showCarType = infos == null; //true选车辆类型，false选年检站
         View contentView2 = LayoutInflater.from(mContext).inflate(R.layout.layout_select_dialog, null);
 //                View contentView = View.inflate(OwnCheckFillInfoActivity.this, R.layout.layout_select_dialog, null);
         final Dialog d2 = setDialog(mContext, contentView2);
@@ -88,9 +88,9 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
             @Override
             public void onClick(View view) {
                 d2.dismiss();
-                if(selectedStation != null) {
+                if(!showCarType && selectedStation != null) {
                     showView.setText(selectedStation.getName());
-                } else if(list != null && selectedPosition != -1) {
+                } else if(showCarType && list != null && selectedPosition != -1) {
                     showView.setText(list[selectedPosition]);
                 }
             }
