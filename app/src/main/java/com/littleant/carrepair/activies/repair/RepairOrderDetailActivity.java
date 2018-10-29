@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.aftersale.AftersaleReasonActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.view.RepairItemView;
 import com.littleant.carrepair.activies.repair.view.RepairPicView;
@@ -95,6 +96,14 @@ public class RepairOrderDetailActivity extends BaseActivity {
             }
 
         }
+        mOptionText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RepairOrderDetailActivity.this, AftersaleReasonActivity.class);
+                intent.putExtra(ParamsConstant.ID,orderInfo.getId()+"");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -179,6 +188,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
                 break;
 
             case 4:
+
                 asod_tv_state.setText("服务完成");
                 asod_tv_state.setTextColor(getResources().getColor(R.color.color_service_done));
                 showPic(data);
@@ -212,10 +222,15 @@ public class RepairOrderDetailActivity extends BaseActivity {
     protected int getLayoutId() {
         return R.layout.activity_service_order_detail;
     }
-
     @Override
     protected int getTitleId() {
         return R.string.text_order_detail;
+    }
+
+    @Override
+    protected int getOptionStringId() {
+        mOptionText.setVisibility(View.VISIBLE);
+        return R.string.text_after_sale;
     }
 
     @Override
@@ -236,6 +251,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
                 DataHelper.saveRepairConfirm(this, orderInfo.getId());  //弹出确认维修项并保存已确认状态
                 showList();
                 break;
+
         }
     }
 
@@ -371,13 +387,13 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
         @NonNull
         @Override
-        public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_order_detail_item, parent, false);
             return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(MyAdapter.ViewHolder holder, final int position) {
+        public void onBindViewHolder(ViewHolder holder, final int position) {
             MaintainOrderDetailBean.MaintainSet maintainSet = maintainitem_set.get(position);
             if(maintainSet != null) {
                 if(editMode) {

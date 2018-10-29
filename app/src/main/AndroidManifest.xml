@@ -80,6 +80,9 @@
             android:name=".activies.aftersale.AftersaleActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activies.aftersale.AftersaleReasonActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".demo.SendCarServiceActivity"
             android:screenOrientation="portrait" />
         <activity

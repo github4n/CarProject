@@ -205,4 +205,8 @@ public class InterfaceConstant {
      * get:封面图片信息<br>
      */
     public static final String SYSTEM_COVER = "api/system/cover/";
+    /**
+     *提交售后信息
+     */
+    public static final String AFTER_SAVE="api/maintain/upkeep_aftersales/";
 }

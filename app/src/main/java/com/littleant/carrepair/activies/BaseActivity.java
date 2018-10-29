@@ -37,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         mOptionContent = findViewById(R.id.header_option_content);
 
         backButton = findViewById(R.id.title_back);
+        mOptionText.setOnClickListener(this);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
