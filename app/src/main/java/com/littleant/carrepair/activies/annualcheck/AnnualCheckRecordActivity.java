@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.littleant.carrepair.request.bean.survey.SurveyListBean;
@@ -28,6 +29,8 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
 import java.util.List;
+
+import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
 
 /**
  * 年检记录
@@ -240,7 +243,9 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                         break;
 
                     case STATE_WAIT_PAY: //等待支付直接进入支付界面
-
+                        requestCode = REQUEST_CODE_PAY;
+                        intent = new Intent(mContext, PaymentActivity.class);
+                        intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_ANNUAL_CHECK);
                         break;
 
                     case STATE_WAIT_GET:  //等待接单
@@ -288,6 +293,8 @@ public class AnnualCheckRecordActivity extends BaseActivity {
             requestCheckRecord();
         } else if(requestCode == REQUEST_CODE_RETURN && resultCode == Activity.RESULT_OK) {
             requestCheckRecord();
+        } else if(requestCode == REQUEST_CODE_PAY  && resultCode == Activity.RESULT_OK) {
+
         }
     }
 }

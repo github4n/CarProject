@@ -1,15 +1,19 @@
 package com.littleant.carrepair.activies.annualcheck;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.Constraints;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.repair.view.RepairPicView;
@@ -133,7 +137,7 @@ public class AnnualCheckDetailActivity extends BaseActivity {
     protected int getOptionStringId() {
         if(state == STATE_WAIT_GET) {
             return R.string.text_check_cancel_order;
-        } else if(state == STATE_FINISH) {
+        } else if(state == STATE_FINISH && !info.isIs_comment() && !info.isIs_self()) {
             return R.string.text_evaluate;
         }
         return 0;
@@ -143,9 +147,50 @@ public class AnnualCheckDetailActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.header_option_text:
-                cancelOrder();
+                if(state == STATE_WAIT_GET) {
+                    cancelOrder();
+                } else if(state == STATE_FINISH && !info.isIs_comment()) {
+                    final Dialog d = new Dialog(mContext, R.style.MyTransparentDialog);
+                    View contentView = View.inflate(mContext, R.layout.layout_rating, null);
+                    DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics();
+                    int dialogWidth = (int) (dm.widthPixels * 0.6);
+                    int dialogHeight = (int) (dm.heightPixels * 0.3);
+                    d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+                    final XLHRatingBar ratingBar = contentView.findViewById(R.id.lr_rating);
+                    contentView.findViewById(R.id.lr_rating_ok).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            int score = ratingBar.getCountSelected();
+                            rating(score);
+                            d.dismiss();
+                        }
+                    });
+                    d.show();
+                }
             break;
         }
+    }
+
+    private void rating(int score) {
+        SurveyBehalfMethodCmd cmd = new SurveyBehalfMethodCmd(mContext, info.getId(), ParamsConstant.SurveyMethodType.COMMENT,
+                "", "", 0, 0, "", null, score);
+        cmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        mOptionText.setVisibility(View.GONE);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, cmd);
     }
 
     private void cancelOrder() {
@@ -171,7 +216,7 @@ public class AnnualCheckDetailActivity extends BaseActivity {
             MHCommandExecute.getInstance().asynExecute(mContext, surveyMethodCmd);
         } else {
             SurveyBehalfMethodCmd behalfMethodCmd = new SurveyBehalfMethodCmd(mContext, info.getId(), ParamsConstant.SurveyMethodType.CANCEL,
-                    "", "", -1, -1, "");
+                    "", "", -1, -1, "", null, 0);
             behalfMethodCmd.setCallback(new MHCommandCallBack() {
                 @Override
                 public void cmdCallBack(MHCommand command) {

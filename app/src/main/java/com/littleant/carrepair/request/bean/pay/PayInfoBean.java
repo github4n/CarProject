@@ -22,18 +22,11 @@ public class PayInfoBean extends BaseResponseBean {
         private String order_code = "";
         private float price;
         private String params = "";
-
-        @Override
-        public String toString() {
-            return "PayInfo{" +
-                    "status=" + status +
-                    ", time=" + time +
-                    ", to='" + to + '\'' +
-                    ", order_code='" + order_code + '\'' +
-                    ", price=" + price +
-                    ", params='" + params + '\'' +
-                    '}';
-        }
+        //年检返回的
+        private float base_price;
+        private float combo_price;
+        private float survey_price;
+        private float total_price;
 
         public int getStatus() {
             return status;
@@ -81,6 +74,38 @@ public class PayInfoBean extends BaseResponseBean {
 
         public void setParams(String params) {
             this.params = params;
+        }
+
+        public float getBase_price() {
+            return base_price;
+        }
+
+        public void setBase_price(float base_price) {
+            this.base_price = base_price;
+        }
+
+        public float getCombo_price() {
+            return combo_price;
+        }
+
+        public void setCombo_price(float combo_price) {
+            this.combo_price = combo_price;
+        }
+
+        public float getSurvey_price() {
+            return survey_price;
+        }
+
+        public void setSurvey_price(float survey_price) {
+            this.survey_price = survey_price;
+        }
+
+        public float getTotal_price() {
+            return total_price;
+        }
+
+        public void setTotal_price(float total_price) {
+            this.total_price = total_price;
         }
     }
 }

@@ -82,7 +82,8 @@ public class CheckReturnCarActivity extends BaseFlowActivity {
     }
 
     private void requestReturnCar() {
-        SurveyBehalfMethodCmd cmd = new SurveyBehalfMethodCmd(mContext, info.getId(), ParamsConstant.SurveyMethodType.RETURN, "", "", 0, 0, "");
+        SurveyBehalfMethodCmd cmd = new SurveyBehalfMethodCmd(mContext, info.getId(), ParamsConstant.SurveyMethodType.RETURN,
+                "", "", 0, 0, "", null, 0);
         cmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {

@@ -36,6 +36,7 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.system.violation.ViolationBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.service.rule.RuleQueryAllCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
     private RadioButton mainBtn, annaulCheckBtn, serviceBtn, userCenterBtn;
     private Context mContext;
 //    private RecyclerView mList;
+    private boolean isGuest;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,9 +73,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         transaction.add(R.id.main_fragment, new MainFragment(), MainFragment.class.getSimpleName());
         transaction.commit();
 
-        init();
+        isGuest = DataHelper.getGuestLogin(this);
 
-        requestViolation();
+        init();
+        if(!isGuest) {
+            requestViolation();
+        }
 
     }
 
@@ -104,6 +109,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                         break;
 
                     case R.id.mineBtn:
+                        if(isGuest) {
+                            finish();
+                            return;
+                        }
                         //个人中心
                         fragment = new UserCenterFragment();
                         tag = UserCenterFragment.class.getSimpleName();

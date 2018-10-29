@@ -157,6 +157,7 @@ public class ParamsConstant {
      */
     public static final String ORDER_UPKEEP = "order_upkeep";
     public static final String ORDER_MAINTAIN = "order_maintain";
+    public static final String ORDER_ANNUAL_CHECK = "order_annual_check";
     public static final String ORDER_SHOP = "order_shop";
 
     /**

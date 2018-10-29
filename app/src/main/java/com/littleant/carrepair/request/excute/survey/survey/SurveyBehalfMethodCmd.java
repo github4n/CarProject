@@ -11,7 +11,7 @@ import com.mh.core.tools.MHLogUtil;
 
 public class SurveyBehalfMethodCmd extends BaseRequestCmd {
     public SurveyBehalfMethodCmd(Context context, int id, ParamsConstant.SurveyMethodType method, String longitude, String latitude,
-                                 int surveystation_id, int combo_id, String comboitem_list) {
+                                 int surveystation_id, int combo_id, String comboitem_list, ParamsConstant.PayChannel payChannel, int score) {
         super(context);
         params.put(ParamsConstant.ID, id + "");
         params.put(ParamsConstant.METHOD, method.getDes());
@@ -27,6 +27,12 @@ public class SurveyBehalfMethodCmd extends BaseRequestCmd {
         }
         if(!TextUtils.isEmpty(comboitem_list)) {
             params.put(ParamsConstant.COMBOITEM_LIST, comboitem_list);
+        }
+        if(method == ParamsConstant.SurveyMethodType.PAY && payChannel != null) {
+            params.put(ParamsConstant.ORDER_METHOD, payChannel.getDes());
+        }
+        if(method == ParamsConstant.SurveyMethodType.COMMENT) {
+            params.put(ParamsConstant.SCORE, score + "");
         }
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }
