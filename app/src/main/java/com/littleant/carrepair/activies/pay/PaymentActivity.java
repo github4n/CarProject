@@ -100,7 +100,6 @@ public class PaymentActivity extends BaseActivity {
     }
 
     private MHCommand getCmd(ParamsConstant.MethodStatus methodStatus) {
-        id = orderInfo.getId();
         if (ParamsConstant.ORDER_UPKEEP.equals(orderType)) {
             return new UpkeepMethodCmd(mContext, id, methodStatus, score, payChannel);
         } else if (ParamsConstant.ORDER_MAINTAIN.equals(orderType)) {
@@ -113,7 +112,6 @@ public class PaymentActivity extends BaseActivity {
     }
 
     private void requestMethod(final ParamsConstant.MethodStatus methodStatus, final int from) {
-        id = orderInfo.getId();
         MHCommand cmd = getCmd(methodStatus);
         cmd.setCallback(new MHCommandCallBack() {
             @Override

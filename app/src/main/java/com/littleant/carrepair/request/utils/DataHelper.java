@@ -231,4 +231,17 @@ public class DataHelper {
     public static boolean getGuestLogin(Context context) {
         return MHDatabase.getSimpleBoolean(context, MHDatabase.MH_FILE, GUEST_LOGIN);
     }
+
+    //记录我的当前位置
+    private static final String MY_LOCATION_LAT = "MY_LOCATION_LAT";
+    private static final String MY_LOCATION_LON = "MY_LOCATION_LON";
+    public static void saveMyLocation(Context context, double lat, double lon) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, MY_LOCATION_LAT, lat);
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, MY_LOCATION_LON, lon);
+    }
+
+    public static double[] getMyLocation(Context context) {
+        return new double[]{MHDatabase.getSimpleDouble(context, MHDatabase.MH_FILE, MY_LOCATION_LAT), MHDatabase.getSimpleDouble(context, MHDatabase.MH_FILE, MY_LOCATION_LON)};
+    }
+
 }

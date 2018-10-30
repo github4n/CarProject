@@ -286,6 +286,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 myLatitude = location.getLatitude();
                 myLongitude = location.getLongitude();
             }
+            DataHelper.saveMyLocation(getContext(), myLatitude, myLongitude);
             String city = m_location.getText().toString();
             if(TextUtils.isEmpty(city)) {
                 GeocodeSearch geocoderSearch = new GeocodeSearch(getContext());

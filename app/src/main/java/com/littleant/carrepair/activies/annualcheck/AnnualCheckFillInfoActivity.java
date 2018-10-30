@@ -2,7 +2,6 @@ package com.littleant.carrepair.activies.annualcheck;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,13 +25,17 @@ import com.amap.searchdemo.SelectPlaceActivity;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.car.MyCarListBean;
+import com.littleant.carrepair.request.bean.survey.SurveyCreateBean;
+import com.littleant.carrepair.request.bean.survey.SurveyFeeBean;
+import com.littleant.carrepair.request.bean.survey.SurveyInfo;
+import com.littleant.carrepair.request.bean.survey.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.survey.combo.ComboBean;
 import com.littleant.carrepair.request.bean.survey.combo.ComboItemSet;
 import com.littleant.carrepair.request.bean.survey.combo.ComboListBean;
-import com.littleant.carrepair.request.bean.car.MyCarListBean;
-import com.littleant.carrepair.request.bean.survey.SurveyStationInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.combo.ComboQueryAllCmd;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyBehalfMethodCmd;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyCreateCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -42,6 +45,9 @@ import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 
 import java.util.List;
+
+import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;
+import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
 
 public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
 
@@ -174,12 +180,17 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         acf_btn_package_a.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(TextUtils.isEmpty(acf_et_pick_station.getText().toString())
+                        || TextUtils.isEmpty(acf_et_pick_location.getText().toString())) {
+                    //缺少年检站或交车地点
+                    MHToast.showS(mContext, R.string.need_annual_info);
+                    compoundButton.setChecked(false);
+                    return;
+                }
                 if(b) {
-                    acf_tv_package_detail.setVisibility(View.VISIBLE);
-                    //acf_package_layout.setVisibility(View.GONE);
-                    acf_package_detail.setVisibility(View.VISIBLE);
-                    combo_id=1;
-                    setPrice();
+                    acf_package_detail.setText(comboList.get(0).getDetail());
+                    combo_id = comboList.get(0).getId();
+                    requestPrice();
                 }
             }
         });
@@ -187,11 +198,19 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
         acf_btn_package_b.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(TextUtils.isEmpty(acf_et_pick_station.getText().toString())
+                        || TextUtils.isEmpty(acf_et_pick_location.getText().toString())) {
+                    //缺少年检站或交车地点
+                    MHToast.showS(mContext, R.string.need_annual_info);
+                    compoundButton.setChecked(false);
+                    return;
+                }
                 if(b) {
-                    combo_id=2;
-                    acf_tv_package_detail.setVisibility(View.VISIBLE);
-                    acf_package_detail.setVisibility(View.GONE);
-                    //acf_package_layout.setVisibility(View.VISIBLE);
+                    if(comboList.size() > 1) {
+                        acf_package_detail.setText(comboList.get(1).getDetail());
+                        combo_id = comboList.get(1).getId();
+                        requestPrice();
+                    }
                 }
             }
         });
@@ -273,8 +292,15 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                         Log.i("response", command.getResponse());
                         BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                         if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                            Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
-                            AnnualCheckFillInfoActivity.this.startActivity(intent);
+                            SurveyCreateBean createBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SurveyCreateBean.class);
+                            if(createBean != null && createBean.getData() != null) {
+                                Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
+                                intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_ANNUAL_CHECK);
+                                SurveyInfo surveyInfo = new SurveyInfo();
+                                surveyInfo.setId(createBean.getData().getId());
+                                intent.putExtra(SURVEY_INFO, surveyInfo);
+                                AnnualCheckFillInfoActivity.this.startActivity(intent);
+                            }
                         }
 
                     }
@@ -366,18 +392,25 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
     }
 
     private void showCombo(List<ComboBean> combos) {
-        for(ComboBean comboBean : combos) {
-             id = comboBean.getId();
-            if(id == 1) {
-                acf_btn_package_a.setText(comboBean.getName());
-                acf_package_detail.setText(comboBean.getDetail());
-            } else if (id == 2) {
-                acf_btn_package_b.setText(comboBean.getName());
-                List<ComboItemSet> comboitem_set = comboBean.getComboitem_set();
-                if(comboitem_set != null  && comboitem_set.size() > 0) {
-                    MyComboAdapter adapter = new MyComboAdapter(comboitem_set);
-                    //acf_package_layout.setAdapter(adapter);
-                }
+        if(combos != null && combos.size() > 0) {
+            acf_btn_package_a.setText(combos.get(0).getName());
+            acf_package_detail.setText(combos.get(0).getDetail());
+            if(combos.size() > 1) {
+                acf_btn_package_b.setText(combos.get(1).getName());
+            }
+        }
+//        for(ComboBean comboBean : combos) {
+//             id = comboBean.getId();
+//            if(id == 1) {
+//                acf_btn_package_a.setText(comboBean.getName());
+//                acf_package_detail.setText(comboBean.getDetail());
+//            } else if (id == 2) {
+//                acf_btn_package_b.setText(comboBean.getName());
+//                List<ComboItemSet> comboitem_set = comboBean.getComboitem_set();
+//                if(comboitem_set != null  && comboitem_set.size() > 0) {
+//                    MyComboAdapter adapter = new MyComboAdapter(comboitem_set);
+//                    acf_package_layout.setAdapter(adapter);
+//                }
 //                int itemSize = comboitem_set.size();
 //                acf_rb_light.setText(comboitem_set.get(0).getName());
 //                acf_tv_price1.setText(DataHelper.displayPrice(this, comboitem_set.get(0).getPrice()));
@@ -387,18 +420,42 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 //
 //                acf_rb_sight.setText(comboitem_set.get(2).getName());
 //                acf_tv_price3.setText(DataHelper.displayPrice(this, comboitem_set.get(2).getPrice()));
-
-            }
-        }
+//
+//            }
+//        }
     }
 
-    private void setPrice() {
+    private void requestPrice() {
+        SurveyBehalfMethodCmd cmd = new SurveyBehalfMethodCmd(mContext, 0, ParamsConstant.SurveyMethodType.GET,
+                selectLon + "", selectLat + "", selectedStation.getId(), combo_id, "", null, 0);
+        cmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        SurveyFeeBean feeBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SurveyFeeBean.class);
+                        if(feeBean != null && feeBean.getData() != null) {
+                            setPrice(feeBean);
+                        }
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, cmd);
+    }
+
+    private void setPrice(SurveyFeeBean feeBean) {
         //价钱
-        acf_et_fee_base.setText("￥" + base_price);
-        acf_et_fee_package.setText("￥" + combo_price);
-        acf_et_fee_check.setText("￥" + survey_price);
-        total_price = base_price + combo_price + survey_price;
-        acf_et_fee_total.setText("￥" + total_price);
+        acf_et_fee_base.setText(DataHelper.displayPrice(mContext, feeBean.getData().getBase_price()));
+        acf_et_fee_package.setText(DataHelper.displayPrice(mContext, feeBean.getData().getCombo_price()));
+        acf_et_fee_check.setText(DataHelper.displayPrice(mContext, feeBean.getData().getSurvey_price()));
+        acf_et_fee_total.setText(DataHelper.displayPrice(mContext, feeBean.getData().getTotal_price()));
     }
 
     private class MyComboAdapter extends BaseAdapter {
@@ -444,7 +501,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                         } else {
                             combo_price -= comboItemSet.getPrice();
                         }
-                        setPrice();
+//                        setPrice();
                     }
                 });
                 holder.lci_tv_price1.setText("￥" + comboItemSet.getPrice() + "");
