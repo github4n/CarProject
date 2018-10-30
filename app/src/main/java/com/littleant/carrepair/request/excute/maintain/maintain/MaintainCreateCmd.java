@@ -28,7 +28,7 @@ public class MaintainCreateCmd extends BaseMaintainCmd {
             params.put(ParamsConstant.NUMBER, size + "");
             for(int i = 0; i < size; i++) {
                 String base64 = DataHelper.bitmap2StrByBase64(pics[i]);
-                params.put("pic" + i, base64);
+                params.put("pic" +  (i+1), base64);
             }
         } else {
             params.put(ParamsConstant.NUMBER, "0");

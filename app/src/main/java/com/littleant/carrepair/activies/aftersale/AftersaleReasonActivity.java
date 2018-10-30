@@ -18,11 +18,14 @@ import android.widget.ImageView;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.BookSubmitActivity;
+import com.littleant.carrepair.activies.order.MyOrderActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.aftersale.AfterSaleSubmitCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
+import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
@@ -158,8 +161,13 @@ public class AftersaleReasonActivity extends BaseActivity {
                 afterSaleSubmitCmd.setCallback(new MHCommandCallBack() {
                     @Override
                     public void cmdCallBack(MHCommand command) {
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                         Log.i("response", command.getResponse());
-
+                          if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
+                            Intent intent = new Intent(mContext, AftersaleActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     }
                 });
                 MHCommandExecute.getInstance().asynExecute(mContext, afterSaleSubmitCmd);

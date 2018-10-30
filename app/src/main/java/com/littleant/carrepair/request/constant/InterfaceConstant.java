@@ -140,6 +140,9 @@ public class InterfaceConstant {
      * post:生成维修订单信息
      */
     public static final String MAINTAIN_MAINTAIN = "api/maintain/maintain/";
+
+
+
     /**
      * get:删除维修订单信息<br>
      */
@@ -208,5 +211,10 @@ public class InterfaceConstant {
     /**
      *提交售后信息
      */
-    public static final String AFTER_SAVE="api/maintain/upkeep_aftersales/";
+    public static final String AFTER_SAVE="api/maintain/maintain_aftersales/";
+    /**
+     * 查询维修和保养售后
+     */
+    public static final String AFTER_SAVE_ALL="api/maintain/aftersales_list/";
+
 }

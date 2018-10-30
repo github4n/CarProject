@@ -229,6 +229,8 @@ public class ParamsConstant {
     public static final int MAINTAIN_LIST_STATUS_WAIT_RECEIVE = 2;
     public static final int MAINTAIN_LIST_STATUS_FINISH = 3;
 
+
+
     //年检（订单）部分
     public static final int SURVEY_ALL = 0;
     public static final int SURVEY_NOT_FINISH = 1;

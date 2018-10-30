@@ -101,9 +101,9 @@ public class PaymentActivity extends BaseActivity {
 
     private MHCommand getCmd(ParamsConstant.MethodStatus methodStatus) {
         if (ParamsConstant.ORDER_UPKEEP.equals(orderType)) {
-            return new UpkeepMethodCmd(mContext, id, methodStatus, score, payChannel);
+            return new UpkeepMethodCmd(mContext, orderInfo.getId(), methodStatus, score, payChannel);
         } else if (ParamsConstant.ORDER_MAINTAIN.equals(orderType)) {
-            return new MaintainMethodCmd(mContext, id, methodStatus, score, payChannel, "");
+            return new MaintainMethodCmd(mContext, orderInfo.getId(), methodStatus, score, payChannel, "");
         } else if (ParamsConstant.ORDER_ANNUAL_CHECK.equals(orderType)) {
             return new SurveyBehalfMethodCmd(mContext, surveyInfo.getId(), ParamsConstant.SurveyMethodType.ORDER_STATUS,
                     "", "", 0, 0, "", null, 0);
