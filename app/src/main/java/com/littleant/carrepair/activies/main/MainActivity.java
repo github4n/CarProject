@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,20 +28,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.car.AddCarActivity;
 import com.littleant.carrepair.fragment.AnnualCheckFragment;
 import com.littleant.carrepair.fragment.BaseFragment;
 import com.littleant.carrepair.fragment.MainFragment;
 import com.littleant.carrepair.fragment.ServiceFragment;
 import com.littleant.carrepair.fragment.UserCenterFragment;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.car.MyCarListBean;
 import com.littleant.carrepair.request.bean.system.violation.ViolationBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.service.rule.RuleQueryAllCmd;
+import com.littleant.carrepair.request.excute.user.car.CarQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
         init();
         if(!isGuest) {
+            requestDefaultCar();
             requestViolation();
         }
 
@@ -125,6 +131,32 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
             }
         });
 
+    }
+
+    private void requestDefaultCar() {
+        CarQueryAllCmd carQueryAllCmd = new CarQueryAllCmd(mContext, ParamsConstant.QueryType.DEFAULT);
+        carQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        MyCarListBean carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
+                        if(carListBean == null || carListBean.getData() == null || carListBean.getData().size() < 1) {
+                            //沒有默認車，跳添加車輛頁面
+                            Intent intent = new Intent(mContext, AddCarActivity.class);
+                            startActivity(intent);
+                        }
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, carQueryAllCmd);
     }
 
     private void requestViolation() {
