@@ -447,11 +447,20 @@
     <string name="text_annual_check_record_driver">服务司机:</string>
     <string name="text_annual_check_type">年检类型:</string>
 
+
+
+
     <!--售后服务-->
     <string name="text_after_sale_doing">未完成的售后服务</string>
     <string name="text_after_sale_finish">已完成的售后服务</string>
     <string name="text_after_sale">申请售后</string>
     <string name="text_after_sale_reason">请描述您申请售后的项目</string>
+    <string name="text_after_sale_order_number">订单号:</string>
+    <string name="text_after_sale_car_number">车辆号码:</string>
+    <string name="text_after_sale_car_type">车辆类型:</string>
+    <string name="text_after_sale_time">申请时间:</string>
+    <string name="text_after_sale_type_finish">完成</string>
+
 
     <!--支付订单-->
     <string name="text_payment">支付订单</string>

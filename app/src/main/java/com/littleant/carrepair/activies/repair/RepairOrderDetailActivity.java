@@ -101,6 +101,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(RepairOrderDetailActivity.this, AftersaleReasonActivity.class);
                 intent.putExtra(ParamsConstant.ID,orderInfo.getId()+"");
+                intent.putExtra("flag",PAY_MAINTAIN);
                 startActivity(intent);
             }
         });
@@ -188,7 +189,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
                 break;
 
             case 4:
-
+                mOptionText.setVisibility(View.VISIBLE);
                 asod_tv_state.setText("服务完成");
                 asod_tv_state.setTextColor(getResources().getColor(R.color.color_service_done));
                 showPic(data);
@@ -229,7 +230,6 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
     @Override
     protected int getOptionStringId() {
-        mOptionText.setVisibility(View.VISIBLE);
         return R.string.text_after_sale;
     }
 

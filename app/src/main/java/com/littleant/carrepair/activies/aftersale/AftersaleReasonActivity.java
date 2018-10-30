@@ -17,13 +17,10 @@ import android.widget.ImageView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
-import com.littleant.carrepair.activies.BookSubmitActivity;
-import com.littleant.carrepair.activies.order.MyOrderActivity;
-import com.littleant.carrepair.activies.repair.RepairActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
-import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
-import com.littleant.carrepair.request.excute.aftersale.AfterSaleSubmitCmd;
+import com.littleant.carrepair.request.excute.aftersale.AfterSaleSubmitMaintainCmd;
+import com.littleant.carrepair.request.excute.aftersale.AfterSaleSubmitUpkeepCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -38,9 +35,6 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.littleant.carrepair.activies.BookSubmitActivity.FROM;
-import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
 
 /**
  * 文件描述:
@@ -63,24 +57,23 @@ public class AftersaleReasonActivity extends BaseActivity {
     private Uri[] mSelected = new Uri[3];
     //    private List<Uri> mSelected = new ArrayList<>(3);
     private double selectLat, selectLon;
-    private String selectAddress;
-    private GarageInfo garageInfo;
+
+    public static final String TYPE_UPKEEP = "upkeep";
+    public static final String PAY_MAINTAIN = "maintain";
     //    private MyAdapter myAdapter;
     public static final String CONTENT = "content";
     public static final String PIC_LIST = "pic_list";
     private String id="";
+    private String flag="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Intent extras = getIntent();
         if(extras != null) {
             id = extras.getStringExtra(ParamsConstant.ID);
+            flag=extras.getStringExtra("flag");
         }
-//        if(garageInfo == null) {
-//            this.finish();
-//        }
     }
 
     @Override
@@ -151,30 +144,40 @@ public class AftersaleReasonActivity extends BaseActivity {
                 }
                 Bitmap[] pics = DataHelper.parseUriList2BitmapArray(this, picList);
 
-                Intent intent = new Intent(mContext, BookSubmitActivity.class);
-                intent.putExtra(GARAGE_INFO, garageInfo);
-                intent.putExtra(CONTENT, content);
-                if(picList.size() > 0) {
-                    intent.putExtra(PIC_LIST, picList);
-                }
-                AfterSaleSubmitCmd afterSaleSubmitCmd=new AfterSaleSubmitCmd(mContext,id,content,pics);
-                afterSaleSubmitCmd.setCallback(new MHCommandCallBack() {
-                    @Override
-                    public void cmdCallBack(MHCommand command) {
-                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                        Log.i("response", command.getResponse());
-                          if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
-                            Intent intent = new Intent(mContext, AftersaleActivity.class);
-                            startActivity(intent);
-                            finish();
+                if(flag.equals(TYPE_UPKEEP)){
+                    AfterSaleSubmitUpkeepCmd afterSaleSubmitUpkeepCmd=new AfterSaleSubmitUpkeepCmd(mContext,id,content,pics);
+                    afterSaleSubmitUpkeepCmd.setCallback(new MHCommandCallBack() {
+                        @Override
+                        public void cmdCallBack(MHCommand command) {
+                            BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                            Log.i("response", command.getResponse());
+                            if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
+                                Intent intent = new Intent(mContext, AftersaleActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
-                    }
-                });
-                MHCommandExecute.getInstance().asynExecute(mContext, afterSaleSubmitCmd);
+                    });
+                    MHCommandExecute.getInstance().asynExecute(mContext, afterSaleSubmitUpkeepCmd);
+                } else if (flag.equals(PAY_MAINTAIN)) {
+                    AfterSaleSubmitMaintainCmd afterSaleSubmitMaintainCmd=new AfterSaleSubmitMaintainCmd(mContext,id,content,pics);
+                    afterSaleSubmitMaintainCmd.setCallback(new MHCommandCallBack() {
+                        @Override
+                        public void cmdCallBack(MHCommand command) {
+                            BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                            Log.i("response", command.getResponse());
+                            if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
+                                Intent intent = new Intent(mContext, AftersaleActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else{
 
+                            }
+                        }
+                    });
+                    MHCommandExecute.getInstance().asynExecute(mContext, afterSaleSubmitMaintainCmd);
+                }
                 break;
-
-
             case R.id.r_btn_add_pic:
                 Matisse.from(AftersaleReasonActivity.this)
                         .choose(MimeType.ofImage())

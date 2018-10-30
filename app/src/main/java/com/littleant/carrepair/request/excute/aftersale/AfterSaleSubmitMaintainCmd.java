@@ -14,11 +14,12 @@ import com.mh.core.tools.MHLogUtil;
  * 作者:莫进生
  * 创建时间:2018/10/29 0029
  * 版本号:1
+ * 提交售后维修
  */
 
 
-public class AfterSaleSubmitCmd extends  BaseRequestCmd{
-    public AfterSaleSubmitCmd(Context context, String id, String content, Bitmap[] pics) {
+public class AfterSaleSubmitMaintainCmd extends  BaseRequestCmd{
+    public AfterSaleSubmitMaintainCmd(Context context, String id, String content, Bitmap[] pics) {
         super(context);
 
         //params.put(ParamsConstant.NUMBER, number + "");
@@ -42,7 +43,7 @@ public class AfterSaleSubmitCmd extends  BaseRequestCmd{
     }
 
     @Override
-    protected BaseRequestCmd.RequestMethod getRequestMethod() {
+    protected RequestMethod getRequestMethod() {
         return RequestMethod.POST;
     }
 }

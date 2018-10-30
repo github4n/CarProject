@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.aftersale;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,7 +33,8 @@ public class AftersaleActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mList = findViewById(R.id.acr_record_list);
+        mList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         requestCheckRecord();
     }
     @Override
@@ -50,7 +52,7 @@ public class AftersaleActivity extends BaseActivity {
 
     }
     private void requestCheckRecord() {
-        AftersaleAllCmd aftersaleAllCmd=new AftersaleAllCmd(mContext);
+        AftersaleAllCmd aftersaleAllCmd=new AftersaleAllCmd(mContext,ParamsConstant.MAINTAIN_LIST_STATUS_WAIT_PAY );
         aftersaleAllCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {

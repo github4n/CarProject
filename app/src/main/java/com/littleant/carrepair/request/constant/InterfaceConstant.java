@@ -209,9 +209,13 @@ public class InterfaceConstant {
      */
     public static final String SYSTEM_COVER = "api/system/cover/";
     /**
-     *提交售后信息
+     *提交维修售后售后信息
      */
     public static final String AFTER_SAVE="api/maintain/maintain_aftersales/";
+    /**
+     *提交保养售后售后信息
+     */
+    public static final String AFTER_SAVE_UPKEEP="api/maintain/upkeep_aftersales/";
     /**
      * 查询维修和保养售后
      */

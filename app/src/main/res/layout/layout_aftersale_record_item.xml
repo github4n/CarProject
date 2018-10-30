@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_sub_background"
+    android:paddingBottom="4dp"
+    android:orientation="horizontal">
+
+    <android.support.constraint.ConstraintLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.constraint.Guideline
+            android:id="@+id/afp_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/afp_guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.67" />
+    <TextView
+        android:id="@+id/ari_tv_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_after_sale_order_number"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ari_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintStart_toEndOf="@id/ari_tv_book"
+        app:layout_constraintTop_toTopOf="@id/ari_tv_book" />
+
+    <TextView
+        android:id="@+id/ari_tv_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_after_sale_car_number"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintStart_toStartOf="@id/ari_tv_book"
+        app:layout_constraintTop_toBottomOf="@id/ari_tv_book" />
+
+    <TextView
+        android:id="@+id/ari_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintStart_toEndOf="@id/ari_tv_finish"
+        app:layout_constraintTop_toTopOf="@id/ari_tv_finish" />
+
+    <TextView
+        android:id="@+id/ari_tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_after_sale_car_type"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintStart_toStartOf="@id/ari_tv_book"
+        app:layout_constraintTop_toBottomOf="@id/ari_tv_finish" />
+
+    <TextView
+        android:id="@+id/ari_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintStart_toEndOf="@id/ari_tv_location"
+        app:layout_constraintTop_toTopOf="@id/ari_tv_location" />
+
+    <TextView
+        android:id="@+id/ari_tv_driver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_after_sale_time"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/ari_tv_book"
+        app:layout_constraintTop_toBottomOf="@id/ari_tv_location" />
+
+        <ImageView
+            android:id="@+id/ar_line"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/ari_tv_driver"
+            app:layout_constraintStart_toStartOf="@+id/ari_tv_driver"
+            app:layout_constraintTop_toBottomOf="@+id/ari_tv_driver"
+            app:srcCompat="@color/color_sub_line" />
+
+        <TextView
+            android:id="@+id/asod_btn_pay"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/btn_cycrect_selector"
+            android:gravity="center_horizontal"
+            android:paddingLeft="15dp"
+            android:paddingTop="4dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="4dp"
+            android:text="@string/text_after_sale_type_finish"
+            android:textColor="@drawable/btn_text_color_selector"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/afp_guideline2"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+
+    <TextView
+        android:id="@+id/ari_driver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/color_insurance_text"
+        app:layout_constraintStart_toEndOf="@id/ari_tv_driver"
+        app:layout_constraintTop_toTopOf="@id/ari_tv_driver" />
+
+        <TextView
+            android:id="@+id/air_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/ari_tv_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ari_tv_book" />
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

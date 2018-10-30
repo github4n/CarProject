@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.upkeep;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.aftersale.AftersaleReasonActivity;
+import com.littleant.carrepair.activies.repair.RepairOrderDetailActivity;
 import com.littleant.carrepair.activies.repair.view.RepairPicView;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderDetailBean;
@@ -55,9 +58,20 @@ public class UpkeepDetailActivity extends BaseActivity {
             }
 
         }
-
+        mOptionText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(UpkeepDetailActivity.this, AftersaleReasonActivity.class);
+                intent.putExtra(ParamsConstant.ID,orderInfo.getId()+"");
+                intent.putExtra("flag","upkeep");
+                startActivity(intent);
+            }
+        });
     }
-
+    @Override
+    protected int getOptionStringId() {
+        return R.string.text_after_sale;
+    }
     private void requestUpkeepOrderDetail() {
         UpkeepQueryOneCmd queryOneCmd = new UpkeepQueryOneCmd(mContext, orderInfo.getId());
         queryOneCmd.setCallback(new MHCommandCallBack() {
@@ -106,6 +120,7 @@ public class UpkeepDetailActivity extends BaseActivity {
                 break;
 
             case 4:
+                mOptionText.setVisibility(View.VISIBLE);
                 aud_tv_state.setText("服务完成");
                 aud_tv_state.setTextColor(getResources().getColor(R.color.color_service_done));
                 break;

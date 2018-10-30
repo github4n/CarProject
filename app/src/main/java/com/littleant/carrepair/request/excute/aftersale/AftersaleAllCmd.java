@@ -16,9 +16,9 @@ import com.mh.core.tools.MHLogUtil;
 
 
 public class AftersaleAllCmd extends BaseRequestCmd {
-    public AftersaleAllCmd(Context context) {
+    public AftersaleAllCmd(Context context,int state) {
         super(context);
-        params.put(ParamsConstant.STATE,ParamsConstant.MAINTAIN_LIST_STATUS_ALL+"");
+        params.put(ParamsConstant.STATE,state+"");
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
 
     }
