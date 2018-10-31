@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class GarageInfo implements Serializable {
     private int id;
     private int popular;
-    private float score;
+    private int score;
     private float filter_price;
     private float distance;
     private String create_time = "";
@@ -19,28 +19,6 @@ public class GarageInfo implements Serializable {
     private String phone = "";
     private String pic_url = "";
     private int type;
-
-    @Override
-    public String toString() {
-        return "GarageInfo{" +
-                "id=" + id +
-                ", popular=" + popular +
-                ", score=" + score +
-                ", filter_price=" + filter_price +
-                ", distance=" + distance +
-                ", create_time='" + create_time + '\'' +
-                ", update_time='" + update_time + '\'' +
-                ", name='" + name + '\'' +
-                ", user_name='" + user_name + '\'' +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                ", address='" + address + '\'' +
-                ", mobile_phone='" + mobile_phone + '\'' +
-                ", phone='" + phone + '\'' +
-                ", pic_url='" + pic_url + '\'' +
-                ", type=" + type +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -58,11 +36,11 @@ public class GarageInfo implements Serializable {
         this.popular = popular;
     }
 
-    public float getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

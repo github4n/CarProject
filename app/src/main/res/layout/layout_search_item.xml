@@ -30,7 +30,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/item_demo"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@id/lsi_guideline"
         app:layout_constraintHorizontal_weight="8"
@@ -85,27 +84,43 @@
         app:layout_constraintTop_toTopOf="@id/lsi_tv_title" />
 
     <!--赞数-->
-    <TextView
-        android:id="@+id/lsi_tv_like"
+    <com.example.xlhratingbar_lib.XLHRatingBar xmlns:xlhRatingBar="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/lsi_ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/color_text_shop_price"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline2"
-        app:layout_constraintTop_toBottomOf="@id/lsi_tv_line" />
+        app:layout_constraintTop_toBottomOf="@id/lsi_tv_line"
+        app:layout_constraintBottom_toTopOf="@id/lsi_tv_line2"
+        xlhRatingBar:canEdit="false"
+        xlhRatingBar:countSelected="2"
+        xlhRatingBar:differentSize="false"
+        xlhRatingBar:dividerWidth="5dp"
+        xlhRatingBar:starCount="5"
+        xlhRatingBar:stateResId="@drawable/rating_dialog_selector"
+        xlhRatingBar:widthAndHeight="12dp" />
+    <!--<TextView-->
+        <!--android:id="@+id/lsi_tv_like"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--android:textColor="@color/color_text_shop_price"-->
+        <!--app:layout_constraintStart_toStartOf="@id/lsi_guideline2"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/lsi_tv_line" />-->
 
-    <ImageView
-        android:id="@+id/lsi_iv_like"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/lsi_tv_like"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@id/lsi_guideline2"
-        app:layout_constraintStart_toStartOf="@id/lsi_guideline"
-        app:layout_constraintTop_toTopOf="@id/lsi_tv_like"
-        app:srcCompat="@drawable/search_like" />
+    <!--<ImageView-->
+        <!--android:id="@+id/lsi_iv_like"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/lsi_tv_like"-->
+        <!--app:layout_constraintDimensionRatio="1:1"-->
+        <!--app:layout_constraintEnd_toStartOf="@id/lsi_guideline2"-->
+        <!--app:layout_constraintStart_toStartOf="@id/lsi_guideline"-->
+        <!--app:layout_constraintTop_toTopOf="@id/lsi_tv_like"-->
+        <!--app:srcCompat="@drawable/search_like" />-->
 
     <!--联系人-->
     <TextView

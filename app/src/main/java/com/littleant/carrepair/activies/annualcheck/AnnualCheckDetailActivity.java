@@ -182,6 +182,7 @@ public class AnnualCheckDetailActivity extends BaseActivity {
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         mOptionText.setVisibility(View.GONE);
+                        setResult(RESULT_OK);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

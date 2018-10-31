@@ -181,6 +181,9 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                     text = surveyStateHint[survey_state];
                     color = surveyStateColor.getColor(survey_state, 0);
                     surveyStateColor.recycle();
+                } else if(state == 8 && surveyInfo.isIs_comment()) {
+                    text = "已评价";
+                    color = getResources().getColor(R.color.color_survey_success);
                 } else {
                     String[] stateHint = mContext.getResources().getStringArray(R.array.annual_check_state);
                     TypedArray stateColor = getResources().obtainTypedArray(R.array.annual_check_state_color);
@@ -294,7 +297,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
         } else if(requestCode == REQUEST_CODE_RETURN && resultCode == Activity.RESULT_OK) {
             requestCheckRecord();
         } else if(requestCode == REQUEST_CODE_PAY  && resultCode == Activity.RESULT_OK) {
-
+            requestCheckRecord();
         }
     }
 }

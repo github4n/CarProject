@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.repair.RepairStationActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
@@ -180,11 +181,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             if(garageInfo != null) {
                 holder.lsi_tv_title.setText(garageInfo.getName());
                 holder.lsi_tv_distance.setText(String.format(mContext.getResources().getString(R.string.text_search_distance), garageInfo.getDistance() + ""));
-                holder.lsi_tv_like.setText(garageInfo.getPopular() + "");
+//                holder.lsi_tv_like.setText(garageInfo.getPopular() + "");
                 holder.lsi_contact.setText(garageInfo.getUser_name() + " | " + garageInfo.getPhone());
                 holder.lsi_tv_location.setText(garageInfo.getAddress());
                 Picasso.with(mContext).load(Uri.parse(garageInfo.getPic_url())).into(holder.lsi_iv_itemImg);
                 holder.itemView.setTag(position);
+                holder.lsi_ratingBar.setCountSelected(garageInfo.getScore());
             }
         }
 
@@ -208,15 +210,17 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             //text_search_distance
             TextView lsi_tv_title, lsi_tv_distance, lsi_tv_like, lsi_contact, lsi_tv_location;
             ImageView  lsi_iv_itemImg;
+            XLHRatingBar lsi_ratingBar;
 
             ViewHolder(View itemView) {
                 super(itemView);
                 lsi_tv_title = itemView.findViewById(R.id.lsi_tv_title);
                 lsi_tv_distance = itemView.findViewById(R.id.lsi_tv_distance);
-                lsi_tv_like = itemView.findViewById(R.id.lsi_tv_like);
+//                lsi_tv_like = itemView.findViewById(R.id.lsi_tv_like);
                 lsi_contact = itemView.findViewById(R.id.lsi_contact);
                 lsi_tv_location = itemView.findViewById(R.id.lsi_tv_location);
                 lsi_iv_itemImg = itemView.findViewById(R.id.lsi_iv_itemImg);
+                lsi_ratingBar = itemView.findViewById(R.id.lsi_ratingBar);
             }
 
         }

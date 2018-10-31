@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.navi.INaviInfoCallback;
 import com.amap.api.navi.model.AMapNaviLocation;
+import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.fragment.MainFragment;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
@@ -29,9 +30,10 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
     private TextView rs_btn_navi, rs_btn_contact;
     private GarageInfo garageInfo;
     //控件
-    private TextView rs_tv_title, rs_tv_like_amount, rs_contact, rs_phone, rs_address;
+    private TextView rs_tv_title, rs_contact, rs_phone, rs_address;
     private ImageView rs_tv_banner;
     private double myLatitude, myLongitude;
+    private XLHRatingBar rs_ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,8 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
         rs_btn_contact.setOnClickListener(this);
 
         rs_tv_title = findViewById(R.id.rs_tv_title);
-        rs_tv_like_amount = findViewById(R.id.rs_tv_like_amount);
+        rs_ratingBar = findViewById(R.id.rs_ratingBar);
+//        rs_tv_like_amount = findViewById(R.id.rs_tv_like_amount);
         rs_contact = findViewById(R.id.rs_contact);
         rs_phone = findViewById(R.id.rs_phone);
         rs_address = findViewById(R.id.rs_address);
@@ -69,7 +72,8 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
             this.finish();
         }
         rs_tv_title.setText(garageInfo.getName());
-        rs_tv_like_amount.setText(garageInfo.getPopular() + "");
+//        rs_tv_like_amount.setText(garageInfo.getPopular() + "");
+        rs_ratingBar.setCountSelected(garageInfo.getScore());
         rs_contact.setText(garageInfo.getUser_name() + " | " + garageInfo.getPhone());
         rs_phone.setText(garageInfo.getMobile_phone());
         rs_address.setText(garageInfo.getAddress());
