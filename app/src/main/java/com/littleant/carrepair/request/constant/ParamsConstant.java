@@ -229,6 +229,10 @@ public class ParamsConstant {
     public static final int MAINTAIN_LIST_STATUS_WAIT_RECEIVE = 2;
     public static final int MAINTAIN_LIST_STATUS_FINISH = 3;
 
+    //售后部分
+    public static final String AFTERSALE_ID = "id";
+    public static final String AFTERSALE_METHOD = "method";
+    public static final String AFTERSALE_FINISH = "finish";
 
 
     //年检（订单）部分

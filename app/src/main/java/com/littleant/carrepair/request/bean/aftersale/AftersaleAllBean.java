@@ -35,6 +35,8 @@ public class AftersaleAllBean extends BaseResponseBean {
         private String type;
         private String create_time;
         private int state;
+        private String now_price;
+        private String order_pic_url;
 
         public int getId() {
             return id;
@@ -90,6 +92,22 @@ public class AftersaleAllBean extends BaseResponseBean {
 
         public void setState(int state) {
             this.state = state;
+        }
+
+        public String getNow_price() {
+            return now_price;
+        }
+
+        public void setNow_price(String now_price) {
+            this.now_price = now_price;
+        }
+
+        public String getOrder_pic_url() {
+            return order_pic_url;
+        }
+
+        public void setOrder_pic_url(String order_pic_url) {
+            this.order_pic_url = order_pic_url;
         }
     }
 }

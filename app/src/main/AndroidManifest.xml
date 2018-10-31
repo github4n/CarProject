@@ -202,6 +202,9 @@
         </provider>
 
         <activity
+            android:name=".activies.aftersale.AfterSaleDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activies.BookSubmitActivity"
             android:screenOrientation="portrait" />
 

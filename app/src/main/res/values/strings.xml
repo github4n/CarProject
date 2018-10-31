@@ -460,6 +460,7 @@
     <string name="text_after_sale_car_type">车辆类型:</string>
     <string name="text_after_sale_time">申请时间:</string>
     <string name="text_after_sale_type_finish">完成</string>
+    <string name="text_after_sale_detail">售后详情</string>
 
 
     <!--支付订单-->

@@ -220,5 +220,9 @@ public class InterfaceConstant {
      * 查询维修和保养售后
      */
     public static final String AFTER_SAVE_ALL="api/maintain/aftersales_list/";
+    /**
+     * 提交售后维修和保养售后
+     */
+    public static final String AFTER_SAVE_FINSH="api/maintain/upkeep_aftersales_method/";
 
 }
