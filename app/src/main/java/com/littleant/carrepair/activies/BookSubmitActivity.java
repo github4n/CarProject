@@ -266,6 +266,10 @@ public class BookSubmitActivity extends BaseActivity {
 
     //保养
     private void requestMaintain() {
+        if(carInfo == null) {
+            MHToast.showS(mContext, R.string.need_car);
+            return;
+        }
         int garage_id = garageInfo.getId();
         int car_id = carInfo.getId();
         String name = abs_et_contact.getText().toString();
@@ -311,6 +315,10 @@ public class BookSubmitActivity extends BaseActivity {
         MHCommandExecute.getInstance().asynExecute(mContext, upkeepCreateCmd);
     }
     private void requestRepair() {
+        if(carInfo == null) {
+            MHToast.showS(mContext, R.string.need_car);
+            return;
+        }
         int garage_id = garageInfo.getId();
         int car_id = carInfo.getId();
         String name = abs_et_contact.getText().toString();

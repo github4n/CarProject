@@ -30,6 +30,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.car.MyCarListBean;
+import com.littleant.carrepair.request.bean.car.carbrand.CarBaseBean;
 import com.littleant.carrepair.request.bean.car.carbrand.CarStyleSet;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.car.CarAddCmd;
@@ -73,7 +74,7 @@ public class AddCarActivity extends BaseActivity {
     private CheckBox aac_cb_default;
     private String hpzl = "";
     private String city_code = "";
-    private CarStyleSet carStyleSet;
+    private CarBaseBean carStyleSet;
 
     private MyCarListBean.CarInfo carInfo;
 
@@ -297,7 +298,7 @@ public class AddCarActivity extends BaseActivity {
             }
 
         } else if(requestCode == REQUEST_CODE_BRAND && resultCode == RESULT_OK) {
-            carStyleSet = (CarStyleSet) data.getSerializableExtra(CAR_STYLE_SET);
+            carStyleSet = (CarBaseBean) data.getSerializableExtra(CAR_STYLE_SET);
             if(carStyleSet != null) {
                 aac_tv_brand.setText(carStyleSet.getName());
                 car_style = carStyleSet.getId();

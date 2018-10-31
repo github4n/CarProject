@@ -18,6 +18,7 @@ import com.littleant.carrepair.request.bean.car.carbrand.CarBaseBean;
 import com.littleant.carrepair.request.bean.car.carbrand.CarStyleSet;
 import com.littleant.carrepair.request.bean.car.carbrand.CarTypeList;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,9 +89,9 @@ public class CarBrandThirdFragment extends Fragment {
             list.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
                 @Override
                 public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                    CarStyleSet styleSet = (CarStyleSet) adapter.getChild(groupPosition, childPosition);
+                    CarBaseBean styleSet = (CarBaseBean) adapter.getChild(groupPosition, childPosition);
                     Intent intent = new Intent();
-                    intent.putExtra(CAR_STYLE_SET, styleSet);
+                    intent.putExtra(CAR_STYLE_SET, (Serializable) styleSet);
                     getActivity().setResult(Activity.RESULT_OK, intent);
                     getActivity().finish();
                     return true;

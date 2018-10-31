@@ -93,32 +93,47 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/rs_guideline2"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/rs_guideline4"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rs_like1" />
 
-    <TextView
-        android:id="@+id/rs_tv_like_amount"
+    <com.example.xlhratingbar_lib.XLHRatingBar xmlns:xlhRatingBar="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rs_ratingBar"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintStart_toEndOf="@id/rs_iv_like2"
-        app:layout_constraintTop_toBottomOf="@id/rs_tv_title" />
-
-    <ImageView
-        android:id="@+id/rs_iv_like2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/rs_tv_like_amount"
-        app:layout_constraintDimensionRatio="1:1"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/rs_guideline3"
-        app:layout_constraintTop_toTopOf="@id/rs_tv_like_amount"
-        app:srcCompat="@drawable/rs_like" />
+        app:layout_constraintTop_toBottomOf="@id/rs_tv_title"
+        xlhRatingBar:canEdit="false"
+        xlhRatingBar:countSelected="2"
+        xlhRatingBar:differentSize="false"
+        xlhRatingBar:dividerWidth="5dp"
+        xlhRatingBar:starCount="5"
+        xlhRatingBar:stateResId="@drawable/rating_dialog_selector"
+        xlhRatingBar:widthAndHeight="12dp" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/rs_tv_like_amount"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:textColor="@android:color/holo_red_dark"-->
+        <!--app:layout_constraintStart_toEndOf="@id/rs_iv_like2"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/rs_tv_title" />-->
+
+    <!--<ImageView-->
+        <!--android:id="@+id/rs_iv_like2"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/rs_tv_like_amount"-->
+        <!--app:layout_constraintDimensionRatio="1:1"-->
+        <!--app:layout_constraintStart_toStartOf="@id/rs_guideline3"-->
+        <!--app:layout_constraintTop_toTopOf="@id/rs_tv_like_amount"-->
+        <!--app:srcCompat="@drawable/rs_like" />-->
 
     <TextView
         android:id="@+id/rs_tv_contact"
@@ -128,7 +143,7 @@
         android:text="@string/text_station_contact"
         android:textColor="@color/color_text"
         app:layout_constraintStart_toStartOf="@id/rs_guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/rs_iv_like2" />
+        app:layout_constraintTop_toBottomOf="@+id/rs_ratingBar" />
 
     <TextView
         android:id="@+id/rs_contact"
