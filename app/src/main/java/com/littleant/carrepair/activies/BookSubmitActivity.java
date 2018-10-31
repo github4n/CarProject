@@ -306,6 +306,9 @@ public class BookSubmitActivity extends BaseActivity {
                         Intent intent = new Intent(mContext, MyOrderActivity.class);
                         startActivity(intent);
                         finish();
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     }
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);
@@ -354,6 +357,9 @@ public class BookSubmitActivity extends BaseActivity {
                         Intent intent = new Intent(mContext, MyOrderActivity.class);
                         startActivity(intent);
                         finish();
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     }
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);
@@ -373,10 +379,13 @@ public class BookSubmitActivity extends BaseActivity {
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         MyCarListBean carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
-                        if(carListBean != null) {
+                        if(carListBean != null && carListBean.getData() != null && carListBean.getData().size() > 0) {
                             carInfo = carListBean.getData().get(0);
                             setCarInfo(carInfo);
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

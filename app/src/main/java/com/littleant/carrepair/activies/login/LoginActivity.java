@@ -52,11 +52,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private CheckBox al_cb_term;
     private View al_term_view;
     private String termUrl;
+    private boolean isTokenExpired = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            isTokenExpired = extras.getBoolean(ProjectUtil.TOKEN_EXPIRED);
+        }
 
         mContext = this;
         loginBtn = findViewById(R.id.loginBtn);
@@ -185,8 +191,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 DataHelper.savePassword(mContext, password);
                                 JPushInterface.setAlias(getApplicationContext(), 1, phone);
                                 DataHelper.saveGuestLogin(LoginActivity.this, false);
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                LoginActivity.this.startActivity(intent);
+                                if(!isTokenExpired) {
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    LoginActivity.this.startActivity(intent);
+                                }
                                 LoginActivity.this.finish();
                             } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                                 MHToast.showS(mContext, responseBean.getMsg());

@@ -80,6 +80,9 @@ public class SplashActivity extends AppCompatActivity {
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         SystemCoverBean systemCoverBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SystemCoverBean.class);
                         data = systemCoverBean.getData();
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     }
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);

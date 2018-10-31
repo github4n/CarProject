@@ -86,6 +86,9 @@ public class ShoppingActivity extends BaseActivity {
                         } else {
                             showSecondListData(list2, catalogBeanList);
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -153,6 +156,9 @@ public class ShoppingActivity extends BaseActivity {
                             mGridView.setAdapter(new MyAdapter(productBeanList));
                         }
 
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -303,6 +309,9 @@ public class ShoppingActivity extends BaseActivity {
                         BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
                         if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                             MHToast.showS(mContext, R.string.add_to_shoppingcar_success);
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                            startActivity(intent);
                         } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                             MHToast.showS(mContext, responseBean.getMsg());
                         }

@@ -67,6 +67,9 @@ public class MyCarActivity extends BaseActivity {
                         if(data != null && data.size() > 0){
                             mList.setAdapter(new MyAdapter(data));
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

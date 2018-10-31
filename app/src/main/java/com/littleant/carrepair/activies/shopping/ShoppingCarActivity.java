@@ -76,6 +76,9 @@ public class ShoppingCarActivity extends BaseActivity {
                             myAdapter = new MyAdapter(itemBeans);
                             mList.setAdapter(myAdapter);
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -162,6 +165,9 @@ public class ShoppingCarActivity extends BaseActivity {
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         MHToast.showS(mContext, R.string.delete_success);
                         requestItem();
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -276,6 +282,9 @@ public class ShoppingCarActivity extends BaseActivity {
                         BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
                         if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                             requestItem();
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                            startActivity(intent);
                         } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                             MHToast.showS(mContext, responseBean.getMsg());
                         }

@@ -236,6 +236,9 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                             lmfd_ratingBar.setCountSelected(count);
                         }
 
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(getContext(), responseBean.getMsg());
                     }

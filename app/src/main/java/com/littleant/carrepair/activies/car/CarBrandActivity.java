@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.car;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +11,7 @@ import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.request.bean.car.carbrand.CarBrandLetterList;
 import com.littleant.carrepair.request.bean.car.carbrand.CarBrandList;
+import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.car.CarBrandQueryCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -44,13 +46,17 @@ public class CarBrandActivity extends BaseActivity {
                 if (command != null) {
                     Log.i("response", command.getResponse());
                     CarBrandList carBrandList = ProjectUtil.getBaseResponseBean(command.getResponse(), CarBrandList.class);
-                    data = carBrandList.getData();
+                    if(carBrandList != null && carBrandList.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
+                        data = carBrandList.getData();
 
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.add(R.id.acb_fragment, CarBrandFirstFragment.newInstance(data), CarBrandFirstFragment.class.getSimpleName());
-                    transaction.commit();
-
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.add(R.id.acb_fragment, CarBrandFirstFragment.newInstance(data), CarBrandFirstFragment.class.getSimpleName());
+                        transaction.commit();
+                    }  else if(carBrandList != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == carBrandList.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
+                    }
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);
                 }

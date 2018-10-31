@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.car;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -102,6 +103,9 @@ public class CarBrandSecondFragment extends Fragment {
                             transaction.addToBackStack(null); //将当前的事务添加到了回退栈
                             transaction.commit();
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(getContext(), responseBean.getMsg());
                     }

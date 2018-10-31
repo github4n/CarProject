@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.order;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.Constraints;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,6 +61,9 @@ public class AllOrderActivity extends BaseActivity {
                         if(itemBeanList != null) {
                             mList.setAdapter(new MyAdapter(itemBeanList));
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

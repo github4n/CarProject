@@ -126,6 +126,9 @@ public class SettingActivity extends BaseActivity {
                             if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
                                 SettingActivity.this.setResult(ParamsConstant.ACTIVITY_RESULT_ME_MODIFY);
                                 SettingActivity.this.finish();
+                            } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                                Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                                startActivity(intent);
                             }
                         } else {
                             MHToast.showS(mContext, R.string.request_fail);

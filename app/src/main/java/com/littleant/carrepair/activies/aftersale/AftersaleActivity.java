@@ -136,6 +136,9 @@ public class AftersaleActivity extends BaseActivity {
                         setListItem(dataFinish);
                     }
 
+                } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                    Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                    startActivity(intent);
                 } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                     //setListItem(null);
                     MHToast.showS(mContext, responseBean.getMsg());
@@ -208,6 +211,9 @@ public class AftersaleActivity extends BaseActivity {
                                     Intent intent = new Intent(AftersaleActivity.this, AftersaleActivity.class);
                                     startActivity(intent);
                                     finish();
+                                } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                                    Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                                    startActivity(intent);
                                 }
                             }
                         });

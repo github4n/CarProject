@@ -1,12 +1,15 @@
 package com.littleant.carrepair.utils;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.littleant.carrepair.activies.login.LoginActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.mh.core.db.MHDatabase;
 import com.mh.core.tools.MHLogUtil;
@@ -167,6 +170,13 @@ public class ProjectUtil {
 
     public static Uri resourceIdToUri(Context context, int resourceId) {
         return Uri.parse(ANDROID_RESOURCE + context.getPackageName() + FOREWARD_SLASH + resourceId);
+    }
+
+    public static final String TOKEN_EXPIRED = "token_expired";
+    public static Intent tokenExpiredIntent(Context activity) {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        intent.putExtra(TOKEN_EXPIRED, true);
+        return intent;
     }
 
 }

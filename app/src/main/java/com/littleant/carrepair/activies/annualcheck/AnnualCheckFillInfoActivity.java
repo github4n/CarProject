@@ -301,6 +301,9 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                                 intent.putExtra(SURVEY_INFO, surveyInfo);
                                 AnnualCheckFillInfoActivity.this.startActivity(intent);
                             }
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                            startActivity(intent);
                         }
 
                     }
@@ -380,6 +383,9 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                         if(comboList != null) {
                             showCombo(comboList);
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -439,6 +445,9 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                         if(feeBean != null && feeBean.getData() != null) {
                             setPrice(feeBean);
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

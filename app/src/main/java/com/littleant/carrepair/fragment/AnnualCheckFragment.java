@@ -116,6 +116,9 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
                                 ac_banner.start();
                             }
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(getContext(), responseBean.getMsg());
                     }

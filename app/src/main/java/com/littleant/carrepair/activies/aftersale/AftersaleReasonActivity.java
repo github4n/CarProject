@@ -155,6 +155,9 @@ public class AftersaleReasonActivity extends BaseActivity {
                                 Intent intent = new Intent(mContext, AftersaleActivity.class);
                                 startActivity(intent);
                                 finish();
+                            } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                                Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                                startActivity(intent);
                             }
                         }
                     });
@@ -170,8 +173,9 @@ public class AftersaleReasonActivity extends BaseActivity {
                                 Intent intent = new Intent(mContext, AftersaleActivity.class);
                                 startActivity(intent);
                                 finish();
-                            }else{
-
+                            } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                                Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                                startActivity(intent);
                             }
                         }
                     });

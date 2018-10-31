@@ -148,6 +148,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                             Intent intent = new Intent(mContext, AddCarActivity.class);
                             startActivity(intent);
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -223,6 +226,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 //                        mList.setAdapter(new MyAdapter(data));
                         d.show();
                     } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     }
                 }
             }

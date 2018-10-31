@@ -2,6 +2,7 @@ package com.littleant.carrepair.activies.annualcheck;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.Constraints;
@@ -183,6 +184,9 @@ public class AnnualCheckDetailActivity extends BaseActivity {
                     if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         mOptionText.setVisibility(View.GONE);
                         setResult(RESULT_OK);
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -206,6 +210,9 @@ public class AnnualCheckDetailActivity extends BaseActivity {
                         BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                         if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                             finishActivityForOk();
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                            startActivity(intent);
                         } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                             MHToast.showS(mContext, responseBean.getMsg());
                         }
@@ -226,6 +233,9 @@ public class AnnualCheckDetailActivity extends BaseActivity {
                         BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                         if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                             finishActivityForOk();
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                            startActivity(intent);
                         } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                             MHToast.showS(mContext, responseBean.getMsg());
                         }

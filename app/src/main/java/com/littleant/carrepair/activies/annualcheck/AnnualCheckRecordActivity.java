@@ -83,8 +83,9 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                             dataFinish = surveyListBean.getData();
                             setListItem(dataFinish);
                         }
-
-
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

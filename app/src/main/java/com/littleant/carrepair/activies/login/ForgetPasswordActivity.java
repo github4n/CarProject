@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
@@ -92,6 +93,9 @@ public class ForgetPasswordActivity extends BaseActivity {
                                 if(ParamsConstant.REAPONSE_CODE_SUCCESS != responseBean.getCode()) {
 //                                if(!ParamsConstant.REAPONSE_CODE_SUCCESS.equals(responseBean.getCode())) {
                                     MHToast.showS(mContext, R.string.get_auth_code_fail);
+                                } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                                    Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                                    startActivity(intent);
                                 }
                             }
                         } else {
@@ -149,6 +153,9 @@ public class ForgetPasswordActivity extends BaseActivity {
                                 DataHelper.savePassword(mContext, password);
                                 ForgetPasswordActivity.this.setResult(ParamsConstant.REAPONSE_CODE_SUCCESS);
                                 ForgetPasswordActivity.this.finish();
+                            } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                                Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                                startActivity(intent);
                             }
                         } else {
                             MHToast.showS(mContext, R.string.request_fail);

@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.annualcheck;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.constraint.Constraints;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -78,6 +79,9 @@ public abstract class BaseFlowActivity extends BaseActivity {
                     if (responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                         knowUrl = responseBean.getData().getUrl();
                         showKnowDialog();
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if (responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

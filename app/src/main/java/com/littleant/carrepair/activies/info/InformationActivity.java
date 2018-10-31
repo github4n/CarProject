@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.info;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -125,6 +126,9 @@ public class InformationActivity extends BaseActivity {
                             setTitleCatalog();
                             requestBannerInfo(infoList.get(0).getId());
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -159,6 +163,9 @@ public class InformationActivity extends BaseActivity {
                         bannerList1 = listBean.getData();
                         setBanner(bannerList1);
                         requestNewsInfo(catalogId);
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }
@@ -183,6 +190,9 @@ public class InformationActivity extends BaseActivity {
                         NewsInfoListBean listBean = ProjectUtil.getBaseResponseBean(command.getResponse(), NewsInfoListBean.class);
                         newsList1 = listBean.getData();
                         setListItem(newsList1);
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
                         MHToast.showS(mContext, responseBean.getMsg());
                     }

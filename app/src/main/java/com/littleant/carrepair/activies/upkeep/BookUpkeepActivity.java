@@ -93,6 +93,9 @@ public class BookUpkeepActivity extends BaseActivity {
                         if (oilList != null) {
                             setListItem(oilList);
                         }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     }
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);

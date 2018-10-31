@@ -56,6 +56,9 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                     if(surveyFeeBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == surveyFeeBean.getCode()) {
                         price = surveyFeeBean.getData().getTotal_price() + "";
                         aocf_et_fee_total.setText("￥" + price);
+                    } else if(surveyFeeBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == surveyFeeBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
                     } else if(surveyFeeBean != null && !TextUtils.isEmpty(surveyFeeBean.getMsg())) {
                         MHToast.showS(mContext, surveyFeeBean.getMsg());
                     }
