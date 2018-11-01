@@ -59,6 +59,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:maxLines="1"
+        android:textSize="13sp"
         android:textColor="@color/color_uc_text"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline"
         app:layout_constraintTop_toTopOf="@id/lsi_iv_itemImg" />
@@ -75,8 +76,7 @@
         android:gravity="end"
         android:maxLines="1"
         android:textColor="@color/color_sub_line"
-        android:textSize="14sp"
-
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lsi_tv_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -131,6 +131,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:text="@string/text_search_contant"
+        android:textSize="12sp"
         android:textColor="@color/color_sub_line"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline2"
         app:layout_constraintTop_toBottomOf="@id/lsi_tv_line2" />
@@ -150,6 +151,7 @@
         android:id="@+id/lsi_iv_contact"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:textSize="12sp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintBottom_toBottomOf="@id/lsi_tv_contact"
         app:layout_constraintEnd_toStartOf="@id/lsi_guideline2"
@@ -160,13 +162,18 @@
     <!--地址-->
     <TextView
         android:id="@+id/lsi_tv_location"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
+        android:maxLines="1"
         android:textColor="@color/color_sub_line"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/lsi_iv_itemImg"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/lsi_guideline2"
         app:layout_constraintTop_toBottomOf="@+id/lsi_tv_contact" />
 

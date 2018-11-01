@@ -157,7 +157,10 @@ public class ParamsConstant {
      */
     public static final String ORDER_UPKEEP = "order_upkeep";
     public static final String ORDER_MAINTAIN = "order_maintain";
+    //代驾年检
     public static final String ORDER_ANNUAL_CHECK = "order_annual_check";
+    //自驾年检
+    public static final String ORDER_ANNUAL_CHECK_OWN = "ORDER_ANNUAL_CHECK_OWN";
     public static final String ORDER_SHOP = "order_shop";
 
     /**

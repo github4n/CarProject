@@ -154,7 +154,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activies.main.SearchActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".activies.map.MapActivity"
             android:screenOrientation="portrait" />

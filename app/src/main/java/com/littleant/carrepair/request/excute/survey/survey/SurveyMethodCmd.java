@@ -9,10 +9,12 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class SurveyMethodCmd extends BaseRequestCmd {
-    public SurveyMethodCmd(Context context, String id, ParamsConstant.SurveyMethodType method, String longitude, String latitude,
-                              int surveystation_id, int combo_id, String comboitem_list) {
+    public SurveyMethodCmd(Context context, int id, ParamsConstant.SurveyMethodType method, String longitude, String latitude,
+                              int surveystation_id, int combo_id, String comboitem_list, ParamsConstant.PayChannel payChannel) {
         super(context);
-        params.put(ParamsConstant.ID, id);
+        if(id >= 0) {
+            params.put(ParamsConstant.ID, id + "");
+        }
         params.put(ParamsConstant.METHOD, method.getDes());
         if(!TextUtils.isEmpty(latitude) && !TextUtils.isEmpty(longitude)) {
             params.put(ParamsConstant.LONGITUDE, longitude);
@@ -26,6 +28,9 @@ public class SurveyMethodCmd extends BaseRequestCmd {
         }
         if(!TextUtils.isEmpty(comboitem_list)) {
             params.put(ParamsConstant.COMBOITEM_LIST, comboitem_list);
+        }
+        if(method == ParamsConstant.SurveyMethodType.PAY && payChannel != null) {
+            params.put(ParamsConstant.ORDER_METHOD, payChannel.getDes());
         }
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());
     }

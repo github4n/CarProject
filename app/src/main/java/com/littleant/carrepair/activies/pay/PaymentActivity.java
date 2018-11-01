@@ -24,6 +24,7 @@ import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainMethodCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepMethodCmd;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyBehalfMethodCmd;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.littleant.carrepair.wxapi.WXPayEntryActivity;
@@ -88,7 +89,7 @@ public class PaymentActivity extends BaseActivity {
 //                    }
                     requestMethod(ParamsConstant.MethodStatus.ORDER_STATUS, before_pay);
                 }
-            } else if (ParamsConstant.ORDER_ANNUAL_CHECK.equals(orderType)) {
+            } else if (ParamsConstant.ORDER_ANNUAL_CHECK.equals(orderType) || ParamsConstant.ORDER_ANNUAL_CHECK_OWN.equals(orderType)) {
                 surveyInfo = (SurveyInfo) extras.getSerializable(SURVEY_INFO);
                 if (surveyInfo == null) {
                     finish();
@@ -105,8 +106,29 @@ public class PaymentActivity extends BaseActivity {
         } else if (ParamsConstant.ORDER_MAINTAIN.equals(orderType)) {
             return new MaintainMethodCmd(mContext, orderInfo.getId(), methodStatus, score, payChannel, "");
         } else if (ParamsConstant.ORDER_ANNUAL_CHECK.equals(orderType)) {
-            return new SurveyBehalfMethodCmd(mContext, surveyInfo.getId(), ParamsConstant.SurveyMethodType.ORDER_STATUS,
-                    "", "", 0, 0, "", null, 0);
+            ParamsConstant.SurveyMethodType type = null;
+            switch (methodStatus) {
+                case ORDER_STATUS:
+                    type = ParamsConstant.SurveyMethodType.ORDER_STATUS;
+                    break;
+
+                case PAY:
+                    type = ParamsConstant.SurveyMethodType.PAY;
+            }
+            return new SurveyBehalfMethodCmd(mContext, surveyInfo.getId(), type, "",
+                    "", 0, 0, "", payChannel, 0);
+        } else if (ParamsConstant.ORDER_ANNUAL_CHECK_OWN.equals(orderType)) {
+            ParamsConstant.SurveyMethodType type = null;
+            switch (methodStatus) {
+                case ORDER_STATUS:
+                    type = ParamsConstant.SurveyMethodType.ORDER_STATUS;
+                    break;
+
+                case PAY:
+                    type = ParamsConstant.SurveyMethodType.PAY;
+            }
+            return new SurveyMethodCmd(mContext, surveyInfo.getId(), type, "",
+                    "", 0, 0, "", payChannel);
         }
         return null;
     }
@@ -294,6 +316,10 @@ public class PaymentActivity extends BaseActivity {
                 if (ParamsConstant.ORDER_UPKEEP.equals(orderType)) {
                     requestMethod(ParamsConstant.MethodStatus.PAY, before_pay);
                 } else if (ParamsConstant.ORDER_MAINTAIN.equals(orderType)) {
+                    requestMethod(ParamsConstant.MethodStatus.PAY, before_pay);
+                } else if(ParamsConstant.ORDER_ANNUAL_CHECK.equals(orderType)) {
+                    requestMethod(ParamsConstant.MethodStatus.PAY, before_pay);
+                } else if(ParamsConstant.ORDER_ANNUAL_CHECK_OWN.equals(orderType)) {
                     requestMethod(ParamsConstant.MethodStatus.PAY, before_pay);
                 }
 

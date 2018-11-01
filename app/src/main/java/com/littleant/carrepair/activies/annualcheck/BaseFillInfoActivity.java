@@ -22,14 +22,17 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.car.MyCarListBean;
 import com.littleant.carrepair.request.bean.survey.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.survey.SurveyStationListBean;
+import com.littleant.carrepair.request.bean.system.user.UserMeBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.surveystation.SurveyStationQueryAllCmd;
 import com.littleant.carrepair.request.excute.user.car.CarQueryAllCmd;
+import com.littleant.carrepair.request.excute.user.user.UserMeCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -91,6 +94,7 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
                 d2.dismiss();
                 if(!showCarType && selectedStation != null) {
                     showView.setText(selectedStation.getName());
+                    requestPriceForOwn();
                 } else if(showCarType && list != null && selectedPosition != -1) {
                     showView.setText(list[selectedPosition]);
                 }
@@ -262,4 +266,36 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
     interface DefaultCarCallBack {
         void onResponse(MyCarListBean.CarInfo carInfo);
     }
+
+    protected void requestUserInfo(final MeCallBack meCallBack) {
+        UserMeCmd userMeCmd = new UserMeCmd(mContext);
+        userMeCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    Log.i("user me response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
+                        UserMeBean meBean = ProjectUtil.getBaseResponseBean(command.getResponse(), UserMeBean.class);
+                        UserMeBean.MeBean data = meBean.getData();
+                        if(meCallBack != null && data != null) {
+                            meCallBack.onResponse(data);
+                        }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
+                    } else {
+                        MHToast.showS(mContext, R.string.request_fail);
+                    }
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, userMeCmd);
+    }
+
+    interface MeCallBack {
+        void onResponse(UserMeBean.MeBean userMeBean);
+    }
+
+    protected void requestPriceForOwn() {}
 }

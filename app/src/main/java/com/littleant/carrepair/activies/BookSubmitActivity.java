@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.amap.searchdemo.SelectPlaceActivity;
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.annualcheck.BaseFillInfoActivity;
 import com.littleant.carrepair.activies.car.MyCarActivity;
 import com.littleant.carrepair.activies.upkeep.BookUpkeepActivity;
 import com.littleant.carrepair.activies.order.MyOrderActivity;
@@ -28,10 +29,12 @@ import com.littleant.carrepair.activies.repair.RepairRecordActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.bean.car.MyCarListBean;
+import com.littleant.carrepair.request.bean.system.user.UserMeBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainCreateCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepCreateCmd;
 import com.littleant.carrepair.request.excute.user.car.CarQueryAllCmd;
+import com.littleant.carrepair.request.excute.user.user.UserMeCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -119,6 +122,7 @@ public class BookSubmitActivity extends BaseActivity {
         }
 
         requestDefaultCar();
+        requestUserInfo();
     }
 
     @Override
@@ -137,19 +141,10 @@ public class BookSubmitActivity extends BaseActivity {
         abs_price = findViewById(R.id.abs_price);
 
         abs_et_contact = findViewById(R.id.abs_et_contact);
-        //光标放到最右边
-        abs_et_contact.setSelection(abs_et_contact.getText().length());
-        abs_et_phone = findViewById(R.id.abs_et_phone);
-        //光标放到最右边
-        abs_et_phone.setSelection(abs_et_phone.getText().length());
-        abs_et_contact.setText(DataHelper.getContractName(this));
-        abs_et_contact.setSelection(abs_et_contact.getText().length());
-
+        abs_et_contact.setSelection(abs_et_contact.getText().length());//光标放到最右边
 
         abs_et_phone = findViewById(R.id.abs_et_phone);
-        abs_et_phone.setText(DataHelper.getContractPhone(this));
-        abs_et_phone.setSelection(abs_et_phone.getText().length());
-
+        abs_et_phone.setSelection(abs_et_phone.getText().length());//光标放到最右边
 
         abs_btn_confrm = findViewById(R.id.abs_btn_confrm);
         abs_btn_confrm.setOnClickListener(this);
@@ -395,6 +390,33 @@ public class BookSubmitActivity extends BaseActivity {
             }
         });
         MHCommandExecute.getInstance().asynExecute(mContext, carQueryAllCmd);
+    }
+
+    protected void requestUserInfo() {
+        UserMeCmd userMeCmd = new UserMeCmd(mContext);
+        userMeCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    Log.i("user me response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
+                        UserMeBean meBean = ProjectUtil.getBaseResponseBean(command.getResponse(), UserMeBean.class);
+                        UserMeBean.MeBean data = meBean.getData();
+                        if(data != null) {
+                            abs_et_contact.setText(data.getName());
+                            abs_et_phone.setText(data.getPhone());
+                        }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
+                    } else {
+                        MHToast.showS(mContext, R.string.request_fail);
+                    }
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, userMeCmd);
     }
 
     private void setCarInfo(MyCarListBean.CarInfo carInfo) {

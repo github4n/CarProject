@@ -10,10 +10,15 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.car.MyCarListBean;
+import com.littleant.carrepair.request.bean.survey.SurveyCreateBean;
 import com.littleant.carrepair.request.bean.survey.SurveyFeeBean;
+import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.littleant.carrepair.request.bean.survey.SurveyStationInfo;
+import com.littleant.carrepair.request.bean.system.user.UserMeBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyCreateCmd;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -24,6 +29,9 @@ import com.mh.core.tools.MHToast;
 
 import java.util.List;
 
+import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;
+import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
+
 public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
     private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station, aocf_tv_date1, aocf_et_fee_total;
     private EditText aocf_et_contact_name, aocf_et_contact_phone, aocf_et_driver_name, aocf_et_driver_brand, aocf_et_driver_plate;
@@ -33,7 +41,7 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         locf_tv_fill.setChecked(true);
-        requestPrice();
+
         requestDefaultCar(new DefaultCarCallBack() {
             @Override
             public void onResponse(MyCarListBean.CarInfo carInfo) {
@@ -41,11 +49,20 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                 aocf_et_driver_plate.setText(carInfo.getCode());
             }
         });
+        requestUserInfo(new MeCallBack() {
+            @Override
+            public void onResponse(UserMeBean.MeBean userMeBean) {
+                aocf_et_contact_name.setText(userMeBean.getName());
+                aocf_et_driver_name.setText(userMeBean.getName());
+                aocf_et_contact_phone.setText(userMeBean.getPhone());
+            }
+        });
     }
 
-    private void requestPrice() {
-        SurveyMethodCmd surveyMethodCmd = new SurveyMethodCmd(mContext, "", ParamsConstant.SurveyMethodType.GET,
-                "", "", 0, -1, "");
+    @Override
+    protected void requestPriceForOwn() {
+        SurveyMethodCmd surveyMethodCmd = new SurveyMethodCmd(mContext, -1, ParamsConstant.SurveyMethodType.GET,
+                "", "", selectedStation.getId(), -1, "", null);
         surveyMethodCmd.setCallback(new MHCommandCallBack() {
             @Override
             public void cmdCallBack(MHCommand command) {
@@ -54,8 +71,7 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                     Log.i("register response", command.getResponse());
                     SurveyFeeBean surveyFeeBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SurveyFeeBean.class);
                     if(surveyFeeBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == surveyFeeBean.getCode()) {
-                        price = surveyFeeBean.getData().getTotal_price() + "";
-                        aocf_et_fee_total.setText("￥" + price);
+                        aocf_et_fee_total.setText(DataHelper.displayPrice(mContext, surveyFeeBean.getData().getTotal_price()));
                     } else if(surveyFeeBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == surveyFeeBean.getCode()) {
                         Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
                         startActivity(intent);
@@ -90,10 +106,8 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
 
         //EditText输入框
         aocf_et_contact_name = findViewById(R.id.aocf_et_contact_name);
-        aocf_et_contact_name.setText(DataHelper.getContractName(this));
 
         aocf_et_contact_phone = findViewById(R.id.aocf_et_contact_phone);
-        aocf_et_contact_phone.setText(DataHelper.getContractPhone(this));
 
         aocf_et_driver_name = findViewById(R.id.aocf_et_driver_name);
         aocf_et_driver_brand = findViewById(R.id.aocf_et_driver_brand);
@@ -128,6 +142,31 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                     MHToast.showS(mContext, R.string.need_finish_info);
                     return;
                 }
+                SurveyCreateCmd surveyCreateCmd = new SurveyCreateCmd(mContext, contactName, contactPhone, driverName, brand, plate, type, selectedStation.getId(), "",
+                        "", "", date, "true", 0, "");
+                surveyCreateCmd.setCallback(new MHCommandCallBack() {
+                    @Override
+                    public void cmdCallBack(MHCommand command) {
+                        Log.i("response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            SurveyCreateBean createBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SurveyCreateBean.class);
+                            if(createBean != null && createBean.getData() != null && createBean.getData().getId() != 0) {
+                                Intent intent = new Intent(OwnCheckFillInfoActivity.this, PaymentActivity.class);
+                                intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_ANNUAL_CHECK_OWN);
+                                SurveyInfo surveyInfo = new SurveyInfo();
+                                surveyInfo.setId(createBean.getData().getId());
+                                intent.putExtra(SURVEY_INFO, surveyInfo);
+                                OwnCheckFillInfoActivity.this.startActivity(intent);
+                            }
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                            startActivity(intent);
+                        }
+
+                    }
+                });
+                MHCommandExecute.getInstance().asynExecute(mContext, surveyCreateCmd);
                 Intent intent = new Intent(OwnCheckFillInfoActivity.this, PaymentActivity.class);
                 OwnCheckFillInfoActivity.this.startActivity(intent);
                 break;

@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -47,8 +50,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private ArrayList<GarageInfo> allData;
     private ArrayList<GarageInfo> distanceData;
     private ArrayList<GarageInfo> popularData;
+    private ArrayList<GarageInfo> searchData;
     private RadioButton as_tv_band, as_tv_near, as_tv_high;
     private RadioGroup as_radioGroup;
+    private EditText as_tv_search;
     //我的位置
     private double myLatitude, myLongitude;
     //排序
@@ -90,12 +95,14 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.as_tv_band:
+                        as_tv_search.setText("");
                         if(allData != null) {
                             setListItem(allData);
                         }
                         break;
 
                     case R.id.as_tv_near:
+                        as_tv_search.setText("");
                         orderby = ParamsConstant.OrderRule.DISTANCE;
                         if(distanceData == null || distanceData.size() < 1) {
                             requestGarageList();
@@ -105,6 +112,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         break;
 
                     case R.id.as_tv_high:
+                        as_tv_search.setText("");
                         orderby = ParamsConstant.OrderRule.POPULAR;
                         if(popularData == null || popularData.size() < 1) {
                             requestGarageList();
@@ -116,6 +124,63 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        as_tv_search = findViewById(R.id.as_tv_search);
+        as_tv_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int before, int count) {
+                //编辑框内容变化之前会调用该方法，s为编辑框内容变化之前的内容
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int count, int after) {
+                //只要编辑框内容有变化就会调用该方法，s为编辑框变化后的内容
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //编辑框内容变化之后会调用该方法，s为编辑框内容变化后的内容
+                Log.i("carproject", "搜索关键词： " + s.toString());
+                searchGarage(s.toString());
+            }
+        });
+
+    }
+
+    private void searchGarage(String s) {
+        if(TextUtils.isEmpty(s)) {
+            if(as_tv_band.isChecked()) {
+                setListItem(allData);
+            } else if(as_tv_near.isChecked()) {
+                setListItem(distanceData);
+            } else if(as_tv_high.isChecked()) {
+                setListItem(popularData);
+            }
+        } else {
+            if(as_tv_band.isChecked()) {
+                garageFliter(allData, s);
+            } else if(as_tv_near.isChecked()) {
+                garageFliter(distanceData, s);
+            } else if(as_tv_high.isChecked()) {
+                garageFliter(popularData, s);
+            }
+        }
+    }
+
+    private synchronized void garageFliter(ArrayList<GarageInfo> fliterList, String fliter) {
+        if(fliterList == null || fliterList.size() < 1) {
+            Log.i("carproject", "没有年检站，无法搜索");
+            return;
+        }
+        searchData = new ArrayList<>();
+        for (GarageInfo info : fliterList) {
+            if(info.getName().contains(fliter)) {
+                Log.i("carproject", info.getName() + "匹配上了" + fliter);
+                searchData.add(info);
+            } else {
+                Log.i("carproject", info.getName() + "没有匹配" + fliter);
+            }
+        }
+        setListItem(searchData);
     }
 
     @Override
@@ -230,7 +295,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void setListItem(ArrayList<GarageInfo> listItem) {
-        if(listItem != null && listItem.size() > 0) {
+        if(listItem != null) {
             mList.setAdapter(new MyAdapter(listItem));
         }
     }

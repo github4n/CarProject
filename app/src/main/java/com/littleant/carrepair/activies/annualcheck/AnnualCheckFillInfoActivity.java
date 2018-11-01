@@ -33,6 +33,7 @@ import com.littleant.carrepair.request.bean.survey.SurveyStationInfo;
 import com.littleant.carrepair.request.bean.survey.combo.ComboBean;
 import com.littleant.carrepair.request.bean.survey.combo.ComboItemSet;
 import com.littleant.carrepair.request.bean.survey.combo.ComboListBean;
+import com.littleant.carrepair.request.bean.system.user.UserMeBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.combo.ComboQueryAllCmd;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyBehalfMethodCmd;
@@ -90,6 +91,14 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 acf_et_driver_plate.setText(carInfo.getCode());
             }
         });
+        requestUserInfo(new MeCallBack() {
+            @Override
+            public void onResponse(UserMeBean.MeBean userMeBean) {
+                acf_et_contact_name.setText(userMeBean.getName());
+                acf_et_driver_name.setText(userMeBean.getName());
+                acf_et_contact_phone.setText(userMeBean.getPhone());
+            }
+        });
     }
 
     @Override
@@ -113,10 +122,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
         //输入框
         acf_et_contact_name = findViewById(R.id.acf_et_contact_name);
-        acf_et_contact_name.setText(DataHelper.getContractName(this));
-        acf_et_contact_name.setSelection(acf_et_contact_name.getText().length());
         acf_et_contact_phone = findViewById(R.id.acf_et_contact_phone);
-        acf_et_contact_phone.setText(DataHelper.getContractPhone(this));
         acf_et_driver_name = findViewById(R.id.acf_et_driver_name);
         acf_et_driver_brand = findViewById(R.id.acf_et_driver_brand);
         acf_et_driver_plate = findViewById(R.id.acf_et_driver_plate);
@@ -284,8 +290,8 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 //                    public SurveyCreateCmd(Context context, String name, String phone, String car_name, String car_brand, String car_code,
 //                    String car_type, int surveystation_id, String order_longitude, String order_latitude,
 //                    String order_address, String subscribe_time, String is_self, int combo_id, String comboitem_list)
-                SurveyCreateCmd surveyCreateCmd=new SurveyCreateCmd(mContext,contactName,contactPhone,driverName,brand,plate,type,surveystation_id,selectLat+"",
-                        selectLat+"",selectAddress,date,"0",combo_id,"");
+                SurveyCreateCmd surveyCreateCmd = new SurveyCreateCmd(mContext, contactName, contactPhone, driverName, brand, plate, type, selectedStation.getId(), selectLat + "",
+                        selectLat + "", selectAddress, date, "0", combo_id, "");
                 surveyCreateCmd.setCallback(new MHCommandCallBack() {
                     @Override
                     public void cmdCallBack(MHCommand command) {

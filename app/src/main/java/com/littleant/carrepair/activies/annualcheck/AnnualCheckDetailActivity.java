@@ -200,8 +200,8 @@ public class AnnualCheckDetailActivity extends BaseActivity {
 
     private void cancelOrder() {
         if (info.isIs_self()) {
-            SurveyMethodCmd surveyMethodCmd = new SurveyMethodCmd(mContext, info.getId() + "", ParamsConstant.SurveyMethodType.CANCEL,
-                    "", "", -1, -1, "");
+            SurveyMethodCmd surveyMethodCmd = new SurveyMethodCmd(mContext, info.getId(), ParamsConstant.SurveyMethodType.CANCEL,
+                    "", "", -1, -1, "", null);
             surveyMethodCmd.setCallback(new MHCommandCallBack() {
                 @Override
                 public void cmdCallBack(MHCommand command) {
