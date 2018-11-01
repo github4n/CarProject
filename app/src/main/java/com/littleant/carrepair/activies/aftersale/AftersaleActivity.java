@@ -34,6 +34,7 @@ import com.littleant.carrepair.request.bean.survey.SurveyListBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.aftersale.AftersaleAllCmd;
 import com.littleant.carrepair.request.excute.aftersale.AftersaleFinshCmd;
+import com.littleant.carrepair.request.excute.aftersale.AftersaleMaintainFinshCmd;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyQueryAllCmd;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -199,28 +200,47 @@ public class AftersaleActivity extends BaseActivity {
                     }
                 });
 
-                holder.asod_btn_finish.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AftersaleFinshCmd aftersaleFinshCmd=new AftersaleFinshCmd(mContext,aftersale.getId()+"");
-                        aftersaleFinshCmd.setCallback(new MHCommandCallBack() {
-                            @Override
-                            public void cmdCallBack(MHCommand command) {
-                                BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                                if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                                    Intent intent = new Intent(AftersaleActivity.this, AftersaleActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
-                                    Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
-                                    startActivity(intent);
-                                }
+                    holder.asod_btn_finish.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if ("upkeep_aftersales".equals(aftersale.getType())) {
+                                AftersaleFinshCmd aftersaleFinshCmd = new AftersaleFinshCmd(mContext, aftersale.getId() + "");
+                                aftersaleFinshCmd.setCallback(new MHCommandCallBack() {
+                                    @Override
+                                    public void cmdCallBack(MHCommand command) {
+                                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                                        if (responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                                            Intent intent = new Intent(AftersaleActivity.this, AftersaleActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else if (responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                                            startActivity(intent);
+                                        }
+                                    }
+                                });
+                                MHCommandExecute.getInstance().asynExecute(mContext, aftersaleFinshCmd);
+                            } else if ("maintain_aftersales".equals(aftersale.getType())) {
+                                AftersaleMaintainFinshCmd aftersaleMaintainFinshCmd = new AftersaleMaintainFinshCmd(mContext, aftersale.getId() + "");
+                                aftersaleMaintainFinshCmd.setCallback(new MHCommandCallBack() {
+                                    @Override
+                                    public void cmdCallBack(MHCommand command) {
+                                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                                        if (responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                                            Intent intent = new Intent(AftersaleActivity.this, AftersaleActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else if (responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                                            startActivity(intent);
+                                        }
+                                    }
+                                });
+                                MHCommandExecute.getInstance().asynExecute(mContext, aftersaleMaintainFinshCmd);
                             }
-                        });
-                        MHCommandExecute.getInstance().asynExecute(mContext, aftersaleFinshCmd);
+                        }
+                    });
 
-                    }
-                });
             }
         }
 

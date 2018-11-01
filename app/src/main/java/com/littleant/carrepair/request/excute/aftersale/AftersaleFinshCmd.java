@@ -27,7 +27,7 @@ public class AftersaleFinshCmd extends BaseRequestCmd {
 
     @Override
     protected String getInterfaceName() {
-        return InterfaceConstant.AFTER_SAVE_FINSH;
+        return InterfaceConstant.AFTER_SAVE_UPKEEP_FINSH;
     }
 
     @Override

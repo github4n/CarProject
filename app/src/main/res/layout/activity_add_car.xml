@@ -103,10 +103,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         app:layout_constraintDimensionRatio="16:9"
+        android:background="@drawable/car_img_add"
         app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
         app:layout_constraintStart_toStartOf="@id/aac_guideline4"
-        app:layout_constraintTop_toBottomOf="@id/add_line0"
-        app:srcCompat="@color/color_sub_line" />
+        app:layout_constraintTop_toBottomOf="@id/add_line0" />
 
     <TextView
         android:id="@+id/aac_tv_pic"
@@ -394,12 +394,12 @@
 
     <CheckBox
         android:id="@+id/aac_cb_default"
-        style="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@null"
+        android:background="@drawable/checkbox_selector"
+        android:button="@null"
         app:layout_constraintBottom_toBottomOf="@id/aac_tv_default"
         app:layout_constraintEnd_toStartOf="@id/aac_guideline2"
         app:layout_constraintTop_toTopOf="@id/aac_tv_default" />
