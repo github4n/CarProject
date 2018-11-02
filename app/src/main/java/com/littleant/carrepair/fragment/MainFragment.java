@@ -1,5 +1,6 @@
 package com.littleant.carrepair.fragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -7,8 +8,10 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.Constraints;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,23 +43,30 @@ import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.car.AddCarActivity;
 import com.littleant.carrepair.activies.upkeep.BookUpkeepActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
 import com.littleant.carrepair.activies.repair.RepairStationActivity;
 import com.littleant.carrepair.activies.main.SearchActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.car.MyCarListBean;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageListBean;
+import com.littleant.carrepair.request.bean.system.violation.ViolationBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.garage.GarageQueryAllCmd;
+import com.littleant.carrepair.request.excute.service.rule.RuleQueryAllCmd;
+import com.littleant.carrepair.request.excute.user.car.CarQueryAllCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
 import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -489,7 +499,11 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
     @Override
     public void onMapLoaded() {
-
+        Log.i("carproject", "onMapLoaded");
+        if(!DataHelper.getGuestLogin(getContext())) {
+            requestDefaultCar();
+            requestViolation();
+        }
     }
 
     /**
@@ -536,5 +550,107 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         if (mMapView != null) {
             mMapView.onSaveInstanceState(outState);
         }
+    }
+
+    private void requestDefaultCar() {
+        CarQueryAllCmd carQueryAllCmd = new CarQueryAllCmd(getContext(), ParamsConstant.QueryType.DEFAULT);
+        carQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        MyCarListBean carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
+                        if(carListBean == null || carListBean.getData() == null || carListBean.getData().size() < 1) {
+                            //沒有默認車，跳添加車輛頁面
+                            Intent intent = new Intent(getContext(), AddCarActivity.class);
+                            startActivity(intent);
+                        }
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(getContext());
+                        startActivity(intent);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(getContext(), responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(getContext(), R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(getContext(), carQueryAllCmd);
+    }
+
+    private void requestViolation() {
+        RuleQueryAllCmd ruleQueryAllCmd = new RuleQueryAllCmd(getContext());
+        ruleQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if(command != null) {
+                    Log.i("register response", command.getResponse());
+                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        ViolationBean violationBean = ProjectUtil.getBaseResponseBean(command.getResponse(), ViolationBean.class);
+                        final List<ViolationBean.ViolationInfo> data = violationBean.getData();
+                        if(data == null || data.size() < 1) {
+                            return;
+                        }
+                        final Dialog d = new Dialog(getContext(), R.style.MyTransparentDialog);
+                        View contentView = View.inflate(getContext(), R.layout.layout_violation, null);
+                        DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
+                        int dialogWidth = (int) (dm.widthPixels * 0.8);
+                        int dialogHeight = (int) (dm.heightPixels * 0.35);
+                        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+                        contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                d.dismiss();
+                            }
+                        });
+
+                        final TextView lv_tv_brand = contentView.findViewById(R.id.lv_tv_brand);
+                        final TextView lv_tv_code = contentView.findViewById(R.id.lv_tv_code);
+                        final TextView lv_tv_sum = contentView.findViewById(R.id.lv_tv_sum);
+                        final TextView lv_tv_score = contentView.findViewById(R.id.lv_tv_score);
+                        final TextView lv_tv_fine = contentView.findViewById(R.id.lv_tv_fine);
+                        ImageView lv_iv_pic = contentView.findViewById(R.id.lv_iv_pic);
+                        TextView lv_tv_ok = contentView.findViewById(R.id.lv_tv_ok);
+
+                        ViolationBean.ViolationInfo info = data.remove(0);
+                        Picasso.with(getContext()).load(Uri.parse(info.getCar_pic_url())).into(lv_iv_pic);
+                        lv_tv_brand.setText(info.getCar_brand());
+                        lv_tv_code.setText(info.getCar_code());
+                        lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info.getAmount() + ""));
+                        lv_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info.getScore() + ""));
+                        lv_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info.getPrice() + ""));
+                        lv_tv_ok.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if(data.size() > 0) {
+                                    ViolationBean.ViolationInfo info2 = data.remove(0);
+                                    lv_tv_brand.setText(info2.getCar_brand());
+                                    lv_tv_code.setText(info2.getCar_code());
+                                    lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info2.getAmount() + ""));
+                                    lv_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info2.getScore() + ""));
+                                    lv_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info2.getPrice() + ""));
+                                } else {
+                                    d.dismiss();
+                                }
+                            }
+                        });
+
+
+//                        RecyclerView mList = contentView.findViewById(R.id.lv_list);
+//                        mList.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+//                        mList.setAdapter(new MyAdapter(data));
+                        d.show();
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(getContext());
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(getContext(), ruleQueryAllCmd);
     }
 }

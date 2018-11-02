@@ -204,6 +204,7 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
                 }
                 if(!TextUtils.isEmpty(poiItem.getTitle())) {
                     curAddress += poiItem.getTitle();
+                    Log.i("carproject", "添加title的地址： " + curAddress);
                 }
                 intent.putExtra(SELECT_PLACE_ADDRESS, curAddress);
                 SelectPlaceActivity.this.setResult(Activity.RESULT_OK, intent);
@@ -421,7 +422,7 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
             if (result != null && result.getRegeocodeAddress() != null
                     && result.getRegeocodeAddress().getFormatAddress() != null) {
                 String address = result.getRegeocodeAddress().getProvince() + result.getRegeocodeAddress().getCity() + result.getRegeocodeAddress().getDistrict() + result.getRegeocodeAddress().getTownship();
-                firstItem = new PoiItem("regeo", searchLatlonPoint, address, address);
+                firstItem = new PoiItem("regeo", searchLatlonPoint, address, "");
                 doSearchQuery();
             }
         } else {

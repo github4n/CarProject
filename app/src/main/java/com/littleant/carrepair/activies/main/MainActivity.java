@@ -81,10 +81,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         isGuest = DataHelper.getGuestLogin(this);
 
         init();
-        if(!isGuest) {
-            requestDefaultCar();
-            requestViolation();
-        }
 
     }
 
@@ -133,107 +129,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
     }
 
-    private void requestDefaultCar() {
-        CarQueryAllCmd carQueryAllCmd = new CarQueryAllCmd(mContext, ParamsConstant.QueryType.DEFAULT);
-        carQueryAllCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if (command != null) {
-                    Log.i("response", command.getResponse());
-                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        MyCarListBean carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
-                        if(carListBean == null || carListBean.getData() == null || carListBean.getData().size() < 1) {
-                            //沒有默認車，跳添加車輛頁面
-                            Intent intent = new Intent(mContext, AddCarActivity.class);
-                            startActivity(intent);
-                        }
-                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
-                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
-                        startActivity(intent);
-                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
-                        MHToast.showS(mContext, responseBean.getMsg());
-                    }
-                } else {
-                    MHToast.showS(mContext, R.string.request_fail);
-                }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(mContext, carQueryAllCmd);
-    }
-
-    private void requestViolation() {
-        RuleQueryAllCmd ruleQueryAllCmd = new RuleQueryAllCmd(this);
-        ruleQueryAllCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if(command != null) {
-                    Log.i("register response", command.getResponse());
-                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        ViolationBean violationBean = ProjectUtil.getBaseResponseBean(command.getResponse(), ViolationBean.class);
-                        final List<ViolationBean.ViolationInfo> data = violationBean.getData();
-                        if(data == null || data.size() < 1) {
-                            return;
-                        }
-                        final Dialog d = new Dialog(mContext, R.style.MyTransparentDialog);
-                        View contentView = View.inflate(mContext, R.layout.layout_violation, null);
-                        DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
-                        int dialogWidth = (int) (dm.widthPixels * 0.8);
-                        int dialogHeight = (int) (dm.heightPixels * 0.35);
-                        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
-                        contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                d.dismiss();
-                            }
-                        });
-
-                        final TextView lv_tv_brand = contentView.findViewById(R.id.lv_tv_brand);
-                        final TextView lv_tv_code = contentView.findViewById(R.id.lv_tv_code);
-                        final TextView lv_tv_sum = contentView.findViewById(R.id.lv_tv_sum);
-                        final TextView lv_tv_score = contentView.findViewById(R.id.lv_tv_score);
-                        final TextView lv_tv_fine = contentView.findViewById(R.id.lv_tv_fine);
-                        ImageView lv_iv_pic = contentView.findViewById(R.id.lv_iv_pic);
-                        TextView lv_tv_ok = contentView.findViewById(R.id.lv_tv_ok);
-
-                        ViolationBean.ViolationInfo info = data.remove(0);
-                        Picasso.with(mContext).load(Uri.parse(info.getCar_pic_url())).into(lv_iv_pic);
-                        lv_tv_brand.setText(info.getCar_brand());
-                        lv_tv_code.setText(info.getCar_code());
-                        lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info.getAmount() + ""));
-                        lv_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info.getScore() + ""));
-                        lv_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info.getPrice() + ""));
-                        lv_tv_ok.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if(data.size() > 0) {
-                                    ViolationBean.ViolationInfo info2 = data.remove(0);
-                                    lv_tv_brand.setText(info2.getCar_brand());
-                                    lv_tv_code.setText(info2.getCar_code());
-                                    lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info2.getAmount() + ""));
-                                    lv_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info2.getScore() + ""));
-                                    lv_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info2.getPrice() + ""));
-                                } else {
-                                    d.dismiss();
-                                }
-                            }
-                        });
-
-
-//                        RecyclerView mList = contentView.findViewById(R.id.lv_list);
-//                        mList.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-//                        mList.setAdapter(new MyAdapter(data));
-                        d.show();
-                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
-                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
-                        startActivity(intent);
-                    }
-                }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(mContext, ruleQueryAllCmd);
-    }
 
     @Override
     protected void onResume() {
