@@ -276,14 +276,14 @@
             app:layout_constraintStart_toStartOf="@id/abs_cl_guideline3"
             app:layout_constraintTop_toTopOf="@id/abs_iv_location" />
 
-        <ImageView
-            android:id="@+id/abs_iv_arrow2"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/abs_iv_location"
-            app:layout_constraintEnd_toEndOf="@id/abs_line2"
-            app:layout_constraintTop_toTopOf="@id/abs_iv_location"
-            app:srcCompat="@drawable/uc_arrow" />
+        <!--<ImageView-->
+            <!--android:id="@+id/abs_iv_arrow2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/abs_iv_location"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/abs_line2"-->
+            <!--app:layout_constraintTop_toTopOf="@id/abs_iv_location"-->
+            <!--app:srcCompat="@drawable/uc_arrow" />-->
 
         <TextView
             android:id="@+id/abs_tv_location_display"
@@ -291,13 +291,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:drawableEnd="@drawable/acf_more"
+            android:drawableRight="@drawable/acf_more"
+            android:drawablePadding="4dp"
+            android:ellipsize="end"
             android:gravity="right"
+            android:maxLines="1"
             android:textColor="@color/color_sub_line"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="@id/abs_tv_location"
-            app:layout_constraintEnd_toStartOf="@id/abs_iv_arrow2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/abs_tv_location"
             app:layout_constraintTop_toTopOf="@id/abs_tv_location" />
 
@@ -308,7 +313,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/abs_iv_arrow2"
+            app:layout_constraintEnd_toEndOf="@id/abs_tv_location_display"
             app:layout_constraintStart_toStartOf="@id/abs_iv_location"
             app:layout_constraintTop_toBottomOf="@id/abs_iv_location"
             app:srcCompat="@color/color_sub_line" />

@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.annualcheck;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.view.RepairItemView;
 import com.littleant.carrepair.request.bean.survey.FailureListBean;
 import com.littleant.carrepair.request.bean.survey.ObjList;
 import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.littleant.carrepair.request.bean.survey.SurveyPicList;
+import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
@@ -21,6 +24,7 @@ import java.util.List;
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.STATE_CHECKING;
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.STATE_WAIT_CHECK;
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;
+import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
 
 /**
  * 年检没过的详情页
@@ -88,19 +92,31 @@ public class AnnualCheckFailActivity extends BaseFlowActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.acf_confirm_pay:
-                MHToast.showS(mContext, "点击支付");
+                Intent intent = new Intent(mContext, PaymentActivity.class);
+                String from;
+                if(info.isIs_self()) {
+                    from = ParamsConstant.ORDER_ANNUAL_CHECK_OWN;
+                } else {
+                    from = ParamsConstant.ORDER_ANNUAL_CHECK;
+                }
+                intent.putExtra(PAYMENT_FROM, from);
+                intent.putExtra(SURVEY_INFO ,info);
+                startActivity(intent);
                 break;
         }
     }
 
     private void showItemDetail(List<FailureListBean> failure_list) {
-        if(failure_list != null) {
+        if(failure_list != null && failure_list.size() > 0) {
             aacf_ll_detail.removeAllViews();
-            float total = 0;
-            for (FailureListBean bean : failure_list) {
-                RepairItemView repairItemView = new RepairItemView(mContext, bean.getName(), bean.getPrice());
-                aacf_ll_detail.addView(repairItemView, -1, -2);
-                total += bean.getPrice();
+            FailureListBean failureListBean = failure_list.get(0);
+            float total = failureListBean.getPrice();
+            if(failureListBean.getFailureitem_list() != null && failureListBean.getFailureitem_list().size() > 0) {
+                List<FailureListBean.FailureItemList> failureitem_list = failureListBean.getFailureitem_list();
+                for (FailureListBean.FailureItemList bean : failureitem_list) {
+                    RepairItemView repairItemView = new RepairItemView(mContext, bean.getName(), bean.getPrice());
+                    aacf_ll_detail.addView(repairItemView, -1, -2);
+                }
             }
             RepairItemView repairItemView = new RepairItemView(mContext, "费用总计：", total);
             aacf_ll_detail.addView(repairItemView, -1, -2);

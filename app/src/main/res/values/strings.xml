@@ -330,7 +330,7 @@
     <string name="input_driver_brand">请输入品牌型号</string>
     <string name="input_driver_plate">请输入号码号牌</string>
     <string name="text_car_type">车辆类型</string>
-    <string name="input_car_type">请选择车辆类型&#160;&#160;</string>
+    <string name="input_car_type">请选择车辆类型</string>
     <string name="text_pick_reservation">预约取车</string>
     <string name="text_use_type">使用性质</string>
     <string name="text_use_type_run">&#160;&#160;营运&#160;&#160;</string>
@@ -338,7 +338,7 @@
     <string name="text_pick_station">选择年检站</string>
     <string name="text_pick_location">交接车地点</string>
     <string name="text_reservation_date">预约日期</string>
-    <string name="input_pick_station">请选择年检站&#160;&#160;</string>
+    <string name="input_pick_station">请选择年检站</string>
     <string name="input_pick_location">请选择交接车地点</string>
     <string name="input_reservation_date">请选择预约日期</string>
     <string name="text_fee_base">基础费用：</string>

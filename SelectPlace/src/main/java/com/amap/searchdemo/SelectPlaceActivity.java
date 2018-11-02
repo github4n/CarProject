@@ -189,14 +189,21 @@ public class SelectPlaceActivity extends AppCompatActivity implements LocationSo
                 intent.putExtra(SELECT_PLACE_LAT, myLat);
                 intent.putExtra(SELECT_PLACE_LON, myLon);
                 PoiItem poiItem = resultData.get(searchResultAdapter.getSelectedPosition());
-                if(!TextUtils.isEmpty(poiItem.getCityName())) {
-                    curAddress += poiItem.getCityName();
-                }
-                if(!TextUtils.isEmpty(poiItem.getAdName())) {
-                    curAddress += poiItem.getAdName();
-                }
+//                if(!TextUtils.isEmpty(poiItem.getCityName())) {
+//                    curAddress += poiItem.getCityName();
+//                    Log.i("carproject", "添加cityName的地址： " + curAddress);
+//                }
+//                if(!TextUtils.isEmpty(poiItem.getAdName())) {
+//                    curAddress += poiItem.getAdName();
+//                    Log.i("carproject", "添加adName的地址： " + curAddress);
+//                }
+
                 if(!TextUtils.isEmpty(poiItem.getSnippet())) {
-                    curAddress += poiItem.getSnippet();
+                    curAddress = poiItem.getSnippet();
+                    Log.i("carproject", "添加snippet的地址： " + curAddress);
+                }
+                if(!TextUtils.isEmpty(poiItem.getTitle())) {
+                    curAddress += poiItem.getTitle();
                 }
                 intent.putExtra(SELECT_PLACE_ADDRESS, curAddress);
                 SelectPlaceActivity.this.setResult(Activity.RESULT_OK, intent);
