@@ -61,7 +61,16 @@ public class UpkeepOrderDetailBean extends BaseResponseBean {
         private String order_name = "";
         private String service_item = "";
         private String order_type = "";
+        private String project_material = "";
         private List<ObjList> upkeeppic_set;
+
+        public String getProject_material() {
+            return project_material;
+        }
+
+        public void setProject_material(String project_material) {
+            this.project_material = project_material;
+        }
 
         public int getId() {
             return id;

@@ -298,7 +298,7 @@ public class AftersaleReasonActivity extends BaseActivity {
         public void onBindViewHolder(AftersaleReasonActivity.MyAdapter.ViewHolder holder, final int position) {
             Uri picUri = picUrls.get(position);
             if(picUri != null) {
-                Picasso.with(mContext).load(picUri).into(holder.li_imageview);
+                Picasso.with(mContext).load(picUri).resize(100, 100).into(holder.li_imageview);
                 holder.li_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

@@ -41,7 +41,7 @@ public class CheckReturnCarActivity extends BaseFlowActivity {
             info = (SurveyInfo) extras.getSerializable(SURVEY_INFO);
         }
         if(info != null) {
-            Picasso.with(mContext).load(info.getDriver_user_pic_url()).into(acrc_iv_driver_icon);
+            Picasso.with(mContext).load(info.getDriver_user_pic_url()).resize(150, 150).into(acrc_iv_driver_icon);
             acrc_et_check_contact.setText(info.getDrive_user_phone());
             acrc_et_return_time.setText(info.getReturn_time());
             acrc_rating.setCountSelected(info.getDrive_user_score());

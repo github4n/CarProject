@@ -55,7 +55,7 @@ public class SettingActivity extends BaseActivity {
             picUrl = meBean.getData().getPic_url();
             setting_phone.setText(phone);
             setting_name.setText(name);
-            Picasso.with(mContext).load(picUrl).into(setting_iv_icon);
+            Picasso.with(mContext).load(picUrl).resize(80, 80).into(setting_iv_icon);
         }
     }
 
@@ -155,7 +155,7 @@ public class SettingActivity extends BaseActivity {
             try {
                 meIcon = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri_data);
 //                Picasso.with(mContext).load(uri_data).into(setting_iv_icon);
-                setting_iv_icon.setImageBitmap(meIcon);
+                Picasso.with(mContext).load(uri_data).resize(80, 80).into(setting_iv_icon);//setImageBitmap(meIcon);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -423,7 +423,7 @@ public class BookSubmitActivity extends BaseActivity {
         if(carInfo != null) {
             bm_tv_title.setText(carInfo.getCode());
             bm_tv_des.setText(carInfo.getBrand_name());
-            Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(bm_iv_icon);
+            Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).resize(100, 100).into(bm_iv_icon);
         }
     }
 

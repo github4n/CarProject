@@ -197,7 +197,7 @@ public class MyOrderActivity extends BaseActivity {
             if(orderInfo != null) {
                 holder.lmoi_product_title.setText(orderInfo.getOrder_name());
                 holder.lmoi_time.setText(orderInfo.getCreate_time());
-                Picasso.with(mContext).load(Uri.parse(orderInfo.getOrder_pic_url())).into(holder.lmoi_img);
+                Picasso.with(mContext).load(Uri.parse(orderInfo.getOrder_pic_url())).resize(100, 100).into(holder.lmoi_img);
                 String holdText = "";
                 switch (orderInfo.getState()) {
                     case 0: //等待接单，不分保养、维修统一显示

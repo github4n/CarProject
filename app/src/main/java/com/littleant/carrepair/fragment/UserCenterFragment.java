@@ -153,7 +153,7 @@ public class UserCenterFragment extends BaseFragment {
                         UserMeBean.MeBean data = meBean.getData();
                         tv_user_name.setText(data.getName());
                         tv_user_score.setText(String.format(getActivity().getResources().getString(R.string.text_user_center_score), data.getPoint() + ""));
-                        Picasso.with(getContext()).load(data.getPic_url()).into(iv_userImg);
+                        Picasso.with(getContext()).load(data.getPic_url()).resize(100, 100).into(iv_userImg);
                     } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
                         Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
                         startActivity(intent);

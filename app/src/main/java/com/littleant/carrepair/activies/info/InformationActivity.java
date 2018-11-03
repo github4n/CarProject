@@ -239,7 +239,7 @@ public class InformationActivity extends BaseActivity {
             if(newsInfoBean != null) {
                 holder.ii_tv_title.setText(newsInfoBean.getTitle());
                 holder.ii_tv_description.setText(newsInfoBean.getContent());
-                Picasso.with(mContext).load(Uri.parse(newsInfoBean.getPic_url())).into(holder.ii_iv_itemImg);
+                Picasso.with(mContext).load(Uri.parse(newsInfoBean.getPic_url())).resize(100, 100).into(holder.ii_iv_itemImg);
             }
         }
 

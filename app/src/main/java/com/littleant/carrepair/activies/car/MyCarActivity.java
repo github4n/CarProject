@@ -139,7 +139,7 @@ public class MyCarActivity extends BaseActivity {
                 holder.mc_frame.setText(carInfo.getClasssno());
 //                holder.mc_mile.setText(String.format(getResources().getString(R.string.text_my_car_miles), carInfo.getMileage() + ""));
 //                Picasso.with(mContext).load(R.drawable.mc_icon).into(holder.mc_iv_itemImg);
-                Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(holder.mc_iv_itemImg);
+                Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).resize(123, 100).into(holder.mc_iv_itemImg);
                 if(carInfo.isIs_default()) {
                     holder.mc_default.setVisibility(View.VISIBLE);
                 } else {

@@ -26,7 +26,7 @@ public class PickCarActivity extends BaseFlowActivity {
             info = (SurveyInfo) extras.getSerializable(SURVEY_INFO);
         }
         if(info != null) {
-            Picasso.with(mContext).load(info.getDriver_user_pic_url()).into(apc_iv_driver_icon);
+            Picasso.with(mContext).load(info.getDriver_user_pic_url()).resize(150, 150).into(apc_iv_driver_icon);
             apc_tv_driver_name.setText(info.getDriver_user_name());
             apc_et_check_contact.setText(info.getDrive_user_phone());
             apc_et_pick_time.setText(info.getGet_time());

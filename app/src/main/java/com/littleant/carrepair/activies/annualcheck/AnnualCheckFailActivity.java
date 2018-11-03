@@ -52,10 +52,10 @@ public class AnnualCheckFailActivity extends BaseFlowActivity {
             if(survey_fail_upload != null) {
                 List<ObjList> obj_list = survey_fail_upload.getObj_list();
                 if(obj_list != null && obj_list.size() > 0) {
-                    Picasso.with(mContext).load(Uri.parse(obj_list.get(0).getPic_url())).into(aacf_iv_pic1);
+                    Picasso.with(mContext).load(Uri.parse(obj_list.get(0).getPic_url())).resize(160, 100).into(aacf_iv_pic1);
                     aacf_tv_des1.setText(obj_list.get(0).getNote());
                     if(obj_list.size() > 1) {
-                        Picasso.with(mContext).load(Uri.parse(obj_list.get(1).getPic_url())).into(aacf_iv_pic2);
+                        Picasso.with(mContext).load(Uri.parse(obj_list.get(1).getPic_url())).resize(160, 100).into(aacf_iv_pic2);
                         aacf_tv_des2.setText(obj_list.get(1).getNote());
                     }
                 }

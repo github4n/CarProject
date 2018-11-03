@@ -32,7 +32,7 @@ public class StartCheckActivity extends BaseFlowActivity {
             info = (SurveyInfo) extras.getSerializable(SURVEY_INFO);
         }
         if(info != null) {
-            Picasso.with(mContext).load(info.getDriver_user_pic_url()).into(asc_iv_driver_icon);
+            Picasso.with(mContext).load(info.getDriver_user_pic_url()).resize(150, 150).into(asc_iv_driver_icon);
             asc_et_check_time.setText(info.getArrive_survey_time());
             asc_et_check_contact.setText(info.getDrive_user_phone());
             String stateText = "";

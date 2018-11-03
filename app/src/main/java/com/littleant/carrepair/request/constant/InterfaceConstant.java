@@ -132,6 +132,10 @@ public class InterfaceConstant {
      */
     public static final String MAINTAIN_UPKEEP = "api/maintain/upkeep/";
     /**
+     * get:删除保养订单信息
+     */
+    public static final String MAINTAIN_UPKEEP_DELETE = "api/maintain/upkeep_delete/";
+    /**
      * post:付款、评论保养订单信息<br>
      */
     public static final String MAINTAIN_UPKEEP_METHOD = "api/maintain/upkeep_method/";

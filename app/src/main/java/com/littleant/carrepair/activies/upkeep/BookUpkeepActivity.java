@@ -233,7 +233,7 @@ public class BookUpkeepActivity extends BaseActivity {
                     holder.lmi_item_name.setText(oilInfo.getName());
                     holder.lmi_amount.setText(1 + "");
                     holder.lmi_tv_new_price.setText(DataHelper.displayPrice(mContext, oilInfo.getNew_price()));
-                    Picasso.with(mContext).load(Uri.parse(oilInfo.getPic_url())).into(holder.lmi_iv_itemImg);
+                    Picasso.with(mContext).load(Uri.parse(oilInfo.getPic_url())).resize(100, 100).into(holder.lmi_iv_itemImg);
                     final GlobalValue globalValue = new GlobalValue();
                     holder.lmi_select.setOnClickListener(new View.OnClickListener() {
                         @Override

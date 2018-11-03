@@ -28,7 +28,7 @@ public class AfterSalePicView extends LinearLayout {
         nameTv.setText(objList.getNote());
 
         ImageView picIv = view.findViewById(R.id.lodp_iv_pic);
-        Picasso.with(mContext).load(Uri.parse(objList.getPic_url())).into(picIv);
+        Picasso.with(mContext).load(Uri.parse(objList.getPic_url())).resize(100, 100).into(picIv);
 
         this.addView(view, -1, LayoutParams.WRAP_CONTENT);
     }

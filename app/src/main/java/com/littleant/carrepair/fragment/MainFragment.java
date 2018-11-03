@@ -617,7 +617,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                         TextView lv_tv_ok = contentView.findViewById(R.id.lv_tv_ok);
 
                         ViolationBean.ViolationInfo info = data.remove(0);
-                        Picasso.with(getContext()).load(Uri.parse(info.getCar_pic_url())).into(lv_iv_pic);
+                        Picasso.with(getContext()).load(Uri.parse(info.getCar_pic_url())).resize(115, 80).into(lv_iv_pic);
                         lv_tv_brand.setText(info.getCar_brand());
                         lv_tv_code.setText(info.getCar_code());
                         lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info.getAmount() + ""));

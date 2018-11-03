@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -28,7 +29,9 @@ import com.mh.core.cipher.MHCipher;
 import com.mh.core.db.MHDatabase;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class DataHelper {
@@ -88,7 +91,7 @@ public class DataHelper {
 
     //打电话
     public static void callPhone(Activity activity, String phoneNum) {
-        if(TextUtils.isEmpty(phoneNum)) {
+        if (TextUtils.isEmpty(phoneNum)) {
             return;
         }
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNum));
@@ -116,19 +119,48 @@ public class DataHelper {
     }
 
     public static Bitmap[] parseUriList2BitmapArray(Context context, List<Uri> uris) {
-        if(uris == null || uris.size() < 1) {
+        if (uris == null || uris.size() < 1) {
             return null;
         }
         int size = uris.size();
         Bitmap[] bitmaps = new Bitmap[size];
         for (int i = 0; i < size; i++) {
             try {
-                bitmaps[i] = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uris.get(i));
+                bitmaps[i] = getThumbnail(context, uris.get(i), 500);
+//                bitmaps[i] = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uris.get(i));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         return bitmaps;
+    }
+
+    private static Bitmap getThumbnail(Context context, Uri uri,int size) throws FileNotFoundException, IOException{
+        InputStream input = context.getContentResolver().openInputStream(uri);
+        BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
+        onlyBoundsOptions.inJustDecodeBounds = true;
+        onlyBoundsOptions.inDither=true;//optional
+        onlyBoundsOptions.inPreferredConfig=Bitmap.Config.ARGB_8888;//optional
+        BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+        input.close();
+        if ((onlyBoundsOptions.outWidth == -1) || (onlyBoundsOptions.outHeight == -1)) {
+            return null;
+        }
+        int originalSize = (onlyBoundsOptions.outHeight > onlyBoundsOptions.outWidth) ? onlyBoundsOptions.outHeight : onlyBoundsOptions.outWidth;
+        double ratio = (originalSize > size) ? (originalSize / size) : 1.0;
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inSampleSize = getPowerOfTwoForSampleRatio(ratio);
+        bitmapOptions.inDither=true;//optional
+        bitmapOptions.inPreferredConfig=Bitmap.Config.ARGB_8888;//optional
+        input = context.getContentResolver().openInputStream(uri);
+        Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
+        input.close();
+        return bitmap;
+    }
+    private static int getPowerOfTwoForSampleRatio(double ratio){
+        int k = Integer.highestOneBit((int)Math.floor(ratio));
+        if(k==0) return 1;
+        else return k;
     }
 
     public interface PickDateListener {
@@ -151,7 +183,7 @@ public class DataHelper {
                     @Override
                     public void onSelectTime(int hourOfDay, int minute) {
                         String time = DataHelper.parseTime(hourOfDay, minute);
-                        if(listener != null) {
+                        if (listener != null) {
                             listener.onDatePick(date + " " + time);
                         }
                     }
@@ -173,7 +205,7 @@ public class DataHelper {
                 Log.i("aac_tv_time", "day -- " + day);
                 //格式示例2018-03-20
                 String date = DataHelper.parseDate(year, month, day);
-                if(listener != null) {
+                if (listener != null) {
                     listener.onDatePick(date);
                 }
             }
@@ -186,10 +218,10 @@ public class DataHelper {
     }
 
     public static float getDisplayPrice(Context context, String display) {
-        if(TextUtils.isEmpty(display)) {
+        if (TextUtils.isEmpty(display)) {
             return 0;
         }
-        if(display.startsWith("￥")) {
+        if (display.startsWith("￥")) {
             return Float.parseFloat(display.split("￥")[1]);
         }
         return Float.parseFloat(display);
@@ -225,6 +257,7 @@ public class DataHelper {
 
     //游客登录
     private static final String GUEST_LOGIN = "GUEST_LOGIN";
+
     public static void saveGuestLogin(Context context, boolean isGuest) {
         MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, GUEST_LOGIN, isGuest);
     }
@@ -236,6 +269,7 @@ public class DataHelper {
     //记录我的当前位置
     private static final String MY_LOCATION_LAT = "MY_LOCATION_LAT";
     private static final String MY_LOCATION_LON = "MY_LOCATION_LON";
+
     public static void saveMyLocation(Context context, double lat, double lon) {
         MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, MY_LOCATION_LAT, lat);
         MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, MY_LOCATION_LON, lon);

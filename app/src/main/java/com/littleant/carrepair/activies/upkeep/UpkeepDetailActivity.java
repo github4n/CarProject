@@ -137,7 +137,7 @@ public class UpkeepDetailActivity extends BaseActivity {
         lod_code.setText(data.getCar_code());
         lod_type.setText(data.getCar_brand());
         lod_item.setText(data.getService_item());
-        lod_material.setText(data.getOil_name());
+        lod_material.setText(data.getProject_material());
         lod_exid.setText(data.getDeal_id());
         lod_oid.setText(data.getOrder_id());
         lod_price.setText(DataHelper.displayPrice(mContext, data.getNow_price()));

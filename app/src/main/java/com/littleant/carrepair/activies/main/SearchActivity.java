@@ -252,7 +252,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 //                holder.lsi_tv_like.setText(garageInfo.getPopular() + "");
                 holder.lsi_contact.setText(garageInfo.getUser_name() + " | " + garageInfo.getPhone());
                 holder.lsi_tv_location.setText(garageInfo.getAddress());
-                Picasso.with(mContext).load(Uri.parse(garageInfo.getPic_url())).into(holder.lsi_iv_itemImg);
+                Picasso.with(mContext).load(Uri.parse(garageInfo.getPic_url())).resize(100, 100).into(holder.lsi_iv_itemImg);
                 holder.itemView.setTag(position);
                 holder.lsi_ratingBar.setCountSelected(garageInfo.getScore());
             }

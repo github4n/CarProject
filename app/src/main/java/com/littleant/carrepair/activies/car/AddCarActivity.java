@@ -131,7 +131,7 @@ public class AddCarActivity extends BaseActivity {
             carInfo = (MyCarListBean.CarInfo) extras.getSerializable(CAR_INFO);
         }
         if(carInfo != null) {
-            Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).into(aac_iv_pic);
+            Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).resize(160, 90).into(aac_iv_pic);
 
             aac_et_engine.setText(carInfo.getEngine());
             aac_et_plate.setText(carInfo.getCode());
