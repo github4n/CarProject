@@ -148,7 +148,7 @@ public class AftersaleActivity extends BaseActivity {
         });
         MHCommandExecute.getInstance().asynExecute(mContext, aftersaleAllCmd);
     }
-    private class MyAdapter extends RecyclerView.Adapter<AftersaleActivity.MyAdapter.ViewHolder> implements View.OnClickListener{
+    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements View.OnClickListener{
         private List<AftersaleAllBean.AftersaleBean> aftersaleBean;
         private String order_id,car_code,car_type,create_time;
         public MyAdapter(List<AftersaleAllBean.AftersaleBean> aftersaleBean) {
@@ -156,14 +156,14 @@ public class AftersaleActivity extends BaseActivity {
         }
 
         @Override
-        public AftersaleActivity.MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_aftersale_record_item, parent, false);
-            final AftersaleActivity.MyAdapter.ViewHolder viewHolder = new AftersaleActivity.MyAdapter.ViewHolder(view);
+            final ViewHolder viewHolder = new ViewHolder(view);
             return viewHolder;
         }
 
         @Override
-        public void onBindViewHolder(AftersaleActivity.MyAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(ViewHolder holder, int position) {
            final AftersaleAllBean.AftersaleBean aftersale = aftersaleBean.get(position);
             holder.itemView.setTag(position);
             if(aftersaleBean != null) {
@@ -188,7 +188,9 @@ public class AftersaleActivity extends BaseActivity {
                     public void onClick(View v) {
                         Intent intent=new Intent(AftersaleActivity.this,AfterSaleDetailActivity.class);
                         Bundle bundle=new Bundle();
+                        bundle.putString("id",aftersale.getId()+"");
                         bundle.putString("order_id",aftersale.getOrder_id());
+                        bundle.putString("type",aftersale.getType());
                         bundle.putString("car_code",aftersale.getCar_code());
                         bundle.putString("car_type",aftersale.getCar_type());
                         bundle.putString("create_time",aftersale.getCreate_time());
@@ -273,7 +275,7 @@ public class AftersaleActivity extends BaseActivity {
 
     private void setListItem(List<AftersaleAllBean.AftersaleBean> listItem) {
         if(listItem != null) {
-            mList.setAdapter(new AftersaleActivity.MyAdapter(listItem));
+            mList.setAdapter(new MyAdapter(listItem));
         }
     }
 

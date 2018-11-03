@@ -233,5 +233,13 @@ public class InterfaceConstant {
      */
     public static final String AFTER_SAVE_MAINTAIN_FINSH="api/maintain/maintain_aftersales_method/";
 
+    /**
+     * 完成维修售后订单信息
+     */
+    public static final String AFTER_SAVE_MAINTAIN_FINSH_DEATILT="api/maintain/maintain_aftersales/";
+    /**
+     * 完成保养售后订单信息
+     */
+    public static final String AFTER_SAVE_UPKEEP_FINSH_DEATILT="api/maintain/upkeep_aftersales/";
 
 }
