@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
+            android:text="00:00"
             android:textColor="@color/color_sub_line"
             app:layout_constraintStart_toEndOf="@id/ap_tv_rest_time"
             app:layout_constraintTop_toTopOf="@id/ap_tv_rest_time" />

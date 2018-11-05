@@ -229,25 +229,25 @@ public class PaymentActivity extends BaseActivity {
             }
             ap_tv_money.setText(DataHelper.displayPrice(mContext, payInfo.getPrice()));
             ap_orderid.setText(payInfo.getOrder_code());
-            int second = payInfo.getTime();
-            timer = new CountDownTimer(second * 1000, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    long mm = millisUntilFinished / 1000 / 60 % 60;
-                    long ss = millisUntilFinished / 1000 % 60;
-                    System.out.println("还剩" + mm + "分钟" + ss + "秒");
-                    String lastTime = mm + ":" + ss;
-                    ap_rest_time.setText(lastTime);
-                }
-
-                @Override
-                public void onFinish() {
-                    MHToast.showS(mContext, R.string.pay_over_time);
-                    finish();
-                    return;
-                }
-            };
-            timer.start();
+//            int second = payInfo.getTime();
+//            timer = new CountDownTimer(second * 1000, 1000) {
+//                @Override
+//                public void onTick(long millisUntilFinished) {
+//                    long mm = millisUntilFinished / 1000 / 60 % 60;
+//                    long ss = millisUntilFinished / 1000 % 60;
+//                    System.out.println("还剩" + mm + "分钟" + ss + "秒");
+//                    String lastTime = mm + ":" + ss;
+//                    ap_rest_time.setText(lastTime);
+//                }
+//
+//                @Override
+//                public void onFinish() {
+//                    MHToast.showS(mContext, R.string.pay_over_time);
+//                    finish();
+//                    return;
+//                }
+//            };
+//            timer.start();
         }
     }
 
