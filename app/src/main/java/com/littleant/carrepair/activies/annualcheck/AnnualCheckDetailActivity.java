@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,14 +18,17 @@ import android.widget.TextView;
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.login.LoginActivity;
 import com.littleant.carrepair.activies.repair.view.RepairPicView;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.login.TermUrlBean;
 import com.littleant.carrepair.request.bean.survey.ObjList;
 import com.littleant.carrepair.request.bean.survey.SurveyInfo;
 import com.littleant.carrepair.request.bean.survey.SurveyPicList;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyBehalfMethodCmd;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyUserCancelInfoCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -149,7 +153,7 @@ public class AnnualCheckDetailActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.header_option_text:
                 if(state == STATE_WAIT_GET) {
-                    cancelOrder();
+                    requestCancelInfo();
                 } else if(state == STATE_FINISH && !info.isIs_comment()) {
                     final Dialog d = new Dialog(mContext, R.style.MyTransparentDialog);
                     View contentView = View.inflate(mContext, R.layout.layout_rating, null);
@@ -170,6 +174,58 @@ public class AnnualCheckDetailActivity extends BaseActivity {
                 }
             break;
         }
+    }
+
+    private void requestCancelInfo() {
+        SurveyUserCancelInfoCmd cmd = new SurveyUserCancelInfoCmd(mContext);
+        cmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    TermUrlBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), TermUrlBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        String termUrl = responseBean.getData().getUrl();
+                        showTermDialog(termUrl);
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, cmd);
+    }
+
+    private void showTermDialog(String termUrl) {
+        final Dialog d = new Dialog(mContext, R.style.MyTransparentDialog);
+        View contentView = View.inflate(mContext, R.layout.layout_cancel_dialog, null);
+        DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
+        int dialogWidth = (int) (dm.widthPixels * 0.8);
+        int dialogHeight = (int) (dm.heightPixels * 0.4);
+        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+        d.setCanceledOnTouchOutside(false);
+        d.setCancelable(false);
+        WebView webView = contentView.findViewById(R.id.lcd_webview);
+        webView.loadUrl(termUrl);
+        contentView.findViewById(R.id.lcd_btn_think).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+            }
+        });
+        contentView.findViewById(R.id.lcd_btn_confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+                cancelOrder();
+            }
+        });
+        d.show();
     }
 
     private void rating(int score) {

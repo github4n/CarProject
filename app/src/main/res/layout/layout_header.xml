@@ -79,7 +79,6 @@
         android:layout_marginRight="16dp"
         android:gravity="right"
         android:textColor="@android:color/white"
-        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/lh_guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/lg_guideline3" />

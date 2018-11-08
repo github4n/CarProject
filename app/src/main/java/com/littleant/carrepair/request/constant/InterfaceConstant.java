@@ -194,6 +194,10 @@ public class InterfaceConstant {
      * post:年检须知
      */
     public static final String SURVEY_SURVEY_INFO = "api/survey/survey_info/";
+    /**
+     * get:用户扣费标准
+     */
+    public static final String SURVEY_SURVEY_USERCANCELINFO = "api/survey/survey_usercancelinfo/";
 
     //系统部分
     /**

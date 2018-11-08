@@ -499,4 +499,9 @@
     <string name="delete_order_think">再考虑下</string>
     <string name="delete_order_des">确认要取消订单吗？</string>
 
+    <!--扣费标准-->
+    <string name="text_cancel_info">扣费标准</string>
+    <string name="text_cancel_think">我再想想</string>
+    <string name="text_cancel_confirm">确认取消</string>
+
 </resources>
