@@ -32,6 +32,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class DataHelper {
@@ -214,7 +215,14 @@ public class DataHelper {
     }
 
     public static String displayPrice(Context context, float price) {
-        return String.format(context.getResources().getString(R.string.text_price_prefix), price + "");
+        return String.format(context.getResources().getString(R.string.text_price_prefix), transformBig(price));
+    }
+
+    private static String transformBig(float d) {
+        BigDecimal d1 = new BigDecimal(Float.toString(d));
+        BigDecimal d2 = new BigDecimal(Integer.toString(1));
+        // 四舍五入,保留2位小数
+        return d1.divide(d2,2,BigDecimal.ROUND_HALF_UP).toString();
     }
 
     public static float getDisplayPrice(Context context, String display) {

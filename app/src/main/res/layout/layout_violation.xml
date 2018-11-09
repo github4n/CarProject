@@ -33,14 +33,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <android.support.constraint.Guideline
         android:id="@+id/lv_guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <!--<android.support.constraint.Guideline-->
         <!--android:id="@+id/lv_guideline2"-->
@@ -117,25 +117,27 @@
 
     <TextView
         android:id="@+id/lv_tv_brand"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:textColor="@color/color_uc_text"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/lv_guideline7"
         app:layout_constraintStart_toEndOf="@id/lv_iv_pic"
         app:layout_constraintTop_toTopOf="@id/lv_guideline4" />
 
     <TextView
         android:id="@+id/lv_tv_code"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:textColor="@color/color_voi_code"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/lv_iv_pic"
-        app:layout_constraintBottom_toBottomOf="@id/lv_guideline5" />
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/lv_guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/lv_guideline7"
+        app:layout_constraintStart_toEndOf="@id/lv_iv_pic" />
 
     <TextView
         android:id="@+id/lv_tv_sum"
