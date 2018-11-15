@@ -1,5 +1,6 @@
 package com.littleant.carrepair.fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -100,7 +101,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     //我的位置
     private double myLatitude, myLongitude;
     //维修厂信息列表
-    private ArrayList<GarageInfo> data;
+    private static ArrayList<GarageInfo> data;
     //当前选中的维修点
     private GarageInfo selectedInfo;
     //主页维修厂View
@@ -117,7 +118,8 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
 
     private String mParam1;
     private String mParam2;
-
+    private static MyCarListBean carListBean=null;
+    private static ViolationBean violationBean=null;
     private OnFragmentInteractionListener mListener;
 
     public MainFragment() {
@@ -220,44 +222,61 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     }
 
     private void requestGarageList() {
-        GarageQueryAllCmd garageQueryAllCmd = new GarageQueryAllCmd(getContext(), "", ParamsConstant.OrderRule.ALL, myLongitude, myLatitude);
-        garageQueryAllCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if (command != null) {
-                    Log.i("response", command.getResponse());
-                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        GarageListBean garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
-                        data = (ArrayList<GarageInfo>) garageListBean.getData();
-                        if(data != null && data.size() > 0) {
-                            for(int index = 0; index < data.size(); index++) {
-                                GarageInfo info = data.get(index);
-                                LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
-                                aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + "")
-                                        .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+        if(data==null){
+            GarageQueryAllCmd garageQueryAllCmd = new GarageQueryAllCmd(getContext(), "", ParamsConstant.OrderRule.ALL, myLongitude, myLatitude);
+            garageQueryAllCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if (command != null) {
+                        Log.i("response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            GarageListBean garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
+                            data = (ArrayList<GarageInfo>) garageListBean.getData();
+                            if(data != null && data.size() > 0) {
+                                for(int index = 0; index < data.size(); index++) {
+                                    GarageInfo info = data.get(index);
+                                    LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+                                    aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + "")
+                                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                                }
+                                selectedInfo = data.get(0);
+                                lmfd_tv_title.setText(selectedInfo.getName());
+                                String distance = Math.round(selectedInfo.getDistance()) + "";
+                                String address = selectedInfo.getAddress();
+                                lmfd_tv_address.setText(String.format(getResources().getString(R.string.text_main_garage_location), distance, address));
+                                int count = Math.round(selectedInfo.getScore());
+                                lmfd_ratingBar.setCountSelected(count);
                             }
-                            selectedInfo = data.get(0);
-                            lmfd_tv_title.setText(selectedInfo.getName());
-                            String distance = Math.round(selectedInfo.getDistance()) + "";
-                            String address = selectedInfo.getAddress();
-                            lmfd_tv_address.setText(String.format(getResources().getString(R.string.text_main_garage_location), distance, address));
-                            int count = Math.round(selectedInfo.getScore());
-                            lmfd_ratingBar.setCountSelected(count);
-                        }
 
-                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
-                        Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
-                        startActivity(intent);
-                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
-                        MHToast.showS(getContext(), responseBean.getMsg());
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
+                            startActivity(intent);
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(getContext(), responseBean.getMsg());
+                        }
+                    } else {
+                        MHToast.showS(getContext(), R.string.request_fail);
                     }
-                } else {
-                    MHToast.showS(getContext(), R.string.request_fail);
                 }
+            });
+            MHCommandExecute.getInstance().asynExecute(getContext(), garageQueryAllCmd);
+        }else{
+            for(int index = 0; index < data.size(); index++) {
+                GarageInfo info = data.get(index);
+                LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+                aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + "")
+                        .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
             }
-        });
-        MHCommandExecute.getInstance().asynExecute(getContext(), garageQueryAllCmd);
+            selectedInfo = data.get(0);
+            lmfd_tv_title.setText(selectedInfo.getName());
+            String distance = Math.round(selectedInfo.getDistance()) + "";
+            String address = selectedInfo.getAddress();
+            lmfd_tv_address.setText(String.format(getResources().getString(R.string.text_main_garage_location), distance, address));
+            int count = Math.round(selectedInfo.getScore());
+            lmfd_ratingBar.setCountSelected(count);
+        }
+
     }
 
     public void onButtonPressed(Uri uri) {
@@ -553,104 +572,111 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     }
 
     private void requestDefaultCar() {
-        CarQueryAllCmd carQueryAllCmd = new CarQueryAllCmd(getContext(), ParamsConstant.QueryType.DEFAULT);
-        carQueryAllCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if (command != null) {
-                    Log.i("response", command.getResponse());
-                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        MyCarListBean carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
-                        if(carListBean == null || carListBean.getData() == null || carListBean.getData().size() < 1) {
-                            //沒有默認車，跳添加車輛頁面
-                            Intent intent = new Intent(getContext(), AddCarActivity.class);
+        if(carListBean==null){
+            CarQueryAllCmd carQueryAllCmd = new CarQueryAllCmd(getContext(), ParamsConstant.QueryType.DEFAULT);
+            carQueryAllCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if (command != null) {
+                        Log.i("response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            carListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MyCarListBean.class);
+                            if(carListBean == null || carListBean.getData() == null || carListBean.getData().size() < 1) {
+                                //沒有默認車，跳添加車輛頁面
+                                Intent intent = new Intent(getContext(), AddCarActivity.class);
+                                startActivity(intent);
+                            }
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(getContext());
                             startActivity(intent);
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(getContext(), responseBean.getMsg());
                         }
-                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
-                        Intent intent = ProjectUtil.tokenExpiredIntent(getContext());
-                        startActivity(intent);
-                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
-                        MHToast.showS(getContext(), responseBean.getMsg());
+                    } else {
+                        MHToast.showS(getContext(), R.string.request_fail);
                     }
-                } else {
-                    MHToast.showS(getContext(), R.string.request_fail);
                 }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(getContext(), carQueryAllCmd);
+            });
+            MHCommandExecute.getInstance().asynExecute(getContext(), carQueryAllCmd);
+        }
+
     }
 
     private void requestViolation() {
-        RuleQueryAllCmd ruleQueryAllCmd = new RuleQueryAllCmd(getContext());
-        ruleQueryAllCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if(command != null) {
-                    Log.i("register response", command.getResponse());
-                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        ViolationBean violationBean = ProjectUtil.getBaseResponseBean(command.getResponse(), ViolationBean.class);
-                        final List<ViolationBean.ViolationInfo> data = violationBean.getData();
-                        if(data == null || data.size() < 1) {
-                            return;
-                        }
-                        final Dialog d = new Dialog(getContext(), R.style.MyTransparentDialog);
-                        View contentView = View.inflate(getContext(), R.layout.layout_violation, null);
-                        DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
-                        int dialogWidth = (int) (dm.widthPixels * 0.8);
-                        int dialogHeight = (int) (dm.heightPixels * 0.35);
-                        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
-                        contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                d.dismiss();
+        if(violationBean==null){
+
+            RuleQueryAllCmd ruleQueryAllCmd = new RuleQueryAllCmd(getContext());
+            ruleQueryAllCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if(command != null) {
+                        Log.i("register response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            violationBean= ProjectUtil.getBaseResponseBean(command.getResponse(), ViolationBean.class);
+                            final List<ViolationBean.ViolationInfo> data = violationBean.getData();
+                            if(data == null || data.size() < 1) {
+                                return;
                             }
-                        });
-
-                        final TextView lv_tv_brand = contentView.findViewById(R.id.lv_tv_brand);
-                        final TextView lv_tv_code = contentView.findViewById(R.id.lv_tv_code);
-                        final TextView lv_tv_sum = contentView.findViewById(R.id.lv_tv_sum);
-                        final TextView lv_tv_score = contentView.findViewById(R.id.lv_tv_score);
-                        final TextView lv_tv_fine = contentView.findViewById(R.id.lv_tv_fine);
-                        ImageView lv_iv_pic = contentView.findViewById(R.id.lv_iv_pic);
-                        TextView lv_tv_ok = contentView.findViewById(R.id.lv_tv_ok);
-
-                        ViolationBean.ViolationInfo info = data.remove(0);
-                        Picasso.with(getContext()).load(Uri.parse(info.getCar_pic_url())).resize(115, 80).into(lv_iv_pic);
-                        lv_tv_brand.setText(info.getCar_brand());
-                        lv_tv_code.setText(info.getCar_code());
-                        lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info.getAmount() + ""));
-                        lv_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info.getScore() + ""));
-                        lv_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info.getPrice() + ""));
-                        lv_tv_ok.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if(data.size() > 0) {
-                                    ViolationBean.ViolationInfo info2 = data.remove(0);
-                                    lv_tv_brand.setText(info2.getCar_brand());
-                                    lv_tv_code.setText(info2.getCar_code());
-                                    lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info2.getAmount() + ""));
-                                    lv_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info2.getScore() + ""));
-                                    lv_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info2.getPrice() + ""));
-                                } else {
+                            final Dialog d = new Dialog(getContext(), R.style.MyTransparentDialog);
+                            View contentView = View.inflate(getContext(), R.layout.layout_violation, null);
+                            DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
+                            int dialogWidth = (int) (dm.widthPixels * 0.8);
+                            int dialogHeight = (int) (dm.heightPixels * 0.35);
+                            d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+                            contentView.findViewById(R.id.lv_close).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
                                     d.dismiss();
                                 }
-                            }
-                        });
+                            });
+
+                            final TextView lv_tv_brand = contentView.findViewById(R.id.lv_tv_brand);
+                            final TextView lv_tv_code = contentView.findViewById(R.id.lv_tv_code);
+                            final TextView lv_tv_sum = contentView.findViewById(R.id.lv_tv_sum);
+                            final TextView lv_tv_score = contentView.findViewById(R.id.lv_tv_score);
+                            final TextView lv_tv_fine = contentView.findViewById(R.id.lv_tv_fine);
+                            ImageView lv_iv_pic = contentView.findViewById(R.id.lv_iv_pic);
+                            TextView lv_tv_ok = contentView.findViewById(R.id.lv_tv_ok);
+
+                            ViolationBean.ViolationInfo info = data.remove(0);
+                            Picasso.with(getContext()).load(Uri.parse(info.getCar_pic_url())).resize(115, 80).into(lv_iv_pic);
+                            lv_tv_brand.setText(info.getCar_brand());
+                            lv_tv_code.setText(info.getCar_code());
+                            lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info.getAmount() + ""));
+                            lv_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info.getScore() + ""));
+                            lv_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info.getPrice() + ""));
+                            lv_tv_ok.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    if(data.size() > 0) {
+                                        ViolationBean.ViolationInfo info2 = data.remove(0);
+                                        lv_tv_brand.setText(info2.getCar_brand());
+                                        lv_tv_code.setText(info2.getCar_code());
+                                        lv_tv_sum.setText(String.format(getResources().getString(R.string.text_violation_sum), info2.getAmount() + ""));
+                                        lv_tv_score.setText(String.format(getResources().getString(R.string.text_violation_score), info2.getScore() + ""));
+                                        lv_tv_fine.setText(String.format(getResources().getString(R.string.text_violation_fine), info2.getPrice() + ""));
+                                    } else {
+                                        d.dismiss();
+                                    }
+                                }
+                            });
 
 
 //                        RecyclerView mList = contentView.findViewById(R.id.lv_list);
 //                        mList.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
 //                        mList.setAdapter(new MyAdapter(data));
-                        d.show();
-                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
-                        Intent intent = ProjectUtil.tokenExpiredIntent(getContext());
-                        startActivity(intent);
+                            d.show();
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(getContext());
+                            startActivity(intent);
+                        }
                     }
                 }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(getContext(), ruleQueryAllCmd);
+            });
+            MHCommandExecute.getInstance().asynExecute(getContext(), ruleQueryAllCmd);
+        }
+
     }
 }

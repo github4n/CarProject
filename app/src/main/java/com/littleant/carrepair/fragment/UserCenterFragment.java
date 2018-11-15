@@ -42,7 +42,7 @@ public class UserCenterFragment extends BaseFragment {
     private ImageView iv_all_order, iv_wait_pay, iv_wait_service, iv_wait_rate;
     private TextView tv_user_name, tv_user_score;
     private CircleImageView iv_userImg;
-    private UserMeBean meBean;
+    private static UserMeBean meBean;
 
     private static final int REQUEST_CODE_SETTING = 100;
 
@@ -141,29 +141,37 @@ public class UserCenterFragment extends BaseFragment {
     }
 
     private void requestUserInfo() {
-        UserMeCmd userMeCmd = new UserMeCmd(getActivity());
-        userMeCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if(command != null) {
-                    Log.i("user me response", command.getResponse());
-                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-                    if(responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
-                        meBean = ProjectUtil.getBaseResponseBean(command.getResponse(), UserMeBean.class);
-                        UserMeBean.MeBean data = meBean.getData();
-                        tv_user_name.setText(data.getName());
-                        tv_user_score.setText(String.format(getActivity().getResources().getString(R.string.text_user_center_score), data.getPoint() + ""));
-                        Picasso.with(getContext()).load(data.getPic_url()).resize(100, 100).into(iv_userImg);
-                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
-                        Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
-                        startActivity(intent);
-                    } else {
-                        MHToast.showS(getContext(), R.string.request_fail);
+        if(meBean==null){
+            UserMeCmd userMeCmd = new UserMeCmd(getActivity());
+            userMeCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if(command != null) {
+                        Log.i("user me response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
+                            meBean = ProjectUtil.getBaseResponseBean(command.getResponse(), UserMeBean.class);
+                            UserMeBean.MeBean data = meBean.getData();
+                            tv_user_name.setText(data.getName());
+                            tv_user_score.setText(String.format(getActivity().getResources().getString(R.string.text_user_center_score), data.getPoint() + ""));
+                            Picasso.with(getContext()).load(data.getPic_url()).resize(100, 100).into(iv_userImg);
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
+                            startActivity(intent);
+                        } else {
+                            MHToast.showS(getContext(), R.string.request_fail);
+                        }
                     }
                 }
-            }
-        });
-        MHCommandExecute.getInstance().asynExecute(getContext(), userMeCmd);
+            });
+            MHCommandExecute.getInstance().asynExecute(getContext(), userMeCmd);
+        }else {
+            UserMeBean.MeBean data = meBean.getData();
+            tv_user_name.setText(data.getName());
+            tv_user_score.setText(String.format(getActivity().getResources().getString(R.string.text_user_center_score), data.getPoint() + ""));
+            Picasso.with(getContext()).load(data.getPic_url()).resize(100, 100).into(iv_userImg);
+        }
+
     }
 
     @Override

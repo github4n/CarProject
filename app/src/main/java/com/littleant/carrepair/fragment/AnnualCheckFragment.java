@@ -42,7 +42,7 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
     private List<String> picList;
     private Banner ac_banner;
     private ImageView ac_picture;
-
+    private static PictureListBean.PictureBean pictureBean;
     public AnnualCheckFragment() {
         // Required empty public constructor
     }
@@ -96,38 +96,51 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void requestImage() {
-        SurveyImgCmd surveyImgCmd = new SurveyImgCmd(getContext());
-        surveyImgCmd.setCallback(new MHCommandCallBack() {
-            @Override
-            public void cmdCallBack(MHCommand command) {
-                if (command != null) {
-                    Log.i("response", command.getResponse());
-                    PictureListBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), PictureListBean.class);
-                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                        PictureListBean.PictureBean pictureBean = responseBean.getData();
-                        if(pictureBean != null) {
-                            picUrl = pictureBean.getPic_url();
-                            picList = pictureBean.getPic_url_list();
-                            if(!TextUtils.isEmpty(picUrl)) {
-                                Picasso.with(getContext()).load(Uri.parse(picUrl)).into(ac_picture);
+        if(pictureBean==null){
+            SurveyImgCmd surveyImgCmd = new SurveyImgCmd(getContext());
+            surveyImgCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if (command != null) {
+                        Log.i("response", command.getResponse());
+                        PictureListBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), PictureListBean.class);
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            pictureBean = responseBean.getData();
+                            if(pictureBean != null) {
+                                picUrl = pictureBean.getPic_url();
+                                picList = pictureBean.getPic_url_list();
+                                if(!TextUtils.isEmpty(picUrl)) {
+                                    Picasso.with(getContext()).load(Uri.parse(picUrl)).into(ac_picture);
+                                }
+                                if(picList != null) {
+                                    ac_banner.setImages(picList);
+                                    ac_banner.start();
+                                }
                             }
-                            if(picList != null) {
-                                ac_banner.setImages(picList);
-                                ac_banner.start();
-                            }
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
+                            startActivity(intent);
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(getContext(), responseBean.getMsg());
                         }
-                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
-                        Intent intent = ProjectUtil.tokenExpiredIntent(getActivity());
-                        startActivity(intent);
-                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
-                        MHToast.showS(getContext(), responseBean.getMsg());
+                    } else {
+                        MHToast.showS(getContext(), R.string.request_fail);
                     }
-                } else {
-                    MHToast.showS(getContext(), R.string.request_fail);
                 }
+            });
+            MHCommandExecute.getInstance().asynExecute(getContext(), surveyImgCmd);
+        }else{
+            picUrl = pictureBean.getPic_url();
+            picList = pictureBean.getPic_url_list();
+            if(!TextUtils.isEmpty(picUrl)) {
+                Picasso.with(getContext()).load(Uri.parse(picUrl)).into(ac_picture);
             }
-        });
-        MHCommandExecute.getInstance().asynExecute(getContext(), surveyImgCmd);
+            if(picList != null) {
+                ac_banner.setImages(picList);
+                ac_banner.start();
+            }
+        }
+
     }
 
     @Override
