@@ -167,8 +167,8 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                     }
                 });
                 MHCommandExecute.getInstance().asynExecute(mContext, surveyCreateCmd);
-                Intent intent = new Intent(OwnCheckFillInfoActivity.this, PaymentActivity.class);
-                OwnCheckFillInfoActivity.this.startActivity(intent);
+//                Intent intent = new Intent(OwnCheckFillInfoActivity.this, PaymentActivity.class);
+//                OwnCheckFillInfoActivity.this.startActivity(intent);
                 break;
 
             case R.id.aocf_et_car_type:
