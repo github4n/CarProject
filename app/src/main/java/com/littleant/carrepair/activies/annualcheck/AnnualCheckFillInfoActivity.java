@@ -60,6 +60,8 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
     private TextView acf_package_detail, acf_confirm_pay, acf_et_car_type, acf_et_pick_station, acf_tv_date1, acf_tv_package_detail;
     private TextView acf_et_pick_location;
     private static final int REQUEST_CODE_SELECT_PLACE = 11;//定义请求码常量
+    private static final int REQUEST_CODE_SELECT_CODE = 12;//定义请求码常量
+
     //交车坐标
     private double selectLat, selectLon;
     //交车地址
@@ -77,12 +79,14 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
     private float base_price = 200, combo_price, survey_price = 100, total_price;
     private int id,combo_id;
+    private final static String FLAG="AnnualCheckFillInfo";
+    public static Activity mBActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lacf_tv_fill.setChecked(true);
-
+        mBActivity=this;
         requestCombo();
         requestDefaultCar(new DefaultCarCallBack() {
             @Override
@@ -194,8 +198,8 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                     return;
                 }
                 if(b) {
-                    acf_package_detail.setText(comboList.get(0).getDetail());
-                    combo_id = comboList.get(0).getId();
+                    acf_package_detail.setText(comboList.get(1).getDetail());
+                    combo_id = comboList.get(1).getId();
                     requestPrice();
                 }
             }
@@ -213,8 +217,8 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 }
                 if(b) {
                     if(comboList.size() > 1) {
-                        acf_package_detail.setText(comboList.get(1).getDetail());
-                        combo_id = comboList.get(1).getId();
+                        acf_package_detail.setText(comboList.get(0).getDetail());
+                        combo_id = comboList.get(0).getId();
                         requestPrice();
                     }
                 }
@@ -302,10 +306,12 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                             if(createBean != null && createBean.getData() != null) {
                                 Intent intent = new Intent(AnnualCheckFillInfoActivity.this, PaymentActivity.class);
                                 intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_ANNUAL_CHECK);
+                                intent.putExtra("FLAG", FLAG);
+
                                 SurveyInfo surveyInfo = new SurveyInfo();
                                 surveyInfo.setId(createBean.getData().getId());
                                 intent.putExtra(SURVEY_INFO, surveyInfo);
-                                AnnualCheckFillInfoActivity.this.startActivity(intent);
+                                AnnualCheckFillInfoActivity.this.startActivityForResult(intent,REQUEST_CODE_SELECT_CODE);
                             }
                         } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
                             Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
@@ -364,7 +370,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_SELECT_PLACE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE_SELECT_PLACE && resultCode == Activity.RESULT_OK) {
             Bundle extras = data.getExtras();
             if (extras != null) {
                 selectAddress = extras.getString(SelectPlaceActivity.SELECT_PLACE_ADDRESS, "");
@@ -372,6 +378,9 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
                 selectLon = extras.getDouble(SelectPlaceActivity.SELECT_PLACE_LON);
                 acf_et_pick_location.setText(selectAddress);
             }
+        }
+        if (requestCode == REQUEST_CODE_SELECT_CODE && resultCode == Activity.RESULT_OK) {
+            finish();
         }
     }
 
@@ -405,10 +414,10 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 
     private void showCombo(List<ComboBean> combos) {
         if(combos != null && combos.size() > 0) {
-            acf_btn_package_a.setText(combos.get(0).getName());
-            acf_package_detail.setText(combos.get(0).getDetail());
+            acf_btn_package_a.setText(combos.get(1).getName());
+            acf_package_detail.setText(combos.get(1).getDetail());
             if(combos.size() > 1) {
-                acf_btn_package_b.setText(combos.get(1).getName());
+                acf_btn_package_b.setText(combos.get(0).getName());
             }
         }
 //        for(ComboBean comboBean : combos) {

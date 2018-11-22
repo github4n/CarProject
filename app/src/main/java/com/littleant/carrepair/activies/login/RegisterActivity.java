@@ -103,7 +103,7 @@ public class RegisterActivity extends BaseActivity {
         authCode = ar_et_auth.getText().toString();
         switch (v.getId()) {
             case R.id.ar_btn_save:
-                if (!ProjectUtil.checkPhone(mContext, name)) {
+                if (!ProjectUtil.checkName(mContext, name)) {
                     MHToast.showS(mContext, R.string.name_wrong);
                     return;
                 }

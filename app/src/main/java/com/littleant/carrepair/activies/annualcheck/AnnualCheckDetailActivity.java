@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.login.LoginActivity;
+import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.view.RepairPicView;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.login.TermUrlBean;
@@ -43,15 +45,21 @@ import java.util.Random;
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.STATE_FINISH;
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.STATE_WAIT_GET;
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;
+import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
 
 public class AnnualCheckDetailActivity extends BaseActivity {
     private TextView lcd_brand, lcd_tv_state, lcd_code, lcd_book_time, lcd_ok_time, lcd_car_type, lcd_check_type,
-            lcd_station, lcd_oid, aacd_price;
+            lcd_station, lcd_oid, aacd_price,asod_btn_complaint;
+    private Button r_btn_confrm;
     private SurveyInfo info;
     private int state;
 //    private TextView aacd_tv_pic_title1, aacd_tv_pic_title2;
 //    private ImageView aacd_iv_pic1, aacd_iv_pic2;
     private LinearLayout aacd_ll_pic;
+    private SurveyInfo surveyInfo;
+    private final static int PAY_ANNUALCHECK_CODE=0;
+    private String FLAG="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +79,9 @@ public class AnnualCheckDetailActivity extends BaseActivity {
         lcd_station = findViewById(R.id.lcd_station);
         lcd_oid = findViewById(R.id.lcd_oid);
         aacd_ll_pic = findViewById(R.id.aacd_ll_pic);
-
+        r_btn_confrm=findViewById(R.id.r_btn_confrm);
+        asod_btn_complaint=findViewById(R.id.asod_btn_complaint);
+        asod_btn_complaint.setOnClickListener(this);
 //        aacd_tv_pic_title1 = findViewById(R.id.aacd_tv_pic_title1);
 //        aacd_tv_pic_title2 = findViewById(R.id.aacd_tv_pic_title2);
 //        aacd_iv_pic1 = findViewById(R.id.aacd_iv_pic1);
@@ -80,13 +90,18 @@ public class AnnualCheckDetailActivity extends BaseActivity {
         aacd_price = findViewById(R.id.aacd_price);
 
         mOptionText.setOnClickListener(this);
-
+        r_btn_confrm.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             info = (SurveyInfo) extras.getSerializable(SURVEY_INFO);
+            surveyInfo = (SurveyInfo) extras.getSerializable(SURVEY_INFO);
+
         }
         if(info != null) {
             state = info.getState();
+            if(state==0){
+                r_btn_confrm.setVisibility(View.VISIBLE);
+            }
             lcd_brand.setText(info.getCar_brand());
             lcd_code.setText(info.getCar_code());
             lcd_book_time.setText(info.getSubscribe_time());
@@ -107,6 +122,16 @@ public class AnnualCheckDetailActivity extends BaseActivity {
             aacd_price.setText(DataHelper.displayPrice(mContext, info.getTotal_price()));
 
             if(state == STATE_FINISH) {
+                if(!surveyInfo.isIs_self()){
+                    asod_btn_complaint.setVisibility(View.VISIBLE);
+                    if(surveyInfo.isIs_feedback()){
+                        asod_btn_complaint.setText(R.string.text_users_complaint);
+                        asod_btn_complaint.setEnabled(false);
+                    }else{
+                        asod_btn_complaint.setText(R.string.text_users_complainting);
+
+                    }
+                }
                 SurveyPicList get_confirm = info.getSurvey_upload();
                 if(get_confirm != null) {
                     showPic(get_confirm.getObj_list());
@@ -172,7 +197,32 @@ public class AnnualCheckDetailActivity extends BaseActivity {
                     });
                     d.show();
                 }
+                break;
+            case R.id.r_btn_confrm:
+                Intent intent = null;
+                intent = new Intent(mContext, PaymentActivity.class);
+                //intent = new Intent(mContext, AnnualCheckDetailActivity.class);
+                if(surveyInfo.isIs_self()) {
+                    intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_ANNUAL_CHECK_OWN);
+                    //intent.putExtra("FLAG", "OwnCheckFillInfo");
+
+
+                }else{
+                    intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_ANNUAL_CHECK);
+                   // intent.putExtra("FLAG", "AnnualCheckFillInfo");
+
+                }
+                intent.putExtra(SURVEY_INFO, surveyInfo);
+                //AnnualCheckRecordActivity.isFlag=true;
+                startActivityForResult(intent,PAY_ANNUALCHECK_CODE);
+                finish();
             break;
+            case R.id.asod_btn_complaint:
+                Intent intent1=new Intent(AnnualCheckDetailActivity.this,AnnualComplaintActivity.class);
+                intent1.putExtra("id", surveyInfo.getId()+"");
+                startActivity(intent1);
+                finish();
+                break;
         }
     }
 
@@ -308,4 +358,13 @@ public class AnnualCheckDetailActivity extends BaseActivity {
         setResult(Activity.RESULT_OK);
         finish();
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            setResult(RESULT_OK);
+           // finish();
+        }
+    }
+
 }

@@ -1,8 +1,16 @@
 package com.littleant.carrepair.activies.annualcheck;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.constraint.Constraints;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,14 +29,25 @@ import com.amap.api.navi.INaviInfoCallback;
 import com.amap.api.navi.model.AMapNaviLocation;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.pay.PaymentActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.login.TermUrlBean;
 import com.littleant.carrepair.request.bean.survey.SurveyInfo;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyUserCancelInfoCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
+import com.mh.core.tools.MHToast;
 
 import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity.SURVEY_INFO;
 
 public class OwnStartCheckActivity extends BaseActivity implements AMap.OnMyLocationChangeListener, AMapLocationListener, INaviInfoCallback {
     private CheckBox losf_tv_fill, losf_tv_start;
-    private TextView aosc_type, aosc_location, aosc_time;
+    private TextView aosc_type, aosc_location, aosc_time,header_option_text,aose_pay;
     private ImageView aosc_iv_call, aosc_iv_navi;
     private MapView aosc_map;
     private SurveyInfo info;
@@ -62,7 +81,8 @@ public class OwnStartCheckActivity extends BaseActivity implements AMap.OnMyLoca
         aosc_type = findViewById(R.id.aosc_type);
         aosc_location = findViewById(R.id.aosc_location);
         aosc_time = findViewById(R.id.aosc_time);
-
+        header_option_text=findViewById(R.id.header_option_text);
+        header_option_text.setOnClickListener(this);
         aosc_iv_call = findViewById(R.id.aosc_iv_call);
         aosc_iv_call.setOnClickListener(this);
 
@@ -70,6 +90,9 @@ public class OwnStartCheckActivity extends BaseActivity implements AMap.OnMyLoca
         aosc_iv_navi.setOnClickListener(this);
 
         aosc_map = findViewById(R.id.aosc_map);
+        //确认到达
+        aose_pay=findViewById(R.id.aose_pay);
+        aose_pay.setOnClickListener(this);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -110,6 +133,11 @@ public class OwnStartCheckActivity extends BaseActivity implements AMap.OnMyLoca
     }
 
     @Override
+    protected int getOptionStringId() {
+        return R.string.btn_delete_order;
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (aosc_map != null) {
@@ -132,7 +160,8 @@ public class OwnStartCheckActivity extends BaseActivity implements AMap.OnMyLoca
         switch (v.getId()) {
             case R.id.aosc_iv_call:
                 // TODO: 2018/9/14 此处应该是年检站电话
-                DataHelper.callPhone(this, info.getDrive_user_phone());
+                String drive_user_phone= info.getDrive_user_phone();
+                DataHelper.callPhone(this, drive_user_phone);
                 break;
 
             case R.id.aosc_iv_navi:
@@ -140,14 +169,116 @@ public class OwnStartCheckActivity extends BaseActivity implements AMap.OnMyLoca
                 LatLng endLocation = new LatLng(info.getSurveystation().getLatitude(), info.getSurveystation().getLongitude());
                 DataHelper.prepareNavi(mContext, startLocation, endLocation, this);
                 break;
+            case R.id.header_option_text:
+                requestCancelInfo();
+//                SurveyMethodCmd surveyMethodCmd=new SurveyMethodCmd(this,info.getId(), ParamsConstant.SurveyMethodType.CANCEL,"","",0,0,"",ParamsConstant.PayChannel.ALI);
+//                surveyMethodCmd.setCallback(new MHCommandCallBack() {
+//                    @Override
+//                    public void cmdCallBack(MHCommand command) {
+//                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+//
+//                    }
+//                });
+//                MHCommandExecute.getInstance().asynExecute(mContext, surveyMethodCmd);
+
+                break;
+            case R.id.aose_pay:
+                SurveyMethodCmd surveyMethodCmd=new SurveyMethodCmd(this,info.getId(), ParamsConstant.SurveyMethodType.SURVEY,"","",0,0,"",null);
+                surveyMethodCmd.setCallback(new MHCommandCallBack() {
+                    @Override
+                    public void cmdCallBack(MHCommand command) {
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            MHToast.showS(mContext, responseBean.getMsg());
+                            finish();
+                            Intent intent = new Intent(OwnStartCheckActivity.this, AnnualCheckRecordActivity.class);
+                            OwnStartCheckActivity.this.startActivity(intent);
+                        }else{
+                            MHToast.showS(mContext, responseBean.getMsg());
+
+                        }
+                    }
+                });
+                MHCommandExecute.getInstance().asynExecute(mContext, surveyMethodCmd);
+
+                break;
         }
     }
+    private void requestCancelInfo() {
+        SurveyUserCancelInfoCmd cmd = new SurveyUserCancelInfoCmd(mContext);
+        cmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    TermUrlBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), TermUrlBean.class);
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        String termUrl = responseBean.getData().getUrl();
+                        showTermDialog(termUrl);
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, cmd);
+    }
+    private void showTermDialog(String termUrl) {
+        final Dialog d = new Dialog(mContext, R.style.MyTransparentDialog);
+        View contentView = View.inflate(mContext, R.layout.layout_cancel_dialog, null);
+        DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
+        int dialogWidth = (int) (dm.widthPixels * 0.8);
+        int dialogHeight = (int) (dm.heightPixels * 0.4);
+        d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
+        d.setCanceledOnTouchOutside(false);
+        d.setCancelable(false);
+        WebView webView = contentView.findViewById(R.id.lcd_webview);
+        webView.loadUrl(termUrl);
+        contentView.findViewById(R.id.lcd_btn_think).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+            }
+        });
+        contentView.findViewById(R.id.lcd_btn_confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+                cancelOrder();
+            }
+        });
+        d.show();
+    }
+    private void cancelOrder() {
+                        SurveyMethodCmd surveyMethodCmd=new SurveyMethodCmd(this,info.getId(), ParamsConstant.SurveyMethodType.CANCEL,"","",0,0,"",ParamsConstant.PayChannel.ALI);
+                surveyMethodCmd.setCallback(new MHCommandCallBack() {
+                    @Override
+                    public void cmdCallBack(MHCommand command) {
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            finishActivityForOk();
+                        }else {
+                            MHToast.showS(mContext, responseBean.getMsg());
 
+                        }
+
+                    }
+                });
+                MHCommandExecute.getInstance().asynExecute(mContext, surveyMethodCmd);
+    }
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
 
     }
-
+    private void finishActivityForOk() {
+        setResult(Activity.RESULT_OK);
+        finish();
+    }
     @Override
     public void onMyLocationChange(Location location) {
         if (location != null) {

@@ -201,7 +201,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-
+        AnnualComplaintActivity
+        <activity
+            android:name=".activies.annualcheck.AnnualComplaintActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activies.aftersale.AfterSaleDetailActivity"
             android:screenOrientation="portrait" />

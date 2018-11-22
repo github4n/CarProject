@@ -170,6 +170,7 @@ public class AnnualCheckFragment extends BaseFragment implements View.OnClickLis
                     public void onClick(View view) {
                         Intent intent = new Intent(getContext(), OwnCheckFillInfoActivity.class);
                         getActivity().startActivity(intent);
+
                         d.dismiss();
                     }
                 });

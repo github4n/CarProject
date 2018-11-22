@@ -39,7 +39,7 @@ import java.util.List;
 public abstract class BaseFillInfoActivity extends BaseFlowActivity {
 
     protected SurveyStationInfo selectedStation;
-    protected int selectedPosition = -1;
+    protected int selectedPosition = 0;
     protected String[] carType;
     protected List<SurveyStationInfo> stations;
     protected boolean showCarType = true;
@@ -95,7 +95,7 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
                 if(!showCarType && selectedStation != null) {
                     showView.setText(selectedStation.getName());
                     requestPriceForOwn();
-                } else if(showCarType && list != null && selectedPosition != -1) {
+                } else if(showCarType && list != null) {
                     showView.setText(list[selectedPosition]);
                 }
             }
@@ -103,8 +103,14 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
 
         ListView listView2 = contentView2.findViewById(R.id.lsd_list);
         final MyAdapter myAdapter = new MyAdapter(infos, list);
+
         listView2.setAdapter(myAdapter);
 //        listView2.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        myAdapter.setCurrentItem(0);
+        if(infos!=null){
+            selectedStation=infos.get(0);
+
+        }
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -171,6 +177,7 @@ public abstract class BaseFillInfoActivity extends BaseFlowActivity {
                 text = strings[position];
             }
             holder.mTextView.setText(text);
+
 
             if (currentItem == position) {
                 //如果被点击，设置当前TextView被选中

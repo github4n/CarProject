@@ -310,6 +310,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 //可在其中解析amapLocation获取相应内容。
                 myLatitude = location.getLatitude();
                 myLongitude = location.getLongitude();
+
                 LatLng myLatLng = new LatLng(myLatitude, myLongitude);
                 CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 17f, 0, 0));
                 aMap.moveCamera(mCameraUpdate);
@@ -320,6 +321,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
             }
             DataHelper.saveMyLocation(getContext(), myLatitude, myLongitude);
             String city = m_location.getText().toString();
+            DataHelper.saveContractCity(getContext(),city);
             if(TextUtils.isEmpty(city)) {
                 GeocodeSearch geocoderSearch = new GeocodeSearch(getContext());
                 geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {

@@ -1,8 +1,9 @@
-package com.littleant.carrepair.activies.repair;
+package com.littleant.carrepair.activies.annualcheck;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +18,17 @@ import android.widget.ImageView;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.BookSubmitActivity;
+import com.littleant.carrepair.activies.repair.RepairActivity;
+import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
+import com.littleant.carrepair.request.bean.survey.SurveyInfo;
+import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.survey.survey.ServerComplaintCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
+import com.littleant.carrepair.utils.ProjectUtil;
+import com.mh.core.task.MHCommandCallBack;
+import com.mh.core.task.MHCommandExecute;
+import com.mh.core.task.command.abstracts.MHCommand;
 import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 import com.zhihu.matisse.Matisse;
@@ -29,45 +40,186 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.littleant.carrepair.activies.BookSubmitActivity.FROM;
+import static com.littleant.carrepair.activies.repair.RepairActivity.CONTENT;
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
 
 /**
- * 维修保养
+ * 文件描述:
+ * 作者:莫进生
+ * 创建时间:2018/11/22 0022
+ * 版本号:1
  */
-public class RepairActivity extends BaseActivity {
 
+
+public class AnnualComplaintActivity extends BaseActivity{
     private Button r_btn_confrm;
     private EditText r_et_description;
     private ImageView r_btn_add_pic, r_btn_add_pic2, r_btn_add_pic3;
     private ImageView r_btn_del1, r_btn_del2, r_btn_del3;
-//    private RecyclerView r_pic_list;
+    //    private RecyclerView r_pic_list;
     private static final int REQUEST_CODE_CHOOSE1 = 100;//定义请求码常量
     private static final int REQUEST_CODE_CHOOSE2 = 101;//定义请求码常量
     private static final int REQUEST_CODE_CHOOSE3 = 102;//定义请求码常量
     private static final int REQUEST_CODE_SELECT_PLACE = 11;//定义请求码常量
     private Uri[] mSelected = new Uri[3];
-//    private List<Uri> mSelected = new ArrayList<>(3);
+    //    private List<Uri> mSelected = new ArrayList<>(3);
     private double selectLat, selectLon;
     private String selectAddress;
-    private GarageInfo garageInfo;
-//    private MyAdapter myAdapter;
+    private SurveyInfo surveyInfo;
+    //    private MyAdapter myAdapter;
+    public static final String ID = "id";
+
     public static final String CONTENT = "content";
     public static final String PIC_LIST = "pic_list";
     public static Activity repairActivity;
-
+    private String id,content;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        repairActivity=this;
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            garageInfo = (GarageInfo) extras.getSerializable(GARAGE_INFO);
-        }
-        if(garageInfo == null) {
-            this.finish();
-        }
+    protected int getLayoutId() {
+        return R.layout.activity_complaint;
     }
 
+    @Override
+    protected int getTitleId() {
+        return R.string.text_users_complainting;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.r_btn_confrm:
+                String content = r_et_description.getText().toString();
+                if(TextUtils.isEmpty(content)) {
+                    MHToast.showS(mContext, R.string.need_finish_info);
+                    return;
+                }
+                ArrayList<Uri> picList = new ArrayList<>();
+                for (Uri uri : mSelected) {
+                    if(uri != null) {
+                        picList.add(uri);
+                    }
+                }
+                Bitmap[] pics = DataHelper.parseUriList2BitmapArray(this, picList);
+
+                ServerComplaintCmd serverComplaintCmd=new ServerComplaintCmd(this,id,content,pics);
+                serverComplaintCmd.setCallback(new MHCommandCallBack() {
+                    @Override
+                    public void cmdCallBack(MHCommand command) {
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            MHToast.showS(mContext, responseBean.getMsg());
+                            finish();
+
+                        }
+                    }
+                });
+                MHCommandExecute.getInstance().asynExecute(mContext, serverComplaintCmd);
+
+//                Intent intent = new Intent(mContext, BookSubmitActivity.class);
+//                intent.putExtra(GARAGE_INFO, garageInfo);
+//                intent.putExtra(CONTENT, content);
+//                if(picList.size() > 0) {
+//                    intent.putExtra(PIC_LIST, picList);
+//                }
+//                intent.putExtra(FROM, RepairActivity.class.getSimpleName());
+//
+//                startActivity(intent);
+                break;
+
+
+
+            case R.id.r_btn_add_pic:
+                Matisse.from(AnnualComplaintActivity.this)
+                        .choose(MimeType.ofImage())
+                        .countable(true)
+                        .maxSelectable(1)
+                        .capture(true) //是否提供拍照功能
+                        .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                        .thumbnailScale(0.85f)
+                        .imageEngine(new PicassoEngine())
+                        .forResult(REQUEST_CODE_CHOOSE1);
+                break;
+
+            case R.id.r_btn_add_pic2:
+                Matisse.from(AnnualComplaintActivity.this)
+                        .choose(MimeType.ofImage())
+                        .countable(true)
+                        .maxSelectable(1)
+                        .capture(true) //是否提供拍照功能
+                        .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                        .thumbnailScale(0.85f)
+                        .imageEngine(new PicassoEngine())
+                        .forResult(REQUEST_CODE_CHOOSE2);
+                break;
+
+            case R.id.r_btn_add_pic3:
+                Matisse.from(AnnualComplaintActivity.this)
+                        .choose(MimeType.ofImage())
+                        .countable(true)
+                        .maxSelectable(1)
+                        .capture(true) //是否提供拍照功能
+                        .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
+                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                        .thumbnailScale(0.85f)
+                        .imageEngine(new PicassoEngine())
+                        .forResult(REQUEST_CODE_CHOOSE3);
+                break;
+
+            case R.id.r_btn_del1:
+                mSelected[0] = null;
+                r_btn_del1.setVisibility(View.INVISIBLE);
+                r_btn_add_pic.setImageResource(R.drawable.r_add_pic);
+                break;
+
+            case R.id.r_btn_del2:
+                mSelected[1] = null;
+                r_btn_del2.setVisibility(View.INVISIBLE);
+                r_btn_add_pic2.setImageResource(R.drawable.r_add_pic);
+                break;
+
+            case R.id.r_btn_del3:
+                mSelected[2] = null;
+                r_btn_del3.setVisibility(View.INVISIBLE);
+                r_btn_add_pic3.setImageResource(R.drawable.r_add_pic);
+                break;
+
+        }
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_CHOOSE1 && resultCode == RESULT_OK) {
+            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
+                Uri uri = Matisse.obtainResult(data).get(0);
+                mSelected[0] = uri;
+                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic);
+                r_btn_del1.setVisibility(View.VISIBLE);
+            }
+        } else if(requestCode == REQUEST_CODE_CHOOSE2 && resultCode == RESULT_OK) {
+            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
+                Uri uri = Matisse.obtainResult(data).get(0);
+                mSelected[1] = uri;
+                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic2);
+                r_btn_del2.setVisibility(View.VISIBLE);
+            }
+        } else if(requestCode == REQUEST_CODE_CHOOSE3 && resultCode == RESULT_OK) {
+            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
+                Uri uri = Matisse.obtainResult(data).get(0);
+                mSelected[2] = uri;
+                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic3);
+                r_btn_del3.setVisibility(View.VISIBLE);
+            }
+        }
+/*        if(requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+            mSelected = Matisse.obtainResult(data);
+            if(mSelected != null && mSelected.size() > 0) {
+                myAdapter = new MyAdapter(mSelected);
+                r_pic_list.setAdapter(myAdapter);
+            }
+        }*/
+    }
     @Override
     protected void init() {
         super.init();
@@ -104,202 +256,16 @@ public class RepairActivity extends BaseActivity {
         r_btn_del3.setOnClickListener(this);
 
         r_et_description = findViewById(R.id.r_et_description);
+        Bundle extras = getIntent().getExtras();
 
+        if(extras != null) {
+                id=extras.getString(ID);
+                //content = extras.getString(CONTENT);
+            }
 //        r_pic_list = findViewById(R.id.r_pic_list);
 //        r_pic_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_repair;
-    }
-
-    @Override
-    protected int getTitleId() {
-        return R.string.text_repair;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.r_btn_confrm:
-                String content = r_et_description.getText().toString();
-                if(TextUtils.isEmpty(content)) {
-                    MHToast.showS(mContext, R.string.need_finish_info);
-                    return;
-                }
-                ArrayList<Uri> picList = new ArrayList<>();
-                for (Uri uri : mSelected) {
-                    if(uri != null) {
-                        picList.add(uri);
-                    }
-                }
-                Intent intent = new Intent(mContext, BookSubmitActivity.class);
-                intent.putExtra(GARAGE_INFO, garageInfo);
-                intent.putExtra(CONTENT, content);
-                if(picList.size() > 0) {
-                    intent.putExtra(PIC_LIST, picList);
-                }
-                intent.putExtra(FROM, RepairActivity.class.getSimpleName());
-                /*if(myAdapter != null && myAdapter.getCurrentList() != null && myAdapter.getCurrentList().size() > 0) {
-                    intent.putParcelableArrayListExtra(PIC_LIST, (ArrayList<Uri>) myAdapter.getCurrentList());
-                }*/
-                startActivity(intent);
-//                requestMaintainCreate();
-                break;
-
-//            case R.id.r_tv_location_display:
-//                Intent intent1 = new Intent(mContext, SelectPlaceActivity.class);
-//                RepairActivity.this.startActivityForResult(intent1, REQUEST_CODE_SELECT_PLACE);
-//                break;
-
-//            case R.id.r_tv_time_display:
-//                DataHelper.pickDateAndTime(this, new DataHelper.PickDateListener() {
-//                    @Override
-//                    public void onDatePick(String dateAndTime) {
-//                        r_tv_time_display.setText(dateAndTime);
-//                    }
-//                });
-//                break;
-
-            case R.id.r_btn_add_pic:
-                Matisse.from(RepairActivity.this)
-                        .choose(MimeType.ofImage())
-                        .countable(true)
-                        .maxSelectable(1)
-                        .capture(true) //是否提供拍照功能
-                        .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new PicassoEngine())
-                        .forResult(REQUEST_CODE_CHOOSE1);
-                break;
-
-            case R.id.r_btn_add_pic2:
-                Matisse.from(RepairActivity.this)
-                        .choose(MimeType.ofImage())
-                        .countable(true)
-                        .maxSelectable(1)
-                        .capture(true) //是否提供拍照功能
-                        .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new PicassoEngine())
-                        .forResult(REQUEST_CODE_CHOOSE2);
-                break;
-
-            case R.id.r_btn_add_pic3:
-                Matisse.from(RepairActivity.this)
-                        .choose(MimeType.ofImage())
-                        .countable(true)
-                        .maxSelectable(1)
-                        .capture(true) //是否提供拍照功能
-                        .captureStrategy(new CaptureStrategy(true, "com.littleant.carrepair.fileprovider"))//存储到哪里
-                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                        .thumbnailScale(0.85f)
-                        .imageEngine(new PicassoEngine())
-                        .forResult(REQUEST_CODE_CHOOSE3);
-                break;
-
-            case R.id.r_btn_del1:
-                mSelected[0] = null;
-                r_btn_del1.setVisibility(View.INVISIBLE);
-                r_btn_add_pic.setImageResource(R.drawable.r_add_pic);
-                break;
-
-            case R.id.r_btn_del2:
-                mSelected[1] = null;
-                r_btn_del2.setVisibility(View.INVISIBLE);
-                r_btn_add_pic2.setImageResource(R.drawable.r_add_pic);
-                break;
-
-            case R.id.r_btn_del3:
-                mSelected[2] = null;
-                r_btn_del3.setVisibility(View.INVISIBLE);
-                r_btn_add_pic3.setImageResource(R.drawable.r_add_pic);
-                break;
-
-        }
-    }
-
-    private void requestMaintainCreate() {
-//        int garage_id = garageInfo.getId();
-//        String name = r_et_contact.getText().toString();
-//        String phone = r_et_phone.getText().toString();
-//        String subscribe_time = r_tv_time_display.getText().toString();
-//        String longitude = selectLon + "";
-//        String latitude = selectLat + "";
-//        String address = r_tv_location_display.getText().toString();
-//        String content = r_et_contact.getText().toString();
-//        if (TextUtils.isEmpty(phone) || TextUtils.isEmpty(name) || TextUtils.isEmpty(subscribe_time)
-//                || TextUtils.isEmpty(longitude) || TextUtils.isEmpty(latitude) || TextUtils.isEmpty(address) || TextUtils.isEmpty(content)) {
-//            MHToast.showS(mContext, R.string.need_finish_info);
-//            return;
-//        }
-//        if (!ProjectUtil.checkPhone(mContext, phone)) {
-//            MHToast.showS(mContext, R.string.phone_wrong);
-//            return;
-//        }
-//        Bitmap[] pics = null;
-//        if(myAdapter != null) {
-//            pics = DataHelper.parseUriList2BitmapArray(this, myAdapter.getCurrentList());
-//        }
-//        MaintainCreateCmd maintainCreateCmd = new MaintainCreateCmd(mContext, garage_id, name, phone,
-//                subscribe_time, longitude, latitude, address, content, pics);
-//        maintainCreateCmd.setCallback(new MHCommandCallBack() {
-//            @Override
-//            public void cmdCallBack(MHCommand command) {
-//                if (command != null) {
-//                    Log.i("response", command.getResponse());
-//                    BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
-//                    if (responseBean != null && responseBean.getCode() == ParamsConstant.REAPONSE_CODE_SUCCESS) {
-//                        Intent intent = new Intent(mContext, RepairRecordActivity.class);
-//                        RepairActivity.this.startActivity(intent);
-//                        RepairActivity.this.finish();
-//                    }
-//                } else {
-//                    MHToast.showS(mContext, R.string.request_fail);
-//                }
-//            }
-//        });
-//        MHCommandExecute.getInstance().asynExecute(mContext, maintainCreateCmd);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_CHOOSE1 && resultCode == RESULT_OK) {
-            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
-                Uri uri = Matisse.obtainResult(data).get(0);
-                mSelected[0] = uri;
-                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic);
-                r_btn_del1.setVisibility(View.VISIBLE);
-            }
-        } else if(requestCode == REQUEST_CODE_CHOOSE2 && resultCode == RESULT_OK) {
-            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
-                Uri uri = Matisse.obtainResult(data).get(0);
-                mSelected[1] = uri;
-                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic2);
-                 r_btn_del2.setVisibility(View.VISIBLE);
-            }
-        } else if(requestCode == REQUEST_CODE_CHOOSE3 && resultCode == RESULT_OK) {
-            if(Matisse.obtainResult(data) != null && Matisse.obtainResult(data).size() > 0) {
-                Uri uri = Matisse.obtainResult(data).get(0);
-                mSelected[2] = uri;
-                Picasso.with(mContext).load(uri).resize(100, 100).centerCrop().into(r_btn_add_pic3);
-                r_btn_del3.setVisibility(View.VISIBLE);
-            }
-        }
-/*        if(requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
-            mSelected = Matisse.obtainResult(data);
-            if(mSelected != null && mSelected.size() > 0) {
-                myAdapter = new MyAdapter(mSelected);
-                r_pic_list.setAdapter(myAdapter);
-            }
-        }*/
-    }
-
-    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    private class MyAdapter extends RecyclerView.Adapter<AnnualComplaintActivity.MyAdapter.ViewHolder> {
         private List<Uri> picUrls;
 
         public MyAdapter(List<Uri> picUrls) {
@@ -307,14 +273,14 @@ public class RepairActivity extends BaseActivity {
         }
 
         @Override
-        public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public AnnualComplaintActivity.MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_imageview, parent, false);
-            ViewHolder viewHolder = new MyAdapter.ViewHolder(view);
+            AnnualComplaintActivity.MyAdapter.ViewHolder viewHolder = new AnnualComplaintActivity.MyAdapter.ViewHolder(view);
             return viewHolder;
         }
 
         @Override
-        public void onBindViewHolder(MyAdapter.ViewHolder holder, final int position) {
+        public void onBindViewHolder(AnnualComplaintActivity.MyAdapter.ViewHolder holder, final int position) {
             Uri picUri = picUrls.get(position);
             if(picUri != null) {
                 Picasso.with(mContext).load(picUri).into(holder.li_imageview);

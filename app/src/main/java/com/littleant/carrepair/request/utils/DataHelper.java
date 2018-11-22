@@ -112,6 +112,23 @@ public class DataHelper {
 
     }
 
+    //保存、获取纬度
+    public static void saveMyLatitude(Context context, Double myLatitude) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, ParamsConstant.LATITUDE, myLatitude);
+    }
+
+    public static String getMyLatitude(Context context) {
+        return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, ParamsConstant.LATITUDE);
+    }
+
+    //保存、获取经度
+    public static void saveMyLongitude(Context context, Double myLongitude) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, ParamsConstant.LONGITUDE, myLongitude);
+    }
+
+    public static String getMyLongitude(Context context) {
+        return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, ParamsConstant.LONGITUDE);
+    }
     //导航功能
     public static void prepareNavi(Context context, LatLng startLocation, LatLng endLocation, INaviInfoCallback iNaviInfoCallback) {
         Poi start = new Poi("", startLocation, "");
@@ -237,6 +254,8 @@ public class DataHelper {
 
     private static final String CONTRACT_NAME = "CONTRACT_NAME";
     private static final String CONTRACT_PHONE = "CONTRACT_PHONE";
+    private static final String CONTRACT_CITY = "CONTRACT_CITY";
+
 
     public static void saveContractName(Context context, String name) {
         MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, CONTRACT_NAME, name);
@@ -252,6 +271,14 @@ public class DataHelper {
 
     public static String getContractPhone(Context context) {
         return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, CONTRACT_PHONE);
+    }
+    //保存城市
+    public static void saveContractCity(Context context, String city) {
+        MHDatabase.saveSimpleInfo(context, MHDatabase.MH_FILE, CONTRACT_CITY, city);
+    }
+    //获取城市
+    public static String getContractCity(Context context) {
+        return MHDatabase.getSimpleString(context, MHDatabase.MH_FILE, CONTRACT_CITY);
     }
 
     //维修项是否已确认

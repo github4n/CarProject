@@ -57,6 +57,9 @@ public class AnnualCheckRecordActivity extends BaseActivity {
     public static final int REQUEST_CODE_CHECK_DETAIL = 100;
     public static final int REQUEST_CODE_RETURN = 101;
     public static final int REQUEST_CODE_PAY = 102;
+    public static final int REQUEST_CODE_OWN = 103;
+    public static  boolean isFlag=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,6 +236,7 @@ public class AnnualCheckRecordActivity extends BaseActivity {
 
                     case STATE_WAIT_CHECK: //等待年检
                         if(surveyInfo.isIs_self()) {
+                            requestCode = REQUEST_CODE_OWN;
                             intent = new Intent(mContext, OwnStartCheckActivity.class);
                         } else {
                             intent = new Intent(mContext, StartCheckActivity.class);
@@ -248,8 +252,10 @@ public class AnnualCheckRecordActivity extends BaseActivity {
 
                     case STATE_WAIT_PAY: //等待支付直接进入支付界面
                         requestCode = REQUEST_CODE_PAY;
-                        intent = new Intent(mContext, PaymentActivity.class);
-                        intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_ANNUAL_CHECK);
+                       //intent = new Intent(mContext, PaymentActivity.class);
+                        isFlag=true;
+                         intent = new Intent(mContext, AnnualCheckDetailActivity.class);
+
                         break;
 
                     case STATE_WAIT_GET:  //等待接单
@@ -265,13 +271,13 @@ public class AnnualCheckRecordActivity extends BaseActivity {
                     } else {
                         AnnualCheckRecordActivity.this.startActivityForResult(intent, requestCode);
                     }
+                    finish();
                 }
             }
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
             TextView ari_book, ari_finish, ari_location, ari_driver, air_state;
-
             ViewHolder(View itemView) {
                 super(itemView);
                 ari_book = itemView.findViewById(R.id.ari_book);
@@ -300,5 +306,15 @@ public class AnnualCheckRecordActivity extends BaseActivity {
         } else if(requestCode == REQUEST_CODE_PAY  && resultCode == Activity.RESULT_OK) {
             requestCheckRecord();
         }
+        else if(requestCode == REQUEST_CODE_OWN  && resultCode == Activity.RESULT_OK) {
+            requestCheckRecord();
+        }else{
+            if(isFlag){
+                requestCheckRecord();
+                isFlag=false;
+            }
+
+        }
+
     }
 }

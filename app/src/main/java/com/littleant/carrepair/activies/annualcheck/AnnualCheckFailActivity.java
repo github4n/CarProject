@@ -1,11 +1,17 @@
 package com.littleant.carrepair.activies.annualcheck;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.littleant.carrepair.R;
@@ -38,7 +44,7 @@ public class AnnualCheckFailActivity extends BaseFlowActivity {
     //年检未过项
     private LinearLayout aacf_ll_detail;
     private SurveyInfo info;
-
+    private   List<ObjList> obj_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +56,7 @@ public class AnnualCheckFailActivity extends BaseFlowActivity {
         if(info != null) {
             SurveyPicList survey_fail_upload = info.getSurvey_fail_upload();
             if(survey_fail_upload != null) {
-                List<ObjList> obj_list = survey_fail_upload.getObj_list();
+               obj_list = survey_fail_upload.getObj_list();
                 if(obj_list != null && obj_list.size() > 0) {
                     Picasso.with(mContext).load(Uri.parse(obj_list.get(0).getPic_url())).resize(160, 100).into(aacf_iv_pic1);
                     aacf_tv_des1.setText(obj_list.get(0).getNote());
@@ -70,7 +76,9 @@ public class AnnualCheckFailActivity extends BaseFlowActivity {
     protected void init() {
         super.init();
         aacf_iv_pic1 = findViewById(R.id.aacf_iv_pic1);
+        aacf_iv_pic1.setOnClickListener(this);
         aacf_iv_pic2 = findViewById(R.id.aacf_iv_pic2);
+        aacf_iv_pic2.setOnClickListener(this);
         aacf_tv_des1 = findViewById(R.id.aacf_tv_des1);
         aacf_tv_des2 = findViewById(R.id.aacf_tv_des2);
         aacf_ll_detail = findViewById(R.id.aacf_ll_detail);
@@ -103,6 +111,12 @@ public class AnnualCheckFailActivity extends BaseFlowActivity {
                 intent.putExtra(SURVEY_INFO ,info);
                 startActivity(intent);
                 break;
+            case R.id.aacf_iv_pic1:
+                initImageView(obj_list.get(0).getPic_url());
+                break;
+            case R.id.aacf_iv_pic2:
+                initImageView(obj_list.get(1).getPic_url());
+                break;
         }
     }
 
@@ -122,4 +136,47 @@ public class AnnualCheckFailActivity extends BaseFlowActivity {
             aacf_ll_detail.addView(repairItemView, -1, -2);
         }
     }
+    private void initImageView(String url) {
+        final WindowManager windowManager = getWindowManager();
+        final RelativeLayout relativeLayout = new RelativeLayout(this);
+        relativeLayout.setBackgroundColor(Color.parseColor("#501F1F1F"));
+
+        //relativeLayout.getBackground().setAlpha(100);
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
+        layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        //FLAG_LAYOUT_IN_SCREEN
+        layoutParams.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        layoutParams.format = PixelFormat.RGBA_8888;//让背景透明，放大过程可以看到当前界面
+        layoutParams.verticalMargin = 0;
+        windowManager.addView(relativeLayout,layoutParams);
+
+        final ImageView animationIV = new ImageView(this);
+        animationIV.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        relativeLayout.addView(animationIV,params);
+        relativeLayout.setFocusableInTouchMode(true);
+        Picasso.with(this).load(url).into(animationIV);
+
+        animationIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                windowManager.removeView(relativeLayout);
+            }
+        });
+
+        relativeLayout.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (null != windowManager && null != relativeLayout) {
+                        windowManager.removeView(relativeLayout);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
 }

@@ -223,6 +223,8 @@ public class ParamsConstant {
     //维修（维修）部分
     public static final String CONTENT =  "content";
     public static final String NUMBER =  "number";
+    public static final String NOTE1 =  "note1";
+
 
     //维修（保养、维修订单列表信息）部分
     public static final String STATE =  "state";
@@ -268,7 +270,11 @@ public class ParamsConstant {
         //确认还车（代驾）
         RETURN("return"),
         //評論
-        COMMENT("comment");
+        COMMENT("comment"),
+        //完成
+        FINISH("finish"),
+        //自驾确认到达
+        SURVEY("survey");
 
         String des;
 

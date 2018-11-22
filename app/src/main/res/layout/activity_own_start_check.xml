@@ -159,7 +159,7 @@
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/aosc_tv_type"
-            app:srcCompat="@drawable/mf_navi" />
+            app:srcCompat="@drawable/aosc_iv_navis" />
 
         <ImageView
             android:id="@+id/aosc_iv_call"

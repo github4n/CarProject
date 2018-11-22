@@ -71,9 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:textColor="@color/color_uc_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/rs_guideline3"
         app:layout_constraintTop_toTopOf="@id/rs_guideline" />
 
@@ -115,25 +115,25 @@
         xlhRatingBar:widthAndHeight="12dp" />
 
     <!--<TextView-->
-        <!--android:id="@+id/rs_tv_like_amount"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:textColor="@android:color/holo_red_dark"-->
-        <!--app:layout_constraintStart_toEndOf="@id/rs_iv_like2"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/rs_tv_title" />-->
+    <!--android:id="@+id/rs_tv_like_amount"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_marginLeft="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:textColor="@android:color/holo_red_dark"-->
+    <!--app:layout_constraintStart_toEndOf="@id/rs_iv_like2"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/rs_tv_title" />-->
 
     <!--<ImageView-->
-        <!--android:id="@+id/rs_iv_like2"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="@id/rs_tv_like_amount"-->
-        <!--app:layout_constraintDimensionRatio="1:1"-->
-        <!--app:layout_constraintStart_toStartOf="@id/rs_guideline3"-->
-        <!--app:layout_constraintTop_toTopOf="@id/rs_tv_like_amount"-->
-        <!--app:srcCompat="@drawable/rs_like" />-->
+    <!--android:id="@+id/rs_iv_like2"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="@id/rs_tv_like_amount"-->
+    <!--app:layout_constraintDimensionRatio="1:1"-->
+    <!--app:layout_constraintStart_toStartOf="@id/rs_guideline3"-->
+    <!--app:layout_constraintTop_toTopOf="@id/rs_tv_like_amount"-->
+    <!--app:srcCompat="@drawable/rs_like" />-->
 
     <TextView
         android:id="@+id/rs_tv_contact"
@@ -149,12 +149,12 @@
         android:id="@+id/rs_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/color_text"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toTopOf="@id/rs_tv_contact"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/color_text"
         app:layout_constraintBottom_toBottomOf="@id/rs_tv_contact"
-        app:layout_constraintLeft_toRightOf="@id/rs_tv_contact" />
+        app:layout_constraintLeft_toRightOf="@id/rs_tv_contact"
+        app:layout_constraintTop_toTopOf="@id/rs_tv_contact" />
 
     <TextView
         android:id="@+id/rs_tv_phone"
@@ -170,12 +170,12 @@
         android:id="@+id/rs_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/color_text"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toTopOf="@id/rs_tv_phone"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/color_text"
         app:layout_constraintBottom_toBottomOf="@id/rs_tv_phone"
-        app:layout_constraintLeft_toRightOf="@id/rs_tv_phone" />
+        app:layout_constraintLeft_toRightOf="@id/rs_tv_phone"
+        app:layout_constraintTop_toTopOf="@id/rs_tv_phone" />
 
     <TextView
         android:id="@+id/rs_tc_address"
@@ -191,46 +191,77 @@
         android:id="@+id/rs_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/color_text"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toTopOf="@id/rs_tc_address"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/color_text"
         app:layout_constraintBottom_toBottomOf="@id/rs_tc_address"
-        app:layout_constraintLeft_toRightOf="@id/rs_tc_address" />
+        app:layout_constraintLeft_toRightOf="@id/rs_tc_address"
+        app:layout_constraintTop_toTopOf="@id/rs_tc_address" />
 
     <TextView
-        android:id="@+id/rs_btn_navi"
+        android:id="@+id/rs_btn_repair"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="@string/text_station_navi"
-        android:textColor="@color/color_main"
-        android:gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/shape_cycrect_blue2"
+        android:gravity="center"
+        android:text="@string/text_station_repair"
+        android:textColor="@color/color_main"
         app:layout_constraintBottom_toTopOf="@+id/rs_guideline6"
         app:layout_constraintEnd_toStartOf="@+id/rs_guideline7"
         app:layout_constraintStart_toStartOf="@+id/rs_guideline3"
         app:layout_constraintTop_toTopOf="@+id/rs_guideline5" />
 
     <TextView
-        android:id="@+id/rs_btn_contact"
+        android:id="@+id/rs_btn_upkepp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/shape_cycrect_blue_fill3"
-        android:text="@string/text_station_contact_shop"
-        android:textColor="@android:color/white"
         android:gravity="center"
+        android:text="@string/text_station_upkepp"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@id/rs_guideline6"
         app:layout_constraintEnd_toStartOf="@id/rs_guideline4"
         app:layout_constraintStart_toStartOf="@id/rs_guideline7"
         app:layout_constraintTop_toTopOf="@id/rs_guideline5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <ImageView
+        android:id="@+id/repair_navis"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/rs_tc_address"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rs_tv_contact"
+        app:srcCompat="@drawable/aosc_iv_navis" />
+
+    <ImageView
+        android:id="@+id/repair_call"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/repair_navis"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/repair_navis"
+        app:srcCompat="@drawable/mf_call" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -179,6 +179,11 @@ public class InterfaceConstant {
      */
     public static final String SURVEY_SURVEY_DELETE = "api/survey/survey_delete/";
     /**
+     * 年检投诉
+     */
+    public static final String SURVEY_SURVEY_COMPLAINT = "api/survey/survey_feedback/";
+
+    /**
      * post:年检订单操作信息-查询费用、支付、确认还车、自驾完成<br>
      */
     public static final String SURVEY_SURVEY_METHOD = "api/survey/survey_method/";

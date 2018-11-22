@@ -2,6 +2,7 @@
 package com.littleant.carrepair.activies.upkeep;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -57,6 +58,7 @@ public class BookUpkeepActivity extends BaseActivity {
     public static final String OIL_NUMBER = "number";
     public static final String OIL_ID_LIST = "oil_id_list";
     public static final String OIL_AMOUNT_LIST = "oil_amount_list";
+    public static Activity  bookUpkeepActivity;
 
 
     List<String> oilIdList=new ArrayList<>();
@@ -67,7 +69,7 @@ public class BookUpkeepActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        bookUpkeepActivity=this;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             garageInfo = (GarageInfo) extras.getSerializable(GARAGE_INFO);
@@ -164,8 +166,8 @@ public class BookUpkeepActivity extends BaseActivity {
                 for (Map.Entry<String, String> entry : oilAmounMap.entrySet()) {
                     oil_amount_listStr.append(entry.getValue()+",") ;
                 }
-                String amountData= oil_id_listStr.substring(0, oil_id_listStr.lastIndexOf(","));
-                String listStrData= oil_amount_listStr.substring(0, oil_amount_listStr.lastIndexOf(","));
+                String listStrData= oil_id_listStr.substring(0, oil_id_listStr.lastIndexOf(","));
+                String amountData= oil_amount_listStr.substring(0, oil_amount_listStr.lastIndexOf(","));
 
 
                 intent.putExtra(OIL_ID_LIST, listStrData);

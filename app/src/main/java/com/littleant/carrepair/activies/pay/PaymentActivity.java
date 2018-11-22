@@ -15,6 +15,11 @@ import android.widget.TextView;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.BookSubmitActivity;
+import com.littleant.carrepair.activies.annualcheck.AnnualCheckFillInfoActivity;
+import com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActivity;
+import com.littleant.carrepair.activies.annualcheck.OwnCheckFillInfoActivity;
+import com.littleant.carrepair.activies.order.MyOrderActivity;
 import com.littleant.carrepair.pay.ali.AliPay;
 import com.littleant.carrepair.pay.ali.PayResult;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
@@ -60,6 +65,8 @@ public class PaymentActivity extends BaseActivity {
 
     private static final int before_pay = 1;
     private static final int after_pay = 2;
+    private String flag;
+    private boolean isFlag=false;
 
     /*
     支付流程
@@ -75,6 +82,13 @@ public class PaymentActivity extends BaseActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             orderType = extras.getString(PAYMENT_FROM);
+            flag=extras.getString("FLAG");
+//            if(flag.equals("OwnCheckFillInfo")){
+//                isFlag=false;
+//            }
+//            if(flag.equals("AnnualCheckFillInfo")){
+//                isFlag=true;
+//            }
             if (ParamsConstant.ORDER_UPKEEP.equals(orderType) || ParamsConstant.ORDER_MAINTAIN.equals(orderType)) {
                 orderInfo = (MaintainOrderListBean.OrderInfo) extras.getSerializable(ORDER_INFO);
                 if (orderInfo == null) {
@@ -129,6 +143,18 @@ public class PaymentActivity extends BaseActivity {
             }
             return new SurveyMethodCmd(mContext, surveyInfo.getId(), type, "",
                     "", 0, 0, "", payChannel);
+        } else if (ParamsConstant.ORDER_ANNUAL_CHECK.equals(orderType)) {
+            ParamsConstant.SurveyMethodType type = null;
+            switch (methodStatus) {
+                case ORDER_STATUS:
+                    type = ParamsConstant.SurveyMethodType.ORDER_STATUS;
+                    break;
+
+                case PAY:
+                    type = ParamsConstant.SurveyMethodType.PAY;
+            }
+            return new SurveyBehalfMethodCmd(mContext, surveyInfo.getId(), type, "",
+                    "", 0, 0, "", payChannel,0);
         }
         return null;
     }
@@ -152,6 +178,37 @@ public class PaymentActivity extends BaseActivity {
                                         MHToast.showS(mContext, R.string.pay_success);
                                         setResult(RESULT_OK);
                                         finish();
+                                        //flag用户判断储值成功关闭自驾和代驾填写信息页
+                                        if(surveyInfo!=null){
+                                            if(surveyInfo.isIs_self()){
+                                                if(ParamsConstant.ORDER_ANNUAL_CHECK_OWN.equals(orderType)){
+                                                    OwnCheckFillInfoActivity.mBActivity.finish();
+                                                }
+                                                Intent intent = new Intent(PaymentActivity.this, AnnualCheckRecordActivity.class);
+                                                PaymentActivity.this.startActivity(intent);
+                                            }
+                                            else{
+                                                if(ParamsConstant.ORDER_ANNUAL_CHECK_OWN.equals(orderType)){
+                                                    if( AnnualCheckFillInfoActivity.mBActivity!=null){
+                                                        AnnualCheckFillInfoActivity.mBActivity.finish();
+                                                    }
+
+                                                }
+                                                Intent intent = new Intent(PaymentActivity.this, AnnualCheckRecordActivity.class);
+                                                PaymentActivity.this.startActivity(intent);
+                                            }
+                                        }
+                                        if (ParamsConstant.ORDER_UPKEEP.equals(orderType)){
+                                            if(BookSubmitActivity.bookSubmitActivity!=null){
+                                                BookSubmitActivity.bookSubmitActivity.finish();
+                                                Intent intent = new Intent(PaymentActivity.this, MyOrderActivity.class);
+                                                PaymentActivity.this.startActivity(intent);
+                                            }
+
+                                        }
+
+
+                                        //finish();
                                     }
                                 }
                                 break;

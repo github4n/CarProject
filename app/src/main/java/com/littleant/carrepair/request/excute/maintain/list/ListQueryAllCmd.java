@@ -16,11 +16,11 @@ public class ListQueryAllCmd extends BaseRequestCmd {
                 break;
 
             case COMMENT:
-                params.put(ParamsConstant.IS_COMMENT, "true");
+                params.put(ParamsConstant.IS_COMMENT, "True");
                 break;
 
             case NOT_COMMENT:
-                params.put(ParamsConstant.IS_COMMENT, "false");
+                params.put(ParamsConstant.IS_COMMENT, "False");
                 break;
         }
         MHLogUtil.logI(getClass().getSimpleName() + this.params.toString());

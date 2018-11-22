@@ -24,13 +24,16 @@ import com.amap.api.navi.model.AMapNaviLocation;
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.BaseActivity;
+import com.littleant.carrepair.activies.main.SearchActivity;
 import com.littleant.carrepair.activies.repair.RepairOrderDetailActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
+import com.littleant.carrepair.activies.repair.RepairStationActivity;
 import com.littleant.carrepair.activies.upkeep.UpkeepDetailActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderDetailBean;
 import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
+import com.littleant.carrepair.request.bean.upkeep.UpkeepOrderDetailBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.maintain.list.ListQueryAllCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainDeleteCmd;
@@ -38,6 +41,7 @@ import com.littleant.carrepair.request.excute.maintain.maintain.MaintainMethodCm
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainQueryOneCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepDeleteCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepMethodCmd;
+import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepQueryOneCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
@@ -51,6 +55,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
+import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
 
 /**
  * 我的订单
@@ -73,10 +78,13 @@ public class MyOrderActivity extends BaseActivity {
     private int state = -1;
     private ParamsConstant.CommentStatus status = ParamsConstant.CommentStatus.NONE;
     private List<MaintainOrderListBean.OrderInfo> data;
-
+    private GarageInfo garage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         requestOrder(state, status);
     }
 
@@ -112,11 +120,29 @@ public class MyOrderActivity extends BaseActivity {
         super.init();
 
         Bundle extras = getIntent().getExtras();
+        mo_rb_wait_pay=findViewById(R.id.mo_rb_wait_pay);
+        mo_rb_wait_service=findViewById(R.id.mo_rb_wait_service);
+        mo_rb_wait_rate=findViewById(R.id.mo_rb_wait_rate);
         if(extras != null) {
             state = extras.getInt(SELECT_TYPE);
             if(state == WAIT_RATE) {
                 status = ParamsConstant.CommentStatus.NOT_COMMENT;
             }
+            switch (state){
+                case WAIT_PAY :
+                    mo_rb_wait_pay.setChecked(true);
+                    requestOrder(WAIT_PAY, ParamsConstant.CommentStatus.NONE);
+                    break;
+                case WAIT_SERVICE :
+                    mo_rb_wait_service.setChecked(true);
+                    requestOrder(WAIT_SERVICE, ParamsConstant.CommentStatus.NONE);
+                    break;
+                case WAIT_RATE :
+                    mo_rb_wait_rate.setChecked(true);
+                    requestOrder(WAIT_RATE, ParamsConstant.CommentStatus.NOT_COMMENT);
+                    break;
+            }
+
         }
 
         mList = findViewById(R.id.mo_list);
@@ -391,9 +417,78 @@ public class MyOrderActivity extends BaseActivity {
                         }
                     }
                 });
+                holder.lmoi_img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(TYPE_UPKEEP.equals(orderInfo.getType())) {
+                            requestUpkeepOrderDetail(orderInfo);
+                        } else if(PAY_MAINTAIN.equals(orderInfo.getType())) {
+                            requestMaintainOrderDetail(orderInfo);
+                        }
+
+                    }
+                });
             }
         }
-
+        private void requestMaintainOrderDetail(MaintainOrderListBean.OrderInfo orderInfo) {
+            MaintainQueryOneCmd queryOneCmd = new MaintainQueryOneCmd(mContext, orderInfo.getId());
+            queryOneCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if (command != null) {
+                        Log.i("response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            MaintainOrderDetailBean orderDetailBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MaintainOrderDetailBean.class);
+                            if(orderDetailBean != null) {
+                                garage = orderDetailBean.getData().getGarage();
+                                //showInfo(flag, data);
+                                Intent intent = new Intent(MyOrderActivity.this, RepairStationActivity.class);
+                                intent.putExtra(GARAGE_INFO, garage);
+                                MyOrderActivity.this.startActivity(intent);
+                            }
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                            startActivity(intent);
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(mContext, responseBean.getMsg());
+                        }
+                    } else {
+                        MHToast.showS(mContext, R.string.request_fail);
+                    }
+                }
+            });
+            MHCommandExecute.getInstance().asynExecute(mContext, queryOneCmd);
+        }
+        private void requestUpkeepOrderDetail(MaintainOrderListBean.OrderInfo orderInfo) {
+            UpkeepQueryOneCmd queryOneCmd = new UpkeepQueryOneCmd(mContext, orderInfo.getId());
+            queryOneCmd.setCallback(new MHCommandCallBack() {
+                @Override
+                public void cmdCallBack(MHCommand command) {
+                    if (command != null) {
+                        Log.i("response", command.getResponse());
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), BaseResponseBean.class);
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            UpkeepOrderDetailBean orderDetailBean = ProjectUtil.getBaseResponseBean(command.getResponse(), UpkeepOrderDetailBean.class);
+                            if(orderDetailBean != null) {
+                                garage = orderDetailBean.getData().getGarage();
+                                Intent intent = new Intent(MyOrderActivity.this, RepairStationActivity.class);
+                                intent.putExtra(GARAGE_INFO, garage);
+                                MyOrderActivity.this.startActivity(intent);
+                            }
+                        } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                            Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                            startActivity(intent);
+                        } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                            MHToast.showS(mContext, responseBean.getMsg());
+                        }
+                    } else {
+                        MHToast.showS(mContext, R.string.request_fail);
+                    }
+                }
+            });
+            MHCommandExecute.getInstance().asynExecute(mContext, queryOneCmd);
+        }
         @Override
         public int getItemCount() {
             return list.size();

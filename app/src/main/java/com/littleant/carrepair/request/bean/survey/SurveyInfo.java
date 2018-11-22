@@ -38,6 +38,7 @@ public class SurveyInfo  implements Serializable {
     private String order_time = "";
     private String receive_time = "";
     private String get_time = "";
+    private boolean is_feedback;
     private String arrive_survey_time = "";
     private String survey_time = "";
     private String arrive_return_time = "";
@@ -95,6 +96,14 @@ public class SurveyInfo  implements Serializable {
 
     public String getPhone() {
         return phone;
+    }
+
+    public boolean isIs_feedback() {
+        return is_feedback;
+    }
+
+    public void setIs_feedback(boolean is_feedback) {
+        this.is_feedback = is_feedback;
     }
 
     public void setPhone(String phone) {

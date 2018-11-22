@@ -273,6 +273,8 @@
     <string name="text_station_phone">固定电话:</string>
     <string name="text_station_contact_shop">联系店家</string>
     <string name="text_station_navi">路线导航</string>
+    <string name="text_station_repair">预约维修</string>
+    <string name="text_station_upkepp">预约维修保养</string>
 
     <!---->
     <string name="text_info_title">资讯</string>
@@ -296,6 +298,11 @@
     <string name="text_annual_check_reservation">年检预约</string>
     <string name="text_annual_check_reservation_des">快捷年检服务</string>
     <string name="text_my_reservation">我的预约</string>
+    <string name="text_annual_complaint_hint">请输入你的投诉内容</string>
+
+    <string name="text_users_complainting">投诉</string>
+    <string name="text_users_complaint">已投诉</string>
+
     <string name="text_my_reservation_des">一步查看年检</string>
 
     <!-- 年检流程功能公共项 -->
@@ -306,6 +313,8 @@
     <string name="text_fee_sum">费用统计</string>
     <string name="text_fee_total">总计费用：</string>
     <string name="text_confirm_pay">确认并支付</string>
+    <string name="text_pay">支付</string>
+
     <string name="text_know_confirm">确定</string>
     <!--填写信息页-->
     <string name="text_fill_info">填写信息</string>
@@ -394,6 +403,7 @@
     <string name="text_service_driver">服务司机</string>
     <!--年检详情-->
     <string name="text_check_detail">年检详情</string>
+
     <string name="text_check_brand">品牌型号：</string>
     <string name="text_check_code">号码号牌：</string>
     <string name="text_check_book_time">预约时间：</string>

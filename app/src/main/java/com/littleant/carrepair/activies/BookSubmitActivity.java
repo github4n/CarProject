@@ -27,10 +27,14 @@ import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.activies.repair.RepairActivity;
 import com.littleant.carrepair.activies.repair.RepairRecordActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
+import com.littleant.carrepair.request.bean.aftersale.AftersaleAllBean;
+import com.littleant.carrepair.request.bean.maintain.MaintainOrderListBean;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.bean.car.MyCarListBean;
 import com.littleant.carrepair.request.bean.system.user.UserMeBean;
+import com.littleant.carrepair.request.bean.upkeep.OrderID;
 import com.littleant.carrepair.request.constant.ParamsConstant;
+import com.littleant.carrepair.request.excute.maintain.list.ListQueryAllCmd;
 import com.littleant.carrepair.request.excute.maintain.maintain.MaintainCreateCmd;
 import com.littleant.carrepair.request.excute.maintain.upkeep.UpkeepCreateCmd;
 import com.littleant.carrepair.request.excute.user.car.CarQueryAllCmd;
@@ -44,7 +48,9 @@ import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
 import static com.littleant.carrepair.activies.upkeep.BookUpkeepActivity.OIL_AMOUNT;
 import static com.littleant.carrepair.activies.upkeep.BookUpkeepActivity.OIL_ID;
 import static com.littleant.carrepair.activies.repair.RepairActivity.CONTENT;
@@ -70,15 +76,20 @@ public class BookSubmitActivity extends BaseActivity {
     private TextView bm_tv_title, bm_tv_des;
     private ImageView bm_iv_icon;
     private GarageInfo garageInfo;
+    public static final String PAYMENT_FROM = "from";
+    public static final String ORDER_INFO = "order_info";
 
     private static final int REQUEST_CODE_SELECT_PLACE = 11;//定义请求码常量
     public static final int REQUEST_CODE_CAR = 100;
     public static final String PICK_CAR = "pick_car";
     public static final String FROM = "from";
     private MyCarListBean.CarInfo carInfo;
-
+    private int state = -1;
     private double selectLat, selectLon;
     private String selectAddress;
+    public static Activity bookSubmitActivity;
+    private ParamsConstant.CommentStatus status = ParamsConstant.CommentStatus.NONE;
+    MaintainOrderListBean.OrderInfo orderInfo=null ;
 
     private String from;
     //从维修进来
@@ -91,7 +102,7 @@ public class BookSubmitActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        bookSubmitActivity=this;
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             garageInfo = (GarageInfo) extras.getSerializable(GARAGE_INFO);
@@ -298,12 +309,17 @@ public class BookSubmitActivity extends BaseActivity {
                     Log.i("response", command.getResponse());
                     BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                     if (responseBean != null && responseBean.getCode() == 100) {
-                        Intent intent = new Intent(mContext, MyOrderActivity.class);
-                        startActivity(intent);
-                        finish();
+                        OrderID orderID= ProjectUtil.getBaseResponseBean(command.getResponse(), OrderID.class);
+                        requestOrder(state,status,orderID.getData().getId());
+
+                        BookUpkeepActivity.bookUpkeepActivity.finish();
+                        BookSubmitActivity.bookSubmitActivity.finish();
+                        //finish();
                     } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
                         Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
                         startActivity(intent);
+                    }else{
+                        MHToast.showS(mContext,responseBean.getMsg());
                     }
                 } else {
                     MHToast.showS(mContext, R.string.request_fail);
@@ -311,6 +327,43 @@ public class BookSubmitActivity extends BaseActivity {
             }
         });
         MHCommandExecute.getInstance().asynExecute(mContext, upkeepCreateCmd);
+    }
+
+    private void requestOrder(int state, ParamsConstant.CommentStatus status,final int id) {
+        //查询全部订单列表信息
+        ListQueryAllCmd listQueryAllCmd = new ListQueryAllCmd(mContext, state, status);
+        listQueryAllCmd.setCallback(new MHCommandCallBack() {
+            @Override
+            public void cmdCallBack(MHCommand command) {
+                if (command != null) {
+                    Log.i("response", command.getResponse());
+                    MaintainOrderListBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse(), MaintainOrderListBean.class);
+
+                    if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                        for(int i=0;i<responseBean.getData().size();i++ ){
+                            if(responseBean.getData().get(i).getId()==id){
+                                orderInfo =(MaintainOrderListBean.OrderInfo)responseBean.getData().get(i);
+                            }
+
+                        }
+                       Intent intent = new Intent(mContext, PaymentActivity.class);
+                        intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_UPKEEP);
+                        intent.putExtra(ORDER_INFO, orderInfo);
+//                        startActivityForResult(intent, REQUEST_PAY);
+                        startActivity(intent);
+
+                    } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
+                        Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
+                        startActivity(intent);
+                    } else if(responseBean != null && !TextUtils.isEmpty(responseBean.getMsg())) {
+                        MHToast.showS(mContext, responseBean.getMsg());
+                    }
+                } else {
+                    MHToast.showS(mContext, R.string.request_fail);
+                }
+            }
+        });
+        MHCommandExecute.getInstance().asynExecute(mContext, listQueryAllCmd);
     }
     private void requestRepair() {
         if(carInfo == null) {
@@ -352,6 +405,8 @@ public class BookSubmitActivity extends BaseActivity {
                         Intent intent = new Intent(mContext, MyOrderActivity.class);
                         startActivity(intent);
                         finish();
+                        BookSubmitActivity.bookSubmitActivity.finish();
+                        RepairActivity.repairActivity.finish();
                     } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
                         Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
                         startActivity(intent);

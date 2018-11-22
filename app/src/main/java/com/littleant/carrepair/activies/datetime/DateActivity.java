@@ -7,9 +7,12 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import android.widget.DatePicker;
 
+import com.littleant.carrepair.request.utils.DataHelper;
+
 import java.util.Calendar;
 
 public class DateActivity extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    private final static String city="广州市";
 
     private SelectDateCallback selectDateCallback;
 
@@ -31,7 +34,13 @@ public class DateActivity extends DialogFragment implements DatePickerDialog.OnD
         // Create a new instance of DatePickerDialog and return it
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), AlertDialog.THEME_HOLO_LIGHT, this, year, month, day);
         DatePicker datePicker = datePickerDialog.getDatePicker();
-        datePicker.setMinDate(System.currentTimeMillis() + 259200000);
+        if(DataHelper.getContractCity(getActivity()).equals(city)){
+            datePicker.setMinDate(System.currentTimeMillis() + 259200000);
+        }else{
+            datePicker.setMinDate(System.currentTimeMillis() + 86400);
+
+        }
+
         return datePickerDialog;
     }
 

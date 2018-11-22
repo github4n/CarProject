@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_sub_background"
+    tools:context=".activies.repair.RepairActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/r_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/r_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/r_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/r_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/r_guideline5"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.52" />-->
+
+    <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/r_guideline7"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintGuide_percent="0.85" />-->
+
+    <android.support.constraint.Guideline
+        android:id="@+id/r_guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <EditText
+        android:id="@+id/r_et_description"
+        style="@null"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white"
+        android:gravity="start"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingRight="16dp"
+        android:hint="@string/text_annual_complaint_hint"
+        android:textSize="15sp"
+        android:textColor="@color/color_sub_line"
+        app:layout_constraintBottom_toTopOf="@id/r_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/r_guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/r_guideline">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/r_cl_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/r_cl_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/r_pic_list"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="0dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/r_btn_add_pic"-->
+        <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline"-->
+        <!--app:layout_constraintTop_toTopOf="@id/r_btn_add_pic" />-->
+
+        <TextView
+            android:id="@+id/r_tv_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_repair_add_pic"
+            android:textColor="@color/color_sub_line"
+            app:layout_constraintStart_toStartOf="@id/r_cl_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/r_btn_add_pic"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/r_btn_add_pic2"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@id/r_cl_guideline"
+            app:layout_constraintTop_toBottomOf="@id/r_tv_pic"
+            app:srcCompat="@drawable/r_add_pic" />
+
+        <ImageView
+            android:id="@+id/r_btn_del1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic"
+            app:layout_constraintEnd_toEndOf="@id/r_btn_add_pic"
+            app:srcCompat="@drawable/repair_del"/>
+
+        <ImageView
+            android:id="@+id/r_btn_add_pic2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@id/r_btn_add_pic"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/r_btn_add_pic3"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/r_btn_add_pic"
+            app:layout_constraintTop_toTopOf="@+id/r_btn_add_pic"
+            app:srcCompat="@drawable/r_add_pic" />
+
+        <ImageView
+            android:id="@+id/r_btn_del2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic2"
+            app:layout_constraintEnd_toEndOf="@id/r_btn_add_pic2"
+            app:srcCompat="@drawable/repair_del"/>
+
+        <ImageView
+            android:id="@+id/r_btn_add_pic3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@+id/r_btn_add_pic2"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/r_cl_guideline2"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/r_btn_add_pic2"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic2"
+            app:srcCompat="@drawable/r_add_pic" />
+
+        <ImageView
+            android:id="@+id/r_btn_del3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/r_btn_add_pic3"
+            app:layout_constraintEnd_toEndOf="@id/r_btn_add_pic3"
+            app:srcCompat="@drawable/repair_del"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <!--<android.support.constraint.ConstraintLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@android:color/white"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@id/r_guideline2">-->
+
+        <!--<android.support.constraint.Guideline-->
+            <!--android:id="@+id/r_cl_guideline2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--app:layout_constraintGuide_percent="0.05" />-->
+
+        <!--<android.support.constraint.Guideline-->
+            <!--android:id="@+id/r_cl_guideline3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--app:layout_constraintGuide_percent="0.1" />-->
+
+        <!--联系人-->
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_contact"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintDimensionRatio="1:1"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline2"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:srcCompat="@drawable/repair_contact" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_contact"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:text="@string/text_repair_contact"-->
+            <!--android:textColor="@color/color_insurance_text"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_contact"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_contact" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/r_et_contact"-->
+            <!--style="@null"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginEnd="16dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:background="@null"-->
+            <!--android:gravity="end"-->
+            <!--android:hint="@string/text_repair_contact_hint"-->
+            <!--android:singleLine="true"-->
+            <!--android:textColor="@color/color_sub_line"-->
+            <!--android:textSize="13sp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_contact"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toEndOf="@id/r_tv_contact"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_contact" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/r_line"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1px"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/r_et_contact"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_iv_contact"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_iv_contact"-->
+            <!--app:srcCompat="@color/color_sub_line" />-->
+
+        <!--联系电话-->
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_phone"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintDimensionRatio="1:1"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline2"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_line"-->
+            <!--app:srcCompat="@drawable/repair_phone" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_phone"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:text="@string/text_repair_phone"-->
+            <!--android:textColor="@color/color_insurance_text"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_phone"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_phone" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/r_et_phone"-->
+            <!--style="@null"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginEnd="16dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:background="@null"-->
+            <!--android:gravity="end"-->
+            <!--android:hint="@string/text_repair_phone_hint"-->
+            <!--android:inputType="phone"-->
+            <!--android:singleLine="true"-->
+            <!--android:textColor="@color/color_sub_line"-->
+            <!--android:textSize="13sp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_tv_phone"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toEndOf="@id/r_tv_phone"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_tv_phone" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/r_line2"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1px"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/r_et_phone"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_iv_phone"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_iv_phone"-->
+            <!--app:srcCompat="@color/color_sub_line" />-->
+
+        <!--车型-->
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_model"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintDimensionRatio="1:1"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline2"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_line2"-->
+            <!--app:srcCompat="@drawable/repair_model" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_model"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:text="@string/text_repair_model"-->
+            <!--android:textColor="@color/color_insurance_text"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_model"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_model" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_arrow1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_model"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/r_line2"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_model"-->
+            <!--app:srcCompat="@drawable/uc_arrow" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_model_display"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:textColor="@color/color_sub_line"-->
+            <!--android:textSize="13sp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_tv_model"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_iv_arrow1"-->
+            <!--app:layout_constraintStart_toEndOf="@id/r_tv_model"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_tv_model" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/r_line3"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1px"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:srcCompat="@color/color_sub_line" />-->
+
+        <!--位置-->
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_location"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintDimensionRatio="1:1"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline2"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_line2"-->
+            <!--app:srcCompat="@drawable/repair_location" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_location"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:text="@string/text_repair_location"-->
+            <!--android:textColor="@color/color_insurance_text"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_location"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_location" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_arrow2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_location"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/r_line2"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_location"-->
+            <!--app:srcCompat="@drawable/uc_arrow" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_location_display"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:textColor="@color/color_sub_line"-->
+            <!--android:textSize="13sp"-->
+            <!--android:gravity="right"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_tv_location"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_iv_arrow2"-->
+            <!--app:layout_constraintStart_toEndOf="@id/r_tv_location"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_tv_location" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/r_line4"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1px"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/r_iv_arrow2"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_iv_location"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_iv_location"-->
+            <!--app:srcCompat="@color/color_sub_line" />-->
+
+        <!--时间-->
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_time"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--app:layout_constraintDimensionRatio="1:1"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline2"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_line4"-->
+            <!--app:srcCompat="@drawable/repair_time" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_time"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:text="@string/text_repair_time"-->
+            <!--android:textColor="@color/color_insurance_text"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_time"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_cl_guideline3"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_time" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/r_iv_arrow3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="0dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_iv_time"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/r_line2"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_iv_time"-->
+            <!--app:srcCompat="@drawable/uc_arrow" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/r_tv_time_display"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:textColor="@color/color_sub_line"-->
+            <!--android:textSize="13sp"-->
+            <!--android:gravity="right"-->
+            <!--app:layout_constraintBottom_toBottomOf="@id/r_tv_time"-->
+            <!--app:layout_constraintEnd_toStartOf="@id/r_iv_arrow3"-->
+            <!--app:layout_constraintStart_toEndOf="@id/r_tv_time"-->
+            <!--app:layout_constraintTop_toTopOf="@id/r_tv_time" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/r_line5"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="1px"-->
+            <!--android:layout_marginTop="12dp"-->
+            <!--android:layout_marginBottom="12dp"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/r_iv_arrow3"-->
+            <!--app:layout_constraintStart_toStartOf="@id/r_iv_time"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/r_iv_time"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:srcCompat="@color/color_sub_line" />-->
+
+    <!--</android.support.constraint.ConstraintLayout>-->
+
+    <Button
+        android:id="@+id/r_btn_confrm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_blue_fill"
+        android:text="@string/text_main_ok"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintDimensionRatio="4:1"
+        app:layout_constraintEnd_toStartOf="@id/r_guideline4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/r_guideline3"
+        app:layout_constraintTop_toTopOf="@+id/r_guideline8" />
+
+</android.support.constraint.ConstraintLayout>

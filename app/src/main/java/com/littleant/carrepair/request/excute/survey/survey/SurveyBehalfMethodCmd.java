@@ -10,6 +10,7 @@ import com.littleant.carrepair.request.excute.BaseRequestCmd;
 import com.mh.core.tools.MHLogUtil;
 
 public class SurveyBehalfMethodCmd extends BaseRequestCmd {
+    private boolean isFlag=false;
     public SurveyBehalfMethodCmd(Context context, int id, ParamsConstant.SurveyMethodType method, String longitude, String latitude,
                                  int surveystation_id, int combo_id, String comboitem_list, ParamsConstant.PayChannel payChannel, int score) {
         super(context);
@@ -39,7 +40,10 @@ public class SurveyBehalfMethodCmd extends BaseRequestCmd {
 
     @Override
     protected String getInterfaceName() {
-        return InterfaceConstant.SURVEY_SURVEY_BEHALFMETHOD;
+
+            return InterfaceConstant.SURVEY_SURVEY_BEHALFMETHOD;
+
+
     }
 
     @Override

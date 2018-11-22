@@ -1,5 +1,6 @@
 package com.littleant.carrepair.activies.annualcheck;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -33,15 +34,17 @@ import static com.littleant.carrepair.activies.annualcheck.AnnualCheckRecordActi
 import static com.littleant.carrepair.activies.pay.PaymentActivity.PAYMENT_FROM;
 
 public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements BaseFillInfoActivity.RequestStationListener {
-    private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station, aocf_tv_date1, aocf_et_fee_total;
+    private TextView aocf_confirm_pay, aocf_et_car_type, aocf_et_pick_station, aocf_tv_date1, aocf_et_fee_total,header_option_text;
+    ;
     private EditText aocf_et_contact_name, aocf_et_contact_phone, aocf_et_driver_name, aocf_et_driver_brand, aocf_et_driver_plate;
     private String price;
-
+    private final static String FLAG="OwnCheckFillInfo";
+    public static Activity mBActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         locf_tv_fill.setChecked(true);
-
+        mBActivity=this;
         requestDefaultCar(new DefaultCarCallBack() {
             @Override
             public void onResponse(MyCarListBean.CarInfo carInfo) {
@@ -58,6 +61,9 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
             }
         });
     }
+
+
+
 
     @Override
     protected void requestPriceForOwn() {
@@ -101,6 +107,9 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
 
         aocf_tv_date1 = findViewById(R.id.aocf_tv_date1);
         aocf_tv_date1.setOnClickListener(this);
+
+        header_option_text=findViewById(R.id.header_option_text);
+        header_option_text.setOnClickListener(this);
 
         aocf_et_fee_total = findViewById(R.id.aocf_et_fee_total);
 
@@ -154,8 +163,10 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                             if(createBean != null && createBean.getData() != null && createBean.getData().getId() != 0) {
                                 Intent intent = new Intent(OwnCheckFillInfoActivity.this, PaymentActivity.class);
                                 intent.putExtra(PAYMENT_FROM, ParamsConstant.ORDER_ANNUAL_CHECK_OWN);
+                                intent.putExtra("FLAG", FLAG);
                                 SurveyInfo surveyInfo = new SurveyInfo();
                                 surveyInfo.setId(createBean.getData().getId());
+                                surveyInfo.setIs_self(true);
                                 intent.putExtra(SURVEY_INFO, surveyInfo);
                                 OwnCheckFillInfoActivity.this.startActivity(intent);
                             }
@@ -191,6 +202,8 @@ public class OwnCheckFillInfoActivity extends BaseFillInfoActivity implements Ba
                     }
                 });
                 break;
+
+
 
             case R.id.locf_tv_check_know:
                 if (TextUtils.isEmpty(knowUrl)) {

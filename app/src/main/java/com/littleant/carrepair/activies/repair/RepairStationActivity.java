@@ -1,6 +1,7 @@
 package com.littleant.carrepair.activies.repair;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +14,15 @@ import com.amap.api.navi.INaviInfoCallback;
 import com.amap.api.navi.model.AMapNaviLocation;
 import com.example.xlhratingbar_lib.XLHRatingBar;
 import com.littleant.carrepair.R;
+import com.littleant.carrepair.activies.upkeep.BookUpkeepActivity;
 import com.littleant.carrepair.fragment.MainFragment;
 import com.littleant.carrepair.request.bean.maintain.garage.GarageInfo;
 import com.littleant.carrepair.request.utils.DataHelper;
+import com.mh.core.tools.MHToast;
 import com.squareup.picasso.Picasso;
 
 import static com.littleant.carrepair.fragment.MainFragment.GARAGE_INFO;
+import static java.security.AccessController.getContext;
 
 /**
  * 维修点
@@ -27,13 +31,14 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
 
     private Context mContext;
     private ImageView rs_iv_back, rs_iv_like;
-    private TextView rs_btn_navi, rs_btn_contact;
+    //private TextView rs_btn_navi, rs_btn_contact;
     private GarageInfo garageInfo;
     //控件
     private TextView rs_tv_title, rs_contact, rs_phone, rs_address;
-    private ImageView rs_tv_banner;
+    private ImageView rs_tv_banner,repair_call,repair_navis;
     private double myLatitude, myLongitude;
     private XLHRatingBar rs_ratingBar;
+    private TextView rs_btn_repair,rs_btn_upkepp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +53,17 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
         rs_iv_like = findViewById(R.id.rs_iv_like);
         rs_iv_like.setOnClickListener(this);
 
-        rs_btn_navi = findViewById(R.id.rs_btn_navi);
-        rs_btn_navi.setOnClickListener(this);
+        repair_call = findViewById(R.id.repair_call);
+        repair_call.setOnClickListener(this);
 
-        rs_btn_contact = findViewById(R.id.rs_btn_contact);
-        rs_btn_contact.setOnClickListener(this);
+        repair_navis = findViewById(R.id.repair_navis);
+        repair_navis.setOnClickListener(this);
+
+        rs_btn_repair=findViewById(R.id.rs_btn_repair);
+        rs_btn_repair.setOnClickListener(this);
+
+        rs_btn_upkepp=findViewById(R.id.rs_btn_upkepp);
+        rs_btn_upkepp.setOnClickListener(this);
 
         rs_tv_title = findViewById(R.id.rs_tv_title);
         rs_ratingBar = findViewById(R.id.rs_ratingBar);
@@ -65,8 +76,8 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
            garageInfo = (GarageInfo) extras.getSerializable(GARAGE_INFO);
-           myLatitude = extras.getDouble(MainFragment.MY_LATITUDE);
-           myLongitude = extras.getDouble(MainFragment.MY_LONGITUDE);
+           myLatitude = DataHelper.getMyLocation(this)[0];
+           myLongitude = DataHelper.getMyLocation(this)[1];;
         }
         if(garageInfo == null) {
             this.finish();
@@ -87,13 +98,13 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
                 RepairStationActivity.this.finish();
                 break;
 
-            case R.id.rs_btn_navi:
+            case R.id.repair_navis:
                 LatLng startLocation = new LatLng(myLatitude, myLongitude);
                 LatLng endLocation = new LatLng(garageInfo.getLatitude(), garageInfo.getLongitude());
                 DataHelper.prepareNavi(mContext, startLocation, endLocation, this);
                 break;
 
-            case R.id.rs_btn_contact:
+            case R.id.repair_call:
                 DataHelper.callPhone(RepairStationActivity.this, garageInfo.getPhone());
                 break;
 
@@ -112,6 +123,26 @@ public class RepairStationActivity extends AppCompatActivity implements View.OnC
 //                    }
 //                });
 //                d.show();
+                break;
+
+            case R.id.rs_btn_repair:
+                if(garageInfo.getType()==2){
+                    MHToast.showS(this, R.string.request_fail_repair);
+                    return;
+                }
+               Intent intent = new Intent(this, RepairActivity.class);
+               intent.putExtra(GARAGE_INFO, garageInfo);
+               startActivity(intent);
+                break;
+            case R.id.rs_btn_upkepp:
+                if(garageInfo.getType()==1){
+                    MHToast.showS(this, R.string.request_fail_maintain);
+                    return;
+                }
+                //保养
+                Intent intent1 = new Intent(this, BookUpkeepActivity.class);
+                intent1.putExtra(GARAGE_INFO, garageInfo);
+                startActivity(intent1);
                 break;
         }
     }
