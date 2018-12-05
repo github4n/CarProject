@@ -299,6 +299,8 @@
             android:paddingLeft="16dp"
             android:paddingTop="8dp"
             android:text="@string/text_order_detail_pic"
+
+            android:visibility="gone"
             android:textColor="@color/color_text"
             android:textSize="13sp"
             android:textStyle="bold"

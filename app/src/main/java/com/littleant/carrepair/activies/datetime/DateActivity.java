@@ -37,7 +37,7 @@ public class DateActivity extends DialogFragment implements DatePickerDialog.OnD
         if(DataHelper.getContractCity(getActivity()).equals(city)){
             datePicker.setMinDate(System.currentTimeMillis() + 259200000);
         }else{
-            datePicker.setMinDate(System.currentTimeMillis() + 86400);
+            datePicker.setMinDate(System.currentTimeMillis() + 86400000);
 
         }
 

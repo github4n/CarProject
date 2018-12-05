@@ -192,6 +192,11 @@ public class InterfaceConstant {
      */
     public static final String SURVEY_SURVEY_SELFMETHOD = "api/survey/survey_selfmethod/";
     /**
+     *     自驾咨询电话
+     */
+
+    public static final String SURVEY_SURVEY_SURVEY_PHONE ="api/survey/survey_phone/";
+    /**
      * post:代驾年检订单操作信息-取消、查询费用、支付、失败支付、确认还车
      */
     public static final String SURVEY_SURVEY_BEHALFMETHOD = "api/survey/survey_behalfmethod/";

@@ -31,7 +31,7 @@ import cn.jpush.android.api.JPushInterface;
  * 2) 接收不到自定义消息
  */
 public class MyReceiver extends BroadcastReceiver {
-	private static final String TAG = "JIGUANG-Example";
+	private static final String TAG = "MyReceiver";
 	private static final String MAINTAIN_ORDER = "maintain_order";
 	private static final String MAINTAIN_ITEM = "maintain_item";
 	private static final String MAINTAIN_FINISH = "maintain_finish";

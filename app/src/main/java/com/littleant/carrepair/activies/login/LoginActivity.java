@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.constraint.Constraints;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,14 +12,15 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.amap.api.col.n3.on;
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.main.MainActivity;
 import com.littleant.carrepair.request.bean.login.LoginBean;
@@ -51,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Context mContext;
     private CheckBox al_cb_term;
     private View al_term_view;
-    private String termUrl;
+    private String termUrl="http://www.nolasthope.cn/system/useragreement/";
     private boolean isTokenExpired = false;
 
     @Override
@@ -229,18 +231,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void showTermDialog(Activity activity, String url) {
+
+
         final Dialog d = new Dialog(activity, R.style.MyTransparentDialog);
         View contentView = View.inflate(activity, R.layout.layout_term, null);
         DisplayMetrics dm = activity.getApplicationContext().getResources().getDisplayMetrics();
         int dialogWidth = (int) (dm.widthPixels * 0.7);
         int dialogHeight = (int) (dm.heightPixels * 0.7);
         d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
-        WebView webView = contentView.findViewById(R.id.lt_webview);
-        webView.loadUrl(url);
+        WebView mWebView = contentView.findViewById(R.id.lt_webview);
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        WebSettings settings = mWebView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setDisplayZoomControls(true);
+        mWebView.setVerticalScrollBarEnabled(false);
+        mWebView.loadUrl(url);
         contentView.findViewById(R.id.lt_btn_no).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                al_cb_term.setChecked(true);
+                al_cb_term.setChecked(false);
                 d.dismiss();
             }
         });

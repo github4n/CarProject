@@ -11,10 +11,10 @@
         android:id="@+id/bm_iv_icon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,10 +24,10 @@
         android:id="@+id/bm_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text=""
         android:textColor="@color/color_uc_text"
-        android:text="@string/text_select_car"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/bm_tv_des"
         app:layout_constraintStart_toEndOf="@id/bm_iv_icon"
@@ -37,11 +37,43 @@
         android:id="@+id/bm_tv_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:textColor="@color/color_sub_line"
-        app:layout_constraintTop_toBottomOf="@id/bm_tv_title"
         app:layout_constraintBottom_toBottomOf="@id/bm_iv_icon"
-        app:layout_constraintStart_toEndOf="@id/bm_iv_icon" />
+        app:layout_constraintStart_toEndOf="@id/bm_iv_icon"
+        app:layout_constraintTop_toBottomOf="@id/bm_tv_title" />
+
+    <ImageView
+        android:id="@+id/img_car"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_add_car" />
+
+    <TextView
+        android:id="@+id/text_car_des"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:text="@string/text_select_car"
+        android:textColor="@color/color_sub_line"
+        app:layout_constraintLeft_toRightOf="@id/img_car"
+        app:layout_constraintBottom_toBottomOf="@+id/img_car"
+        app:layout_constraintTop_toTopOf="@id/img_car" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
 
 </android.support.constraint.ConstraintLayout>

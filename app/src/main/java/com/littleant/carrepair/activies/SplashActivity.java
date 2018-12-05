@@ -9,10 +9,12 @@ import android.util.Log;
 
 import com.littleant.carrepair.R;
 import com.littleant.carrepair.activies.login.LoginActivity;
+import com.littleant.carrepair.activies.main.MainActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.system.SystemCoverBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.system.SystemCoverCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.mh.core.task.MHCommandCallBack;
 import com.mh.core.task.MHCommandExecute;
@@ -55,7 +57,16 @@ public class SplashActivity extends AppCompatActivity {
             public void onFinish() {
                 Intent intent;
                 if(launched) {
-                    intent = new Intent(SplashActivity.this, LoginActivity.class);
+
+
+                    if(DataHelper.getToken(mContext)!=null) {
+                        intent = new Intent(SplashActivity.this, MainActivity.class);
+
+                    }else{
+                        intent = new Intent(SplashActivity.this, LoginActivity.class);
+
+                    }
+
                 } else {
                     intent = new Intent(SplashActivity.this, FirstLaunchActivity.class);
                     if(data != null && data.getPic_url_list() != null && data.getPic_url_list().size() > 0) {

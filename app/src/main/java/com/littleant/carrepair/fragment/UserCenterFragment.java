@@ -24,6 +24,7 @@ import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.system.user.UserMeBean;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.user.user.UserMeCmd;
+import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
 import com.littleant.circleimageview.CircleImageView;
 import com.mh.core.task.MHCommandCallBack;
@@ -38,7 +39,7 @@ public class UserCenterFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private RelativeLayout uc_rl_my_car, uc_rl_check_record, uc_rl_shop_order, uc_rl_address, uc_rl_after_sale;
+    private RelativeLayout uc_rl_my_car, uc_rl_check_record, uc_rl_shop_order, uc_rl_address, uc_rl_after_sale,uc_rl_cs;
     private ImageView iv_all_order, iv_wait_pay, iv_wait_service, iv_wait_rate;
     private TextView tv_user_name, tv_user_score;
     private CircleImageView iv_userImg;
@@ -130,6 +131,10 @@ public class UserCenterFragment extends BaseFragment {
         tv_user_score = subView.findViewById(R.id.tv_user_score);
 
         iv_userImg = subView.findViewById(R.id.iv_userImg);
+
+        //电话客服
+        uc_rl_cs=subView.findViewById(R.id.uc_rl_cs);
+        uc_rl_cs.setOnClickListener(this);
 
         return subView;
     }
@@ -231,6 +236,10 @@ public class UserCenterFragment extends BaseFragment {
                 intent = new Intent(getContext(), MyOrderActivity.class);
                 intent.putExtra(SELECT_TYPE, MyOrderActivity.WAIT_RATE);
                 getActivity().startActivity(intent);
+                break;
+
+            case R.id.uc_rl_cs:
+                DataHelper.callPhone(getActivity(), getResources().getString(R.string.text_consumer_hotline));
                 break;
         }
     }

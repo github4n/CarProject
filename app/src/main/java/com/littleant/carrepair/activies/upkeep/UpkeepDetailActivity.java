@@ -70,6 +70,8 @@ public class UpkeepDetailActivity extends BaseActivity {
     }
     @Override
     protected int getOptionStringId() {
+        mOptionText.setVisibility(View.GONE);
+
         return R.string.text_after_sale;
     }
     private void requestUpkeepOrderDetail() {

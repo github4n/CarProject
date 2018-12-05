@@ -9,7 +9,9 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,7 +43,7 @@ public class RegisterActivity extends BaseActivity {
      */
     private Button ar_btn_save;
     private String name,authCode, phone, password;
-    private String termUrl;
+    private String termUrl="http://www.nolasthope.cn/system/useragreement/";
     private View ar_term_view;
     private CheckBox ar_cb_term;
 
@@ -223,12 +225,24 @@ public class RegisterActivity extends BaseActivity {
         int dialogWidth = (int) (dm.widthPixels * 0.7);
         int dialogHeight = (int) (dm.heightPixels * 0.7);
         d.setContentView(contentView, new Constraints.LayoutParams(dialogWidth, dialogHeight));
-        WebView webView = contentView.findViewById(R.id.lt_webview);
-        webView.loadUrl(url);
+        WebView mWebView = contentView.findViewById(R.id.lt_webview);
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        WebSettings settings = mWebView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setDisplayZoomControls(true);
+        mWebView.setVerticalScrollBarEnabled(false);
+        mWebView.loadUrl(url);
+        mWebView.loadUrl(url);
         contentView.findViewById(R.id.lt_btn_no).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ar_cb_term.setChecked(true);
+                ar_cb_term.setChecked(false);
                 d.dismiss();
             }
         });

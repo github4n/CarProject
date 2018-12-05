@@ -32,9 +32,12 @@ import com.littleant.carrepair.activies.BaseActivity;
 import com.littleant.carrepair.activies.pay.PaymentActivity;
 import com.littleant.carrepair.request.bean.BaseResponseBean;
 import com.littleant.carrepair.request.bean.login.TermUrlBean;
+import com.littleant.carrepair.request.bean.survey.SurveyCreateBean;
 import com.littleant.carrepair.request.bean.survey.SurveyInfo;
+import com.littleant.carrepair.request.bean.survey.SurveyPhoneInfo;
 import com.littleant.carrepair.request.constant.ParamsConstant;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyMethodCmd;
+import com.littleant.carrepair.request.excute.survey.survey.SurveyPphoneCmd;
 import com.littleant.carrepair.request.excute.survey.survey.SurveyUserCancelInfoCmd;
 import com.littleant.carrepair.request.utils.DataHelper;
 import com.littleant.carrepair.utils.ProjectUtil;
@@ -53,6 +56,7 @@ public class OwnStartCheckActivity extends BaseActivity implements AMap.OnMyLoca
     private SurveyInfo info;
     private AMap aMap;
     private double myLongitude, myLatitude;
+    private String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,8 +164,27 @@ public class OwnStartCheckActivity extends BaseActivity implements AMap.OnMyLoca
         switch (v.getId()) {
             case R.id.aosc_iv_call:
                 // TODO: 2018/9/14 此处应该是年检站电话
-                String drive_user_phone= info.getDrive_user_phone();
-                DataHelper.callPhone(this, drive_user_phone);
+                SurveyPphoneCmd surveyPphoneCmd=new SurveyPphoneCmd(this);
+                surveyPphoneCmd.setCallback(new MHCommandCallBack() {
+                    @Override
+                    public void cmdCallBack(MHCommand command) {
+                        BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
+                        if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
+                            SurveyPhoneInfo createBean = ProjectUtil.getBaseResponseBean(command.getResponse(), SurveyPhoneInfo.class);
+                            if(createBean.getData().getPhone()!=null){
+                                phone=createBean.getData().getPhone();
+                            }
+                            if(createBean.getData().getMoblie_phone()!=null){
+                                phone=createBean.getData().getMoblie_phone();
+                            }
+
+                            DataHelper.callPhone(OwnStartCheckActivity.this, phone);
+                        }
+
+                    }
+                });
+                MHCommandExecute.getInstance().asynExecute(mContext, surveyPphoneCmd);
+
                 break;
 
             case R.id.aosc_iv_navi:

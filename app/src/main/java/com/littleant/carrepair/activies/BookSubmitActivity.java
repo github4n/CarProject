@@ -74,7 +74,7 @@ public class BookSubmitActivity extends BaseActivity {
     //汽车信息\订单金额
     private View constraintLayout, abs_constraintLayout3;
     private TextView bm_tv_title, bm_tv_des;
-    private ImageView bm_iv_icon;
+    private ImageView bm_iv_icon,img_car;
     private GarageInfo garageInfo;
     public static final String PAYMENT_FROM = "from";
     public static final String ORDER_INFO = "order_info";
@@ -144,6 +144,8 @@ public class BookSubmitActivity extends BaseActivity {
 
         abs_tv_location_display = findViewById(R.id.abs_tv_location_display);
         abs_tv_location_display.setOnClickListener(this);
+
+        img_car=findViewById(R.id.img_car);
 
         abs_name = findViewById(R.id.abs_name);
 
@@ -476,6 +478,7 @@ public class BookSubmitActivity extends BaseActivity {
 
     private void setCarInfo(MyCarListBean.CarInfo carInfo) {
         if(carInfo != null) {
+            img_car.setVisibility(View.GONE);
             bm_tv_title.setText(carInfo.getCode());
             bm_tv_des.setText(carInfo.getBrand_name());
             Picasso.with(mContext).load(Uri.parse(carInfo.getPic_url())).resize(100, 100).into(bm_iv_icon);

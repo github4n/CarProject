@@ -121,6 +121,18 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     private static MyCarListBean carListBean=null;
     private static ViolationBean violationBean=null;
     private OnFragmentInteractionListener mListener;
+    private  GarageListBean garageListBean;
+    //维修集合
+    private static ArrayList<GarageInfo> repairData=new ArrayList<>();
+
+    //保养集合
+    private static ArrayList<GarageInfo> maintainData=new ArrayList<>();
+
+    //维修
+    MarkerOptions repairMarker= new MarkerOptions();
+    //保养
+    MarkerOptions maintainMarker= new MarkerOptions();
+
 
     public MainFragment() {
         // Required empty public constructor
@@ -165,7 +177,10 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         mMapView.onCreate(savedInstanceState);// 此方法必须重写
 
         mRepair = view.findViewById(R.id.m_repair);
+        mRepair.setOnClickListener(this);
         mMaintain = view.findViewById(R.id.m_maintain);
+        mMaintain.setOnClickListener(this);
+
 
         m_input_search = view.findViewById(R.id.m_input_search);
         m_input_search.setOnClickListener(this);
@@ -215,7 +230,6 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
         aMap.setOnMarkerClickListener(this);
         aMap.setOnMapClickListener(this);
         aMap.setOnMapLoadedListener(this);
-
         UiSettings uiSettings = aMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(false);
 
@@ -231,14 +245,21 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                         Log.i("response", command.getResponse());
                         BaseResponseBean responseBean = ProjectUtil.getBaseResponseBean(command.getResponse());
                         if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
-                            GarageListBean garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
+                            garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
                             data = (ArrayList<GarageInfo>) garageListBean.getData();
                             if(data != null && data.size() > 0) {
                                 for(int index = 0; index < data.size(); index++) {
                                     GarageInfo info = data.get(index);
                                     LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
-                                    aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + "")
-                                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                                    if(info.getType()==1||info.getType()==0){
+                                        aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "").visible(true)
+                                                .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                                        repairData.add(info);
+                                    }
+                                    if(info.getType()==2||info.getType()==0){
+                                        maintainData.add(info);
+                                    }
+
                                 }
                                 selectedInfo = data.get(0);
                                 lmfd_tv_title.setText(selectedInfo.getName());
@@ -265,8 +286,10 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
             for(int index = 0; index < data.size(); index++) {
                 GarageInfo info = data.get(index);
                 LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
-                aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + "")
-                        .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                if(info.getType()==1||info.getType()==0){
+                    aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "")
+                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                }
             }
             selectedInfo = data.get(0);
             lmfd_tv_title.setText(selectedInfo.getName());
@@ -312,7 +335,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 myLongitude = location.getLongitude();
 
                 LatLng myLatLng = new LatLng(myLatitude, myLongitude);
-                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 17f, 0, 0));
+                CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(myLatLng, 12f, 0, 0));
                 aMap.moveCamera(mCameraUpdate);
                 requestGarageList();
             } else { //只刷新当前位置
@@ -397,13 +420,14 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                         return;
                     }
                     //维修
+
                     intent = new Intent(getContext(), RepairActivity.class);
                 } else if(mMaintain.isChecked()) {
                     if(selectedInfo.getType()==1){
                         MHToast.showS(getContext(), R.string.request_fail_maintain);
                         return;
                     }
-                    //保养
+
                     intent = new Intent(getContext(), BookUpkeepActivity.class);
                 } else {
                     return;
@@ -418,12 +442,50 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                     DataHelper.callPhone(getActivity(), phone);
                 }
                 break;
+            case R.id.m_repair:
+                for(int index = 0; index < maintainData.size(); index++) {
+                    GarageInfo info = maintainData.get(index);
+                    LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+                    if(maintainMarker.position(latLng).isVisible()){
+                        maintainMarker.position(latLng).visible(false);
+                    }
+//                    aMap.addMarker(maintainMarker.position(latLng).title(info.getName()).snippet(index + "").visible(false)
+//                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                }
 
-            case R.id.lmfd_iv_navi:
-                LatLng startLocation = new LatLng(myLatitude, myLongitude);
-                LatLng endLocation = new LatLng(selectedInfo.getLatitude(), selectedInfo.getLongitude());
-                DataHelper.prepareNavi(getContext(), startLocation, endLocation, this);
+                for(int index = 0; index < repairData.size(); index++) {
+                   GarageInfo info = repairData.get(index);
+                    LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+                    aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "")
+                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                }
+
                 break;
+            case R.id.m_maintain:
+                for(int index = 0; index < repairData.size(); index++) {
+                    GarageInfo info = repairData.get(index);
+                    LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+                    if(repairMarker.position(latLng).isVisible()){
+                        repairMarker.position(latLng).visible(false);
+                    }
+//                    aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "").visible(false)
+//                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                }
+                //保养
+                for(int index = 0; index < maintainData.size(); index++) {
+                    GarageInfo info = maintainData.get(index);
+                    LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+
+                    aMap.addMarker(maintainMarker.position(latLng).title(info.getName()).snippet(index + "").visible(true)
+                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                }
+
+                break;
+//            case R.id.lmfd_iv_navi:
+//                LatLng startLocation = new LatLng(myLatitude, myLongitude);
+//                LatLng endLocation = new LatLng(selectedInfo.getLatitude(), selectedInfo.getLongitude());
+//                DataHelper.prepareNavi(getContext(), startLocation, endLocation, this);
+//                break;
 
             case R.id.main_iv_my_location:
                 if(myLatitude == 0 || myLongitude == 0) {
@@ -522,7 +584,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     public void onMapLoaded() {
         Log.i("carproject", "onMapLoaded");
         if(!DataHelper.getGuestLogin(getContext())) {
-            requestDefaultCar();
+            //requestDefaultCar();
             requestViolation();
         }
     }

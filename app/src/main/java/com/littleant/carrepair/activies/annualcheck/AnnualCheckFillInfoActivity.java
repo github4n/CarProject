@@ -294,7 +294,7 @@ public class AnnualCheckFillInfoActivity extends BaseFillInfoActivity implements
 //                    public SurveyCreateCmd(Context context, String name, String phone, String car_name, String car_brand, String car_code,
 //                    String car_type, int surveystation_id, String order_longitude, String order_latitude,
 //                    String order_address, String subscribe_time, String is_self, int combo_id, String comboitem_list)
-                SurveyCreateCmd surveyCreateCmd = new SurveyCreateCmd(mContext, contactName, contactPhone, driverName, brand, plate, type, selectedStation.getId(), selectLat + "",
+                SurveyCreateCmd surveyCreateCmd = new SurveyCreateCmd(mContext, contactName, contactPhone, driverName, brand, plate, type, selectedStation.getId(), selectLon + "",
                         selectLat + "", selectAddress, date, "0", combo_id, "");
                 surveyCreateCmd.setCallback(new MHCommandCallBack() {
                     @Override

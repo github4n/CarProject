@@ -187,6 +187,7 @@
     <string name="text_user_center_aftersale_record">售后服务</string>
     <string name="text_user_center_service_phone">客服</string>
     <string name="text_user_center_user_name">用户名</string>
+    <string name="text_consumer_hotline">020-87618887</string>
 
     <!---->
     <string name="text_shopping_car">购物车</string>
@@ -320,7 +321,7 @@
     <string name="text_fill_info">填写信息</string>
     <string name="text_check_contact_name">联系人</string>
     <string name="text_check_contact_phone">联系电话</string>
-    <string name="text_upload_credit_info">携带证件信息</string>
+    <string name="text_upload_credit_info">基本信息</string>
     <string name="text_with_certificate">携带证件</string>
     <string name="text_id_card">身份证</string>
     <string name="text_plus_insurance">加强险</string>

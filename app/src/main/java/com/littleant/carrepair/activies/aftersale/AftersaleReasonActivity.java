@@ -158,6 +158,9 @@ public class AftersaleReasonActivity extends BaseActivity {
                             } else if(responseBean != null && ParamsConstant.REAPONSE_CODE_AUTH_FAIL == responseBean.getCode()) {
                                 Intent intent = ProjectUtil.tokenExpiredIntent(mContext);
                                 startActivity(intent);
+                            }else{
+                                MHToast.showS(mContext, responseBean.getMsg());
+
                             }
                         }
                     });

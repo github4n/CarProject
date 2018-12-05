@@ -141,6 +141,7 @@
             android:paddingTop="16dp"
             android:text="@string/text_order_detail_pic"
             android:textColor="@color/color_text"
+            android:visibility="gone"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

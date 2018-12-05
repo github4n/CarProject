@@ -62,7 +62,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
     private MaintainOrderDetailBean.MaintainOrderDetail data;
     //订单列表的bean
     private MaintainOrderListBean.OrderInfo orderInfo;
-    private TextView asod_tv_title, asod_tv_state, asod_tv_modify;
+    private TextView asod_tv_title, asod_tv_state, asod_tv_modify,asod_tv_detial_pic,asod_tv_exchange_id;
     //维修修改的项目部分,维修照片部分
     private LinearLayout asod_ll_detail, asod_ll_pic;
     //支付和删除订单部分
@@ -123,6 +123,8 @@ public class RepairOrderDetailActivity extends BaseActivity {
         lodb_time = findViewById(R.id.lodb_time);
         lodb_type = findViewById(R.id.lodb_type);
         lodb_code = findViewById(R.id.lodb_code);
+        asod_tv_detial_pic=findViewById(R.id.asod_tv_detial_pic);
+        asod_tv_exchange_id=findViewById(R.id.asod_tv_exchange_id);
 
         asod_btn_delete = findViewById(R.id.asod_btn_delete);
         asod_btn_delete.setOnClickListener(this);
@@ -193,6 +195,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
             case 4:
                 mOptionText.setVisibility(View.VISIBLE);
+                asod_tv_detial_pic.setVisibility(View.VISIBLE);
                 asod_tv_state.setText("服务完成");
                 asod_tv_state.setTextColor(getResources().getColor(R.color.color_service_done));
                 showPic(data);
@@ -204,7 +207,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
         //头部信息
         lodb_item.setText(data.getService_item());
-        lodb_time.setText(data.getSubscribe_time());
+        lodb_time.setText(data.getOrder_time());
         lodb_type.setText(data.getCar_type());
         lodb_code.setText(data.getCar_code());
 
@@ -233,6 +236,7 @@ public class RepairOrderDetailActivity extends BaseActivity {
 
     @Override
     protected int getOptionStringId() {
+        mOptionText.setVisibility(View.GONE);
         return R.string.text_after_sale;
     }
 
