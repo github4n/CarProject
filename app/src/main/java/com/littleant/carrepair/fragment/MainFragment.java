@@ -129,9 +129,12 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
     private static ArrayList<GarageInfo> maintainData=new ArrayList<>();
 
     //维修
-    MarkerOptions repairMarker= new MarkerOptions();
+//    MarkerOptions repairMarker= new MarkerOptions();
     //保养
-    MarkerOptions maintainMarker= new MarkerOptions();
+//    MarkerOptions maintainMarker= new MarkerOptions();
+
+    private ArrayList<Marker> repairMarkerList;
+    private ArrayList<Marker> maintainMarkerList;
 
 
     public MainFragment() {
@@ -247,17 +250,27 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                         if(responseBean != null && ParamsConstant.REAPONSE_CODE_SUCCESS == responseBean.getCode()) {
                             garageListBean = ProjectUtil.getBaseResponseBean(command.getResponse(), GarageListBean.class);
                             data = (ArrayList<GarageInfo>) garageListBean.getData();
+                            repairMarkerList = new ArrayList<>();
+                            maintainMarkerList = new ArrayList<>();
                             if(data != null && data.size() > 0) {
                                 for(int index = 0; index < data.size(); index++) {
                                     GarageInfo info = data.get(index);
                                     LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
+                                    MarkerOptions options = new MarkerOptions();
+                                    options.position(latLng).title(info.getName()).snippet(index + "");
                                     if(info.getType()==1||info.getType()==0){
-                                        aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "").visible(true)
-                                                .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+                                        options.visible(true)
+                                                .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.marker_pic)));
+                                        Marker rMarker = aMap.addMarker(options);
                                         repairData.add(info);
+                                        repairMarkerList.add(rMarker);
                                     }
                                     if(info.getType()==2||info.getType()==0){
+                                        options.visible(false)
+                                                .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.marker_blue_pic)));
+                                        Marker mMarker = aMap.addMarker(options);
                                         maintainData.add(info);
+                                        maintainMarkerList.add(mMarker);
                                     }
 
                                 }
@@ -287,7 +300,7 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 GarageInfo info = data.get(index);
                 LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
                 if(info.getType()==1||info.getType()==0){
-                    aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "")
+                    aMap.addMarker(new MarkerOptions().position(latLng).title(info.getName()).snippet(index + "")
                             .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
                 }
             }
@@ -443,41 +456,45 @@ public class MainFragment extends Fragment implements AMap.OnMyLocationChangeLis
                 }
                 break;
             case R.id.m_repair:
-                for(int index = 0; index < maintainData.size(); index++) {
+                for(int index = 0; index < maintainMarkerList.size(); index++) {
+                    maintainMarkerList.get(index).setVisible(false);
                     GarageInfo info = maintainData.get(index);
                     LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
-                    if(maintainMarker.position(latLng).isVisible()){
-                        maintainMarker.position(latLng).visible(false);
-                    }
+//                    if(maintainMarker.position(latLng).isVisible()){
+//                        maintainMarker.position(latLng).visible(false);
+//                    }
 //                    aMap.addMarker(maintainMarker.position(latLng).title(info.getName()).snippet(index + "").visible(false)
 //                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
                 }
 
-                for(int index = 0; index < repairData.size(); index++) {
+                for(int index = 0; index < repairMarkerList.size(); index++) {
+                    repairMarkerList.get(index).setVisible(true);
                    GarageInfo info = repairData.get(index);
                     LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
-                    aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "")
-                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+//                    aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "")
+//                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
                 }
 
                 break;
             case R.id.m_maintain:
-                for(int index = 0; index < repairData.size(); index++) {
+                for(int index = 0; index < repairMarkerList.size(); index++) {
+                    repairMarkerList.get(index).setVisible(false);
                     GarageInfo info = repairData.get(index);
                     LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
-                    if(repairMarker.position(latLng).isVisible()){
-                        repairMarker.position(latLng).visible(false);
-                    }
+//                    if(repairMarker.position(latLng).isVisible()){
+//                        repairMarker.position(latLng).visible(false);
+//                    }
 //                    aMap.addMarker(repairMarker.position(latLng).title(info.getName()).snippet(index + "").visible(false)
 //                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
                 }
                 //保养
-                for(int index = 0; index < maintainData.size(); index++) {
+                for(int index = 0; index < maintainMarkerList.size(); index++) {
+                    maintainMarkerList.get(index).setVisible(true);
                     GarageInfo info = maintainData.get(index);
                     LatLng latLng = new LatLng(info.getLatitude(), info.getLongitude());
 
-                    aMap.addMarker(maintainMarker.position(latLng).title(info.getName()).snippet(index + "").visible(true)
-                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
+//                    aMap.addMarker(maintainMarker.position(latLng).title(info.getName()).snippet(index + "").visible(true)
+//                            .icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.marker_pic))));
                 }
 
                 break;
